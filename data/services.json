@@ -1278,42 +1278,63 @@
       "id": "alipay",
       "name": "支付宝",
       "category": "finance",
-      "summary": "支付、收款与交易查询。",
+      "summary": "支付授权、交易支付与状态查询，辅助应用收款接入。",
       "types": [
-        "mcp",
-        "skill"
+        "skill",
+        "cli"
       ],
-      "url": "https://opendocs.alipay.com/open/0h3gdq",
+      "url": "https://aipay.alipay.com/merchant-guide",
       "homepage": "https://www.alipay.com/",
       "appStoreId": 333206289,
       "color": "#1677FF",
       "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "npx -y @alipay/agent-payment@latest install"
+      },
+      "evidence": {
+        "url": "https://aipay.alipay.com/.well-known/skills/index.json",
+        "checkedAt": "2026-11-04",
+        "note": "支付宝 AI付官方 Skill 索引发布支付处理技能，商户指南给出 CLI 安装与支付流程。"
+      }
     },
     {
       "id": "wechat-pay",
       "name": "微信支付",
       "category": "finance",
-      "summary": "商户支付与交易查询。",
+      "summary": "支付接入开发指导、示例代码检索、接入评估与支付退款查单。",
       "types": [
-        "skill"
+        "skill",
+        "cli"
       ],
-      "url": "https://pay.weixin.qq.com/doc/v3/merchant/4035576700",
+      "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116",
       "homepage": "https://pay.weixin.qq.com/",
       "appStoreId": 414478124,
       "color": "#07C160",
-      "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "risk": "read",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://github.com/wechatpay-apiv3/wechatpay-skills"
+      },
+      "evidence": {
+        "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116",
+        "checkedAt": "2026-11-04",
+        "note": "官方接入 Skill 文档发布仓库；内置开发者 CLI 仅查询支付单和退款单。"
+      }
     },
     {
       "id": "unionpay",
       "name": "银联",
       "category": "finance",
-      "summary": "银联支付相关能力。",
+      "summary": "让智能体通过 MCP 接入银联支付服务。",
       "types": [
         "mcp"
       ],
@@ -1323,14 +1344,19 @@
       "color": "#E21836",
       "risk": "payment",
       "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://open.unionpay.com/tjweb/solution/detail?solId=613",
+        "checkedAt": "2026-11-04",
+        "note": "中国银联官方方案页明确智能支付 MCP，并列出服务指引与安装包。"
+      }
     },
     {
       "id": "ifind",
       "name": "同花顺 iFinD",
       "category": "finance",
-      "summary": "金融行情与数据查询。",
+      "summary": "查询行情、财务、公告、宏观等金融数据。",
       "types": [
         "mcp",
         "skill"
@@ -1340,43 +1366,75 @@
       "appStoreId": 717545196,
       "color": "#E60012",
       "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key",
+        "membership"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/skills/ifind-finance-data-1.5.1.zip"
+      },
+      "evidence": {
+        "url": "https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/llms-full.txt",
+        "checkedAt": "2026-11-04",
+        "note": "iFinD 官方首页链接全文文档，明确 MCP、Skill、密钥、试用与套餐权益。"
+      }
     },
     {
       "id": "iwencai",
       "name": "同花顺问财",
       "category": "finance",
-      "summary": "股票与金融数据问答。",
+      "summary": "通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。",
       "types": [
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://search.10jqka.com.cn/skillhub",
       "homepage": "https://www.iwencai.com/",
       "appStoreId": 1222204519,
       "color": "#E60012",
       "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "curl -fsSL https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh | bash -s"
+      },
+      "evidence": {
+        "url": "https://search.10jqka.com.cn/skillhub",
+        "checkedAt": "2026-11-04",
+        "note": "问财官方 SkillHub 前端及公开目录将自有技能标为 OFFICIAL，提供 CLI 与 API Key 指引。"
+      }
     },
     {
       "id": "eastmoney-miaoxiang",
       "name": "东方财富妙想",
       "category": "finance",
-      "summary": "金融资讯与数据分析。",
+      "summary": "金融资讯与数据分析、选股，以及自选和模拟组合管理。",
       "types": [
         "skill"
       ],
-      "url": "https://marketing.dfcfs.com/views/finskillshub/",
+      "url": "https://ai.eastmoney.com/skills",
       "homepage": "https://www.eastmoney.com/",
       "appStoreId": 423525686,
       "color": "#EA5504",
-      "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://ai.eastmoney.com/skills",
+        "checkedAt": "2026-11-04",
+        "note": "东方财富官方 Skill 广场前端提供 API Key、下载和使用入口，官方介绍包含自选与模拟组合管理。"
+      }
     },
     {
       "id": "aliyun",
@@ -1386,14 +1444,21 @@
       "types": [
         "mcp"
       ],
-      "url": "https://api.aliyun.com/mcp",
+      "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide",
       "homepage": "https://www.aliyun.com/",
       "appStoreId": 981011420,
       "color": "#FF6A00",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide",
+        "checkedAt": "2026-11-04",
+        "note": "阿里云官方 OpenAPI MCP 指南明确账号、OAuth 或 AK 认证及云资源操作。"
+      }
     },
     {
       "id": "tencent-cloud",
@@ -1402,15 +1467,26 @@
       "summary": "云资源查询与管理。",
       "types": [
         "skill",
-        "mcp"
+        "cli"
       ],
       "url": "https://cloud.tencent.com/document/product/1278/131433",
       "homepage": "https://cloud.tencent.com/",
       "color": "#006EFF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "pip install tccli",
+        "skill": "https://clawhub.ai/tencent-adm/tencentcloud-api-skill"
+      },
+      "evidence": {
+        "url": "https://cloud.tencent.com/document/product/1278/131433",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云官方云 API Skill 文档发布 ClawHub 技能，并要求通过 TCCLI 执行资源操作。"
+      }
     },
     {
       "id": "huawei-cloud",
@@ -1426,9 +1502,34 @@
       "appStoreId": 1247814104,
       "color": "#C7000B",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "git+https://github.com/huaweicloud/huaweicloud-mcp#subdirectory=server/mcp_server_rfs",
+            "mcp-huaweicloud-rfs"
+          ],
+          "env": {
+            "HUAWEICLOUD_ACCESS_KEY": "<你的华为云AK>",
+            "HUAWEICLOUD_SECRET_KEY": "<你的华为云SK>",
+            "HUAWEICLOUD_REGION": "<你的华为云地域>"
+          }
+        },
+        "skill": "https://github.com/huaweicloud/huaweicloud-devkit"
+      },
+      "evidence": {
+        "url": "https://open.huaweicloud.com/",
+        "checkedAt": "2026-11-04",
+        "note": "华为云官方开放能力首页链接 huaweicloud 组织的 DevKit；同组织 MCP 仓库给出 RFS 配置。"
+      }
     },
     {
       "id": "volcengine",
@@ -1442,15 +1543,39 @@
       "homepage": "https://www.volcengine.com/",
       "color": "#1664FF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "mcp-server-ecs>=0.2.0",
+            "mcp-server-ecs"
+          ],
+          "env": {
+            "VOLCENGINE_ACCESS_KEY": "<你的火山引擎AK>",
+            "VOLCENGINE_SECRET_KEY": "<你的火山引擎SK>",
+            "VOLCENGINE_REGION": "<你的火山引擎地域>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://github.com/volcengine",
+        "checkedAt": "2026-11-04",
+        "note": "火山引擎官方 GitHub 组织主页链接官网；MCP 仓库提供官方 ECS 等云服务与配置。"
+      }
     },
     {
       "id": "baidu-cloud",
       "name": "百度智能云",
       "category": "cloud",
-      "summary": "云服务与 AI 能力接入。",
+      "summary": "文字识别、文档解析、图像处理、人脸识别与语音能力。",
       "types": [
         "mcp"
       ],
@@ -1459,15 +1584,32 @@
       "appStoreId": 1242720931,
       "color": "#2468F2",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "sse",
+          "url": "https://aip.baidubce.com/mcp/ocr_general/sse",
+          "headers": {
+            "Authorization": "Bearer <你的百度AIAPIKey>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0",
+        "checkedAt": "2026-11-04",
+        "note": "百度 AI 开放能力官方 MCP 指南明确 API Key、SSE 及文字图像语音工具清单。"
+      }
     },
     {
       "id": "qiniu",
       "name": "七牛云",
       "category": "cloud",
-      "summary": "对象存储与 CDN 管理。",
+      "summary": "对象存储读写、图片处理、CDN 刷新预取与直播管理。",
       "types": [
         "mcp"
       ],
@@ -1475,15 +1617,39 @@
       "homepage": "https://www.qiniu.com/",
       "color": "#06AEEF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "qiniu-mcp-server"
+          ],
+          "env": {
+            "QINIU_ACCESS_KEY": "<你的七牛AK>",
+            "QINIU_SECRET_KEY": "<你的七牛SK>",
+            "QINIU_REGION_NAME": "<你的七牛地域>",
+            "QINIU_ENDPOINT_URL": "<你的七牛S3Endpoint>",
+            "QINIU_BUCKETS": "<你的七牛Bucket列表>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://developer.qiniu.com/kodo/12914/mcp-aimodel-kodo",
+        "checkedAt": "2026-11-04",
+        "note": "七牛官方开发文档发布 MCP 用法并链接官方 qiniu/qiniu-mcp-server 仓库。"
+      }
     },
     {
       "id": "zhipu",
       "name": "智谱",
       "category": "cloud",
-      "summary": "联网搜索等模型工具。",
+      "summary": "联网搜索与实时信息检索，面向 GLM Coding Plan 用户。",
       "types": [
         "mcp"
       ],
@@ -1492,9 +1658,27 @@
       "appStoreId": 6450893458,
       "color": "#3859FF",
       "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "membership",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://open.bigmodel.cn/api/mcp/web_search_prime/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的智谱CodingPlanAPIKey>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
+        "checkedAt": "2026-11-04",
+        "note": "智谱官方联网搜索 MCP 文档明确 Coding Plan 权益、API Key 与 HTTP 鉴权配置。"
+      }
     },
     {
       "id": "gitee",
@@ -1504,13 +1688,32 @@
       "types": [
         "mcp"
       ],
-      "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/",
+      "url": "https://gitee.com/oschina/mcp-gitee",
       "homepage": "https://gitee.com/",
       "color": "#C71D23",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "mcp-gitee",
+          "args": [],
+          "env": {
+            "GITEE_API_BASE": "https://gitee.com/api/v5",
+            "GITEE_ACCESS_TOKEN": "<你的Gitee访问令牌>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/",
+        "checkedAt": "2026-11-04",
+        "note": "Gitee 官方博客直接发布 MCP 仓库，列出代码协作写操作和 stdio 配置。"
+      }
     },
     {
       "id": "jihulab",
@@ -1520,14 +1723,27 @@
       "types": [
         "mcp"
       ],
-      "url": "https://gitlab.cn/news/cmvg3kvmv000nv30iuo1aifgg",
+      "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/",
       "homepage": "https://gitlab.cn/",
       "appStoreId": 6444783184,
       "color": "#FC6D26",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://jihulab.com/api/v4/mcp"
+        }
+      },
+      "evidence": {
+        "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/",
+        "checkedAt": "2026-11-04",
+        "note": "极狐官方 MCP 文档明确正式发布、OAuth、HTTP 端点及项目协作操作。"
+      }
     }
   ]
 }

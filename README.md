@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>55 个服务 · 7 个分类 · 38 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>55 个服务 · 7 个分类 · 53 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -138,12 +138,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [支付宝](https://opendocs.alipay.com/open/0h3gdq) | 支付、收款与交易查询。 | MCP · Skill | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4035576700) | 商户支付与交易查询。 | Skill | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [银联](https://open.unionpay.com/tjweb/solution/detail?solId=613) | 银联支付相关能力。 | MCP | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [同花顺 iFinD](https://mcp.51ifind.com/) | 金融行情与数据查询。 | MCP · Skill | 🟢 只读查询 | — | ⏳ 待核验 |
-| [同花顺问财](https://search.10jqka.com.cn/skillhub) | 股票与金融数据问答。 | Skill | 🟢 只读查询 | — | ⏳ 待核验 |
-| [东方财富妙想](https://marketing.dfcfs.com/views/finskillshub/) | 金融资讯与数据分析。 | Skill | 🟢 只读查询 | — | ⏳ 待核验 |
+| [支付宝](https://aipay.alipay.com/merchant-guide) | 支付授权、交易支付与状态查询，辅助应用收款接入。 | Skill · CLI | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
+| [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116) | 支付接入开发指导、示例代码检索、接入评估与支付退款查单。 | Skill · CLI | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
+| [银联](https://open.unionpay.com/tjweb/solution/detail?solId=613) | 让智能体通过 MCP 接入银联支付服务。 | MCP | 🔴 涉及资金 | — | ✅ 已核验 |
+| [同花顺 iFinD](https://mcp.51ifind.com/) | 查询行情、财务、公告、宏观等金融数据。 | MCP · Skill | 🟢 只读查询 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
+| [同花顺问财](https://search.10jqka.com.cn/skillhub) | 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 | Skill · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [东方财富妙想](https://ai.eastmoney.com/skills) | 金融资讯与数据分析、选股，以及自选和模拟组合管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -153,15 +153,15 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [阿里云](https://api.aliyun.com/mcp) | 云资源查询与管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [腾讯云](https://cloud.tencent.com/document/product/1278/131433) | 云资源查询与管理。 | MCP · Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [华为云](https://github.com/huaweicloud/huaweicloud-mcp) | 云资源查询与管理。 | MCP · Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [火山引擎](https://github.com/volcengine/mcp-server) | 云资源与 AI 能力接入。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) | 云服务与 AI 能力接入。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [七牛云](https://github.com/qiniu/qiniu-mcp-server) | 对象存储与 CDN 管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) | 联网搜索等模型工具。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [Gitee](https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [极狐 GitLab](https://gitlab.cn/news/cmvg3kvmv000nv30iuo1aifgg) | 代码仓库与 DevOps 管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) | 云资源查询与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [腾讯云](https://cloud.tencent.com/document/product/1278/131433) | 云资源查询与管理。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [华为云](https://github.com/huaweicloud/huaweicloud-mcp) | 云资源查询与管理。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [火山引擎](https://github.com/volcengine/mcp-server) | 云资源与 AI 能力接入。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) | 文字识别、文档解析、图像处理、人脸识别与语音能力。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [七牛云](https://github.com/qiniu/qiniu-mcp-server) | 对象存储读写、图片处理、CDN 刷新预取与直播管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) | 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
+| [Gitee](https://gitee.com/oschina/mcp-gitee) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/) | 代码仓库与 DevOps 管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
