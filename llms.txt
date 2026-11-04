@@ -1,6 +1,6 @@
 # Awesome Agent MCP
 
-> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 55 个，更新于 2026-11-04。
+> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 58 个，更新于 2026-11-04。
 
 结构化数据：https://guanmo-ai.github.io/awesome-agent-mcp/services.json（字段说明见 https://github.com/guanmo-ai/awesome-agent-mcp/blob/main/docs/SCHEMA.md）
 
@@ -33,6 +33,8 @@
 - [金山文档](https://github.com/kdocs-app/kdocs-skill): 在线文档的读取与协作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；待核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/)
 - [语雀](https://github.com/yuque/yuque-mcp-server): 知识库与文档的读写。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y yuque-mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/)
 - [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail): 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencent-qqmail/agently-cli`；Skill https://github.com/Tencent/AgentlyMail；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/)
+- [腾讯乐享](https://github.com/tencent-lexiang/lexiang-mcp-skill): 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.lexiang-app.com/mcp?company_from=<你的企业标识>；Skill https://github.com/tencent-lexiang/lexiang-mcp-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/)
+- [TextIn](https://www.textin.com/news/20250707161156842): 识别图片与文档文字，提取字段表格，并把文档转换为 Markdown。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP stdio npx -y @intsig/server-textin；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/textin/)
 
 ## 笔记、阅读和网盘
 
@@ -84,3 +86,4 @@
 - [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server): 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 类型 MCP；权限 只读查询；门槛 需授权账号、需会员或付费、需 API Key；已核验；MCP Streamable HTTP https://open.bigmodel.cn/api/mcp/web_search_prime/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu/)
 - [Gitee](https://gitee.com/oschina/mcp-gitee): 代码仓库、Issue 与 PR 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio mcp-gitee；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/)
 - [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/): 代码仓库与 DevOps 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://jihulab.com/api/v4/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/)
+- [腾讯 EdgeOne Makers](https://edgeone.cloud.tencent.com/pages/document/173172415568367616): 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP stdio npx edgeone-pages-mcp-fullstack --region china；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers/)
