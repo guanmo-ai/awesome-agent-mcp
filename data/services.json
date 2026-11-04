@@ -1906,6 +1906,841 @@
         }
       },
       "appStoreId": 847764912
+    },
+    {
+      "id": "variflight",
+      "name": "飞常准",
+      "category": "life",
+      "summary": "查询航班动态、中转方案、机票价格、机场天气与飞机位置。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://ai.variflight.com/zh/docs/aviation",
+      "homepage": "https://www.variflight.com/",
+      "risk": "read",
+      "access": [
+        "key",
+        "account",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://ai.variflight.com/zh/docs/aviation",
+        "checkedAt": "2026-11-04",
+        "note": "飞常准官方 AI 开放平台文档，明确远程 HTTP、OAuth 与官方 npm 包。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/variflight/variflight-mcp",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://ai.variflight.com/servers/aviation/mcp",
+          "headers": {
+            "X-API-Key": "<你的飞常准Key>"
+          }
+        }
+      },
+      "appStoreId": 498818574
+    },
+    {
+      "id": "tuniu",
+      "name": "途牛",
+      "category": "life",
+      "summary": "搜索并预订酒店、机票、火车票、门票、邮轮与度假产品。",
+      "types": [
+        "mcp",
+        "skill",
+        "cli"
+      ],
+      "url": "https://open.tuniu.com/mcp/docs/guide/mcp-auth.html",
+      "homepage": "https://www.tuniu.com/",
+      "risk": "payment",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://open.tuniu.com/mcp/docs/guide/mcp-auth.html",
+        "checkedAt": "2026-11-04",
+        "note": "途牛官方开放平台文档；远程 OAuth 使用 /hybrid/mcp/，CLI 含内置 Skill。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/tuniucorp/tuniu-cli",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://openapi.tuniu.cn/hybrid/mcp/hotel"
+        },
+        "cli": "npm install -g tuniu-cli@latest",
+        "skill": "https://github.com/tuniucorp/tuniu-cli"
+      },
+      "appStoreId": 447313708
+    },
+    {
+      "id": "capybrowser",
+      "name": "百智云浏览器",
+      "category": "cloud",
+      "summary": "创建和管理云端浏览器运行与存档，配合 CDP 操作网页。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://capybrowser.app.baizhi.cloud/docs/installation.md",
+      "homepage": "https://capybrowser.app.baizhi.cloud/",
+      "risk": "write",
+      "access": [
+        "key",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://capybrowser.app.baizhi.cloud/docs/installation.md",
+        "checkedAt": "2026-11-04",
+        "note": "百智云应用官方接入文档；MCP 管理运行，页面操作需 CDP 客户端。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://capybrowser.app.baizhi.cloud/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的百智云Key>"
+          }
+        },
+        "skill": "https://capybrowser.app.baizhi.cloud/docs/skills.md"
+      }
+    },
+    {
+      "id": "aihot",
+      "name": "AIHOT",
+      "category": "search",
+      "summary": "检索中文 AI 资讯、热点事件时间线及日报、周报和月报。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://aihot.news/agent?tab=mcp",
+      "homepage": "https://aihot.news/",
+      "risk": "read",
+      "access": [
+        "free"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://aihot.news/agent?tab=mcp",
+        "checkedAt": "2026-11-04",
+        "note": "AIHOT 官方 Agent 接入页，匿名只读，无需账号与 Key。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://aihot.news/api/mcp"
+        },
+        "skill": "https://aihot.news/agent"
+      }
+    },
+    {
+      "id": "mineru",
+      "name": "MinerU",
+      "category": "office",
+      "summary": "将 PDF、Office、图片与网页解析为 Markdown 和结构化数据。",
+      "types": [
+        "mcp",
+        "skill",
+        "cli"
+      ],
+      "url": "https://github.com/opendatalab/MinerU-Ecosystem",
+      "homepage": "https://mineru.net/",
+      "risk": "write",
+      "access": [
+        "free",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/opendatalab",
+        "checkedAt": "2026-11-04",
+        "note": "OpenDataLab 官方组织主页链接 opendatalab.org.cn，仓库提供 MCP、CLI 与 Skills。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "mineru-open-mcp"
+          ]
+        },
+        "skill": "https://github.com/opendatalab/MinerU-Ecosystem/tree/main/skills"
+      }
+    },
+    {
+      "id": "dida",
+      "name": "滴答清单",
+      "category": "office",
+      "summary": "查询和管理任务、清单、习惯、专注记录与纪念日。",
+      "types": [
+        "mcp",
+        "cli"
+      ],
+      "url": "https://help.dida365.com/articles/7438132116019216384",
+      "homepage": "https://dida365.com/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://help.dida365.com/articles/7438132116019216384",
+        "checkedAt": "2026-11-04",
+        "note": "滴答官方 MCP 指南；DIDA CLI 安装另见官方文章 7464976698707017728。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.dida365.com"
+        },
+        "cli": "npm install -g @suibiji/dida-cli"
+      },
+      "appStoreId": 626144601
+    },
+    {
+      "id": "feishu-project",
+      "name": "飞书项目",
+      "category": "office",
+      "summary": "按账号权限查询和更新项目、工作项及相关项目数据。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc",
+      "homepage": "https://project.feishu.cn/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc",
+        "checkedAt": "2026-11-04",
+        "note": "飞书项目官方帮助中心明确读写能力；需先在产品中启用 MCP 并授权。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "doc2x",
+      "name": "Doc2X",
+      "category": "office",
+      "summary": "解析 PDF 和图片，提取公式表格，并导出 Markdown、Word 等文件。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://doc2x.noedgeai.com/help/en/api/doc2x-mcp.html",
+      "homepage": "https://doc2x.noedgeai.com/",
+      "risk": "write",
+      "access": [
+        "key",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://doc2x.noedgeai.com/help/en/api/doc2x-mcp.html",
+        "checkedAt": "2026-11-04",
+        "note": "Doc2X 官方文档直接给出 MCP 配置并链接官方仓库和 Skill。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/NoEdgeAI/doc2x-mcp",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@noedgeai-org/doc2x-mcp@latest"
+          ],
+          "env": {
+            "DOC2X_API_KEY": "<你的Doc2XKey>"
+          }
+        },
+        "skill": "https://github.com/NoEdgeAI/doc2x-mcp"
+      }
+    },
+    {
+      "id": "jiandaoyun",
+      "name": "简道云",
+      "category": "office",
+      "summary": "查询应用、表单数据和待办，并向获授权的表单新增数据。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://hc.finecloud.com/app/open/25090",
+      "homepage": "https://www.jiandaoyun.com/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://hc.finecloud.com/app/open/25090",
+        "checkedAt": "2026-11-04",
+        "note": "简道云官方 AI 连接指南；新增数据需管理员审核，个人连接地址由产品生成。"
+      },
+      "addedAt": "2026-11-04",
+      "appStoreId": 6755710065
+    },
+    {
+      "id": "jinshuju",
+      "name": "金数据",
+      "category": "office",
+      "summary": "查询、创建和修改表单，读写提交数据并上传图片与附件。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.jinshuju.net/mcp/",
+      "homepage": "https://jinshuju.net/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://open.jinshuju.net/mcp/",
+        "checkedAt": "2026-11-04",
+        "note": "金数据开放平台官方 MCP 文档，提供 OAuth 地址和工具列表。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://jinshuju.net/mcp"
+        }
+      }
+    },
+    {
+      "id": "sealos",
+      "name": "Sealos",
+      "category": "cloud",
+      "summary": "创建开发环境，管理数据库，查询账单、性能监控与日志。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://sealos.io/docs/AI/mcp/",
+      "homepage": "https://sealos.io/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://sealos.io/docs/AI/mcp/",
+        "checkedAt": "2026-11-04",
+        "note": "Sealos 官方文档，使用工作空间 KubeConfig 授权，服务随地域提供。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "rongcloud",
+      "name": "融云",
+      "category": "cloud",
+      "summary": "管理即时通讯用户与群组，发送消息并查询聊天记录。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/rongcloud/rongcloud-server-mcp-python",
+      "homepage": "https://www.rongcloud.cn/",
+      "risk": "write",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/rongcloud",
+        "checkedAt": "2026-11-04",
+        "note": "融云官方组织主页链接 rongcloud.cn，仓库公开工具及配置。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "rongcloud-server-mcp-python"
+          ],
+          "env": {
+            "RONGCLOUD_APP_KEY": "<你的融云AppKey>",
+            "RONGCLOUD_APP_SECRET": "<你的融云AppSecret>"
+          }
+        }
+      }
+    },
+    {
+      "id": "lava",
+      "name": "熔岩",
+      "category": "finance",
+      "summary": "查询 A 股个股与概念板块的消息热度、机构覆盖和首提线索。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://lava.ai-dolphin.com/subscribe/docs",
+      "homepage": "https://lava.ai-dolphin.com/",
+      "risk": "read",
+      "access": [
+        "key",
+        "account",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://lava.ai-dolphin.com/subscribe/docs",
+        "checkedAt": "2026-11-04",
+        "note": "熔岩官方订阅文档，按调用计费，提供只读 MCP 与技能模板。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://lava.ai-dolphin.com/subscribe/v1/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的熔岩Key>"
+          }
+        }
+      }
+    },
+    {
+      "id": "yuandian",
+      "name": "华宇元典",
+      "category": "search",
+      "summary": "检索法律法规、案例、企业和证券合规资料，并校验法律幻觉。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://open.chineselaw.com/mcp-config/",
+      "homepage": "https://www.chineselaw.com/",
+      "risk": "read",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://open.chineselaw.com/mcp-config/",
+        "checkedAt": "2026-11-04",
+        "note": "元典官方开放平台列出五类 MCP 和统一法律研究 Skill。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://open.chineselaw.com/mcp/law/stream",
+          "headers": {
+            "Authorization": "Bearer <你的元典Key>"
+          }
+        }
+      }
+    },
+    {
+      "id": "patsnap",
+      "name": "智慧芽",
+      "category": "search",
+      "summary": "检索专利与科技情报，并使用专利分析和研发研究工作流。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://open.zhihuiya.com/devportal/guides/mcp-installation",
+      "homepage": "https://www.zhihuiya.com/",
+      "risk": "read",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://open.zhihuiya.com/devportal/guides/mcp-installation",
+        "checkedAt": "2026-11-04",
+        "note": "智慧芽官方开放平台 MCP 客户端文档及 Skill Hub 概览。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://connect.zhihuiya.com/1458a4/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的智慧芽MCPKey>"
+          }
+        }
+      }
+    },
+    {
+      "id": "libtv",
+      "name": "LibTV",
+      "category": "design",
+      "summary": "通过创作会话生成图片和视频，上传资料并查询和下载生成结果。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://github.com/libtv-labs/libtv-skills",
+      "homepage": "https://www.liblib.tv/",
+      "risk": "write",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/libtv-labs",
+        "checkedAt": "2026-11-04",
+        "note": "LibTV 官方组织主页指向 liblib.tv，仓库提供 libtv-skill。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://github.com/libtv-labs/libtv-skills"
+      }
+    },
+    {
+      "id": "flova",
+      "name": "Flova",
+      "category": "design",
+      "summary": "创建和续作视频项目，上传素材、推进创作、管理 Skill 并导出成片。",
+      "types": [
+        "mcp",
+        "skill",
+        "cli"
+      ],
+      "url": "https://www.flova.ai/zh-CN/docs/features/cli/",
+      "homepage": "https://flova.tv/",
+      "risk": "write",
+      "access": [
+        "account",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://www.flova.ai/zh-CN/docs/features/cli/",
+        "checkedAt": "2026-11-04",
+        "note": "Flova 官方中文 CLI 与 MCP 文档；国内服务主体见 flova.tv 使用条款。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "curl -fsSL https://cli.flova.ai/install.sh | sh"
+      }
+    },
+    {
+      "id": "meshy",
+      "name": "Meshy",
+      "category": "design",
+      "summary": "生成和编辑三维模型、纹理与动画，准备可打印的三维文件。",
+      "types": [
+        "mcp",
+        "skill",
+        "cli"
+      ],
+      "url": "https://docs.meshy.ai/zh/webapp/plugins/deepseek-harness/introduction",
+      "homepage": "https://meshy.cn/",
+      "risk": "write",
+      "access": [
+        "account",
+        "key",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.meshy.ai/zh/webapp/plugins/deepseek-harness/introduction",
+        "checkedAt": "2026-11-04",
+        "note": "Meshy 官方中文文档明确 China · meshy.cn 登录与大陆镜像，提供 CLI、Skill 及 MCP。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/meshy-dev/meshy-mcp-server",
+      "install": {
+        "skill": "https://github.com/meshy-dev/meshy-3d-agent"
+      }
+    },
+    {
+      "id": "antv",
+      "name": "AntV",
+      "category": "design",
+      "summary": "把结构化数据生成为图表，并按分析场景选择适合的可视化形式。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://github.com/antvis/mcp-server-chart",
+      "homepage": "https://antv.antgroup.com/",
+      "risk": "write",
+      "access": [
+        "free"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/antvis",
+        "checkedAt": "2026-11-04",
+        "note": "AntV 官方组织主页链接蚂蚁 AntV 官网，仓库提供 MCP 与图表 Skill。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@antv/mcp-server-chart"
+          ]
+        },
+        "skill": "https://github.com/antvis/chart-visualization-skills"
+      }
+    },
+    {
+      "id": "metaso",
+      "name": "秘塔 AI 搜索",
+      "category": "search",
+      "summary": "搜索网页并读取内容，为研究和问答提供外部资料。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://metaso.cn/search-api/playground",
+      "homepage": "https://metaso.cn/",
+      "risk": "read",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://metaso.cn/search-api/playground",
+        "checkedAt": "2026-11-04",
+        "note": "秘塔官方 API 页面直接链接 ModelScope 的 metaso-search MCP。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://metaso.cn/api/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的秘塔Key>"
+          }
+        }
+      }
+    },
+    {
+      "id": "kuaidi100",
+      "name": "快递100",
+      "category": "life",
+      "summary": "查询物流轨迹、预估运费与时效，并支持获授权的上门取件下单。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://api.kuaidi100.com/document/how-to-use-mcp-service",
+      "homepage": "https://www.kuaidi100.com/",
+      "risk": "payment",
+      "access": [
+        "key",
+        "account",
+        "apply"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://api.kuaidi100.com/document/how-to-use-mcp-service",
+        "checkedAt": "2026-11-04",
+        "note": "快递100官方 MCP、Skill 文档及 2026-10-21 上门取件 MCP 公告；寄件需 Key 加白。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/kuaidi100-api/kuaidi100-MCP",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://api.kuaidi100.com/mcp/streamable?key=<你的快递100Key>"
+        },
+        "skill": "https://clawhub.ai/kuaidi100-api/kuaidi100-skill"
+      },
+      "appStoreId": 458270120
+    },
+    {
+      "id": "pushplus",
+      "name": "pushplus 推送加",
+      "category": "office",
+      "summary": "向微信、邮箱等渠道推送消息，管理订阅设置并发起积分提现。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://www.pushplus.plus/doc/guide/mcp.html",
+      "homepage": "https://www.pushplus.plus/",
+      "risk": "payment",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://www.pushplus.plus/download.html",
+        "checkedAt": "2026-11-04",
+        "note": "官方 MCP 指南链接仓库；open_pay_transfer_order 可向收款账户发起积分提现。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://gitee.com/pushplus/pushplus-MCP-Server-TypeScript",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@perk-net/pushplus-mcp-server"
+          ],
+          "env": {
+            "PUSHPLUS_TOKEN": "<你的PushPlusToken>",
+            "PUSHPLUS_SECRET_KEY": "<你的PushPlusSecretKey>"
+          }
+        },
+        "skill": "https://clawhub.ai/pcstx/pushplus-notification"
+      },
+      "appStoreId": 6755597125
+    },
+    {
+      "id": "niutrans",
+      "name": "小牛翻译",
+      "category": "search",
+      "summary": "翻译文本，并查询支持的语言名称与代码。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/NiuTrans/MCP-TextTranslation",
+      "homepage": "https://niutrans.com/",
+      "risk": "read",
+      "access": [
+        "key",
+        "free"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/NiuTrans",
+        "checkedAt": "2026-11-04",
+        "note": "小牛翻译官方组织主页链接 niutrans.com，文档明确 Key 与免费字符额度。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uv",
+          "args": [
+            "tool",
+            "run",
+            "mcp-translation-text"
+          ],
+          "env": {
+            "NIUTRANS_API_KEY": "<你的小牛翻译Key>"
+          }
+        }
+      }
+    },
+    {
+      "id": "aippt",
+      "name": "AiPPT",
+      "category": "design",
+      "summary": "从主题、文本、文档或链接生成演示文稿，并下载 PPTX 文件。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://open.aippt.cn/docs/zh/claw/docs.html",
+      "homepage": "https://www.aippt.cn/",
+      "risk": "write",
+      "access": [
+        "apply",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://open.aippt.cn/docs/zh/claw/docs.html",
+        "checkedAt": "2026-11-04",
+        "note": "AiPPT 官方开放平台文档直接背书 ClawHub 上 huiyuan1234/aipptskill。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://clawhub.ai/huiyuan1234/aipptskill"
+      }
+    },
+    {
+      "id": "meituhub",
+      "name": "美图 MeituHub",
+      "category": "design",
+      "summary": "用命令行调用图片、视频和音频创作能力，支持本地批量处理。",
+      "types": [
+        "cli"
+      ],
+      "url": "https://www.meituhub.com/zh-cn/docs?id=150",
+      "homepage": "https://www.meituhub.com/",
+      "risk": "write",
+      "access": [
+        "key",
+        "membership"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://www.meituhub.com/zh-cn/docs?id=150",
+        "checkedAt": "2026-11-04",
+        "note": "美图 MeituHub 官方接入文档明确 meitu-cli、AK/SK 与命令示例。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "npm install -g meitu-cli meitu"
+      }
+    },
+    {
+      "id": "guosen",
+      "name": "国信证券小信",
+      "category": "finance",
+      "summary": "查询宏观、行情与财务数据，进行基金对比、选股和 ETF 筛选。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://www.guosen.com.cn/gs/xxskills/index.html",
+      "homepage": "https://www.guosen.com.cn/",
+      "risk": "read",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://www.guosen.com.cn/gs/xxskills/index.html",
+        "checkedAt": "2026-11-04",
+        "note": "国信证券官方小信 Skills 中心，需登录领取 API Key；未将敬请期待能力写入摘要。"
+      },
+      "addedAt": "2026-11-04",
+      "appStoreId": 1190176119
+    },
+    {
+      "id": "cloudbase",
+      "name": "腾讯云开发 CloudBase",
+      "category": "cloud",
+      "summary": "管理云数据库、云函数、存储和应用部署，并提供开发工作流。",
+      "types": [
+        "mcp",
+        "skill",
+        "cli"
+      ],
+      "url": "https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/",
+      "homepage": "https://tcb.cloud.tencent.com/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云开发官方文档链接官方 MCP、Skill 与 tcb CLI，并区分国内站和国际站。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://tcb-api.cloud.tencent.com/mcp/v1"
+        },
+        "skill": "https://github.com/TencentCloudBase/cloudbase-skills"
+      }
     }
   ]
 }

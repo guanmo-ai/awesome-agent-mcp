@@ -1,4 +1,14 @@
 {
+  "aihot": {
+    "pad": false,
+    "source": "https://aihot.news/apple-icon.png",
+    "size": 180
+  },
+  "aippt": {
+    "pad": true,
+    "source": "https://www.aippt.cn/favicon.ico",
+    "size": 192
+  },
   "alipay": {
     "pad": false,
     "source": "appstore",
@@ -13,6 +23,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "antv": {
+    "pad": true,
+    "source": "https://avatars.githubusercontent.com/u/19199542?v=4&s=256",
+    "size": 200
   },
   "apifox": {
     "pad": false,
@@ -44,6 +59,21 @@
     "source": "appstore",
     "size": 256
   },
+  "capybrowser": {
+    "pad": false,
+    "source": "https://capybrowser.app.baizhi.cloud/logo.png",
+    "size": 1003
+  },
+  "cloudbase": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/40630849?v=4&s=256",
+    "size": 256
+  },
+  "dida": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
   "didi": {
     "pad": false,
     "source": "appstore",
@@ -53,6 +83,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "doc2x": {
+    "pad": false,
+    "source": "https://doc2x.noedgeai.com/apple-touch-icon.png",
+    "size": 180
   },
   "douyin-open": {
     "pad": false,
@@ -74,6 +109,11 @@
     "source": "appstore",
     "size": 256
   },
+  "feishu-project": {
+    "pad": true,
+    "source": "https://sf3-cn.feishucdn.com/obj/meego-static/front/static/20251121-114942.png",
+    "size": 360
+  },
   "fliggy": {
     "pad": false,
     "source": "appstore",
@@ -84,6 +124,11 @@
     "source": "appstore",
     "size": 256
   },
+  "flova": {
+    "pad": true,
+    "source": "https://flova.tv/apple-touch-icon.png",
+    "size": 180
+  },
   "get-biji": {
     "pad": false,
     "source": "appstore",
@@ -93,6 +138,11 @@
     "pad": true,
     "source": "https://gitee.com/favicon.ico",
     "size": 64
+  },
+  "guosen": {
+    "pad": false,
+    "source": "appstore",
+    "size": 512
   },
   "huawei-cloud": {
     "pad": false,
@@ -114,10 +164,20 @@
     "source": "appstore",
     "size": 256
   },
+  "jiandaoyun": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
   "jihulab": {
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "jinshuju": {
+    "pad": false,
+    "source": "https://jinshuju.net/apple-touch-icon.png",
+    "size": 180
   },
   "kdocs": {
     "pad": false,
@@ -129,10 +189,20 @@
     "source": "appstore",
     "size": 256
   },
+  "kuaidi100": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
   "lexiang": {
     "pad": false,
     "source": "https://avatars.githubusercontent.com/u/259243330?v=4&s=256",
     "size": 256
+  },
+  "libtv": {
+    "pad": false,
+    "source": "https://www.liblib.tv/pwa/libtv/apple-touch-icon-180.png",
+    "size": 180
   },
   "luckin": {
     "pad": false,
@@ -159,6 +229,26 @@
     "source": "appstore",
     "size": 256
   },
+  "meituhub": {
+    "pad": true,
+    "source": "https://www.meituhub.com/icon.png?icon.0uvsqkwthmw34.png",
+    "size": 64
+  },
+  "meshy": {
+    "pad": true,
+    "source": "https://meshy.cn/icon3.png?icon3.2rgbsx6r7frix.png",
+    "size": 512
+  },
+  "metaso": {
+    "pad": true,
+    "source": "https://metaso.cn/apple-touch-icon.png",
+    "size": 1024
+  },
+  "mineru": {
+    "pad": true,
+    "source": "https://mineru.net/apple-touch-icon.png",
+    "size": 180
+  },
   "minimax": {
     "pad": false,
     "source": "appstore",
@@ -174,12 +264,27 @@
     "source": "appstore",
     "size": 256
   },
+  "niutrans": {
+    "pad": true,
+    "source": "https://avatars.githubusercontent.com/u/39209342?v=4&s=256",
+    "size": 256
+  },
   "oceanengine": {
     "pad": false,
     "source": "appstore",
     "size": 256
   },
+  "patsnap": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/15070309?v=4&s=256",
+    "size": 256
+  },
   "pixso": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "pushplus": {
     "pad": false,
     "source": "appstore",
     "size": 256
@@ -203,6 +308,16 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "rongcloud": {
+    "pad": true,
+    "source": "https://www.rongcloud.cn/",
+    "size": 180
+  },
+  "sealos": {
+    "pad": true,
+    "source": "https://sealos.io/favicon/apple-touch-icon.png",
+    "size": 180
   },
   "taobao": {
     "pad": false,
@@ -239,7 +354,17 @@
     "source": "appstore",
     "size": 256
   },
+  "tuniu": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
   "unionpay": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "variflight": {
     "pad": false,
     "source": "appstore",
     "size": 256
@@ -283,6 +408,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "yuandian": {
+    "pad": false,
+    "source": "https://www.chineselaw.com/favicon.ico",
+    "size": 128
   },
   "yuque": {
     "pad": false,
