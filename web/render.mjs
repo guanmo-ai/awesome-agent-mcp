@@ -69,7 +69,7 @@ export function snippets(s) {
       out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\ncommand = ${JSON.stringify(mcp.command)}\nargs = ${JSON.stringify(mcp.args ?? [])}` + (env.length ? `\n\n[mcp_servers.${s.id}.env]\n${env.map(([k, v]) => `${k} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     } else {
       const headers = Object.entries(mcp.headers ?? {});
-      out.push(['Claude Code', `claude mcp add --transport ${mcp.transport}${headers.map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} ${shell(s.id)} ${shell(mcp.url)}`]);
+      out.push(['Claude Code', `claude mcp add${headers.map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} --transport ${mcp.transport} ${shell(s.id)} ${shell(mcp.url)}`]);
       out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url, ...(headers.length ? { headers: mcp.headers } : {}) } } }, null, 2)]);
       if (mcp.transport === 'http') out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}` + (headers.length ? `\n\n[mcp_servers.${s.id}.http_headers]\n${headers.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     }
