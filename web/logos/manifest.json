@@ -34,6 +34,11 @@
     "source": "https://avatars.githubusercontent.com/u/59521997?v=4&s=256",
     "size": 256
   },
+  "apisix": {
+    "pad": true,
+    "source": "https://apisix.apache.org/img/logo2.svg",
+    "size": 185
+  },
   "baidu-cloud": {
     "pad": false,
     "source": "appstore",
@@ -89,6 +94,11 @@
     "source": "https://doc2x.noedgeai.com/apple-touch-icon.png",
     "size": 180
   },
+  "dolphindb": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/36416315?v=4&s=256",
+    "size": 189
+  },
   "douyin-open": {
     "pad": false,
     "source": "appstore",
@@ -102,6 +112,11 @@
   "edgeone-makers": {
     "pad": false,
     "source": "https://avatars.githubusercontent.com/u/176978739?v=4&s=256",
+    "size": 256
+  },
+  "esp-rainmaker": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/9460735?v=4&s=256",
     "size": 256
   },
   "feishu": {
@@ -139,9 +154,19 @@
     "source": "https://gitee.com/favicon.ico",
     "size": 64
   },
+  "greptimedb": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/103400677?v=4&s=256",
+    "size": 256
+  },
   "guosen": {
     "pad": false,
     "source": "appstore",
+    "size": 512
+  },
+  "higress": {
+    "pad": true,
+    "source": "https://higress.cn/img/higress-mark.png",
     "size": 512
   },
   "huawei-cloud": {
@@ -243,6 +268,11 @@
     "pad": true,
     "source": "https://metaso.cn/apple-touch-icon.png",
     "size": 1024
+  },
+  "milvus": {
+    "pad": true,
+    "source": "https://avatars.githubusercontent.com/u/51735404?v=4&s=256",
+    "size": 256
   },
   "mineru": {
     "pad": true,
@@ -352,6 +382,11 @@
   "tianyancha": {
     "pad": false,
     "source": "appstore",
+    "size": 256
+  },
+  "tidb": {
+    "pad": true,
+    "source": "https://avatars.githubusercontent.com/u/11855343?v=4&s=256",
     "size": 256
   },
   "tuniu": {

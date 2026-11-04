@@ -2741,6 +2741,216 @@
         },
         "skill": "https://github.com/TencentCloudBase/cloudbase-skills"
       }
+    },
+    {
+      "id": "greptimedb",
+      "name": "GreptimeDB",
+      "category": "cloud",
+      "summary": "查询和分析时序、日志与链路数据，并可按配置管理数据流水线。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://docs.greptime.cn/user-guide/integrations/mcp/",
+      "homepage": "https://greptime.cn/",
+      "risk": "write",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.greptime.cn/user-guide/integrations/mcp/",
+        "checkedAt": "2026-11-04",
+        "note": "格睿科技官方文档直接链接 MCP；默认只读，启用写模式后可执行 DDL/DML。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/GreptimeTeam/greptimedb-mcp-server",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "python",
+          "args": [
+            "-m",
+            "greptimedb_mcp_server"
+          ],
+          "env": {
+            "GREPTIMEDB_HOST": "<你的数据库地址>",
+            "GREPTIMEDB_PORT": "4002",
+            "GREPTIMEDB_USERNAME": "<你的用户名>",
+            "GREPTIMEDB_PASSWORD": "<你的密码>",
+            "GREPTIMEDB_DATABASE": "<你的数据库名>"
+          }
+        },
+        "skill": "https://docs.greptime.com/SKILL.md"
+      }
+    },
+    {
+      "id": "milvus",
+      "name": "Milvus／Zilliz",
+      "category": "cloud",
+      "summary": "检索向量数据，查询数据库结构，并管理集合和数据。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://milvus.io/docs/milvus_and_mcp.md",
+      "homepage": "https://milvus.io/",
+      "risk": "write",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://milvus.io/docs/milvus_and_mcp.md",
+        "checkedAt": "2026-11-04",
+        "note": "Milvus 官方文档直接链接 Zilliz MCP 仓库，需已有 Milvus 实例。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/zilliztech/mcp-server-milvus"
+    },
+    {
+      "id": "apisix",
+      "name": "API7 APISIX",
+      "category": "cloud",
+      "summary": "查询和管理 API 网关路由、上游、插件、消费者与证书配置。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://docs.api7.ai/apisix/reference/apisix-mcp",
+      "homepage": "https://api7.ai/",
+      "risk": "write",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.api7.ai/apisix/reference/apisix-mcp",
+        "checkedAt": "2026-11-04",
+        "note": "API7 官方文档明确 APISIX MCP 工具与 npm 配置。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/api7/apisix-mcp",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "apisix-mcp"
+          ],
+          "env": {
+            "APISIX_SERVER_HOST": "<你的APISIX地址>",
+            "APISIX_SERVER_PORT": "9080",
+            "APISIX_ADMIN_API_PORT": "9180",
+            "APISIX_ADMIN_API_PREFIX": "/apisix/admin",
+            "APISIX_ADMIN_KEY": "<你的APISIXAdminKey>"
+          }
+        }
+      }
+    },
+    {
+      "id": "higress",
+      "name": "Higress",
+      "category": "cloud",
+      "summary": "通过 MCP 查询和管理 Higress 网关的路由、服务与配置。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/higress-group/higress-ops-mcp-server",
+      "homepage": "https://higress.cn/",
+      "risk": "write",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/higress-group",
+        "checkedAt": "2026-11-04",
+        "note": "Higress 官方 GitHub 组织主页链接 higress.ai，MCP 仓库链接项目官网。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "esp-rainmaker",
+      "name": "乐鑫 ESP RainMaker",
+      "category": "cloud",
+      "summary": "查询和控制物联网设备，设置设备参数并管理自动化日程。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://mcp.espressif.com/",
+      "homepage": "https://www.espressif.com/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://mcp.espressif.com/",
+        "checkedAt": "2026-11-04",
+        "note": "乐鑫官方 MCP 门户列出 RainMaker 远程服务与设备读写能力。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/espressif/esp-rainmaker-mcp",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.rainmaker.espressif.com/api/mcp"
+        }
+      }
+    },
+    {
+      "id": "tidb",
+      "name": "TiDB",
+      "category": "cloud",
+      "summary": "用自然语言查询和修改数据库，管理表结构与数据库用户。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/",
+      "homepage": "https://cn.pingcap.com/",
+      "risk": "write",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/",
+        "checkedAt": "2026-11-04",
+        "note": "PingCAP 官方中文文档提供 TiDB MCP；使用官方 pytidb 实现，不收个人封装。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "pytidb[mcp]",
+            "tidb-mcp-server"
+          ],
+          "env": {
+            "TIDB_HOST": "<你的TiDB地址>",
+            "TIDB_PORT": "4000",
+            "TIDB_USERNAME": "<你的TiDB用户名>",
+            "TIDB_PASSWORD": "<你的TiDB密码>",
+            "TIDB_DATABASE": "<你的TiDB数据库名>"
+          }
+        }
+      }
+    },
+    {
+      "id": "dolphindb",
+      "name": "DolphinDB",
+      "category": "cloud",
+      "summary": "把数据库函数接为 MCP 工具，执行数据分析、指标选股和策略回测。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://docs.dolphindb.cn/zh/mcp/mcp_use_guide.html",
+      "homepage": "https://www.dolphindb.cn/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.dolphindb.cn/zh/mcp/mcp_use_guide.html",
+        "checkedAt": "2026-11-04",
+        "note": "DolphinDB 官方文档：3.00.4 起原生提供 MCP Server；另有官方 Stock MCP 工具包。"
+      },
+      "addedAt": "2026-11-04"
     }
   ]
 }
