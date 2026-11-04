@@ -1,6 +1,6 @@
 # Awesome Agent MCP
 
-> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 58 个，更新于 2026-11-04。
+> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 60 个，更新于 2026-11-04。
 
 结构化数据：https://guanmo-ai.github.io/awesome-agent-mcp/services.json（字段说明见 https://github.com/guanmo-ai/awesome-agent-mcp/blob/main/docs/SCHEMA.md）
 
@@ -21,6 +21,7 @@
 - [瑞幸](https://open.lkcoffee.com/docs): 咖啡点单与门店查询。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://gwmcp.lkcoffee.com/order/user/mcp；Skill https://unpkg.luckincoffeecdn.com/@luckin/my-coffee-skill@latest/dist/my-coffee-skill.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin/)
 - [飞猪](https://github.com/alibaba-flyai/flyai-skill): 机票、酒店和景点搜索，返回价格与预订跳转链接。 类型 Skill · CLI；权限 只读查询；门槛 免费可用；已核验；CLI `npm i -g @fly-ai/flyai-cli`；Skill https://github.com/alibaba-flyai/flyai-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy/)
 - [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli): 企业差旅资源查询、差旅政策校验与方案推荐。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/)
+- [彩云天气](https://github.com/caiyunapp/mcp-caiyun-weather): 查询实时天气、逐小时预报、空气质量与天气预警。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp-weather.caiyunapp.com/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/caiyun-weather/)
 
 ## 办公和协作
 
@@ -87,3 +88,4 @@
 - [Gitee](https://gitee.com/oschina/mcp-gitee): 代码仓库、Issue 与 PR 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio mcp-gitee；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/)
 - [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/): 代码仓库与 DevOps 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://jihulab.com/api/v4/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/)
 - [腾讯 EdgeOne Makers](https://edgeone.cloud.tencent.com/pages/document/173172415568367616): 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP stdio npx edgeone-pages-mcp-fullstack --region china；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers/)
+- [Apifox](https://docs.apifox.com/apifox-mcp-server): 读取接口文档，并通过命令行运行接口测试。 类型 MCP · CLI；权限 可执行操作；门槛 需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apifox/)
