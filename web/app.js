@@ -1,20 +1,7 @@
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const safeUrl = (u) => (/^https:\/\//.test(u ?? '') ? u : '#');
-const store = {
-  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
-};
+import { esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, textMatch as renderTextMatch, cardHtml, renderDetails } from './render.mjs';
+import { $, $$, copy, initChrome, loadStars } from './ui.mjs';
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const ICON = {
-  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
-  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
-  out: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
-  x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
-};
 const CAT_ICON = {
   life: '<path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 1 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.3"/>',
   office: '<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/>',
@@ -27,9 +14,6 @@ const CAT_ICON = {
 const catIcon = (id) => `<svg viewBox="0 0 24 24" aria-hidden="true">${CAT_ICON[id] ?? '<circle cx="12" cy="12" r="4"/>'}</svg>`;
 // Hero orbit (icons without seasonal artwork), in this order.
 const ORBIT = ['amap', 'meituan', 'feishu', 'alipay', 'didi', 'zhihu', 'dingtalk', 'wechat-pay', 'wps', 'tencent-docs', 'kling', 'aliyun', 'baidu-netdisk', 'weread', 'netease-music', 'mcdonalds-cn', 'wecom', 'huawei-cloud', 'yuque', 'quark-drive'];
-// Palette suggestions when the query is empty.
-const FEATURED = ['amap', 'meituan', 'feishu', 'alipay', 'didi', 'zhihu', 'dingtalk', 'wechat-pay', 'taobao', 'luckin', 'tencent-docs', 'kling', 'aliyun', 'baidu-netdisk', 'weread', 'netease-music', 'mcdonalds-cn', 'fliggy', 'wecom', 'huawei-cloud'];
-
 const state = { q: '', cat: 'all', types: new Set(), risks: new Set(), verified: false };
 let DB, L, byId, home, PROMPT, SKILL_CMD;
 
@@ -56,35 +40,16 @@ async function init() {
   renderForAi();
   openFromHash();
   addEventListener('hashchange', openFromHash);
-  loadStars();
+  loadStars(DB);
 }
 
 /* ── Chrome: nav, theme, keyboard, filters ───────────── */
 function wireChrome() {
-  const nav = $('#nav');
-  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 8);
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  $('#kbar-key').textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl K';
-  $('#theme').addEventListener('click', () => {
-    const root = document.documentElement;
-    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
-    store.set('theme', root.dataset.theme);
-  });
-
+  initChrome({ getData: () => DB, onChoose: openSheet,
+    beforeOpen: () => { if ($('#sheet').open) $('#sheet').close(); }, focusSearch: () => $('#q').focus() });
   const q = $('#q');
   q.addEventListener('input', () => { state.q = q.value.trim(); render(); });
   q.addEventListener('keydown', (e) => { if (e.key === 'Escape') { q.value = ''; state.q = ''; render(); } });
-  addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); togglePalette(); return; }
-    const el = document.activeElement;
-    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(el?.tagName) || el?.isContentEditable;
-    if (e.key === '/' && !typing && !document.querySelector('dialog[open]')) { e.preventDefault(); q.focus(); }
-  });
-  $('#open-palette').addEventListener('click', togglePalette);
-
   const toggleIn = (set, key) => (e) => {
     const b = e.target.closest('button'); if (!b) return;
     const v = b.dataset[key];
@@ -127,18 +92,11 @@ function wireChrome() {
   const sheet = $('#sheet');
   sheet.addEventListener('click', (e) => {
     if (e.target === sheet || e.target.closest('[data-close]')) sheet.close();
-    const tab = e.target.closest('[data-tab]');
-    if (tab) selectCodeTab(tab);
   });
   sheet.addEventListener('close', () => {
     if (location.hash.startsWith('#s-')) history.replaceState(null, '', location.pathname + location.search);
   });
 
-  wirePalette();
-  document.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-copy]');
-    if (b) copy(b.dataset.copy, b);
-  });
   $('#copy-prompt').addEventListener('click', (e) => copy(PROMPT, e.currentTarget, '已复制，发给你的 Agent 吧'));
   $('#copy-prompt-2').addEventListener('click', (e) => copy(PROMPT, e.currentTarget));
   $('#copy-skill').addEventListener('click', (e) => copy(SKILL_CMD, e.currentTarget));
@@ -173,60 +131,11 @@ function renderStats() {
   }
 }
 
-async function loadStars() {
-  const el = $('#star-count');
-  const fmt = (n) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n));
-  const key = 'stars:' + DB.site.repo;
-  let n;
-  try {
-    const hit = JSON.parse(sessionStorage.getItem(key) || 'null');
-    if (hit && Date.now() - hit.t < 600000) n = hit.n;
-  } catch {}
-  if (n === undefined) {
-    try {
-      const r = await fetch(`https://api.github.com/repos/${DB.site.repo}`);
-      if (!r.ok) return;
-      n = (await r.json()).stargazers_count;
-      try { sessionStorage.setItem(key, JSON.stringify({ n, t: Date.now() })); } catch {}
-    } catch { return; }
-  }
-  if (typeof n === 'number' && n > 0) { el.textContent = fmt(n); el.hidden = false; }
-}
-
-/* ── Shared bits ─────────────────────────────────────── */
-function host(url) {
-  try {
-    const u = new URL(url);
-    const h = u.hostname.replace(/^www\./, '');
-    return h === 'github.com' ? `github.com/${u.pathname.split('/')[1]}` : h;
-  } catch { return ''; }
-}
-function mark(s) {
-  if (s.mark) return s.mark;
-  const ch = Array.from(s.name)[0];
-  return /[a-z]/i.test(ch) ? ch.toUpperCase() : ch;
-}
-function logoHtml(s, extra = '') {
-  if (s.logo) return `<span class="logo ${s.logoPad ? 'pad' : ''} ${extra}"><img src="./${esc(s.logo)}" alt="" loading="lazy" decoding="async"></span>`;
-  return `<span class="logo mono ${extra}" style="--brand:${esc(s.color || 'var(--a2)')}" aria-hidden="true">${esc(mark(s))}</span>`;
-}
-const TYPE_ORDER = ['mcp', 'skill', 'cli'];
-const sortedTypes = (s) => [...s.types].sort((a, b) => TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b));
-const typeTags = (s) => sortedTypes(s).map((t) => `<span class="tag ${esc(t)}">${esc(L.types[t])}</span>`).join('');
-const riskLabel = (s) => `<span class="risk"><i class="dot ${esc(s.risk)}"></i>${esc(L.risk[s.risk])}</span>`;
-const badge = (s) => (s.status === 'verified'
-  ? `<span class="vbadge verified" title="已确认为厂商官方出品">${ICON.check}官方已核验</span>`
-  : `<span class="vbadge unverified" title="来自公开整理，尚未逐条确认官方身份">${ICON.clock}待核验</span>`);
-const catOf = (s) => DB.categories.find((c) => c.id === s.category);
 const verb = (s) => s.summary.replace(/。$/, '').split(/[，,]/)[0].split('、').slice(0, 2).join('、');
+const typeTags = (s) => renderTypeTags(s, L);
+const textMatch = (s, toks) => renderTextMatch(s, toks, DB);
 
 /* ── Filtering & directory ───────────────────────────── */
-const tokens = (q) => q.toLowerCase().split(/\s+/).filter(Boolean);
-function haystack(s) {
-  const c = catOf(s);
-  return [s.name, s.id, s.summary, host(s.url), c?.name, c?.nameEn, ...s.types.map((t) => L.types[t]), L.risk[s.risk], ...s.access.map((a) => L.access[a])].join(' ').toLowerCase();
-}
-const textMatch = (s, toks) => { const h = haystack(s); return toks.every((t) => h.includes(t)); };
 function matches(s, toks, ignoreCat = false) {
   if (!ignoreCat && state.cat !== 'all' && s.category !== state.cat) return false;
   if (state.types.size && !s.types.some((t) => state.types.has(t))) return false;
@@ -234,13 +143,6 @@ function matches(s, toks, ignoreCat = false) {
   if (state.verified && s.status !== 'verified') return false;
   return textMatch(s, toks);
 }
-function highlight(text, toks) {
-  const safe = esc(text);
-  if (!toks.length) return safe;
-  const re = new RegExp(toks.map((t) => reEsc(esc(t))).join('|'), 'gi');
-  return safe.replace(re, (m) => `<mark>${m}</mark>`);
-}
-
 function renderChips(toks) {
   const counts = Object.fromEntries(DB.categories.map((c) => [c.id, 0]));
   let all = 0;
@@ -249,13 +151,7 @@ function renderChips(toks) {
   $('#chips').innerHTML = chip('all', '全部', all, '') + DB.categories.map((c) => chip(c.id, c.name, counts[c.id], catIcon(c.id))).join('');
 }
 
-function card(s, toks, i) {
-  return `<button class="card" type="button" data-id="${esc(s.id)}" style="--brand:${esc(s.color || '#8b7dff')};--i:${i}" aria-label="${esc(s.name)}：${esc(s.summary)}">
-    <div class="card-top">${logoHtml(s)}<div class="card-title"><h4>${highlight(s.name, toks)}</h4><p class="domain">${esc(host(s.url))}</p></div>${badge(s)}</div>
-    <p class="card-sum">${highlight(s.summary, toks)}</p>
-    <div class="card-foot">${typeTags(s)}${riskLabel(s)}</div>
-  </button>`;
-}
+const card = (s, toks, index) => cardHtml(s, L, { toks, index });
 
 function render() {
   const toks = tokens(state.q);
@@ -280,51 +176,11 @@ function render() {
 }
 
 /* ── Detail sheet ────────────────────────────────────── */
-function snippets(s) {
-  const out = [];
-  const shell = (value) => `'${String(value).replaceAll("'", "'\\''")}'`;
-  const mcp = s.install?.mcp;
-  if (mcp) {
-    if (mcp.transport === 'stdio') {
-      const env = Object.entries(mcp.env ?? {});
-      const cmd = [mcp.command, ...(mcp.args ?? [])].map(shell).join(' ');
-      out.push(['Claude Code', `claude mcp add${env.map(([k, v]) => ` --env ${shell(`${k}=${v}`)}`).join('')} --transport stdio ${shell(s.id)} -- ${cmd}`]);
-      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { command: mcp.command, args: mcp.args ?? [], ...(env.length ? { env: mcp.env } : {}) } } }, null, 2)]);
-      out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\ncommand = ${JSON.stringify(mcp.command)}\nargs = ${JSON.stringify(mcp.args ?? [])}` + (env.length ? `\n\n[mcp_servers.${s.id}.env]\n${env.map(([k, v]) => `${k} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
-    } else {
-      const headers = Object.entries(mcp.headers ?? {});
-      out.push(['Claude Code', `claude mcp add --transport ${mcp.transport}${headers.map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} ${shell(s.id)} ${shell(mcp.url)}`]);
-      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url, ...(headers.length ? { headers: mcp.headers } : {}) } } }, null, 2)]);
-      if (mcp.transport === 'http') out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}` + (headers.length ? `\n\n[mcp_servers.${s.id}.http_headers]\n${headers.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
-    }
-  }
-  if (s.install?.cli) out.push(['CLI', s.install.cli]);
-  return out;
-}
-
-function selectCodeTab(tab) {
-  const box = tab.closest('.code-tabs');
-  $$('[data-tab]', box).forEach((b) => b.setAttribute('aria-selected', b === tab));
-  const code = tab.dataset.code;
-  $('code', box).textContent = code;
-  $('.ct-copy', box).dataset.copy = code;
-}
-
 function openSheet(id) {
   const s = byId.get(id);
   if (!s) return;
-  const snips = snippets(s);
-  const deep = `${home}#s-${s.id}`;
+  const detail = renderDetails(s, DB);
   const report = `https://github.com/${DB.site.repo}/issues/new?template=correction.yml&title=${encodeURIComponent('[纠错] ' + s.name)}&service=${encodeURIComponent(s.id)}`;
-  const access = s.access.length ? s.access.map((a) => esc(L.access[a])).join('、') : '<span style="color:var(--faint)">待整理</span>';
-  const hasPlaceholder = snips.some(([, c]) => /<[^>]+>/.test(c));
-  const code = snips.length
-    ? `<div class="code-tabs">
-        <div class="ct-bar" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}">${esc(label)}</button>`).join('')}<button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
-        <pre><code>${esc(snips[0][1])}</code></pre>
-      </div>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}`
-    : '<p class="note">一键配置还在整理中，先按官方文档接入。</p>';
-
   const box = $('#sheet-in');
   box.style.setProperty('--brand', s.color || 'var(--a2)');
   box.innerHTML = `
@@ -332,28 +188,14 @@ function openSheet(id) {
       <button class="s-close" type="button" data-close aria-label="关闭">${ICON.x}</button>
       <div class="s-id">${logoHtml(s, 'lg')}<div><h2 id="s-name">${esc(s.name)}</h2><p><span class="domain">${esc(host(s.url))}</span>${badge(s)}</p></div></div>
       <p class="s-sum">${esc(s.summary)}</p>
-      <div class="s-actions">
-        <a class="btn btn-primary btn-sm" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">官方文档${ICON.out}</a>
-        ${s.repo ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.repo))}" target="_blank" rel="noopener">代码仓库${ICON.out}</a>` : ''}
-        ${s.install?.skill ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.install.skill))}" target="_blank" rel="noopener">Skill 文件${ICON.out}</a>` : ''}
-        <button class="btn btn-ghost btn-sm" type="button" data-copy="${esc(deep)}">复制链接</button>
-      </div>
+      <div class="s-actions">${detail.actions}</div>
     </div>
     <div class="s-body">
-      <dl class="facts">
-        <div><dt>类型</dt><dd>${typeTags(s)}</dd></div>
-        <div><dt>权限</dt><dd><i class="dot ${esc(s.risk)}"></i>${esc(L.risk[s.risk])}</dd></div>
-        <div><dt>接入门槛</dt><dd>${access}</dd></div>
-        <div><dt>分类</dt><dd>${esc(catOf(s)?.name ?? '')}</dd></div>
-      </dl>
-      ${s.risk === 'payment' ? '<p class="note warn">这个服务可能下单或付款。让 Agent 执行前，请确保付款这一步由你亲自确认。</p>' : ''}
-      <section class="s-sec"><h3>接入方式</h3>${code}</section>
-      <section class="s-sec"><h3>核验</h3>
-        ${s.status === 'verified'
-          ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p>`
-          : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>'}
-      </section>
-      ${s.sources?.length ? `<section class="s-sec"><h3>来源</h3><p>${s.sources.map((x) => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join('、')}</p></section>` : ''}
+      ${detail.facts}
+      ${detail.warn}
+      <section class="s-sec"><h3>接入方式</h3>${detail.install}</section>
+      <section class="s-sec"><h3>核验</h3>${detail.verify}</section>
+      ${detail.sources ? `<section class="s-sec"><h3>来源</h3>${detail.sources}</section>` : ''}
       <div class="s-foot"><span>收录于 ${esc(s.addedAt)}</span><a href="${esc(report)}" target="_blank" rel="noopener">信息有误？报告问题</a></div>
     </div>`;
   const sheet = $('#sheet');
@@ -383,72 +225,6 @@ function openFromCard(card) {
   vt.finished.finally(() => { const to = $('#sheet .s-id .logo'); if (to) to.style.viewTransitionName = ''; });
 }
 
-/* ── Command palette ─────────────────────────────────── */
-let palItems = [];
-let palActive = 0;
-function togglePalette() {
-  const pal = $('#palette');
-  if (pal.open) { pal.close(); return; }
-  if (!DB) return;
-  $('#sheet').open && $('#sheet').close();
-  pal.showModal();
-  const input = $('#pal-q');
-  input.value = '';
-  renderPalette();
-  input.focus();
-}
-function wirePalette() {
-  const pal = $('#palette');
-  const input = $('#pal-q');
-  input.addEventListener('input', renderPalette);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (!palItems.length) return;
-      palActive = (palActive + (e.key === 'ArrowDown' ? 1 : palItems.length - 1)) % palItems.length;
-      paintPalette();
-    } else if (e.key === 'Enter' && palItems[palActive]) {
-      e.preventDefault();
-      choose(palItems[palActive].id);
-    }
-  });
-  pal.addEventListener('click', (e) => {
-    if (e.target === pal) { pal.close(); return; }
-    const it = e.target.closest('.pal-item');
-    if (it) choose(it.dataset.id);
-  });
-  pal.addEventListener('mousemove', (e) => {
-    const it = e.target.closest('.pal-item');
-    if (!it) return;
-    const i = palItems.findIndex((s) => s.id === it.dataset.id);
-    if (i !== palActive) { palActive = i; paintPalette(false); }
-  });
-  const choose = (id) => { pal.close(); openSheet(id); };
-}
-function renderPalette() {
-  const toks = tokens($('#pal-q').value.trim());
-  palItems = toks.length ? DB.services.filter((s) => textMatch(s, toks)).slice(0, 50) : FEATURED.map((id) => byId.get(id)).filter(Boolean).slice(0, 8);
-  palActive = 0;
-  const list = $('#pal-list');
-  if (!palItems.length) {
-    list.innerHTML = `<div class="pal-empty">没有找到「${esc($('#pal-q').value)}」。<a href="https://github.com/${esc(DB.site.repo)}/issues/new?template=submit.yml" target="_blank" rel="noopener">提交给我们</a></div>`;
-    return;
-  }
-  list.innerHTML = `<div class="pal-group">${toks.length ? `${palItems.length} 个结果` : '常用'}</div>` + palItems.map((s) => `
-    <button class="pal-item" type="button" role="option" id="pal-${esc(s.id)}" data-id="${esc(s.id)}" aria-selected="false">
-      ${logoHtml(s)}<span class="pal-text"><b>${highlight(s.name, toks)}</b><p class="domain">${highlight(s.summary, toks)}</p></span>
-      <span class="pal-meta">${typeTags(s)}</span>
-    </button>`).join('');
-  paintPalette();
-}
-function paintPalette(scroll = true) {
-  $$('.pal-item').forEach((el, i) => el.setAttribute('aria-selected', i === palActive));
-  const cur = palItems[palActive];
-  if (!cur) return;
-  $('#pal-q').setAttribute('aria-activedescendant', `pal-${cur.id}`);
-  if (scroll) document.getElementById(`pal-${cur.id}`)?.scrollIntoView({ block: 'nearest' });
-}
-
 /* ── Hero orbit: Agent → official services ───────────── */
 function buildOrbit() {
   const wrap = $('#orbit');
@@ -471,7 +247,7 @@ function buildOrbit() {
     b.dataset.id = it.s.id;
     b.style.setProperty('--brand', it.s.color || '');
     b.setAttribute('aria-label', it.s.name);
-    b.innerHTML = `<img src="./${esc(it.s.logo)}" alt="" decoding="async">`;
+    b.innerHTML = `<img src="./${esc(it.s.logo)}" alt="" width="128" height="128" decoding="async">`;
     wrap.append(b);
     it.el = b;
   }
@@ -774,34 +550,4 @@ function renderForAi() {
     .replace(/(&quot;[^&]*?&quot;)(\s*:)/g, '<span class="k">$1</span>$2')
     .replace(/(:\s*)(&quot;.*?&quot;)/g, '$1<span class="s">$2</span>')
     .replace(/^(\s+)(&quot;.*?&quot;)(,?)$/gm, '$1<span class="s">$2</span>$3');
-}
-
-/* ── Copy & toast ────────────────────────────────────── */
-async function copy(text, btn, msg = '已复制') {
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    const ta = Object.assign(document.createElement('textarea'), { value: text });
-    ta.style.cssText = 'position:fixed;opacity:0';
-    (btn?.closest('dialog') ?? document.body).append(ta);
-    ta.select();
-    try { document.execCommand('copy'); } catch {}
-    ta.remove();
-  }
-  toast(msg);
-  if (btn && (btn.classList.contains('btn') || btn.classList.contains('ct-copy'))) {
-    const old = btn.innerHTML;
-    btn.classList.add('done');
-    btn.textContent = '已复制 ✓';
-    setTimeout(() => { btn.innerHTML = old; btn.classList.remove('done'); }, 1400);
-  }
-}
-let toastTimer;
-function toast(msg) {
-  const t = $('#toast');
-  (document.querySelector('dialog[open]') ?? document.body).append(t);
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 1700);
 }

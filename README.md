@@ -53,16 +53,16 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [高德地图](https://developer.amap.com/api/mcp-server/summary) | 地点与天气查询、路线规划、地图生成和地图开发。 | MCP · Skill · CLI | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
-| [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver/base) | 地点检索、地理编码与路线规划。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
-| [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview) | 地点搜索、路线规划与位置服务。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
-| [滴滴](https://mcp.didichuxing.com/) | 叫车、估价与行程查询。 | MCP · Skill | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
-| [美团](https://developer.meituan.com/ai-hub/mcp-list) | 商家订单、团购核销、商品与库存管理及经营数据查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需申请开通 | ✅ 已核验 |
-| [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md) | 商品搜索与购物，需安装桌面客户端。 | MCP · Skill | 🔴 涉及资金 | 需桌面客户端、需授权账号 | ✅ 已核验 |
-| [麦当劳中国](https://open.mcd.cn/mcp/doc) | 点餐、门店与优惠查询。 | MCP | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
-| [瑞幸](https://open.lkcoffee.com/docs) | 咖啡点单与门店查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
-| [飞猪](https://github.com/alibaba-flyai/flyai-skill) | 机票、酒店和景点搜索，返回价格与预订跳转链接。 | Skill · CLI | 🟢 只读查询 | 免费可用 | ✅ 已核验 |
-| [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli) | 企业差旅资源查询、差旅政策校验与方案推荐。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [高德地图](https://developer.amap.com/api/mcp-server/summary) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/amap/) | 地点与天气查询、路线规划、地图生成和地图开发。 | MCP · Skill · CLI | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
+| [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver/base) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-map/) | 地点检索、地理编码与路线规划。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
+| [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-map/) | 地点搜索、路线规划与位置服务。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
+| [滴滴](https://mcp.didichuxing.com/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/didi/) | 叫车、估价与行程查询。 | MCP · Skill | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [美团](https://developer.meituan.com/ai-hub/mcp-list) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan/) | 商家订单、团购核销、商品与库存管理及经营数据查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/taobao/) | 商品搜索与购物，需安装桌面客户端。 | MCP · Skill | 🔴 涉及资金 | 需桌面客户端、需授权账号 | ✅ 已核验 |
+| [麦当劳中国](https://open.mcd.cn/mcp/doc) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mcdonalds-cn/) | 点餐、门店与优惠查询。 | MCP | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [瑞幸](https://open.lkcoffee.com/docs) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin/) | 咖啡点单与门店查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [飞猪](https://github.com/alibaba-flyai/flyai-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy/) | 机票、酒店和景点搜索，返回价格与预订跳转链接。 | Skill · CLI | 🟢 只读查询 | 免费可用 | ✅ 已核验 |
+| [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/) | 企业差旅资源查询、差旅政策校验与方案推荐。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号、需申请开通 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -72,15 +72,15 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [飞书](https://github.com/larksuite/cli) | 消息、文档、日历与多维表格。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) | 消息、文档、表格、日志、日历与待办的查询和操作。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [企业微信](https://work.weixin.qq.com/nl/index/aicli) | 企业消息、通讯录与办公应用。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [腾讯文档](https://docs.qq.com/open/document/mcp/) | 在线文档与表格的读取和编辑。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、免费可用 | ✅ 已核验 |
-| [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) | 预约和管理会议，读取参会信息、录制、转写与纪要。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction) | 通过 WPS 365 API 查询和操作企业文档及协作数据。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
-| [金山文档](https://github.com/kdocs-app/kdocs-skill) | 在线文档的读取与协作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ⏳ 待核验 |
-| [语雀](https://github.com/yuque/yuque-mcp-server) | 知识库与文档的读写。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail) | 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [飞书](https://github.com/larksuite/cli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/) | 消息、文档、日历与多维表格。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk/) | 消息、文档、表格、日志、日历与待办的查询和操作。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [企业微信](https://work.weixin.qq.com/nl/index/aicli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wecom/) | 企业消息、通讯录与办公应用。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯文档](https://docs.qq.com/open/document/mcp/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/) | 在线文档与表格的读取和编辑。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、免费可用 | ✅ 已核验 |
+| [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/) | 预约和管理会议，读取参会信息、录制、转写与纪要。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps/) | 通过 WPS 365 API 查询和操作企业文档及协作数据。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [金山文档](https://github.com/kdocs-app/kdocs-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/) | 在线文档的读取与协作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ⏳ 待核验 |
+| [语雀](https://github.com/yuque/yuque-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/) | 知识库与文档的读写。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/) | 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -90,15 +90,15 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [微信读书](https://weread.qq.com/r/weread-skills) | 书架、笔记与划线。 | Skill | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
-| [腾讯 ima](https://ima.qq.com/agent-interface) | 个人知识库的搜索与读写。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [得到大脑（原 Get 笔记）](https://www.biji.com/openapi) | 笔记的记录与检索。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
-| [flomo](https://help.flomoapp.com/advance/mcp/) | 卡片笔记的记录与检索。 | MCP | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
-| [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html) | 笔记的创建、搜索与整理。 | Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
-| [有道云笔记](https://note.youdao.com/help-center/skill-guide.html) | 笔记读写与搜索、待办管理和网页剪藏。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [腾讯微云](https://www.weiyun.com/act/openclaw) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/) | 网盘文件的搜索、上传与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [微信读书](https://weread.qq.com/r/weread-skills) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weread/) | 书架、笔记与划线。 | Skill | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯 ima](https://ima.qq.com/agent-interface) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ima/) | 个人知识库的搜索与读写。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [得到大脑（原 Get 笔记）](https://www.biji.com/openapi) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/get-biji/) | 笔记的记录与检索。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [flomo](https://help.flomoapp.com/advance/mcp/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/flomo/) | 卡片笔记的记录与检索。 | MCP | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang/) | 笔记的创建、搜索与整理。 | Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [有道云笔记](https://note.youdao.com/help-center/skill-guide.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note/) | 笔记读写与搜索、待办管理和网页剪藏。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive/) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [腾讯微云](https://www.weiyun.com/act/openclaw) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk/) | 网盘文件的搜索、上传与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -108,12 +108,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [知乎](https://developer.zhihu.com/docs?key=zhihu_cli) | 搜索知乎与全网、读取热榜和个人内容，检索与上传知识库文件。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [博查搜索](https://github.com/BochaAI/bocha-search-mcp) | 面向 AI 的中文网页搜索。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
-| [企查查](https://agent.qcc.com/guide) | 企业工商与风险信息查询。 | MCP · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
-| [天眼查](https://github.com/tyc-tech/tyc-cli) | 企业工商与关系信息查询。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
-| [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc) | 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
-| [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712) | 查询授权的巨量广告账户、投放指标与报表数据。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [知乎](https://developer.zhihu.com/docs?key=zhihu_cli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhihu/) | 搜索知乎与全网、读取热榜和个人内容，检索与上传知识库文件。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [博查搜索](https://github.com/BochaAI/bocha-search-mcp) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/bocha/) | 面向 AI 的中文网页搜索。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [企查查](https://agent.qcc.com/guide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qcc/) | 企业工商与风险信息查询。 | MCP · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [天眼查](https://github.com/tyc-tech/tyc-cli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tianyancha/) | 企业工商与关系信息查询。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
+| [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/douyin-open/) | 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanengine/) | 查询授权的巨量广告账户、投放指标与报表数据。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -123,12 +123,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [MasterGo](https://mastergo.com/help/ai-features/magic-mcp.html) | 读取设计稿，辅助生成代码。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
-| [墨刀](https://modao.cc/feature/ai-mcp.html) | 生成和修改原型、PRD、应用与图片，读取并导出已有原型。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [Pixso](https://pixso.net/developer/zh/mcp/remote-mcp.html) | 读写设计稿、样式和变量，支持设计转代码与代码转设计。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
-| [可灵](https://github.com/klingai-tech/skills) | AI 视频与图片生成。 | Skill · CLI | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [MiniMax](https://github.com/MiniMax-AI/MiniMax-MCP) | 语音合成与克隆、图片和视频生成，CLI 另提供文本与搜索。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
-| [网易云音乐](https://music.163.com/st/ncmcli) | 音乐搜索与播放、歌单管理、网盘上传和图文笔记发布。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [MasterGo](https://mastergo.com/help/ai-features/magic-mcp.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mastergo/) | 读取设计稿，辅助生成代码。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
+| [墨刀](https://modao.cc/feature/ai-mcp.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/modao/) | 生成和修改原型、PRD、应用与图片，读取并导出已有原型。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [Pixso](https://pixso.net/developer/zh/mcp/remote-mcp.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/pixso/) | 读写设计稿、样式和变量，支持设计转代码与代码转设计。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [可灵](https://github.com/klingai-tech/skills) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kling/) | AI 视频与图片生成。 | Skill · CLI | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [MiniMax](https://github.com/MiniMax-AI/MiniMax-MCP) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/minimax/) | 语音合成与克隆、图片和视频生成，CLI 另提供文本与搜索。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
+| [网易云音乐](https://music.163.com/st/ncmcli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/netease-music/) | 音乐搜索与播放、歌单管理、网盘上传和图文笔记发布。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -138,12 +138,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [支付宝](https://aipay.alipay.com/merchant-guide) | 支付授权、交易支付与状态查询，辅助应用收款接入。 | Skill · CLI | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
-| [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116) | 支付接入开发指导、示例代码检索、接入评估与支付退款查单。 | Skill · CLI | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
-| [银联](https://open.unionpay.com/tjweb/solution/detail?solId=613) | 让智能体通过 MCP 接入银联支付服务。 | MCP | 🔴 涉及资金 | — | ✅ 已核验 |
-| [同花顺 iFinD](https://mcp.51ifind.com/) | 查询行情、财务、公告、宏观等金融数据。 | MCP · Skill | 🟢 只读查询 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
-| [同花顺问财](https://search.10jqka.com.cn/skillhub) | 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 | Skill · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
-| [东方财富妙想](https://ai.eastmoney.com/skills) | 金融资讯与数据分析、选股，以及自选和模拟组合管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [支付宝](https://aipay.alipay.com/merchant-guide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/alipay/) | 支付授权、交易支付与状态查询，辅助应用收款接入。 | Skill · CLI | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
+| [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay/) | 支付接入开发指导、示例代码检索、接入评估与支付退款查单。 | Skill · CLI | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
+| [银联](https://open.unionpay.com/tjweb/solution/detail?solId=613) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/unionpay/) | 让智能体通过 MCP 接入银联支付服务。 | MCP | 🔴 涉及资金 | — | ✅ 已核验 |
+| [同花顺 iFinD](https://mcp.51ifind.com/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ifind/) | 查询行情、财务、公告、宏观等金融数据。 | MCP · Skill | 🟢 只读查询 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
+| [同花顺问财](https://search.10jqka.com.cn/skillhub) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai/) | 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 | Skill · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [东方财富妙想](https://ai.eastmoney.com/skills) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/eastmoney-miaoxiang/) | 金融资讯与数据分析、选股，以及自选和模拟组合管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -153,15 +153,15 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) | 云资源查询与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [腾讯云](https://cloud.tencent.com/document/product/1278/131433) | 云资源查询与管理。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [华为云](https://github.com/huaweicloud/huaweicloud-mcp) | 云资源查询与管理。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [火山引擎](https://github.com/volcengine/mcp-server) | 云资源与 AI 能力接入。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) | 文字识别、文档解析、图像处理、人脸识别与语音能力。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [七牛云](https://github.com/qiniu/qiniu-mcp-server) | 对象存储读写、图片处理、CDN 刷新预取与直播管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) | 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
-| [Gitee](https://gitee.com/oschina/mcp-gitee) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/) | 代码仓库与 DevOps 管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/) | 云资源查询与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [腾讯云](https://cloud.tencent.com/document/product/1278/131433) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cloud/) | 云资源查询与管理。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [华为云](https://github.com/huaweicloud/huaweicloud-mcp) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/) | 云资源查询与管理。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [火山引擎](https://github.com/volcengine/mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/) | 云资源与 AI 能力接入。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud/) | 文字识别、文档解析、图像处理、人脸识别与语音能力。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [七牛云](https://github.com/qiniu/qiniu-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qiniu/) | 对象存储读写、图片处理、CDN 刷新预取与直播管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu/) | 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
+| [Gitee](https://gitee.com/oschina/mcp-gitee) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/) | 代码仓库与 DevOps 管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
