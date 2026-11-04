@@ -119,6 +119,11 @@
     "source": "appstore",
     "size": 256
   },
+  "ly-tmc": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
   "mastergo": {
     "pad": false,
     "source": "appstore",
@@ -164,6 +169,11 @@
     "source": "appstore",
     "size": 256
   },
+  "qiniu": {
+    "pad": true,
+    "source": "https://dn-mars-assets.qbox.me/qiniulogo/normal-logo-blue.png",
+    "size": 202
+  },
   "qq-mail": {
     "pad": false,
     "source": "appstore",
@@ -178,6 +188,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "tencent-cloud": {
+    "pad": true,
+    "source": "https://cloudcache.tencent-cloud.com/qcloud/portal/kit/images/slice/logo.23996906.svg",
+    "size": 80
   },
   "tencent-docs": {
     "pad": false,
