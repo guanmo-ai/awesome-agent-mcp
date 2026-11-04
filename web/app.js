@@ -282,18 +282,20 @@ function render() {
 /* ── Detail sheet ────────────────────────────────────── */
 function snippets(s) {
   const out = [];
+  const shell = (value) => `'${String(value).replaceAll("'", "'\\''")}'`;
   const mcp = s.install?.mcp;
   if (mcp) {
     if (mcp.transport === 'stdio') {
       const env = Object.entries(mcp.env ?? {});
-      const cmd = [mcp.command, ...(mcp.args ?? [])].join(' ');
-      out.push(['Claude Code', `claude mcp add ${s.id}${env.map(([k, v]) => ` -e ${k}=${v}`).join('')} -- ${cmd}`]);
+      const cmd = [mcp.command, ...(mcp.args ?? [])].map(shell).join(' ');
+      out.push(['Claude Code', `claude mcp add${env.map(([k, v]) => ` --env ${shell(`${k}=${v}`)}`).join('')} --transport stdio ${shell(s.id)} -- ${cmd}`]);
       out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { command: mcp.command, args: mcp.args ?? [], ...(env.length ? { env: mcp.env } : {}) } } }, null, 2)]);
       out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\ncommand = ${JSON.stringify(mcp.command)}\nargs = ${JSON.stringify(mcp.args ?? [])}` + (env.length ? `\n\n[mcp_servers.${s.id}.env]\n${env.map(([k, v]) => `${k} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     } else {
-      out.push(['Claude Code', `claude mcp add --transport ${mcp.transport} ${s.id} "${mcp.url}"`]);
-      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url } } }, null, 2)]);
-      out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}`]);
+      const headers = Object.entries(mcp.headers ?? {});
+      out.push(['Claude Code', `claude mcp add --transport ${mcp.transport}${headers.map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} ${shell(s.id)} ${shell(mcp.url)}`]);
+      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url, ...(headers.length ? { headers: mcp.headers } : {}) } } }, null, 2)]);
+      if (mcp.transport === 'http') out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}` + (headers.length ? `\n\n[mcp_servers.${s.id}.http_headers]\n${headers.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     }
   }
   if (s.install?.cli) out.push(['CLI', s.install.cli]);
@@ -320,7 +322,7 @@ function openSheet(id) {
     ? `<div class="code-tabs">
         <div class="ct-bar" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}">${esc(label)}</button>`).join('')}<button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
         <pre><code>${esc(snips[0][1])}</code></pre>
-      </div>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}`
+      </div>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}`
     : '<p class="note">一键配置还在整理中，先按官方文档接入。</p>';
 
   const box = $('#sheet-in');
@@ -631,7 +633,7 @@ function buildDemo() {
       ${logoHtml(s)}<span><b>${esc(sc.title)}</b><small><i class="dot ${esc(s.risk)}"></i><span>${esc(s.name)} · </span>${esc(L.risk[s.risk])}</small></span><i class="bar"></i></button>`;
   }).join('');
 
-  let cur = 0, run = 0, visible = false, started = false;
+  let cur = 0, run = 0, visible = false;
   const ok = (id) => id === run;
   const wait = (ms, id) => new Promise((res, rej) => setTimeout(() => (ok(id) ? res() : rej(0)), reduced ? 0 : ms));
   const add = (html) => {
@@ -720,12 +722,17 @@ function buildDemo() {
     $$('.dtab', tabs)[n].focus();
     play(n);
   });
+  const syncPlayback = () => {
+    const active = visible && !document.hidden;
+    $$('.dtab .bar', tabs).forEach((bar) => { bar.style.animationPlayState = active ? 'running' : 'paused'; });
+    if (active) play(cur);
+    else run++;
+  };
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
-    if (visible && !started) { started = true; play(0); }
-    else if (visible) play(cur);
-    else run++;
+    syncPlayback();
   }, { threshold: 0.35 }).observe($('.demo-win'));
+  document.addEventListener('visibilitychange', syncPlayback);
 }
 
 /* ── For AI section ──────────────────────────────────── */

@@ -20,7 +20,7 @@ test('能发现常见的数据错误', () => {
   const d = base();
   const [a] = d.services;
   d.services.push({ ...a });
-  d.services[1] = { ...d.services[1], types: ['plugin'], status: 'verified', risk: 'high', url: 'http://example.com' };
+  d.services[1] = { ...d.services[1], types: ['plugin'], status: 'verified', evidence: undefined, risk: 'high', url: 'http://example.com' };
   const errors = validate(d).join('\n');
   for (const want of ['id 重复', '未知类型 plugin', 'evidence.url', 'risk 必须是', 'url 必须是 https']) {
     assert.match(errors, new RegExp(want.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));

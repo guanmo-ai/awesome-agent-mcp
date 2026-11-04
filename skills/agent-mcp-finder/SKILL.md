@@ -32,12 +32,13 @@ description: 查找中国服务厂商官方出品的 MCP Server、Agent Skill �
 ## 步骤
 
 1. 把用户的需求拆成要用的服务或能力，例如「点咖啡」对应瑞幸、麦当劳，「查路线」对应地图类服务。
-2. 读取数据，按 `name`、`summary` 和分类匹配。优先选 `status: verified` 的条目，其次是 `unverified`。
+2. 读取数据，排除 `status: rejected`，按 `name`、`summary` 和分类匹配。优先选 `status: verified` 的条目，其次是 `unverified`。
 3. 对每个候选，告诉用户：
    - 服务名、能做什么、类型（MCP / Skill / CLI）
    - 接入门槛（`access`）；为空就说「门槛未整理，请看官方文档」
    - 官方链接 `url`
    - 有 `install.mcp` 时，给出用户所用客户端的配置。远程服务（http / sse）示例：Claude Code 用 `claude mcp add --transport <transport> <id> "<url>"`；JSON 用 `{"mcpServers": {"<id>": {"type": "<transport>", "url": "<url>"}}}`
+   - 有 `install.mcp.headers` 时保留认证请求头：Claude Code 用 `--header '名称: 值'`，JSON 用 `headers`，Codex 的 HTTP 配置用 `[mcp_servers.<id>.http_headers]`。本地命令的参数、环境变量值和远程 URL 要做 shell 引用，防止空格和尖括号被误解析。Codex 支持 stdio 和 Streamable HTTP，不能把 SSE 地址直接当成 HTTP 配置。
 4. 用户同意后，可以帮他把配置写进客户端。尖括号里的占位符（如 `<你的高德Key>`）要让用户自己填，不要编造。
 
 ## 必须遵守

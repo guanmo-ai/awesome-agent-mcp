@@ -33,6 +33,7 @@
 | `rejectedReason` | 不收录时必填 | 为什么不收录 |
 | `install.mcp` |  | 远程服务填 `{ "transport": "http" 或 "sse", "url": "..." }`；本地服务填 `{ "transport": "stdio", "command": "npx", "args": [...], "env": { "KEY": "<你的Key>" } }`。用户要替换的部分写成 `<说明>`，不要有空格 |
 | `install.cli` |  | 命令行工具的安装命令 |
+| `install.mcp.headers` |  | 远程 MCP 官方要求的请求头，字符串键值对象；认证值只写 `<你的Token>` 等占位符 |
 | `install.skill` |  | Skill 文件或 Skill 仓库的地址 |
 | `addedAt` | ✓ | 收录日期 |
 | `sources` |  | 由社区提交时，记录提交者：`[{ "name": "...", "url": "..." }]` |
