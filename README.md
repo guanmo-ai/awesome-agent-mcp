@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>55 个服务 · 7 个分类 · 24 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>55 个服务 · 7 个分类 · 38 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -96,9 +96,9 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 | [flomo](https://help.flomoapp.com/advance/mcp/) | 卡片笔记的记录与检索。 | MCP | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
 | [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html) | 笔记的创建、搜索与整理。 | Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
 | [有道云笔记](https://note.youdao.com/help-center/skill-guide.html) | 笔记读写与搜索、待办管理和网页剪藏。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [腾讯微云](https://www.weiyun.com/act/openclaw) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [百度网盘](https://pan.baidu.com/union/doc/mcp-server/) | 网盘文件的搜索、上传与管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [腾讯微云](https://www.weiyun.com/act/openclaw) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/) | 网盘文件的搜索、上传与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -108,12 +108,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [知乎](https://developer.zhihu.com/docs?key=zhihu_cli) | 问答与内容的搜索和读取。 | MCP · Skill | 🟢 只读查询 | — | ⏳ 待核验 |
-| [博查搜索](https://github.com/BochaAI/bocha-search-mcp) | 面向 AI 的中文网页搜索。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [企查查](https://agent.qcc.com/guide) | 企业工商与风险信息查询。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [天眼查](https://github.com/tyc-tech/tyc-cli) | 企业工商与关系信息查询。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc) | 抖音开放能力的接入。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [巨量引擎](https://open.oceanengine.com/mcp) | 广告投放数据与管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [知乎](https://developer.zhihu.com/docs?key=zhihu_cli) | 搜索知乎与全网、读取热榜和个人内容，检索与上传知识库文件。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [博查搜索](https://github.com/BochaAI/bocha-search-mcp) | 面向 AI 的中文网页搜索。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [企查查](https://agent.qcc.com/guide) | 企业工商与风险信息查询。 | MCP · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [天眼查](https://github.com/tyc-tech/tyc-cli) | 企业工商与关系信息查询。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
+| [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc) | 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712) | 查询授权的巨量广告账户、投放指标与报表数据。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -123,12 +123,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [MasterGo](https://mastergo.com/help/ai-features/magic-mcp.html) | 读取设计稿，辅助生成代码。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [墨刀](https://modao.cc/feature/ai-mcp.html) | 读取原型与设计稿。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [Pixso](https://pixso.net/developer/zh/mcp/remote-mcp.html) | 读取设计稿，辅助生成代码。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [可灵](https://github.com/klingai-tech/skills) | AI 视频与图片生成。 | MCP · Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [MiniMax](https://github.com/MiniMax-AI/MiniMax-MCP) | 语音、图片、视频与音乐生成。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [网易云音乐](https://music.163.com/st/ncmcli) | 音乐搜索与播放控制。 | Skill | 🟢 只读查询 | — | ⏳ 待核验 |
+| [MasterGo](https://mastergo.com/help/ai-features/magic-mcp.html) | 读取设计稿，辅助生成代码。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
+| [墨刀](https://modao.cc/feature/ai-mcp.html) | 生成和修改原型、PRD、应用与图片，读取并导出已有原型。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [Pixso](https://pixso.net/developer/zh/mcp/remote-mcp.html) | 读写设计稿、样式和变量，支持设计转代码与代码转设计。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [可灵](https://github.com/klingai-tech/skills) | AI 视频与图片生成。 | Skill · CLI | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [MiniMax](https://github.com/MiniMax-AI/MiniMax-MCP) | 语音合成与克隆、图片和视频生成，CLI 另提供文本与搜索。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
+| [网易云音乐](https://music.163.com/st/ncmcli) | 音乐搜索与播放、歌单管理、网盘上传和图文笔记发布。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
