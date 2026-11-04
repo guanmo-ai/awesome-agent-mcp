@@ -49,8 +49,9 @@ export function textMatch(s, toks, db) {
   return toks.every((t) => text.includes(t));
 }
 export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href } = {}) {
+  const heading = href ? 'h3' : 'h4';
   return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}" aria-label="${esc(s.name)}：${esc(s.summary)}">
-    <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><h4>${highlight(s.name, toks)}</h4><p class="domain">${esc(host(s.url))}</p></div>${badge(s)}</div>
+    <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><${heading}>${highlight(s.name, toks)}</${heading}><p class="domain">${esc(host(s.url))}</p></div>${badge(s)}</div>
     <p class="card-sum">${highlight(s.summary, toks)}</p>
     <div class="card-foot">${typeTags(s, labels)}${riskLabel(s, labels)}</div>
   </${href ? 'a' : 'button'}>`;
@@ -96,7 +97,7 @@ export function renderDetails(s, db) {
     </dl>`,
     warn: s.risk === 'payment' ? '<p class="note warn">这个服务可能下单或付款。让 Agent 执行前，请确保付款这一步由你亲自确认。</p>' : '',
     install: snips.length ? `<div class="code-tabs">
-      <div class="ct-bar" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}<button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
+      <div class="ct-bar"><div class="ct-formats" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}</div><button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
       <pre role="tabpanel" aria-label="配置内容" tabindex="0"><code>${esc(snips[0][1])}</code></pre>
     </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">一键配置还在整理中，先按官方文档接入。</p>',
     verify: s.status === 'verified' ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p>` : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>',
