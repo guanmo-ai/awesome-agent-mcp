@@ -175,9 +175,9 @@
     "size": 202
   },
   "qq-mail": {
-    "pad": false,
-    "source": "appstore",
-    "size": 256
+    "pad": true,
+    "source": "https://res.wx.qq.com/t/webmail/webmail/res/images/favicon_96h.997b2e3.png",
+    "size": 96
   },
   "quark-drive": {
     "pad": false,
