@@ -1,6 +1,19 @@
 import { esc, tokens, textMatch, highlight, logoHtml, typeTags } from './render.mjs';
+import { openDialog, closeDialog, wireDialog } from './motion.mjs';
 export const $ = (s, el = document) => el.querySelector(s);
 export const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+let catalog;
+export function loadCatalog() {
+  if (!catalog) {
+    const url = new URL('./services.json', import.meta.url);
+    url.search = new URL(import.meta.url).search;
+    catalog = fetch(url).then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    });
+  }
+  return catalog;
+}
 const FEATURED = ['amap', 'meituan', 'feishu', 'alipay', 'didi', 'zhihu', 'dingtalk', 'wechat-pay', 'taobao', 'luckin', 'tencent-docs', 'kling', 'aliyun', 'baidu-netdisk', 'weread', 'netease-music', 'mcdonalds-cn', 'fliggy', 'wecom', 'huawei-cloud'];
 export function selectCodeTab(tab) {
   const box = tab.closest('.code-tabs');
@@ -21,7 +34,7 @@ export async function loadStars(DB) {
   } catch {}
   if (n === undefined) {
     try {
-      const r = await fetch(`https://api.github.com/repos/${DB.site.repo}`);
+      const r = await fetch(`https://api.github.com/repos/${DB.site.repo}`, { signal: AbortSignal.timeout(2500) });
       if (!r.ok) return;
       n = (await r.json()).stargazers_count;
       try { sessionStorage.setItem(key, JSON.stringify({ n, t: Date.now() })); } catch {}
@@ -74,6 +87,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   });
   if (!$('#palette')) document.body.insertAdjacentHTML('beforeend', PALETTE_HTML);
   const pal = $('#palette');
+  wireDialog(pal);
   const input = $('#pal-q');
   let items = [], active = 0;
   const paint = (scroll = true) => {
@@ -105,10 +119,10 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   };
   const choose = (id) => { pal.close(); onChoose(id); };
   const toggle = () => {
-    if (pal.open) { pal.close(); return; }
+    if (pal.open) { closeDialog(pal); return; }
     if (!getData()) { toast('服务索引正在载入，请稍后重试。'); return; }
     beforeOpen();
-    pal.showModal();
+    openDialog(pal);
     input.value = '';
     render();
     input.focus();
@@ -123,7 +137,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     } else if (e.key === 'Enter' && items[active]) { e.preventDefault(); choose(items[active].id); }
   });
   pal.addEventListener('click', (e) => {
-    if (e.target === pal) { pal.close(); return; }
+    if (e.target === pal) { closeDialog(pal); return; }
     const it = e.target.closest('.pal-item');
     if (it) choose(it.dataset.id);
   });
@@ -155,13 +169,16 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     const tab = e.target.closest('[data-tab]');
     if (tab) selectCodeTab(tab);
   });
+  const syncVisibility = () => document.documentElement.classList.toggle('page-paused', document.hidden);
+  document.addEventListener('visibilitychange', syncVisibility);
+  syncVisibility();
 }
 
 const PALETTE_HTML = `<dialog class="palette" id="palette" aria-label="搜索服务">
     <div class="pal-in">
       <label class="pal-search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="pal-q" type="text" placeholder="搜索服务或能力，比如：外卖、文档、股票" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list">
+        <input id="pal-q" type="text" aria-label="搜索服务或能力" placeholder="搜索服务或能力，比如：外卖、文档、股票" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list">
         <kbd>esc</kbd>
       </label>
       <div class="pal-list" id="pal-list" role="listbox" aria-label="搜索结果"></div>

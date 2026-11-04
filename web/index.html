@@ -22,7 +22,10 @@
   <link rel="alternate" type="text/plain" href="./llms.txt" title="llms.txt">
   <link rel="alternate" type="application/json" href="./services.json" title="services.json">
   <link rel="preload" href="./fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./services.json" as="fetch" crossorigin>
+  <link rel="preload" href="./services.json?v={{v}}" as="fetch" crossorigin>
+  <link rel="modulepreload" href="./ui.mjs?v={{v}}">
+  <link rel="modulepreload" href="./render.mjs?v={{v}}">
+  <link rel="modulepreload" href="./motion.mjs?v={{v}}">
   <link rel="stylesheet" href="./app.css?v={{v}}">
   <script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch{}</script>
   <script type="module" src="./app.js?v={{v}}"></script>
@@ -78,9 +81,9 @@
           </div>
           <dl class="stats reveal">
             <div><dt>服务</dt><dd data-count="{{count}}">{{count}}</dd></div>
-            <div><dt>分类</dt><dd id="st-cats">7</dd></div>
-            <div><dt>官方已核验</dt><dd id="st-verified">0</dd></div>
-            <div><dt>最近更新</dt><dd id="st-updated">–</dd></div>
+            <div><dt>分类</dt><dd id="st-cats">{{categoryCount}}</dd></div>
+            <div><dt>官方已核验</dt><dd id="st-verified">{{verifiedCount}}</dd></div>
+            <div><dt>最近更新</dt><dd id="st-updated">{{updatedLabel}}</dd></div>
           </dl>
         </div>
         <div class="orbit-wrap reveal">
@@ -123,7 +126,7 @@
       </div>
       <div class="filterbar" id="filterbar">
         <div class="wrap fb-in">
-          <nav class="chips" id="chips" aria-label="按分类筛选"></nav>
+          <nav class="chips" id="chips" aria-label="按分类筛选">{{chips}}</nav>
           <div class="fb-row">
             <label class="fsearch" for="q">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
@@ -142,19 +145,19 @@
               <button type="button" aria-pressed="false" data-risk="payment"><i class="dot payment"></i>涉及资金</button>
             </div>
             <button class="toggle" type="button" id="verified-only" aria-pressed="false"><span class="knob" aria-hidden="true"></span>只看已核验</button>
-            <p class="result" id="result" role="status" aria-live="polite"></p>
+            <p class="result" id="result" role="status" aria-live="polite">{{count}} 个服务</p>
           </div>
         </div>
       </div>
       <div class="wrap">
-        <div id="groups"></div>
+        <div id="groups">{{directory}}</div>
         <div class="empty" id="empty" hidden>
           <p class="empty-title">没有找到匹配的服务</p>
           <p>换个关键词试试，或者<a id="suggest-link" href="https://github.com/{{repo}}/issues/new?template=submit.yml" target="_blank" rel="noopener">告诉我们该收录什么</a>。</p>
           <button class="btn btn-ghost" id="reset" type="button">清除筛选</button>
         </div>
-        <p class="loading" id="loading">正在载入…</p>
-        <noscript><p class="loading">网页需要 JavaScript。也可以直接看 <a href="https://github.com/{{repo}}#readme">GitHub 上的清单</a>。</p></noscript>
+        <p class="sr-only" id="directory-status" role="status"></p>
+        <noscript><p class="loading">点击卡片可查看接入方式；启用 JavaScript 后可以筛选和搜索。</p></noscript>
       </div>
     </section>
 

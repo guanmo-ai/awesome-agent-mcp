@@ -42,15 +42,22 @@ export const riskLabel = (s, labels) => `<span class="risk"><i class="dot ${esc(
 export const badge = (s) => s.status === 'verified'
   ? `<span class="vbadge verified" title="已确认为厂商官方出品">${ICON.check}官方已核验</span>`
   : `<span class="vbadge unverified" title="来自公开整理，尚未逐条确认官方身份">${ICON.clock}待核验</span>`;
+const searchIndexes = new WeakMap();
 export function textMatch(s, toks, db) {
+  if (!toks.length) return true;
+  let index = searchIndexes.get(db);
+  if (!index) { index = new WeakMap(); searchIndexes.set(db, index); }
+  if (!index.has(s)) index.set(s, searchText(s, db));
+  return toks.every((t) => index.get(s).includes(t));
+}
+function searchText(s, db) {
   const c = db.categories.find((c) => c.id === s.category);
   const l = db.labels;
   const text = [s.name, s.id, s.summary, host(s.url), c?.name, c?.nameEn, ...s.types.map((t) => l.types[t]), l.risk[s.risk], ...s.access.map((a) => l.access[a])].join(' ').toLowerCase();
-  return toks.every((t) => text.includes(t));
+  return text;
 }
-export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href } = {}) {
-  const heading = href ? 'h3' : 'h4';
-  return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}" aria-label="${esc(s.name)}：${esc(s.summary)}">
+export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href, id, heading = href ? 'h3' : 'h4' } = {}) {
+  return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"${id ? ` data-id="${esc(id)}"` : ''}` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}" aria-label="${esc(s.name)}：${esc(s.summary)}">
     <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><${heading}>${highlight(s.name, toks)}</${heading}><p class="domain">${esc(host(s.url))}</p></div>${badge(s)}</div>
     <p class="card-sum">${highlight(s.summary, toks)}</p>
     <div class="card-foot">${typeTags(s, labels)}${riskLabel(s, labels)}</div>
