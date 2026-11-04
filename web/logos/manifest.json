@@ -54,6 +54,11 @@
     "source": "appstore",
     "size": 256
   },
+  "edgeone-makers": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/176978739?v=4&s=256",
+    "size": 256
+  },
   "feishu": {
     "pad": false,
     "source": "appstore",
@@ -112,6 +117,11 @@
   "kling": {
     "pad": false,
     "source": "appstore",
+    "size": 256
+  },
+  "lexiang": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/259243330?v=4&s=256",
     "size": 256
   },
   "luckin": {
@@ -207,6 +217,11 @@
   "tencent-meeting": {
     "pad": false,
     "source": "appstore",
+    "size": 256
+  },
+  "textin": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/156177825?v=4&s=256",
     "size": 256
   },
   "tianyancha": {

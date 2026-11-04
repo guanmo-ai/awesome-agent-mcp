@@ -1744,6 +1744,113 @@
         "checkedAt": "2026-11-04",
         "note": "极狐官方 MCP 文档明确正式发布、OAuth、HTTP 端点及项目协作操作。"
       }
+    },
+    {
+      "id": "lexiang",
+      "name": "腾讯乐享",
+      "category": "office",
+      "summary": "搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill",
+      "homepage": "https://lexiang.tencent.com/",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/tencent-lexiang",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯乐享官方组织主页链接 lexiang.tencent.com；Skill v2 明确支持写入。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.lexiang-app.com/mcp?company_from=<你的企业标识>",
+          "headers": {
+            "Authorization": "Bearer <你的乐享Token>"
+          }
+        },
+        "skill": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
+      }
+    },
+    {
+      "id": "textin",
+      "name": "TextIn",
+      "category": "office",
+      "summary": "识别图片与文档文字，提取字段表格，并把文档转换为 Markdown。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://www.textin.com/news/20250707161156842",
+      "homepage": "https://www.textin.com/",
+      "risk": "read",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://www.textin.com/news/20250707161156842",
+        "checkedAt": "2026-11-04",
+        "note": "合合信息 TextIn 官方发布文章明确 MCP 并反链 intsig-textin GitHub 账号。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/intsig-textin/textin-mcp",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@intsig/server-textin"
+          ],
+          "env": {
+            "APP_ID": "<你的TextInAppId>",
+            "APP_SECRET": "<你的TextInAppSecret>",
+            "MCP_SERVER_REQUEST_TIMEOUT": "600000"
+          }
+        }
+      }
+    },
+    {
+      "id": "edgeone-makers",
+      "name": "腾讯 EdgeOne Makers",
+      "category": "cloud",
+      "summary": "部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。",
+      "types": [
+        "mcp",
+        "skill",
+        "cli"
+      ],
+      "url": "https://edgeone.cloud.tencent.com/pages/document/173172415568367616",
+      "homepage": "https://pages.edgeone.ai/",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://edgeone.cloud.tencent.com/pages/document/173172415568367616",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云中国站官方文档提供 MCP 中国区 --region china 配置；产品现名 EdgeOne Makers。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "edgeone-pages-mcp-fullstack",
+            "--region",
+            "china"
+          ]
+        }
+      }
     }
   ]
 }

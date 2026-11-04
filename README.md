@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>55 个服务 · 7 个分类 · 53 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>58 个服务 · 7 个分类 · 56 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -40,12 +40,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 ## 目录
 
 - [出行和生活](#cat-life)（10）
-- [办公和协作](#cat-office)（9）
+- [办公和协作](#cat-office)（11）
 - [笔记、阅读和网盘](#cat-notes)（9）
 - [搜索、内容和企业数据](#cat-search)（6）
 - [设计和创作](#cat-design)（6）
 - [支付和金融](#cat-finance)（6）
-- [云和开发](#cat-cloud)（9）
+- [云和开发](#cat-cloud)（10）
 
 <a id="cat-life"></a>
 
@@ -81,6 +81,8 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 | [金山文档](https://github.com/kdocs-app/kdocs-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/) | 在线文档的读取与协作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ⏳ 待核验 |
 | [语雀](https://github.com/yuque/yuque-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/) | 知识库与文档的读写。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/) | 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [腾讯乐享](https://github.com/tencent-lexiang/lexiang-mcp-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/) | 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [TextIn](https://www.textin.com/news/20250707161156842) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/textin/) | 识别图片与文档文字，提取字段表格，并把文档转换为 Markdown。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -162,6 +164,7 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 | [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu/) | 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
 | [Gitee](https://gitee.com/oschina/mcp-gitee) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/) | 代码仓库与 DevOps 管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [腾讯 EdgeOne Makers](https://edgeone.cloud.tencent.com/pages/document/173172415568367616) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers/) | 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
