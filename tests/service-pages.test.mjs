@@ -24,7 +24,9 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
   const config = readJson('site.config.json');
   const home = fixture.read('index.html');
   const version = home.match(/app\.js\?v=([a-f0-9]+)/)[1];
-  assert.ok(home.includes(`services.json?v=${version}`), '预加载数据必须与脚本请求的版本一致');
+  const embedded = JSON.parse(home.match(/<script type="application\/json" id="catalog-data">([\s\S]*?)<\/script>/)[1]);
+  const published = JSON.parse(fixture.read('services.json'));
+  assert.deepEqual(embedded, published, '首页的交互数据应与同次构建的公开目录一致');
   for (const file of ['app.js', 'ui.mjs', 'service.js']) {
     const imports = [...fixture.read(file).matchAll(/from\s+['"]\.\/([^'"]+)['"]/g)].map((m) => m[1]);
     assert.ok(imports.length, `${file} 应有共享模块`);
@@ -63,6 +65,10 @@ test('rejected 服务不会生成页面、同类推荐或 sitemap 地址', (t) =
   assert.ok(!existsSync(join(fixture.dir, 'dist/s', rejectedId)), '不应生成 rejected 页面');
   assert.ok(existsSync(join(fixture.dir, 'dist/sitemap.xml')), '构建必须输出 sitemap');
   assert.ok(!fixture.read('sitemap.xml').includes(`/s/${rejectedId}/`));
+  const home = fixture.read('index.html');
+  assert.ok(!home.includes(`data-id="${rejectedId}"`), '首页不应残留被移出的服务');
+  const embedded = JSON.parse(home.match(/<script type="application\/json" id="catalog-data">([\s\S]*?)<\/script>/)[1]);
+  assert.ok(!embedded.services.some((s) => s.id === rejectedId), '首页交互数据不应带回被移出的服务');
   for (const s of fixture.data.services.filter((s) => s.status !== 'rejected')) assert.ok(!fixture.read(`s/${s.id}/index.html`).includes(`href="../${rejectedId}/"`));
 });
 
@@ -88,5 +94,7 @@ test('静态详情转义恶意文字、属性、配置与 JSON-LD 的 script 结
   assert.ok(html.includes('&lt;img src=x onerror=alert(4)&gt;'));
   const raw = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
   assert.ok(!raw.includes('</script>'));
+  const embedded = JSON.parse(fixture.read('index.html').match(/<script type="application\/json" id="catalog-data">([\s\S]*?)<\/script>/)[1]);
+  assert.equal(embedded.services[0].name, s.name, 'JSON 转义后应能完整还原原始数据');
   assert.equal(JSON.parse(raw).name, '"><script>alert(1)</script>');
 });

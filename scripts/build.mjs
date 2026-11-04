@@ -206,7 +206,12 @@ if (process.argv.includes('--check')) {
     updatedLabel: `${Number(data.updatedAt.slice(5, 7))}月${Number(data.updatedAt.slice(8, 10))}日`,
   };
   const db = JSON.parse(publicJson());
-  const html = { directory: directoryHtml(db), chips: chipsHtml(db) };
+  const html = {
+    directory: directoryHtml(db), chips: chipsHtml(db),
+    // Keep the rendered directory and its interactive data in one cache unit.
+    // A data string must never terminate its application/json script element.
+    catalog: publicJson().replaceAll('<', '\\u003c').replaceAll('>', '\\u003e').replaceAll('&', '\\u0026'),
+  };
   const fill = (text) => text.replace(/\{\{(\w+)\}\}/g, (_, key) => {
     if (key in html) return html[key];
     if (!(key in vars)) throw new Error(`未知首页占位符：${key}`);

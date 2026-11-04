@@ -22,10 +22,10 @@
   <link rel="alternate" type="text/plain" href="./llms.txt" title="llms.txt">
   <link rel="alternate" type="application/json" href="./services.json" title="services.json">
   <link rel="preload" href="./fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./services.json?v={{v}}" as="fetch" crossorigin>
   <link rel="modulepreload" href="./ui.mjs?v={{v}}">
   <link rel="modulepreload" href="./render.mjs?v={{v}}">
   <link rel="modulepreload" href="./motion.mjs?v={{v}}">
+  <link rel="modulepreload" href="./directory.mjs?v={{v}}">
   <link rel="stylesheet" href="./app.css?v={{v}}">
   <script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch{}</script>
   <script type="module" src="./app.js?v={{v}}"></script>
@@ -239,5 +239,6 @@
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="application/json" id="catalog-data">{{catalog}}</script>
 </body>
 </html>

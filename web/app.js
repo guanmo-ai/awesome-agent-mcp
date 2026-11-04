@@ -1,6 +1,7 @@
 import { esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
 import { $, $$, copy, initChrome, loadStars, loadCatalog } from './ui.mjs';
 import { motionReduced, onMotionChange, openDialog, closeDialog, wireDialog, revealResults } from './motion.mjs';
+import { directoryHtml, chipsHtml } from './directory.mjs';
 let reduced = motionReduced();
 onMotionChange(() => { reduced = motionReduced(); });
 
@@ -22,12 +23,23 @@ init().catch((e) => {
 
 async function init() {
   wireChrome();
-  DB = await loadCatalog();
+  const embedded = $('#catalog-data');
+  DB = embedded ? JSON.parse(embedded.textContent) : await loadCatalog();
   L = DB.labels;
   home = DB.homepage;
   byId = new Map(DB.services.map((s) => [s.id, s]));
   PROMPT = `读取 ${home}llms.txt，帮我找能点外卖的官方 MCP，告诉我需要什么 Key、配置怎么写。`;
   SKILL_CMD = `mkdir -p ~/.claude/skills/${DB.site.skill} && curl -fsSL ${DB.site.skillUrl} -o ~/.claude/skills/${DB.site.skill}/SKILL.md`;
+  // Older cached HTML has no bundled data. Reconcile it once with the live catalog.
+  if (!embedded) {
+    $('#groups').innerHTML = directoryHtml(DB);
+    $('#chips').innerHTML = chipsHtml(DB);
+    $('#eyebrow-count').textContent = DB.count;
+    $('[data-count]').textContent = DB.count;
+    $('#st-cats').textContent = DB.categories.length;
+    $('#st-verified').textContent = DB.services.filter((s) => s.status === 'verified').length;
+    $('#st-updated').textContent = `${Number(DB.updatedAt.slice(5, 7))}月${Number(DB.updatedAt.slice(8, 10))}日`;
+  }
   cards = new Map($$('#groups .card').map((el) => { el.dataset.query = ''; return [el.dataset.id, el]; }));
   groups = new Map(DB.categories.map((c) => [c.id, document.getElementById(`cat-${c.id}`)]));
   render();
