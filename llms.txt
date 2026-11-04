@@ -1,6 +1,6 @@
 # Awesome Agent MCP
 
-> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 60 个，更新于 2026-11-04。
+> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 80 个，更新于 2026-11-04。
 
 结构化数据：https://guanmo-ai.github.io/awesome-agent-mcp/services.json（字段说明见 https://github.com/guanmo-ai/awesome-agent-mcp/blob/main/docs/SCHEMA.md）
 
@@ -23,6 +23,7 @@
 - [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli): 企业差旅资源查询、差旅政策校验与方案推荐。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/)
 - [途牛](https://open.tuniu.com/mcp/docs/guide/mcp-auth.html): 搜索并预订酒店、机票、火车票、门票、邮轮与度假产品。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://openapi.tuniu.cn/hybrid/mcp/hotel；CLI `npm install -g tuniu-cli@latest`；Skill https://github.com/tuniucorp/tuniu-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tuniu/)
 - [快递100](https://api.kuaidi100.com/document/how-to-use-mcp-service): 查询物流轨迹、预估运费与时效，并支持获授权的上门取件下单。 类型 MCP · Skill；权限 涉及资金；门槛 需 API Key、需授权账号、需申请开通；已核验；MCP Streamable HTTP https://api.kuaidi100.com/mcp/streamable?key=<你的快递100Key>；Skill https://clawhub.ai/kuaidi100-api/kuaidi100-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kuaidi100/)
+- [携程商旅](https://openapi.ctripbiz.com/#/advertise/mcp): 查询差旅政策、机票酒店与行程方案，读取差旅和合规数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ctrip-business/)
 
 ## 办公和协作
 
@@ -38,6 +39,7 @@
 - [腾讯乐享](https://github.com/tencent-lexiang/lexiang-mcp-skill): 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.lexiang-app.com/mcp?company_from=<你的企业标识>；Skill https://github.com/tencent-lexiang/lexiang-mcp-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/)
 - [TextIn](https://www.textin.com/news/20250707161156842): 识别图片与文档文字，提取字段表格，并把文档转换为 Markdown。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP stdio npx -y @intsig/server-textin；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/textin/)
 - [飞书项目](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc): 按账号权限查询和更新项目、工作项及相关项目数据。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu-project/)
+- [腾讯 TAPD](https://cloud.tencent.com/developer/mcp/server/11474): 查询和管理需求、任务、缺陷、迭代及评论。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx mcp-server-tapd；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tapd/)
 
 ## 笔记、阅读和网盘
 
@@ -56,6 +58,9 @@
 - [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc): 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；MCP SSE https://open.douyin.com/sse?token=<你的抖音Token>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/douyin-open/)
 - [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712): 查询授权的巨量广告账户、投放指标与报表数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanengine/)
 - [华宇元典](https://open.chineselaw.com/mcp-config/): 检索法律法规、案例、企业和证券合规资料，并校验法律幻觉。 类型 MCP · Skill；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://open.chineselaw.com/mcp/law/stream；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuandian/)
+- [腾讯元宝搜索](https://cloud.tencent.com/developer/mcp/server/11764): 检索实时网页与垂直信息，可限定站点、时效和结果数量。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://api.wsa.cloud.tencent.com/Mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuanbao-search/)
+- [百度 AI 搜索](https://cloud.baidu.com/doc/BAIDU_AI_SEARCH/index.html): 搜索实时网页、图片和视频，并按站点或结果类型筛选。 类型 MCP；权限 只读查询；门槛 —；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-search/)
+- [百度百科](https://cloud.baidu.com/doc/qianfan/s/tmh4stryt): 查询百科词条义项、详情和秒懂百科视频。 类型 MCP；权限 只读查询；门槛 —；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-baike/)
 
 ## 设计和创作
 
@@ -65,6 +70,8 @@
 - [网易云音乐](https://music.163.com/st/ncmcli): 音乐搜索与播放、歌单管理、网盘上传和图文笔记发布。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；CLI `npm install -g @music163/ncm-cli`；Skill https://github.com/NetEase/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/netease-music/)
 - [AntV](https://github.com/antvis/mcp-server-chart): 把结构化数据生成为图表，并按分析场景选择适合的可视化形式。 类型 MCP · Skill；权限 可执行操作；门槛 免费可用；已核验；MCP stdio npx -y @antv/mcp-server-chart；Skill https://github.com/antvis/chart-visualization-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/antv/)
 - [美图 MeituHub](https://www.meituhub.com/zh-cn/docs?id=150): 用命令行调用图片、视频和音频创作能力，支持本地批量处理。 类型 CLI；权限 可执行操作；门槛 需 API Key、需会员或付费；已核验；CLI `npm install -g meitu-cli meitu`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituhub/)
+- [腾讯混元生图](https://cloud.tencent.com/developer/mcp/server/11765): 生成图片、图生图、扩图与清晰度增强。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/)
+- [火山引擎 veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex): 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_veimagex mcp-server-veimagex；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/)
 
 ## 支付和金融
 
@@ -89,3 +96,16 @@
 - [腾讯云开发 CloudBase](https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/): 管理云数据库、云函数、存储和应用部署，并提供开发工作流。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://tcb-api.cloud.tencent.com/mcp/v1；Skill https://github.com/TencentCloudBase/cloudbase-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/cloudbase/)
 - [Higress](https://github.com/higress-group/higress-ops-mcp-server): 通过 MCP 查询和管理 Higress 网关的路由、服务与配置。 类型 MCP；权限 可执行操作；门槛 —；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/higress/)
 - [乐鑫 ESP RainMaker](https://mcp.espressif.com/): 查询和控制物联网设备，设置设备参数并管理自动化日程。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.rainmaker.espressif.com/api/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/esp-rainmaker/)
+- [腾讯云代码分析 TCA](https://cloud.tencent.com/developer/mcp/server/11709): 发起代码分析，查询代码质量、安全缺陷与分析报告。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key、需申请开通；已核验；MCP stdio npx -y -p tca-mcp-server@latest tca-mcp-stdio；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-tca/)
+- [腾讯 TDesign](https://cloud.tencent.com/developer/mcp/server/11721): 检索组件列表、文档、DOM 结构和版本变更，辅助界面开发。 类型 MCP；权限 只读查询；门槛 免费可用；已核验；MCP stdio npx -y tdesign-mcp-server@latest；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tdesign/)
+- [腾讯 CODING DevOps](https://cloud.tencent.com/developer/mcp/server/11722): 管理研发项目、工作项、代码仓库与合并请求。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y coding-devops-mcp-server；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/coding/)
+- [腾讯 DNSPod](https://cloud.tencent.com/developer/mcp/server/11743): 查询与管理 DNS 域名，读取解析记录和解析用量。 类型 MCP；权限 可执行操作；门槛 —；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dnspod/)
+- [腾讯 WeData 指标语义层](https://cloud.tencent.com/developer/mcp/server/11763): 通过企业元数据与语义层检索数据资产和查询业务数据。 类型 MCP；权限 只读查询；门槛 —；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-wedata/)
+- [腾讯云对象存储 COS](https://github.com/Tencent/cos-mcp): 上传、下载和检索云端文件，处理图片、视频与文档。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx cos-mcp --Region=<你的地域> --Bucket=<你的存储桶> --SecretId=<你的SecretId> --SecretKey=<你的SecretKey>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cos/)
+- [腾讯云日志服务 CLS](https://cloud.tencent.com/document/product/614/118699): 搜索和分析日志、查询监控指标与告警记录。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y cls-mcp-server@latest；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cls/)
+- [火山引擎 ByteHouse](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse): 查询数据库与表结构，执行数据查询及 DML、DDL 语句。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server@main#subdirectory=server/mcp_server_bytehouse mcp_bytehouse；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-bytehouse/)
+- [火山引擎 veFaaS Browser-Use](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use): 发起云端浏览器操作任务，查询任务状态和结果。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_vefaas_browser_use mcp-server-vefaas-browser-use；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-browser-use/)
+- [讯飞云](https://www.xfyun.cn/xfyun-cli/doc): 管理讯飞应用与用量，调用语音、OCR、翻译、图片和数字人等能力。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @xfyun/cli && xfyun skill install --auto`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/xfyun/)
+- [阿里云百炼](https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation): 调用图像、视频等模型能力，管理百炼应用、任务和平台资源。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g bailian-cli`；Skill https://github.com/modelstudioai/cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-bailian/)
+- [阿里云日志服务 SLS](https://help.aliyun.com/en/sls/sls-mcp-server): 检索日志项目与 LogStore，查询分析日志并诊断告警。 类型 MCP；权限 只读查询；门槛 需授权账号；已核验；MCP stdio uvx alibabacloud-sls-mcp-proxy@latest --profile default；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-sls/)
+- [阿里云 DMS Agent 数据网关](https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp): 发现数据库资产、查询权限与知识，按授权执行 SQL。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dms/)
