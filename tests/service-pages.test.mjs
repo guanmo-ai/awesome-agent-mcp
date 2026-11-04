@@ -22,10 +22,19 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
   const fixture = buildFixture();
   t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
   const config = readJson('site.config.json');
+  const home = fixture.read('index.html');
+  const version = home.match(/app\.js\?v=([a-f0-9]+)/)[1];
+  assert.ok(home.includes(`services.json?v=${version}`), '预加载数据必须与脚本请求的版本一致');
+  for (const file of ['app.js', 'ui.mjs', 'service.js']) {
+    const imports = [...fixture.read(file).matchAll(/from\s+['"]\.\/([^'"]+)['"]/g)].map((m) => m[1]);
+    assert.ok(imports.length, `${file} 应有共享模块`);
+    for (const dependency of imports) assert.ok(dependency.endsWith(`?v=${version}`), `${file} 的 ${dependency} 未更新缓存版本`);
+  }
   const sitemapPath = join(fixture.dir, 'dist/sitemap.xml');
   assert.ok(existsSync(sitemapPath), '构建必须输出 sitemap');
   const sitemap = fixture.read('sitemap.xml');
   for (const s of fixture.data.services.filter((s) => s.status !== 'rejected')) {
+    assert.ok(home.includes(`href="./s/${s.id}/" data-id="${s.id}"`), `${s.id} 在无 JavaScript 时也应有可用入口`);
     const html = fixture.read(`s/${s.id}/index.html`);
     assert.doesNotMatch(html, /\{\{[a-zA-Z]+\}\}/, `${s.id} 有残留占位符`);
     assert.match(html, /<h1>[^<]+<\/h1>/);
@@ -71,6 +80,7 @@ test('静态详情转义恶意文字、属性、配置与 JSON-LD 的 script 结
   const path = `s/${s.id}/index.html`;
   assert.ok(existsSync(join(fixture.dir, 'dist', path)), '必须生成静态详情页');
   const html = fixture.read(path);
+  assert.doesNotMatch(fixture.read('index.html'), /<script>alert\([15]\)<\/script>|<img src=x/);
   assert.doesNotMatch(html, /<script>alert\([15]\)<\/script>|<img src=x/);
   assert.ok(html.includes('&lt;img src=x onerror=alert(2)&gt;'));
   assert.ok(html.includes('&lt;img src=x onerror=alert(3)&gt;'));

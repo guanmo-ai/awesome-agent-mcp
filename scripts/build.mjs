@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { root, load, grouped, LABELS, rawUrl } from './lib.mjs';
 import { esc, serviceUrl } from '../web/render.mjs';
 import { renderServicePage, sitemap } from './service-pages.mjs';
+import { directoryHtml, chipsHtml } from '../web/directory.mjs';
 
 const { config, data, errors } = load();
 if (errors.length) {
@@ -192,19 +193,30 @@ if (process.argv.includes('--check')) {
     .update(readFileSync(join(root, 'web/render.mjs')))
     .update(readFileSync(join(root, 'web/ui.mjs')))
     .update(readFileSync(join(root, 'web/service.js')))
+    .update(readFileSync(join(root, 'web/motion.mjs')))
+    .update(readFileSync(join(root, 'web/directory.mjs')))
     .update(publicJson())
     .digest('hex')
     .slice(0, 8);
   const vars = {
     title: config.title, tagline: config.tagline, description: config.description, siteUrl: config.siteUrl,
     repo: config.repo, x: config.maintainer.x, maintainerName: config.maintainer.name, count: live.length, v: version,
+    categoryCount: groups.length, verifiedCount: verified,
+    updatedLabel: `${Number(data.updatedAt.slice(5, 7))}月${Number(data.updatedAt.slice(8, 10))}日`,
   };
+  const db = JSON.parse(publicJson());
+  const html = { directory: directoryHtml(db), chips: chipsHtml(db) };
   const fill = (text) => text.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    if (key in html) return html[key];
     if (!(key in vars)) throw new Error(`未知首页占位符：${key}`);
     return esc(vars[key]);
   });
   writeFileSync(join(dist, 'index.html'), fill(readFileSync(join(root, 'web/index.html'), 'utf8')));
-  const db = JSON.parse(publicJson());
+  // Version transitive module imports too; otherwise browsers can reuse old shared code.
+  for (const file of ['app.js', 'ui.mjs', 'render.mjs', 'motion.mjs', 'directory.mjs', 'service.js']) {
+    const source = readFileSync(join(dist, file), 'utf8');
+    writeFileSync(join(dist, file), source.replace(/(from\s+['"]\.\/[^'"]+\.(?:mjs|js))(['"])/g, `$1?v=${version}$2`));
+  }
   const template = readFileSync(join(root, 'web/service.html'), 'utf8');
   for (const service of db.services) {
     const dir = join(dist, 's', service.id);

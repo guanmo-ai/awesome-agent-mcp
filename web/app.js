@@ -1,40 +1,36 @@
-import { esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, textMatch as renderTextMatch, cardHtml, renderDetails } from './render.mjs';
-import { $, $$, copy, initChrome, loadStars } from './ui.mjs';
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+import { esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
+import { $, $$, copy, initChrome, loadStars, loadCatalog } from './ui.mjs';
+import { motionReduced, onMotionChange, openDialog, closeDialog, wireDialog, revealResults } from './motion.mjs';
+let reduced = motionReduced();
+onMotionChange(() => { reduced = motionReduced(); });
 
-const CAT_ICON = {
-  life: '<path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 1 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.3"/>',
-  office: '<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/>',
-  notes: '<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5v-15Z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7.5h6"/>',
-  search: '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M8.5 11h5"/>',
-  design: '<path d="M12 3l2.2 5.3L20 10.5l-5.8 2.2L12 18l-2.2-5.3L4 10.5l5.8-2.2L12 3Z"/><path d="M18.5 16.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2Z"/>',
-  finance: '<rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10.5h18M16.5 15h.01"/>',
-  cloud: '<path d="M7 18.5a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9a4.75 4.75 0 0 1 0 9.5H7Z"/>',
-};
-const catIcon = (id) => `<svg viewBox="0 0 24 24" aria-hidden="true">${CAT_ICON[id] ?? '<circle cx="12" cy="12" r="4"/>'}</svg>`;
 // Hero orbit (icons without seasonal artwork), in this order.
 const ORBIT = ['amap', 'meituan', 'feishu', 'alipay', 'didi', 'zhihu', 'dingtalk', 'wechat-pay', 'wps', 'tencent-docs', 'kling', 'aliyun', 'baidu-netdisk', 'weread', 'netease-music', 'mcdonalds-cn', 'wecom', 'huawei-cloud', 'yuque', 'quark-drive'];
 const state = { q: '', cat: 'all', types: new Set(), risks: new Set(), verified: false };
 let DB, L, byId, home, PROMPT, SKILL_CMD;
+let cards, groups, lastQuery = '';
+let renderFrame = 0;
+const scheduleRender = () => {
+  cancelAnimationFrame(renderFrame);
+  renderFrame = requestAnimationFrame(() => { renderFrame = 0; render(); });
+};
 
 init().catch((e) => {
   console.error(e);
-  $('#loading').textContent = '数据载入失败，请刷新重试。';
+  $('#directory-status').textContent = '筛选暂时不可用，可直接点卡片查看官方接入。';
 });
 
 async function init() {
   wireChrome();
-  DB = await (await fetch('./services.json')).json();
+  DB = await loadCatalog();
   L = DB.labels;
   home = DB.homepage;
   byId = new Map(DB.services.map((s) => [s.id, s]));
   PROMPT = `读取 ${home}llms.txt，帮我找能点外卖的官方 MCP，告诉我需要什么 Key、配置怎么写。`;
   SKILL_CMD = `mkdir -p ~/.claude/skills/${DB.site.skill} && curl -fsSL ${DB.site.skillUrl} -o ~/.claude/skills/${DB.site.skill}/SKILL.md`;
-  $('#loading').remove();
-  renderStats();
-  $('#groups').classList.add('intro');
+  cards = new Map($$('#groups .card').map((el) => { el.dataset.query = ''; return [el.dataset.id, el]; }));
+  groups = new Map(DB.categories.map((c) => [c.id, document.getElementById(`cat-${c.id}`)]));
   render();
-  setTimeout(() => $('#groups').classList.remove('intro'), 1600);
   buildOrbit();
   buildDemo();
   renderForAi();
@@ -48,50 +44,58 @@ function wireChrome() {
   initChrome({ getData: () => DB, onChoose: openSheet,
     beforeOpen: () => { if ($('#sheet').open) $('#sheet').close(); }, focusSearch: () => $('#q').focus() });
   const q = $('#q');
-  q.addEventListener('input', () => { state.q = q.value.trim(); render(); });
-  q.addEventListener('keydown', (e) => { if (e.key === 'Escape') { q.value = ''; state.q = ''; render(); } });
+  q.addEventListener('input', () => { state.q = q.value.trim(); scheduleRender(); });
+  q.addEventListener('keydown', (e) => { if (e.key === 'Escape') { q.value = ''; state.q = ''; scheduleRender(); } });
   const toggleIn = (set, key) => (e) => {
     const b = e.target.closest('button'); if (!b) return;
     const v = b.dataset[key];
     set.has(v) ? set.delete(v) : set.add(v);
     b.setAttribute('aria-pressed', set.has(v));
-    render();
+    scheduleRender();
   };
   $('#type-filter').addEventListener('click', toggleIn(state.types, 'type'));
   $('#risk-filter').addEventListener('click', toggleIn(state.risks, 'risk'));
   $('#verified-only').addEventListener('click', (e) => {
     state.verified = !state.verified;
     e.currentTarget.setAttribute('aria-pressed', state.verified);
-    render();
+    scheduleRender();
   });
   $('#reset').addEventListener('click', resetFilters);
   $('#chips').addEventListener('click', (e) => {
     const b = e.target.closest('.chip'); if (!b) return;
     state.cat = b.dataset.cat;
-    render();
+    scheduleRender();
     const top = $('#filterbar').getBoundingClientRect().top + scrollY - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
-    if (scrollY > top + 2) scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+    if (scrollY > top + 2) scrollTo({ top, behavior: motionReduced() ? 'auto' : 'smooth' });
   });
 
   const groups = $('#groups');
-  groups.addEventListener('click', (e) => { const c = e.target.closest('.card'); if (c) openFromCard(c); });
-  let raf = 0;
+  groups.addEventListener('click', (e) => {
+    const c = e.target.closest('.card');
+    if (!c || !byId?.has(c.dataset.id) || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    openSheet(c.dataset.id);
+  });
+  let raf = 0, pointer;
+  const hover = matchMedia('(hover: hover) and (pointer: fine)');
   groups.addEventListener('pointermove', (e) => {
-    if (raf || e.pointerType === 'touch') return;
+    if (!hover.matches || reduced || e.pointerType === 'touch') return;
+    pointer = { card: e.target.closest('.card'), x: e.clientX, y: e.clientY };
+    if (raf) return;
     raf = requestAnimationFrame(() => {
       raf = 0;
-      const grid = e.target.closest?.('.grid'); if (!grid) return;
-      for (const c of grid.children) {
-        const r = c.getBoundingClientRect();
-        c.style.setProperty('--mx', `${e.clientX - r.left}px`);
-        c.style.setProperty('--my', `${e.clientY - r.top}px`);
-      }
+      const { card, x, y } = pointer;
+      if (!card?.isConnected) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${x - r.left}px`);
+      card.style.setProperty('--my', `${y - r.top}px`);
     });
-  });
+  }, { passive: true });
 
   const sheet = $('#sheet');
+  wireDialog(sheet);
   sheet.addEventListener('click', (e) => {
-    if (e.target === sheet || e.target.closest('[data-close]')) sheet.close();
+    if (e.target === sheet || e.target.closest('[data-close]')) closeDialog(sheet);
   });
   sheet.addEventListener('close', () => {
     if (location.hash.startsWith('#s-')) history.replaceState(null, '', location.pathname + location.search);
@@ -110,27 +114,6 @@ function resetFilters() {
   render();
 }
 
-/* ── Hero stats ──────────────────────────────────────── */
-function renderStats() {
-  const verified = DB.services.filter((s) => s.status === 'verified').length;
-  const [, m, d] = DB.updatedAt.split('-').map(Number);
-  $('#eyebrow-count').textContent = DB.count;
-  $('#st-cats').textContent = DB.categories.length;
-  $('#st-verified').textContent = verified;
-  $('#st-updated').textContent = `${m}月${d}日`;
-  for (const el of $$('[data-count]')) {
-    const n = DB.count;
-    if (reduced) { el.textContent = n; continue; }
-    const t0 = performance.now();
-    const tick = (now) => {
-      const k = Math.min(1, (now - t0) / 1100);
-      el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3)));
-      if (k < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-}
-
 const verb = (s) => s.summary.replace(/。$/, '').split(/[，,]/)[0].split('、').slice(0, 2).join('、');
 const typeTags = (s) => renderTypeTags(s, L);
 const textMatch = (s, toks) => renderTextMatch(s, toks, DB);
@@ -143,36 +126,48 @@ function matches(s, toks, ignoreCat = false) {
   if (state.verified && s.status !== 'verified') return false;
   return textMatch(s, toks);
 }
-function renderChips(toks) {
-  const counts = Object.fromEntries(DB.categories.map((c) => [c.id, 0]));
-  let all = 0;
-  for (const s of DB.services) if (matches(s, toks, true)) { counts[s.category]++; all++; }
-  const chip = (id, name, n, ico) => `<button class="chip" type="button" data-cat="${esc(id)}" aria-pressed="${state.cat === id}">${ico}${esc(name)}<b>${n}</b></button>`;
-  $('#chips').innerHTML = chip('all', '全部', all, '') + DB.categories.map((c) => chip(c.id, c.name, counts[c.id], catIcon(c.id))).join('');
-}
-
-const card = (s, toks, index) => cardHtml(s, L, { toks, index });
-
 function render() {
+  if (!DB || !cards) return;
   const toks = tokens(state.q);
-  const list = DB.services.filter((s) => matches(s, toks));
-  renderChips(toks);
-  let i = 0;
-  $('#groups').innerHTML = DB.categories
-    .filter((c) => state.cat === 'all' || c.id === state.cat)
-    .map((c) => {
-      const items = list.filter((s) => s.category === c.id);
-      if (!items.length) return '';
-      return `<section class="group" id="cat-${esc(c.id)}" aria-labelledby="h-${esc(c.id)}">
-        <div class="group-head"><span class="group-icon">${catIcon(c.id)}</span><h3 id="h-${esc(c.id)}">${esc(c.name)}</h3><span class="en">${esc(c.nameEn ?? '')}</span><span class="n">${items.length}</span></div>
-        <div class="grid">${items.map((s) => card(s, toks, Math.min(i++, 30))).join('')}</div>
-      </section>`;
-    })
-    .join('');
-  $('#empty').hidden = list.length > 0;
+  const counts = Object.fromEntries(DB.categories.map((c) => [c.id, 0]));
+  const shown = new Set();
+  const entering = [];
+  let total = 0;
+  for (const s of DB.services) {
+    if (matches(s, toks, true)) { counts[s.category]++; total++; }
+    const el = cards.get(s.id);
+    if (!el) continue;
+    const visible = matches(s, toks);
+    if (visible) {
+      shown.add(s.id);
+      if (el.hidden || groups.get(s.category)?.hidden) entering.push(el);
+      if (el.dataset.query !== state.q) {
+        el.querySelector('.card-title h4').innerHTML = highlight(s.name, toks);
+        el.querySelector('.card-sum').innerHTML = highlight(s.summary, toks);
+        el.dataset.query = state.q;
+      }
+    }
+    if (el.hidden === visible) el.hidden = !visible;
+  }
+  for (const c of DB.categories) {
+    const group = groups.get(c.id);
+    if (!group) continue;
+    const count = (state.cat === 'all' || state.cat === c.id) ? counts[c.id] : 0;
+    group.hidden = !count;
+    const label = group.querySelector('.n');
+    if (label.textContent !== String(count)) label.textContent = count;
+  }
+  for (const b of $$('#chips .chip')) {
+    b.setAttribute('aria-pressed', state.cat === b.dataset.cat);
+    const count = b.dataset.cat === 'all' ? total : counts[b.dataset.cat];
+    if (b.querySelector('b').textContent !== String(count)) b.querySelector('b').textContent = count;
+  }
+  $('#empty').hidden = shown.size > 0;
   const filtered = state.q || state.cat !== 'all' || state.types.size || state.risks.size || state.verified;
-  $('#result').textContent = filtered ? `${list.length} / ${DB.count}` : `${DB.count} 个服务`;
+  $('#result').textContent = filtered ? `${shown.size} / ${DB.count}` : `${DB.count} 个服务`;
   if (state.q) $('#suggest-link').href = `https://github.com/${DB.site.repo}/issues/new?template=submit.yml&title=${encodeURIComponent('[收录] ' + state.q)}`;
+  if (lastQuery === state.q) revealResults(entering);
+  lastQuery = state.q;
 }
 
 /* ── Detail sheet ────────────────────────────────────── */
@@ -199,7 +194,7 @@ function openSheet(id) {
       <div class="s-foot"><span>收录于 ${esc(s.addedAt)}</span><a href="${esc(report)}" target="_blank" rel="noopener">信息有误？报告问题</a></div>
     </div>`;
   const sheet = $('#sheet');
-  if (!sheet.open) sheet.showModal();
+  openDialog(sheet);
   box.scrollTop = 0;
   box.focus({ preventScroll: true });
   if (location.hash !== `#s-${s.id}`) history.replaceState(null, '', `#s-${s.id}`);
@@ -208,21 +203,6 @@ function openSheet(id) {
 function openFromHash() {
   const m = location.hash.match(/^#s-([a-z0-9-]+)$/);
   if (m && byId?.has(m[1])) openSheet(m[1]);
-}
-
-// Card logo morphs into the sheet logo where View Transitions are supported.
-function openFromCard(card) {
-  const id = card.dataset.id;
-  const from = card.querySelector('.logo');
-  if (!document.startViewTransition || reduced || !from) return openSheet(id);
-  from.style.viewTransitionName = 'svc-logo';
-  const vt = document.startViewTransition(() => {
-    from.style.viewTransitionName = '';
-    openSheet(id);
-    const to = $('#sheet .s-id .logo');
-    if (to) to.style.viewTransitionName = 'svc-logo';
-  });
-  vt.finished.finally(() => { const to = $('#sheet .s-id .logo'); if (to) to.style.viewTransitionName = ''; });
 }
 
 /* ── Hero orbit: Agent → official services ───────────── */
@@ -267,8 +247,9 @@ function buildOrbit() {
     draw(performance.now());
   };
   readColors();
-  new MutationObserver(readColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', readColors);
+  const refreshColors = () => { readColors(); if (!running) draw(performance.now()); };
+  new MutationObserver(refreshColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', refreshColors);
 
   let t = 0, last = performance.now(), mul = 1, target = 1, running = false, hovered = null, labelTimer = 0;
   let pulses = [], nextPulse = performance.now() + 600, lastPick = null;
@@ -350,18 +331,28 @@ function buildOrbit() {
     ctx.lineWidth = 1;
 
   }
-  const loop = (now) => { if (!running) return; draw(now); requestAnimationFrame(loop); };
+  let frame = 0;
+  const loop = (now) => { if (!running) return; draw(now); frame = requestAnimationFrame(loop); };
   const setRunning = (v) => {
-    if (v === running || reduced) { if (reduced) draw(performance.now()); return; }
+    v = v && !reduced;
+    if (v === running) { if (reduced) draw(performance.now()); return; }
     running = v;
-    if (v) { last = performance.now(); requestAnimationFrame(loop); }
+    cancelAnimationFrame(frame);
+    if (v) { last = performance.now(); frame = requestAnimationFrame(loop); }
   };
   new ResizeObserver(resize).observe(wrap);
   let visible = true;
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; setRunning(visible && !document.hidden); }).observe(wrap);
-  document.addEventListener('visibilitychange', () => setRunning(visible && !document.hidden));
+  const sync = () => {
+    const active = visible && !document.hidden && !document.querySelector('dialog[open]');
+    wrap.classList.toggle('motion-paused', !active || reduced);
+    setRunning(active);
+  };
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }).observe(wrap);
+  new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['open'], subtree: true });
+  document.addEventListener('visibilitychange', sync);
+  onMotionChange(sync);
   resize();
-  setRunning(true);
+  sync();
 }
 
 /* ── Demo: one sentence → Agent calls official connectors ─ */
@@ -499,7 +490,7 @@ function buildDemo() {
     play(n);
   });
   const syncPlayback = () => {
-    const active = visible && !document.hidden;
+    const active = visible && !document.hidden && !document.querySelector('dialog[open]');
     $$('.dtab .bar', tabs).forEach((bar) => { bar.style.animationPlayState = active ? 'running' : 'paused'; });
     if (active) play(cur);
     else run++;
@@ -509,6 +500,8 @@ function buildDemo() {
     syncPlayback();
   }, { threshold: 0.35 }).observe($('.demo-win'));
   document.addEventListener('visibilitychange', syncPlayback);
+  onMotionChange(syncPlayback);
+  new MutationObserver(syncPlayback).observe(document.body, { attributes: true, attributeFilter: ['open'], subtree: true });
 }
 
 /* ── For AI section ──────────────────────────────────── */
