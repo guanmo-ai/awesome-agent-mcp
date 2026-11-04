@@ -33,11 +33,15 @@ test('旧式 SSE 不冒充 Codex 的 Streamable HTTP 配置', () => {
 
 test('远程认证请求头出现在三个客户端的配置中', () => {
   const result = Object.fromEntries(snippets({ id: 'remote', install: { mcp: {
-    transport: 'http', url: 'https://example.com/mcp', headers: { Authorization: 'Bearer <你的Token>' },
+    transport: 'http', url: 'https://example.com/mcp', headers: { Authorization: 'Bearer <你的Token>', 'X-Test': 'a b' },
   } } }));
   const command = spawnSync('sh', ['-c', 'claude() { printf "%s\\0" "$@"; };\n' + result['Claude Code']], { encoding: 'utf8' });
   assert.equal(command.status, 0, command.stderr);
-  assert.ok(command.stdout.split('\0').includes('Authorization: Bearer <你的Token>'));
-  assert.deepEqual(JSON.parse(result.JSON).mcpServers.remote.headers, { Authorization: 'Bearer <你的Token>' });
+  // --header 接收多个值，后面必须先用另一个选项结束它，才能保留 name/url 位置参数。
+  assert.deepEqual(command.stdout.split('\0').slice(0, -1), [
+    'mcp', 'add', '--header', 'Authorization: Bearer <你的Token>', '--header', 'X-Test: a b',
+    '--transport', 'http', 'remote', 'https://example.com/mcp',
+  ]);
+  assert.deepEqual(JSON.parse(result.JSON).mcpServers.remote.headers, { Authorization: 'Bearer <你的Token>', 'X-Test': 'a b' });
   assert.match(result.Codex, /\[mcp_servers.remote.http_headers\]\n"Authorization" = "Bearer <你的Token>"/);
 });
