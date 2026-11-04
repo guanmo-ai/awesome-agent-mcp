@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>87 个服务 · 7 个分类 · 85 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>94 个服务 · 7 个分类 · 92 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -45,7 +45,7 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 - [搜索、内容和企业数据](#cat-search)（11）
 - [设计和创作](#cat-design)（12）
 - [支付和金融](#cat-finance)（8）
-- [云和开发](#cat-cloud)（15）
+- [云和开发](#cat-cloud)（22）
 
 <a id="cat-life"></a>
 
@@ -194,6 +194,13 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 | [Sealos](https://sealos.io/docs/AI/mcp/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/sealos/) | 创建开发环境，管理数据库，查询账单、性能监控与日志。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [融云](https://github.com/rongcloud/rongcloud-server-mcp-python) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/rongcloud/) | 管理即时通讯用户与群组，发送消息并查询聊天记录。 | MCP | 🟡 可执行操作 | 需 API Key | ✅ 已核验 |
 | [腾讯云开发 CloudBase](https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/cloudbase/) | 管理云数据库、云函数、存储和应用部署，并提供开发工作流。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [GreptimeDB](https://docs.greptime.cn/user-guide/integrations/mcp/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/greptimedb/) | 查询和分析时序、日志与链路数据，并可按配置管理数据流水线。 | MCP · Skill | 🟡 可执行操作 | — | ✅ 已核验 |
+| [Milvus／Zilliz](https://milvus.io/docs/milvus_and_mcp.md) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/milvus/) | 检索向量数据，查询数据库结构，并管理集合和数据。 | MCP | 🟡 可执行操作 | — | ✅ 已核验 |
+| [API7 APISIX](https://docs.api7.ai/apisix/reference/apisix-mcp) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apisix/) | 查询和管理 API 网关路由、上游、插件、消费者与证书配置。 | MCP | 🟡 可执行操作 | 需 API Key | ✅ 已核验 |
+| [Higress](https://github.com/higress-group/higress-ops-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/higress/) | 通过 MCP 查询和管理 Higress 网关的路由、服务与配置。 | MCP | 🟡 可执行操作 | — | ✅ 已核验 |
+| [乐鑫 ESP RainMaker](https://mcp.espressif.com/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/esp-rainmaker/) | 查询和控制物联网设备，设置设备参数并管理自动化日程。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [TiDB](https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tidb/) | 用自然语言查询和修改数据库，管理表结构与数据库用户。 | MCP | 🟡 可执行操作 | — | ✅ 已核验 |
+| [DolphinDB](https://docs.dolphindb.cn/zh/mcp/mcp_use_guide.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dolphindb/) | 把数据库函数接为 MCP 工具，执行数据分析、指标选股和策略回测。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
