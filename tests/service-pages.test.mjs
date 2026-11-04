@@ -36,6 +36,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
   for (const s of fixture.data.services.filter((s) => s.status !== 'rejected')) {
     assert.ok(home.includes(`href="./s/${s.id}/" data-id="${s.id}"`), `${s.id} 在无 JavaScript 时也应有可用入口`);
     const html = fixture.read(`s/${s.id}/index.html`);
+    assert.ok(existsSync(join(fixture.dir, 'dist/og', `${s.id}.jpg`)), `${s.id} 缺少服务分享图`);
     assert.doesNotMatch(html, /\{\{[a-zA-Z]+\}\}/, `${s.id} 有残留占位符`);
     assert.match(html, /<h1>[^<]+<\/h1>/);
     assert.ok(html.includes(`<link rel="canonical" href="${config.siteUrl}s/${s.id}/">`));

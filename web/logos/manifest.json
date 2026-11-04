@@ -19,6 +19,21 @@
     "source": "appstore",
     "size": 256
   },
+  "aliyun-bailian": {
+    "pad": false,
+    "source": "https://docs.agent.bailian.aliyun.com/logo.svg",
+    "size": 284
+  },
+  "aliyun-dms": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "aliyun-sls": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
   "amap": {
     "pad": false,
     "source": "appstore",
@@ -39,6 +54,11 @@
     "source": "https://apisix.apache.org/img/logo2.svg",
     "size": 185
   },
+  "baidu-baike": {
+    "pad": true,
+    "source": "https://baikebcs.bdimg.com/cms/static/baike-icon.svg",
+    "size": 64
+  },
   "baidu-cloud": {
     "pad": false,
     "source": "appstore",
@@ -53,6 +73,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "baidu-search": {
+    "pad": true,
+    "source": "https://www.baidu.com/favicon.ico",
+    "size": 64
   },
   "bocha": {
     "pad": true,
@@ -74,6 +99,16 @@
     "source": "https://avatars.githubusercontent.com/u/40630849?v=4&s=256",
     "size": 256
   },
+  "coding": {
+    "pad": true,
+    "source": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/61e4ce1f-c0db-466f-a917-3bb880259cc7.png",
+    "size": 72
+  },
+  "ctrip-business": {
+    "pad": false,
+    "source": "https://pic.c-ctrip.com/corp_niv/corp_logo/favicon.ico",
+    "size": 32
+  },
   "dida": {
     "pad": false,
     "source": "appstore",
@@ -88,6 +123,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "dnspod": {
+    "pad": false,
+    "source": "https://developer.qcloudimg.com/operation/attachment/900005/20250825-e8229863.png",
+    "size": 978
   },
   "doc2x": {
     "pad": false,
@@ -173,6 +213,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "hunyuan-image": {
+    "pad": false,
+    "source": "https://developer.qcloudimg.com/operation/attachment/900005/20250919-6c37df47.png",
+    "size": 71
   },
   "ifind": {
     "pad": false,
@@ -354,10 +399,25 @@
     "source": "appstore",
     "size": 256
   },
+  "tapd": {
+    "pad": false,
+    "source": "https://developer.qcloudimg.com/operation/attachment/900005/20250516-aba0dcca.png",
+    "size": 750
+  },
+  "tdesign": {
+    "pad": false,
+    "source": "https://developer.qcloudimg.com/operation/attachment/900005/20250805-90dfe202.png",
+    "size": 2160
+  },
   "tencent-cloud": {
     "pad": true,
     "source": "https://cloudcache.tencent-cloud.com/qcloud/portal/kit/images/slice/logo.23996906.svg",
     "size": 80
+  },
+  "tencent-cos": {
+    "pad": false,
+    "source": "https://developer.qcloudimg.com/mcp/site_icon/f7e555885da850c975679ac2dcf22089.com/u/18461506",
+    "size": 200
   },
   "tencent-docs": {
     "pad": false,
@@ -373,6 +433,16 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "tencent-tca": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/58844679?s=256&v=4",
+    "size": 256
+  },
+  "tencent-wedata": {
+    "pad": true,
+    "source": "https://developer.qcloudimg.com/operation/attachment/900005/20250916-0f4ba2f7.png",
+    "size": 325
   },
   "textin": {
     "pad": false,
@@ -403,6 +473,21 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "volc-browser-use": {
+    "pad": true,
+    "source": "https://portal.volccdn.com/obj/volcfe/misc/favicon.png",
+    "size": 192
+  },
+  "volc-bytehouse": {
+    "pad": true,
+    "source": "https://portal.volccdn.com/obj/volcfe/misc/favicon.png",
+    "size": 192
+  },
+  "volc-veimagex": {
+    "pad": true,
+    "source": "https://portal.volccdn.com/obj/volcfe/misc/favicon.png",
+    "size": 192
   },
   "volcengine": {
     "pad": true,
@@ -443,6 +528,11 @@
     "pad": false,
     "source": "appstore",
     "size": 256
+  },
+  "yuanbao-search": {
+    "pad": true,
+    "source": "https://developer.qcloudimg.com/operation/attachment/900005/20250916-bc31a554.png",
+    "size": 150
   },
   "yuandian": {
     "pad": false,

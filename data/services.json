@@ -2985,6 +2985,647 @@
       },
       "addedAt": "2026-11-04",
       "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
+    },
+    {
+      "id": "tapd",
+      "name": "腾讯 TAPD",
+      "category": "office",
+      "summary": "查询和管理需求、任务、缺陷、迭代及评论。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11474",
+      "homepage": "https://www.tapd.cn/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11474",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云 TAPD 团队发布页与官方源码目录对应，使用个人令牌或 API 凭据。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "mcp-server-tapd"
+          ],
+          "env": {
+            "TAPD_ACCESS_TOKEN": "<你的TAPD个人令牌>",
+            "TAPD_API_BASE_URL": "https://api.tapd.cn",
+            "TAPD_BASE_URL": "https://www.tapd.cn"
+          }
+        }
+      }
+    },
+    {
+      "id": "tencent-tca",
+      "name": "腾讯云代码分析 TCA",
+      "category": "cloud",
+      "summary": "发起代码分析，查询代码质量、安全缺陷与分析报告。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11709",
+      "homepage": "https://tca.tencent.com/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account",
+        "key",
+        "apply"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11709",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云 TCA 团队发布页提供配置；先创建获批团队、项目与分析配置。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tca-mcp-server",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "-p",
+            "tca-mcp-server@latest",
+            "tca-mcp-stdio"
+          ],
+          "env": {
+            "TCA_TOKEN": "<你的TCA令牌>",
+            "TCA_USER_NAME": "<你的TCA用户名>"
+          }
+        }
+      }
+    },
+    {
+      "id": "tdesign",
+      "name": "腾讯 TDesign",
+      "category": "cloud",
+      "summary": "检索组件列表、文档、DOM 结构和版本变更，辅助界面开发。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11721",
+      "homepage": "https://tdesign.tencent.com/",
+      "color": "#0052D9",
+      "risk": "read",
+      "access": [
+        "free"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11721",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯 TDesign 团队发布页和官方源码目录均给出四项查询工具及 npx 配置。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "tdesign-mcp-server@latest"
+          ]
+        }
+      }
+    },
+    {
+      "id": "coding",
+      "name": "腾讯 CODING DevOps",
+      "category": "cloud",
+      "summary": "管理研发项目、工作项、代码仓库与合并请求。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11722",
+      "homepage": "https://coding.net/",
+      "color": "#252B3A",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11722",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云 CODING 团队发布页背书对应实现；官方汇总源码提供 Token 配置。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/coding_devops_mcp_server",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "coding-devops-mcp-server"
+          ],
+          "env": {
+            "CODING_TOKEN": "<你的CODING个人令牌>"
+          }
+        }
+      }
+    },
+    {
+      "id": "dnspod",
+      "name": "腾讯 DNSPod",
+      "category": "cloud",
+      "summary": "查询与管理 DNS 域名，读取解析记录和解析用量。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11743",
+      "homepage": "https://www.dnspod.cn/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11743",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云 DNSPod 团队发布的专用 MCP；公开页未给出可复用的用户端点，配置留空。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "hunyuan-image",
+      "name": "腾讯混元生图",
+      "category": "design",
+      "summary": "生成图片、图生图、扩图与清晰度增强。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11765",
+      "homepage": "https://hunyuan.tencent.com/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11765",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云官方产品源码列出文生图、图生图、扩图和清晰度增强工具；需要云密钥。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart"
+    },
+    {
+      "id": "yuanbao-search",
+      "name": "腾讯元宝搜索",
+      "category": "search",
+      "summary": "检索实时网页与垂直信息，可限定站点、时效和结果数量。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11764",
+      "homepage": "https://yuanbao.tencent.com/",
+      "color": "#2864F0",
+      "risk": "read",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11764",
+        "checkedAt": "2026-11-04",
+        "note": "元宝搜索团队发布页已使用新名称，明确 Streamable HTTP 端点与 Bearer API Key。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://api.wsa.cloud.tencent.com/Mcp",
+          "headers": {
+            "Authorization": "Bearer <你的元宝搜索APIKey>"
+          }
+        }
+      }
+    },
+    {
+      "id": "tencent-wedata",
+      "name": "腾讯 WeData 指标语义层",
+      "category": "cloud",
+      "summary": "通过企业元数据与语义层检索数据资产和查询业务数据。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/developer/mcp/server/11763",
+      "homepage": "https://cloud.tencent.com/product/wedata",
+      "color": "#2864F0",
+      "risk": "read",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11763",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云 WeData 团队发布页确认 MCP 数据检索和查询；接入门槛与个人端点未整理，留空。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "tencent-cos",
+      "name": "腾讯云对象存储 COS",
+      "category": "cloud",
+      "summary": "上传、下载和检索云端文件，处理图片、视频与文档。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/Tencent/cos-mcp",
+      "homepage": "https://cloud.tencent.com/product/cos",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/developer/mcp/server/11472",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯云产品目录和 Tencent 官方仓库相互印证，官方 README 提供 npx 参数。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "cos-mcp",
+            "--Region=<你的地域>",
+            "--Bucket=<你的存储桶>",
+            "--SecretId=<你的SecretId>",
+            "--SecretKey=<你的SecretKey>"
+          ]
+        }
+      }
+    },
+    {
+      "id": "tencent-cls",
+      "name": "腾讯云日志服务 CLS",
+      "category": "cloud",
+      "summary": "搜索和分析日志、查询监控指标与告警记录。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/document/product/614/118699",
+      "homepage": "https://cloud.tencent.com/product/cls",
+      "color": "#2864F0",
+      "risk": "read",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.tencent.com/document/product/614/118699",
+        "checkedAt": "2026-11-04",
+        "note": "Tencent 官方仓库反链腾讯云产品文档；工具清单均为日志、指标、告警查询。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/Tencent/cls-mcp-server",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "cls-mcp-server@latest"
+          ],
+          "env": {
+            "TRANSPORT": "stdio",
+            "TENCENTCLOUD_SECRET_ID": "<你的SecretId>",
+            "TENCENTCLOUD_SECRET_KEY": "<你的SecretKey>",
+            "TZ": "Asia/Shanghai"
+          }
+        }
+      },
+      "mark": "CLS"
+    },
+    {
+      "id": "volc-bytehouse",
+      "name": "火山引擎 ByteHouse",
+      "category": "cloud",
+      "summary": "查询数据库与表结构，执行数据查询及 DML、DDL 语句。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse",
+      "homepage": "https://www.volcengine.com/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/volcengine/mcp-server",
+        "checkedAt": "2026-11-04",
+        "note": "火山引擎官方目录链接专用实现；pyproject 确认 mcp_bytehouse 启动名，含写入工具。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "git+https://github.com/volcengine/mcp-server@main#subdirectory=server/mcp_server_bytehouse",
+            "mcp_bytehouse"
+          ],
+          "env": {
+            "BYTEHOUSE_HOST": "<你的ByteHouse主机>",
+            "BYTEHOUSE_PORT": "<你的ByteHouse端口>",
+            "BYTEHOUSE_USER": "<你的ByteHouse用户>",
+            "BYTEHOUSE_PASSWORD": "<你的ByteHouse密码>",
+            "BYTEHOUSE_SECURE": "true",
+            "BYTEHOUSE_VERIFY": "true"
+          }
+        }
+      }
+    },
+    {
+      "id": "volc-veimagex",
+      "name": "火山引擎 veImageX",
+      "category": "design",
+      "summary": "查询和上传图片资产，生成图片、增强画质、扩图与文字识别。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex",
+      "homepage": "https://www.volcengine.com/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/volcengine/mcp-server",
+        "checkedAt": "2026-11-04",
+        "note": "火山引擎官方目录和专用 README 列出图片读写、生成与处理工具，启动名已对照 pyproject。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_veimagex",
+            "mcp-server-veimagex"
+          ],
+          "env": {
+            "VOLCENGINE_ACCESS_KEY": "<你的火山AccessKey>",
+            "VOLCENGINE_SECRET_KEY": "<你的火山SecretKey>",
+            "SERVICE_ID": "<你的veImageX服务ID>",
+            "DOMAIN_NAME": "<你的veImageX域名>"
+          }
+        }
+      }
+    },
+    {
+      "id": "volc-browser-use",
+      "name": "火山引擎 veFaaS Browser-Use",
+      "category": "cloud",
+      "summary": "发起云端浏览器操作任务，查询任务状态和结果。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use",
+      "homepage": "https://www.volcengine.com/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/volcengine/mcp-server",
+        "checkedAt": "2026-11-04",
+        "note": "火山引擎官方目录列出专用 MCP；须先部署 Browser Use 应用，再填写自己的服务入口。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_vefaas_browser_use",
+            "mcp-server-vefaas-browser-use"
+          ],
+          "env": {
+            "BROWSER_USE_ENDPOINT": "<你的BrowserUse服务入口>"
+          }
+        }
+      }
+    },
+    {
+      "id": "xfyun",
+      "name": "讯飞云",
+      "category": "cloud",
+      "summary": "管理讯飞应用与用量，调用语音、OCR、翻译、图片和数字人等能力。",
+      "types": [
+        "skill",
+        "cli"
+      ],
+      "url": "https://www.xfyun.cn/xfyun-cli/doc",
+      "homepage": "https://www.xfyun.cn/",
+      "color": "#2864F0",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://www.xfyun.cn/xfyun-cli/doc",
+        "checkedAt": "2026-11-04",
+        "note": "讯飞开放平台自有文档明确官方 CLI 与随包 Skill，需 CLI 令牌及已开通的应用能力。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "npm install -g @xfyun/cli && xfyun skill install --auto"
+      }
+    },
+    {
+      "id": "aliyun-bailian",
+      "name": "阿里云百炼",
+      "category": "cloud",
+      "summary": "调用图像、视频等模型能力，管理百炼应用、任务和平台资源。",
+      "types": [
+        "skill",
+        "cli"
+      ],
+      "url": "https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation",
+      "homepage": "https://bailian.aliyun.com/",
+      "color": "#FF6A00",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation",
+        "checkedAt": "2026-11-04",
+        "note": "百炼官方安装文档给出 bailian-cli 和配套 Skill 仓库；安装后使用 bl skill init。"
+      },
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/modelstudioai/cli",
+      "install": {
+        "cli": "npm install -g bailian-cli",
+        "skill": "https://github.com/modelstudioai/cli"
+      }
+    },
+    {
+      "id": "ctrip-business",
+      "name": "携程商旅",
+      "category": "life",
+      "summary": "查询差旅政策、机票酒店与行程方案，读取差旅和合规数据。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://openapi.ctripbiz.com/#/advertise/mcp",
+      "homepage": "https://ct.ctrip.com/",
+      "color": "#2864F0",
+      "risk": "read",
+      "access": [
+        "account",
+        "apply"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://ct.ctrip.com/thinktanks/235566117077549",
+        "checkedAt": "2026-11-04",
+        "note": "携程商旅官方公告列出五类查询工具并链接 MCP 申请入口；未公开通用端点，配置留空。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "aliyun-sls",
+      "name": "阿里云日志服务 SLS",
+      "category": "cloud",
+      "summary": "检索日志项目与 LogStore，查询分析日志并诊断告警。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://help.aliyun.com/en/sls/sls-mcp-server",
+      "homepage": "https://www.aliyun.com/product/sls",
+      "color": "#FF6A00",
+      "risk": "read",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://help.aliyun.com/en/sls/sls-mcp-server",
+        "checkedAt": "2026-11-04",
+        "note": "阿里云官方文档明确本地 SLS MCP 的 11 项工具；先以阿里云 CLI OAuth 登录，配置示例使用 default Profile。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "alibabacloud-sls-mcp-proxy@latest",
+            "--profile",
+            "default"
+          ]
+        }
+      }
+    },
+    {
+      "id": "aliyun-dms",
+      "name": "阿里云 DMS Agent 数据网关",
+      "category": "cloud",
+      "summary": "发现数据库资产、查询权限与知识，按授权执行 SQL。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp",
+      "homepage": "https://www.aliyun.com/product/dms",
+      "color": "#FF6A00",
+      "risk": "write",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp",
+        "checkedAt": "2026-11-04",
+        "note": "使用新版 Agent 数据网关 MCP，不收即将停服的旧包。示例为杭州，端点地域须与 Agent Token 相同。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate",
+          "headers": {
+            "Authorization": "Bearer <你的AgentAccessToken>"
+          }
+        }
+      }
+    },
+    {
+      "id": "baidu-search",
+      "name": "百度 AI 搜索",
+      "category": "search",
+      "summary": "搜索实时网页、图片和视频，并按站点或结果类型筛选。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.baidu.com/doc/BAIDU_AI_SEARCH/index.html",
+      "homepage": "https://www.baidu.com/",
+      "color": "#2932E1",
+      "risk": "read",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.baidu.com/doc/qianfan/s/tmh4stryt",
+        "checkedAt": "2026-11-04",
+        "note": "百度千帆官方更新记录明确百度 AI 搜索 MCP 与多种传输协议；尚未整理公开端点和接入门槛。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "baidu-baike",
+      "name": "百度百科",
+      "category": "search",
+      "summary": "查询百科词条义项、详情和秒懂百科视频。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.baidu.com/doc/qianfan/s/tmh4stryt",
+      "homepage": "https://baike.baidu.com/",
+      "color": "#2864F0",
+      "risk": "read",
+      "access": [],
+      "status": "verified",
+      "evidence": {
+        "url": "https://cloud.baidu.com/doc/qianfan/s/tmh4stryt",
+        "checkedAt": "2026-11-04",
+        "note": "百度千帆官方更新记录明确百度百科 MCP 的三项查询能力；未取得独立 Skill 文件，只标 MCP。"
+      },
+      "addedAt": "2026-11-04"
     }
   ]
 }
