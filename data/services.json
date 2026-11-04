@@ -1851,6 +1851,61 @@
           ]
         }
       }
+    },
+    {
+      "id": "apifox",
+      "name": "Apifox",
+      "category": "cloud",
+      "summary": "读取接口文档，并通过命令行运行接口测试。",
+      "types": [
+        "mcp",
+        "cli"
+      ],
+      "url": "https://docs.apifox.com/apifox-mcp-server",
+      "homepage": "https://apifox.com/",
+      "risk": "write",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://docs.apifox.com/apifox-mcp-server",
+        "checkedAt": "2026-11-04",
+        "note": "Apifox 官方帮助文档；另有官方 CLI 和 Agent 使用指南。"
+      },
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "caiyun-weather",
+      "name": "彩云天气",
+      "category": "life",
+      "summary": "查询实时天气、逐小时预报、空气质量与天气预警。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/caiyunapp/mcp-caiyun-weather",
+      "homepage": "https://www.caiyunapp.com/",
+      "risk": "read",
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "evidence": {
+        "url": "https://github.com/caiyunapp",
+        "checkedAt": "2026-11-04",
+        "note": "官方组织 caiyunapp 主页链接彩云官网，组织名称为彩云公司。"
+      },
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp-weather.caiyunapp.com/mcp",
+          "headers": {
+            "X-Caiyun-API-Key": "<你的彩云天气Key>"
+          }
+        }
+      },
+      "appStoreId": 847764912
     }
   ]
 }

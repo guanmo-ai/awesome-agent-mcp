@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>58 个服务 · 7 个分类 · 56 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>60 个服务 · 7 个分类 · 58 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -39,13 +39,13 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 ## 目录
 
-- [出行和生活](#cat-life)（10）
+- [出行和生活](#cat-life)（11）
 - [办公和协作](#cat-office)（11）
 - [笔记、阅读和网盘](#cat-notes)（9）
 - [搜索、内容和企业数据](#cat-search)（6）
 - [设计和创作](#cat-design)（6）
 - [支付和金融](#cat-finance)（6）
-- [云和开发](#cat-cloud)（10）
+- [云和开发](#cat-cloud)（11）
 
 <a id="cat-life"></a>
 
@@ -63,6 +63,7 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 | [瑞幸](https://open.lkcoffee.com/docs) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin/) | 咖啡点单与门店查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
 | [飞猪](https://github.com/alibaba-flyai/flyai-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy/) | 机票、酒店和景点搜索，返回价格与预订跳转链接。 | Skill · CLI | 🟢 只读查询 | 免费可用 | ✅ 已核验 |
 | [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/) | 企业差旅资源查询、差旅政策校验与方案推荐。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [彩云天气](https://github.com/caiyunapp/mcp-caiyun-weather) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/caiyun-weather/) | 查询实时天气、逐小时预报、空气质量与天气预警。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -165,6 +166,7 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 | [Gitee](https://gitee.com/oschina/mcp-gitee) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/) | 代码仓库与 DevOps 管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [腾讯 EdgeOne Makers](https://edgeone.cloud.tencent.com/pages/document/173172415568367616) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers/) | 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [Apifox](https://docs.apifox.com/apifox-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apifox/) | 读取接口文档，并通过命令行运行接口测试。 | MCP · CLI | 🟡 可执行操作 | 需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 

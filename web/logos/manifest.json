@@ -14,6 +14,11 @@
     "source": "appstore",
     "size": 256
   },
+  "apifox": {
+    "pad": false,
+    "source": "https://avatars.githubusercontent.com/u/59521997?v=4&s=256",
+    "size": 256
+  },
   "baidu-cloud": {
     "pad": false,
     "source": "appstore",
@@ -32,6 +37,11 @@
   "bocha": {
     "pad": true,
     "source": "https://open.bochaai.com/favicon.ico",
+    "size": 256
+  },
+  "caiyun-weather": {
+    "pad": false,
+    "source": "appstore",
     "size": 256
   },
   "didi": {
