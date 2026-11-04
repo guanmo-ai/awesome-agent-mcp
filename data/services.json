@@ -43,10 +43,11 @@
       "id": "amap",
       "name": "高德地图",
       "category": "life",
-      "summary": "地点搜索、路线规划、周边与天气查询。",
+      "summary": "地点与天气查询、路线规划、地图生成和地图开发。",
       "types": [
         "mcp",
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://developer.amap.com/api/mcp-server/summary",
       "homepage": "https://amap.com/",
@@ -56,13 +57,18 @@
       "access": [
         "key"
       ],
-      "status": "unverified",
+      "status": "verified",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
           "transport": "http",
           "url": "https://mcp.amap.com/mcp?key=<你的高德Key>"
         }
+      },
+      "evidence": {
+        "url": "https://developer.amap.com/api/mcp-server/gettingstarted",
+        "checkedAt": "2026-11-04",
+        "note": "官方 MCP 快速接入文档，并由官方导航确认 Skill 与 CLI。"
       }
     },
     {
@@ -73,14 +79,27 @@
       "types": [
         "mcp"
       ],
-      "url": "https://lbs.baidu.com/docs/ai?title=mcpserver%2Fbase",
+      "url": "https://lbs.baidu.com/docs/ai?title=mcpserver/base",
       "homepage": "https://map.baidu.com/",
       "appStoreId": 452186370,
       "color": "#3385FF",
       "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.map.baidu.com/mcp?ak=<你的百度地图AK>"
+        }
+      },
+      "evidence": {
+        "url": "https://lbs.baidu.com/docs/ai?title=mcpserver/quickstart",
+        "checkedAt": "2026-11-04",
+        "note": "官方概览与快速开始明确 MCP、服务端 AK 和 HTTP 端点。"
+      }
     },
     {
       "id": "tencent-map",
@@ -95,9 +114,22 @@
       "appStoreId": 481623196,
       "color": "#2B7FFF",
       "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0"
+        }
+      },
+      "evidence": {
+        "url": "https://lbs.qq.com/service/MCPServer/MCPServerGuide/userGuide",
+        "checkedAt": "2026-11-04",
+        "note": "官方接入说明明确 WebServiceAPI Key 和 Streamable HTTP 端点。"
+      }
     },
     {
       "id": "didi",
@@ -113,27 +145,51 @@
       "appStoreId": 554499054,
       "color": "#FF7A00",
       "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>"
+        },
+        "skill": "https://clawhub.ai/didi/didi-ride-skill-official"
+      },
+      "evidence": {
+        "url": "https://mcp.didichuxing.com/api",
+        "checkedAt": "2026-11-04",
+        "note": "官方首页发布 MCP 与 Skill；开发者文档明确 Key 和下单能力。"
+      }
     },
     {
       "id": "meituan",
       "name": "美团",
       "category": "life",
-      "summary": "本地生活、外卖与到店服务。",
+      "summary": "商家订单、团购核销、商品与库存管理及经营数据查询。",
       "types": [
         "mcp",
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://developer.meituan.com/ai-hub/mcp-list",
       "homepage": "https://www.meituan.com/",
       "appStoreId": 423084029,
       "color": "#FFC300",
       "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "apply"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://developer.meituan.com/ai-hub/mcp-list",
+        "checkedAt": "2026-11-04",
+        "note": "官方 AI Hub 服务目录列出 MCP、Skill 及 mt-tech CLI；含预约预支付与退款操作。"
+      }
     },
     {
       "id": "taobao",
@@ -150,10 +206,19 @@
       "color": "#FF5000",
       "risk": "payment",
       "access": [
-        "desktop-app"
+        "desktop-app",
+        "account"
       ],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md"
+      },
+      "evidence": {
+        "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md",
+        "checkedAt": "2026-11-04",
+        "note": "淘宝自有 CDN 提供 SKILL.md，明确调用桌面客户端内的 MCP 工具。"
+      }
     },
     {
       "id": "mcdonalds-cn",
@@ -168,9 +233,26 @@
       "appStoreId": 1054598922,
       "color": "#DA291C",
       "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.mcd.cn",
+          "headers": {
+            "Authorization": "Bearer <你的麦当劳MCPToken>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://open.mcd.cn/mcp/doc",
+        "checkedAt": "2026-11-04",
+        "note": "官方文档与其前端文档资源明确 HTTP 端点、Token、点餐与商城下单。"
+      }
     },
     {
       "id": "luckin",
@@ -178,51 +260,93 @@
       "category": "life",
       "summary": "咖啡点单与门店查询。",
       "types": [
-        "mcp"
+        "mcp",
+        "cli",
+        "skill"
       ],
       "url": "https://open.lkcoffee.com/docs",
       "homepage": "https://www.luckincoffee.com/",
       "appStoreId": 1296749505,
       "color": "#1F3FAF",
       "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://gwmcp.lkcoffee.com/order/user/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的瑞幸Token>"
+          }
+        },
+        "skill": "https://unpkg.luckincoffeecdn.com/@luckin/my-coffee-skill@latest/dist/my-coffee-skill.zip"
+      },
+      "evidence": {
+        "url": "https://open.lkcoffee.com/docs",
+        "checkedAt": "2026-11-04",
+        "note": "官方文档前端列出 MCP、CLI、Skill、Token 与门店商品和创建订单工具。"
+      }
     },
     {
       "id": "fliggy",
       "name": "飞猪",
       "category": "life",
-      "summary": "机票、酒店等旅行查询与预订。",
+      "summary": "机票、酒店和景点搜索，返回价格与预订跳转链接。",
       "types": [
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://github.com/alibaba-flyai/flyai-skill",
       "homepage": "https://www.fliggy.com/",
       "appStoreId": 453691481,
       "color": "#FF8A00",
-      "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "risk": "read",
+      "access": [
+        "free"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/alibaba-flyai/flyai-skill",
+      "install": {
+        "skill": "https://github.com/alibaba-flyai/flyai-skill",
+        "cli": "npm i -g @fly-ai/flyai-cli"
+      },
+      "evidence": {
+        "url": "https://flyai.open.fliggy.com/",
+        "checkedAt": "2026-11-04",
+        "note": "飞猪自有域名直接发布该 GitHub Skill；仓库提供 CLI，搜索结果附预订跳转链接。"
+      }
     },
     {
       "id": "ly-tmc",
       "name": "同程商旅",
       "category": "life",
-      "summary": "企业差旅预订与管理。",
+      "summary": "企业差旅资源查询、差旅政策校验与方案推荐。",
       "types": [
         "mcp",
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli",
       "homepage": "https://tmc.ly.com/zh",
       "appStoreId": 1483186575,
       "color": "#00A0E9",
-      "risk": "payment",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "risk": "read",
+      "access": [
+        "account",
+        "apply"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli",
+        "checkedAt": "2026-11-04",
+        "note": "官方公告明确开放 MCP、Skills 与 CLI；公开能力以查询、政策校验与方案推荐为主。"
+      }
     },
     {
       "id": "feishu",
@@ -230,7 +354,6 @@
       "category": "office",
       "summary": "消息、文档、日历与多维表格。",
       "types": [
-        "mcp",
         "cli",
         "skill"
       ],
@@ -239,15 +362,26 @@
       "appStoreId": 1401729613,
       "color": "#3370FF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "npx @larksuite/cli@latest install",
+        "skill": "https://github.com/larksuite/cli/tree/main/skills"
+      },
+      "evidence": {
+        "url": "https://github.com/larksuite",
+        "checkedAt": "2026-11-04",
+        "note": "官方 larksuite 组织主页链接 Lark 官网，CLI 仓库提供命令与 Skills。"
+      }
     },
     {
       "id": "dingtalk",
       "name": "钉钉",
       "category": "office",
-      "summary": "消息、日程、审批等企业协作。",
+      "summary": "消息、文档、表格、日志、日历与待办的查询和操作。",
       "types": [
         "mcp"
       ],
@@ -256,9 +390,16 @@
       "appStoreId": 930368978,
       "color": "#0089FF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://open.dingtalk.com/",
+        "checkedAt": "2026-11-04",
+        "note": "钉钉官方能力中心列出消息、文档、表格、日志、日历等 MCP 服务。"
+      }
     },
     {
       "id": "wecom",

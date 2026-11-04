@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>55 个服务 · 7 个分类 · 0 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>55 个服务 · 7 个分类 · 12 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -53,16 +53,16 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [高德地图](https://developer.amap.com/api/mcp-server/summary) | 地点搜索、路线规划、周边与天气查询。 | MCP · Skill | 🟢 只读查询 | 需 API Key | ⏳ 待核验 |
-| [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver%2Fbase) | 地点检索、地理编码与路线规划。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview) | 地点搜索、路线规划与位置服务。 | MCP | 🟢 只读查询 | — | ⏳ 待核验 |
-| [滴滴](https://mcp.didichuxing.com/) | 叫车、估价与行程查询。 | MCP · Skill | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [美团](https://developer.meituan.com/ai-hub/mcp-list) | 本地生活、外卖与到店服务。 | MCP · Skill | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md) | 商品搜索与购物，需安装桌面客户端。 | MCP · Skill | 🔴 涉及资金 | 需桌面客户端 | ⏳ 待核验 |
-| [麦当劳中国](https://open.mcd.cn/mcp/doc) | 点餐、门店与优惠查询。 | MCP | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [瑞幸](https://open.lkcoffee.com/docs) | 咖啡点单与门店查询。 | MCP | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [飞猪](https://github.com/alibaba-flyai/flyai-skill) | 机票、酒店等旅行查询与预订。 | Skill | 🔴 涉及资金 | — | ⏳ 待核验 |
-| [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli) | 企业差旅预订与管理。 | MCP · Skill | 🔴 涉及资金 | — | ⏳ 待核验 |
+| [高德地图](https://developer.amap.com/api/mcp-server/summary) | 地点与天气查询、路线规划、地图生成和地图开发。 | MCP · Skill · CLI | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
+| [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver/base) | 地点检索、地理编码与路线规划。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
+| [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview) | 地点搜索、路线规划与位置服务。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
+| [滴滴](https://mcp.didichuxing.com/) | 叫车、估价与行程查询。 | MCP · Skill | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [美团](https://developer.meituan.com/ai-hub/mcp-list) | 商家订单、团购核销、商品与库存管理及经营数据查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md) | 商品搜索与购物，需安装桌面客户端。 | MCP · Skill | 🔴 涉及资金 | 需桌面客户端、需授权账号 | ✅ 已核验 |
+| [麦当劳中国](https://open.mcd.cn/mcp/doc) | 点餐、门店与优惠查询。 | MCP | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [瑞幸](https://open.lkcoffee.com/docs) | 咖啡点单与门店查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [飞猪](https://github.com/alibaba-flyai/flyai-skill) | 机票、酒店和景点搜索，返回价格与预订跳转链接。 | Skill · CLI | 🟢 只读查询 | 免费可用 | ✅ 已核验 |
+| [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli) | 企业差旅资源查询、差旅政策校验与方案推荐。 | MCP · Skill · CLI | 🟢 只读查询 | 需授权账号、需申请开通 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -72,8 +72,8 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [飞书](https://github.com/larksuite/cli) | 消息、文档、日历与多维表格。 | MCP · Skill · CLI | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) | 消息、日程、审批等企业协作。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [飞书](https://github.com/larksuite/cli) | 消息、文档、日历与多维表格。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) | 消息、文档、表格、日志、日历与待办的查询和操作。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [企业微信](https://work.weixin.qq.com/nl/index/aicli) | 企业消息、通讯录与办公应用。 | MCP · Skill · CLI | 🟡 可执行操作 | — | ⏳ 待核验 |
 | [腾讯文档](https://docs.qq.com/open/document/mcp/) | 在线文档与表格的读取和编辑。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
 | [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) | 会议预约、查询与管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
