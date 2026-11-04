@@ -1,12 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { runInNewContext } from 'node:vm';
 import { spawnSync } from 'node:child_process';
 
-// Exercise the browser's generator without starting the page or contacting MCP servers.
-const source = readFileSync(new URL('../web/app.js', import.meta.url), 'utf8');
-const snippets = runInNewContext(source.slice(source.indexOf('function snippets(s)'), source.indexOf('function selectCodeTab')) + '\nsnippets;');
+import { snippets } from '../web/render.mjs';
 
 test('Claude Code 本地配置保留参数和 Key 的边界，不执行 shell 元字符', () => {
   const command = snippets({ id: 'example', install: { mcp: {

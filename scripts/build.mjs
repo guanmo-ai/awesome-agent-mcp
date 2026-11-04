@@ -5,6 +5,8 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } fr
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { root, load, grouped, LABELS, rawUrl } from './lib.mjs';
+import { esc, serviceUrl } from '../web/render.mjs';
+import { renderServicePage, sitemap } from './service-pages.mjs';
 
 const { config, data, errors } = load();
 if (errors.length) {
@@ -80,7 +82,7 @@ function readme() {
       '| :-- | :-- | :-- | :-- | :-- | :-- |',
       ...g.services.map(
         (s) =>
-          `| [${md(s.name)}](${s.url}) | ${md(s.summary)} | ${types(s)} | ${LABELS.riskIcon[s.risk]} ${LABELS.risk[s.risk]} | ${access(s)} | ${status(s)} |`,
+          `| [${md(s.name)}](${s.url}) · [独立页](${serviceUrl(config.siteUrl, s.id)}) | ${md(s.summary)} | ${types(s)} | ${LABELS.riskIcon[s.risk]} ${LABELS.risk[s.risk]} | ${access(s)} | ${status(s)} |`,
       ),
       '',
       '<sub>[↑ 回到目录](#toc)</sub>',
@@ -132,7 +134,7 @@ function llms() {
       if (mcp) parts.push(`MCP ${LABELS.transport[mcp.transport]} ${mcp.url ?? [mcp.command, ...(mcp.args ?? [])].join(' ')}`);
       if (s.install?.cli) parts.push(`CLI \`${s.install.cli}\``);
       if (s.install?.skill) parts.push(`Skill ${s.install.skill}`);
-      L.push(`- [${s.name}](${s.url}): ${s.summary} ${parts.join('；')}`);
+      L.push(`- [${s.name}](${s.url}): ${s.summary} ${parts.join('；')}；[独立页](${serviceUrl(config.siteUrl, s.id)})`);
     }
     L.push('');
   }
@@ -187,21 +189,30 @@ if (process.argv.includes('--check')) {
   const version = createHash('sha1')
     .update(readFileSync(join(root, 'web/app.js')))
     .update(readFileSync(join(root, 'web/app.css')))
+    .update(readFileSync(join(root, 'web/render.mjs')))
+    .update(readFileSync(join(root, 'web/ui.mjs')))
+    .update(readFileSync(join(root, 'web/service.js')))
     .update(publicJson())
     .digest('hex')
     .slice(0, 8);
-  const fill = (text) =>
-    text
-      .replaceAll('{{title}}', config.title)
-      .replaceAll('{{tagline}}', config.tagline)
-      .replaceAll('{{description}}', config.description)
-      .replaceAll('{{siteUrl}}', config.siteUrl)
-      .replaceAll('{{repo}}', config.repo)
-      .replaceAll('{{x}}', config.maintainer.x)
-      .replaceAll('{{maintainerName}}', config.maintainer.name)
-      .replaceAll('{{count}}', String(live.length))
-      .replaceAll('{{v}}', version);
+  const vars = {
+    title: config.title, tagline: config.tagline, description: config.description, siteUrl: config.siteUrl,
+    repo: config.repo, x: config.maintainer.x, maintainerName: config.maintainer.name, count: live.length, v: version,
+  };
+  const fill = (text) => text.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    if (!(key in vars)) throw new Error(`未知首页占位符：${key}`);
+    return esc(vars[key]);
+  });
   writeFileSync(join(dist, 'index.html'), fill(readFileSync(join(root, 'web/index.html'), 'utf8')));
+  const db = JSON.parse(publicJson());
+  const template = readFileSync(join(root, 'web/service.html'), 'utf8');
+  for (const service of db.services) {
+    const dir = join(dist, 's', service.id);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.html'), renderServicePage(service, db, config, template, version));
+  }
+  writeFileSync(join(dist, 'sitemap.xml'), sitemap(db));
+  writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${config.siteUrl}sitemap.xml\n`);
   writeFileSync(join(dist, 'services.json'), publicJson());
   writeFileSync(join(dist, 'llms.txt'), outputs['llms.txt']);
   mkdirSync(join(dist, 'skills', config.skill), { recursive: true });
