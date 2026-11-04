@@ -22,6 +22,7 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;
 const browser = await chromium.launch(executablePath ? { executablePath } : {});
 const font = readFileSync(join(root, 'web/fonts/Geist-Variable.woff2')).toString('base64');
+const brand = readFileSync(join(root, 'web/favicon.svg')).toString('base64');
 try {
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1, colorScheme: 'dark' });
   // No server, remote APIs, CDN fonts, or network access are needed to render.
@@ -42,9 +43,9 @@ try {
       p{margin:24px 0 0;max-width:1000px;font-size:29px;line-height:1.55;color:#b1b8c8}
       .tags{display:flex;gap:12px;margin-top:28px}.tag{padding:8px 16px;border:1px solid #414b62;border-radius:10px;color:#c5d1ee;font-size:20px}
       footer{position:absolute;right:72px;bottom:42px;display:flex;align-items:center;gap:11px;color:#c9d0df;font-size:23px;font-weight:550}
-      .brand{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(125deg,#5b8cff,#8b6dff,#ff7a45);color:#fff;font-size:18px}
+      .brand{width:30px;height:30px;border-radius:9px;display:block}
       .line{position:absolute;left:72px;right:72px;bottom:90px;height:1px;background:#282e3b}
-    </style><div class="glow"></div><main><div class="eyebrow">国内官方 MCP · SKILL · CLI</div><div class="row"><div class="logo">${image}</div><h1>${esc(s.name)}</h1></div><p>${esc(s.summary)}</p><div class="tags">${sortedTypes(s).map((t) => `<span class="tag">${esc(LABELS.types[t])}</span>`).join('')}</div></main><div class="line"></div><footer><span class="brand">◉</span>Agent MCP</footer></html>`, { waitUntil: 'load' });
+    </style><div class="glow"></div><main><div class="eyebrow">国内官方 MCP · SKILL · CLI</div><div class="row"><div class="logo">${image}</div><h1>${esc(s.name)}</h1></div><p>${esc(s.summary)}</p><div class="tags">${sortedTypes(s).map((t) => `<span class="tag">${esc(LABELS.types[t])}</span>`).join('')}</div></main><div class="line"></div><footer><img class="brand" src="data:image/svg+xml;base64,${brand}" alt="">Agent MCP</footer></html>`, { waitUntil: 'load' });
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: join(dir, `${s.id}.jpg`), type: 'jpeg', quality: 88 });
     console.log(`已生成 web/og/${s.id}.jpg（1200×630）`);
