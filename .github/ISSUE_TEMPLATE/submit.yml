@@ -1,0 +1,38 @@
+name: 提交服务
+description: 推荐一个国内厂商官方出品的 MCP、Skill 或 CLI
+title: "[收录] "
+labels: [submission]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 服务名
+      placeholder: 例如：高德地图
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 官方链接
+      description: 厂商自己的文档页，或厂商官方 GitHub 组织下的仓库
+      placeholder: https://
+    validations:
+      required: true
+  - type: checkboxes
+    id: types
+    attributes:
+      label: 类型
+      options:
+        - label: MCP
+        - label: Skill
+        - label: CLI（命令行工具）
+  - type: textarea
+    id: summary
+    attributes:
+      label: 能做什么
+      placeholder: 一两句话
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 为什么确定是官方出品
+      description: 可选。例如厂商官网的公告链接

@@ -1,0 +1,999 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-04",
+  "categories": [
+    {
+      "id": "life",
+      "name": "出行和生活",
+      "nameEn": "Travel & Life"
+    },
+    {
+      "id": "office",
+      "name": "办公和协作",
+      "nameEn": "Office"
+    },
+    {
+      "id": "notes",
+      "name": "笔记、阅读和网盘",
+      "nameEn": "Notes & Storage"
+    },
+    {
+      "id": "search",
+      "name": "搜索、内容和企业数据",
+      "nameEn": "Search & Data"
+    },
+    {
+      "id": "design",
+      "name": "设计和创作",
+      "nameEn": "Design & Creation"
+    },
+    {
+      "id": "finance",
+      "name": "支付和金融",
+      "nameEn": "Payment & Finance"
+    },
+    {
+      "id": "cloud",
+      "name": "云和开发",
+      "nameEn": "Cloud & Dev"
+    }
+  ],
+  "services": [
+    {
+      "id": "amap",
+      "name": "高德地图",
+      "category": "life",
+      "summary": "地点搜索、路线规划、周边与天气查询。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://developer.amap.com/api/mcp-server/summary",
+      "homepage": "https://amap.com/",
+      "appStoreId": 461703208,
+      "color": "#1677FF",
+      "risk": "read",
+      "access": [
+        "key"
+      ],
+      "status": "unverified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://mcp.amap.com/mcp?key=<你的高德Key>"
+        }
+      }
+    },
+    {
+      "id": "baidu-map",
+      "name": "百度地图",
+      "category": "life",
+      "summary": "地点检索、地理编码与路线规划。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://lbs.baidu.com/docs/ai?title=mcpserver%2Fbase",
+      "homepage": "https://map.baidu.com/",
+      "appStoreId": 452186370,
+      "color": "#3385FF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "tencent-map",
+      "name": "腾讯地图",
+      "category": "life",
+      "summary": "地点搜索、路线规划与位置服务。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview",
+      "homepage": "https://map.qq.com/",
+      "appStoreId": 481623196,
+      "color": "#2B7FFF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "didi",
+      "name": "滴滴",
+      "category": "life",
+      "summary": "叫车、估价与行程查询。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://mcp.didichuxing.com/",
+      "homepage": "https://www.didiglobal.com/",
+      "appStoreId": 554499054,
+      "color": "#FF7A00",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "meituan",
+      "name": "美团",
+      "category": "life",
+      "summary": "本地生活、外卖与到店服务。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://developer.meituan.com/ai-hub/mcp-list",
+      "homepage": "https://www.meituan.com/",
+      "appStoreId": 423084029,
+      "color": "#FFC300",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "taobao",
+      "name": "淘宝",
+      "category": "life",
+      "summary": "商品搜索与购物，需安装桌面客户端。",
+      "types": [
+        "skill",
+        "mcp"
+      ],
+      "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md",
+      "homepage": "https://www.taobao.com/",
+      "appStoreId": 387682726,
+      "color": "#FF5000",
+      "risk": "payment",
+      "access": [
+        "desktop-app"
+      ],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "mcdonalds-cn",
+      "name": "麦当劳中国",
+      "category": "life",
+      "summary": "点餐、门店与优惠查询。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.mcd.cn/mcp/doc",
+      "homepage": "https://www.mcdonalds.com.cn/",
+      "appStoreId": 1054598922,
+      "color": "#DA291C",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "luckin",
+      "name": "瑞幸",
+      "category": "life",
+      "summary": "咖啡点单与门店查询。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.lkcoffee.com/docs",
+      "homepage": "https://www.luckincoffee.com/",
+      "appStoreId": 1296749505,
+      "color": "#1F3FAF",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "fliggy",
+      "name": "飞猪",
+      "category": "life",
+      "summary": "机票、酒店等旅行查询与预订。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://github.com/alibaba-flyai/flyai-skill",
+      "homepage": "https://www.fliggy.com/",
+      "appStoreId": 453691481,
+      "color": "#FF8A00",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "ly-tmc",
+      "name": "同程商旅",
+      "category": "life",
+      "summary": "企业差旅预订与管理。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli",
+      "homepage": "https://www.ly.com/",
+      "color": "#00A0E9",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "feishu",
+      "name": "飞书",
+      "category": "office",
+      "summary": "消息、文档、日历与多维表格。",
+      "types": [
+        "mcp",
+        "cli",
+        "skill"
+      ],
+      "url": "https://github.com/larksuite/cli",
+      "homepage": "https://www.feishu.cn/",
+      "appStoreId": 1401729613,
+      "color": "#3370FF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "dingtalk",
+      "name": "钉钉",
+      "category": "office",
+      "summary": "消息、日程、审批等企业协作。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview",
+      "homepage": "https://www.dingtalk.com/",
+      "appStoreId": 930368978,
+      "color": "#0089FF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "wecom",
+      "name": "企业微信",
+      "category": "office",
+      "summary": "企业消息、通讯录与办公应用。",
+      "types": [
+        "cli",
+        "mcp",
+        "skill"
+      ],
+      "url": "https://work.weixin.qq.com/nl/index/aicli",
+      "homepage": "https://work.weixin.qq.com/",
+      "appStoreId": 1087897068,
+      "color": "#2A8EF4",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "tencent-docs",
+      "name": "腾讯文档",
+      "category": "office",
+      "summary": "在线文档与表格的读取和编辑。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://docs.qq.com/open/document/mcp/",
+      "homepage": "https://docs.qq.com/",
+      "appStoreId": 1370780836,
+      "color": "#1E6FFF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "tencent-meeting",
+      "name": "腾讯会议",
+      "category": "office",
+      "summary": "会议预约、查询与管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/document/product/1095/133826",
+      "homepage": "https://meeting.tencent.com/",
+      "appStoreId": 1484048379,
+      "color": "#006EFF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "wps",
+      "name": "WPS",
+      "category": "office",
+      "summary": "文档、表格与演示的处理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction",
+      "homepage": "https://www.wps.cn/",
+      "appStoreId": 599852710,
+      "color": "#D9312B",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "kdocs",
+      "name": "金山文档",
+      "category": "office",
+      "summary": "在线文档的读取与协作。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://github.com/kdocs-app/kdocs-skill",
+      "homepage": "https://www.kdocs.cn/",
+      "appStoreId": 1398120225,
+      "color": "#2C6BFF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "yuque",
+      "name": "语雀",
+      "category": "office",
+      "summary": "知识库与文档的读写。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/yuque/yuque-mcp-server",
+      "homepage": "https://www.yuque.com/",
+      "appStoreId": 1601937668,
+      "color": "#00B96B",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "qq-mail",
+      "name": "QQ 邮箱",
+      "category": "office",
+      "summary": "收发、搜索和整理邮件。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://github.com/Tencent/AgentlyMail",
+      "homepage": "https://mail.qq.com/",
+      "appStoreId": 473225145,
+      "color": "#F5A623",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "weread",
+      "name": "微信读书",
+      "category": "notes",
+      "summary": "书架、笔记与划线。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://weread.qq.com/r/weread-skills",
+      "homepage": "https://weread.qq.com/",
+      "appStoreId": 952059546,
+      "color": "#3E87F5",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "ima",
+      "name": "腾讯 ima",
+      "category": "notes",
+      "summary": "个人知识库的搜索与读写。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://ima.qq.com/agent-interface",
+      "homepage": "https://ima.qq.com/",
+      "appStoreId": 6737188438,
+      "color": "#1F1F1F",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "get-biji",
+      "name": "Get 笔记",
+      "category": "notes",
+      "summary": "笔记的记录与检索。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://www.biji.com/skill",
+      "homepage": "https://www.biji.com/",
+      "appStoreId": 6711334436,
+      "color": "#FF6B00",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "flomo",
+      "name": "flomo",
+      "category": "notes",
+      "summary": "卡片笔记的记录与检索。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://help.flomoapp.com/advance/mcp",
+      "homepage": "https://flomoapp.com/",
+      "appStoreId": 1552314395,
+      "color": "#30CF79",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "yinxiang",
+      "name": "印象笔记",
+      "category": "notes",
+      "summary": "笔记的创建、搜索与整理。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://skillhub.cn/skills/yinxiangskill",
+      "homepage": "https://www.yinxiang.com/",
+      "appStoreId": 1356054761,
+      "color": "#00A82D",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "youdao-note",
+      "name": "有道云笔记",
+      "category": "notes",
+      "summary": "笔记的创建与检索。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://note.youdao.com/help-center/skill-guide.html",
+      "homepage": "https://note.youdao.com/",
+      "appStoreId": 450748070,
+      "color": "#E1251B",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "quark-drive",
+      "name": "夸克网盘",
+      "category": "notes",
+      "summary": "网盘文件的搜索与管理。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://www.quark.cn/documents/help/quark-drive-skill",
+      "homepage": "https://pan.quark.cn/",
+      "appStoreId": 6755949705,
+      "color": "#2D5BFF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "weiyun",
+      "name": "腾讯微云",
+      "category": "notes",
+      "summary": "网盘文件的搜索与管理。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://www.weiyun.com/act/openclaw",
+      "homepage": "https://www.weiyun.com/",
+      "appStoreId": 522700349,
+      "color": "#1F9BFF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "baidu-netdisk",
+      "name": "百度网盘",
+      "category": "notes",
+      "summary": "网盘文件的搜索、上传与管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://pan.baidu.com/union/doc/mcp-server/",
+      "homepage": "https://pan.baidu.com/",
+      "appStoreId": 547166701,
+      "color": "#06A7FF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "zhihu",
+      "name": "知乎",
+      "category": "search",
+      "summary": "问答与内容的搜索和读取。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://developer.zhihu.com/docs?key=zhihu_cli",
+      "homepage": "https://www.zhihu.com/",
+      "appStoreId": 432274380,
+      "color": "#0066FF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "bocha",
+      "name": "博查搜索",
+      "category": "search",
+      "summary": "面向 AI 的中文网页搜索。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/BochaAI/bocha-search-mcp",
+      "homepage": "https://open.bochaai.com/",
+      "color": "#5B5BF6",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "qcc",
+      "name": "企查查",
+      "category": "search",
+      "summary": "企业工商与风险信息查询。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://agent.qcc.com/guide",
+      "homepage": "https://www.qcc.com/",
+      "appStoreId": 878075397,
+      "color": "#128BED",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "tianyancha",
+      "name": "天眼查",
+      "category": "search",
+      "summary": "企业工商与关系信息查询。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/tyc-tech/tyc-cli",
+      "homepage": "https://www.tianyancha.com/",
+      "appStoreId": 1048918751,
+      "color": "#0084FF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "douyin-open",
+      "name": "抖音开放平台",
+      "category": "search",
+      "summary": "抖音开放能力的接入。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc",
+      "homepage": "https://www.douyin.com/",
+      "appStoreId": 1142110895,
+      "color": "#161823",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "oceanengine",
+      "name": "巨量引擎",
+      "category": "search",
+      "summary": "广告投放数据与管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.oceanengine.com/mcp",
+      "homepage": "https://www.oceanengine.com/",
+      "appStoreId": 1396341131,
+      "color": "#2B5AED",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "mastergo",
+      "name": "MasterGo",
+      "category": "design",
+      "summary": "读取设计稿，辅助生成代码。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://mastergo.com/help/ai-features/magic-mcp.html",
+      "homepage": "https://mastergo.com/",
+      "appStoreId": 1605515537,
+      "color": "#0B6CFF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "modao",
+      "name": "墨刀",
+      "category": "design",
+      "summary": "读取原型与设计稿。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://modao.cc/feature/ai-mcp.html",
+      "homepage": "https://modao.cc/",
+      "appStoreId": 1050565468,
+      "color": "#FF5A3C",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "pixso",
+      "name": "Pixso",
+      "category": "design",
+      "summary": "读取设计稿，辅助生成代码。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://pixso.net/developer/zh/mcp/remote-mcp.html",
+      "homepage": "https://pixso.cn/",
+      "appStoreId": 6752556635,
+      "color": "#6D4AFF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "kling",
+      "name": "可灵",
+      "category": "design",
+      "summary": "AI 视频与图片生成。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://github.com/klingai-tech/skills",
+      "homepage": "https://klingai.com/",
+      "appStoreId": 6670396916,
+      "color": "#16B98A",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "category": "design",
+      "summary": "语音、图片、视频与音乐生成。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/MiniMax-AI/MiniMax-MCP",
+      "homepage": "https://www.minimaxi.com/",
+      "appStoreId": 6446482834,
+      "color": "#F23F5D",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "netease-music",
+      "name": "网易云音乐",
+      "category": "design",
+      "summary": "音乐搜索与播放控制。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://music.163.com/st/ncmcli",
+      "homepage": "https://music.163.com/",
+      "appStoreId": 590338362,
+      "color": "#E60026",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "alipay",
+      "name": "支付宝",
+      "category": "finance",
+      "summary": "支付、收款与交易查询。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://opendocs.alipay.com/open/0h3gdq",
+      "homepage": "https://www.alipay.com/",
+      "appStoreId": 333206289,
+      "color": "#1677FF",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "wechat-pay",
+      "name": "微信支付",
+      "category": "finance",
+      "summary": "商户支付与交易查询。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://pay.weixin.qq.com/doc/v3/merchant/4035576700",
+      "homepage": "https://pay.weixin.qq.com/",
+      "appStoreId": 414478124,
+      "color": "#07C160",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "unionpay",
+      "name": "银联",
+      "category": "finance",
+      "summary": "银联支付相关能力。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://open.unionpay.com/tjweb/solution/detail?solId=613",
+      "homepage": "https://www.unionpay.com/",
+      "appStoreId": 600273928,
+      "color": "#E21836",
+      "risk": "payment",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "ifind",
+      "name": "同花顺 iFinD",
+      "category": "finance",
+      "summary": "金融行情与数据查询。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://mcp.51ifind.com/",
+      "homepage": "https://www.51ifind.com/",
+      "appStoreId": 717545196,
+      "color": "#E60012",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "iwencai",
+      "name": "同花顺问财",
+      "category": "finance",
+      "summary": "股票与金融数据问答。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://search.10jqka.com.cn/skillhub",
+      "homepage": "https://www.iwencai.com/",
+      "appStoreId": 1222204519,
+      "color": "#E60012",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "eastmoney-miaoxiang",
+      "name": "东方财富妙想",
+      "category": "finance",
+      "summary": "金融资讯与数据分析。",
+      "types": [
+        "skill"
+      ],
+      "url": "https://marketing.dfcfs.com/views/finskillshub/",
+      "homepage": "https://www.eastmoney.com/",
+      "appStoreId": 423525686,
+      "color": "#EA5504",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "aliyun",
+      "name": "阿里云",
+      "category": "cloud",
+      "summary": "云资源查询与管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://api.aliyun.com/mcp",
+      "homepage": "https://www.aliyun.com/",
+      "appStoreId": 981011420,
+      "color": "#FF6A00",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "tencent-cloud",
+      "name": "腾讯云",
+      "category": "cloud",
+      "summary": "云资源查询与管理。",
+      "types": [
+        "skill",
+        "mcp"
+      ],
+      "url": "https://cloud.tencent.com/document/product/1278/131433",
+      "homepage": "https://cloud.tencent.com/",
+      "color": "#006EFF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "huawei-cloud",
+      "name": "华为云",
+      "category": "cloud",
+      "summary": "云资源查询与管理。",
+      "types": [
+        "mcp",
+        "skill"
+      ],
+      "url": "https://github.com/huaweicloud/huaweicloud-mcp",
+      "homepage": "https://www.huaweicloud.com/",
+      "appStoreId": 1247814104,
+      "color": "#C7000B",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "volcengine",
+      "name": "火山引擎",
+      "category": "cloud",
+      "summary": "云资源与 AI 能力接入。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/volcengine/mcp-server",
+      "homepage": "https://www.volcengine.com/",
+      "color": "#1664FF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "baidu-cloud",
+      "name": "百度智能云",
+      "category": "cloud",
+      "summary": "云服务与 AI 能力接入。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0",
+      "homepage": "https://cloud.baidu.com/",
+      "appStoreId": 1242720931,
+      "color": "#2468F2",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "qiniu",
+      "name": "七牛云",
+      "category": "cloud",
+      "summary": "对象存储与 CDN 管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://github.com/qiniu/qiniu-mcp-server",
+      "homepage": "https://www.qiniu.com/",
+      "color": "#06AEEF",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "zhipu",
+      "name": "智谱",
+      "category": "cloud",
+      "summary": "联网搜索等模型工具。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
+      "homepage": "https://www.zhipuai.cn/",
+      "appStoreId": 6450893458,
+      "color": "#3859FF",
+      "risk": "read",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "gitee",
+      "name": "Gitee",
+      "category": "cloud",
+      "summary": "代码仓库、Issue 与 PR 管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/",
+      "homepage": "https://gitee.com/",
+      "color": "#C71D23",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    },
+    {
+      "id": "jihulab",
+      "name": "极狐 GitLab",
+      "category": "cloud",
+      "summary": "代码仓库与 DevOps 管理。",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://gitlab.cn/news/cmvg3kvmv000nv30iuo1aifgg",
+      "homepage": "https://gitlab.cn/",
+      "appStoreId": 6444783184,
+      "color": "#FC6D26",
+      "risk": "write",
+      "access": [],
+      "status": "unverified",
+      "addedAt": "2026-11-04"
+    }
+  ]
+}

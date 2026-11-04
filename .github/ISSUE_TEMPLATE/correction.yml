@@ -1,0 +1,23 @@
+name: 报告问题
+description: 链接失效、信息有误，或某个服务其实不是官方出品
+title: "[纠错] "
+labels: [correction]
+body:
+  - type: input
+    id: service
+    attributes:
+      label: 条目 id
+      description: 网页上卡片链接 #s- 后面的部分，例如 amap
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 哪里不对
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 依据链接
+      placeholder: https://

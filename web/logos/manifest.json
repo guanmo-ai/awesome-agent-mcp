@@ -1,0 +1,262 @@
+{
+  "alipay": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "aliyun": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "amap": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "baidu-cloud": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "baidu-map": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "baidu-netdisk": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "bocha": {
+    "pad": true,
+    "source": "https://open.bochaai.com/favicon.ico",
+    "size": 256
+  },
+  "didi": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "dingtalk": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "douyin-open": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "eastmoney-miaoxiang": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "feishu": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "fliggy": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "flomo": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "get-biji": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "gitee": {
+    "pad": true,
+    "source": "https://gitee.com/favicon.ico",
+    "size": 64
+  },
+  "huawei-cloud": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "ifind": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "ima": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "iwencai": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "jihulab": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "kdocs": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "kling": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "luckin": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "mastergo": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "mcdonalds-cn": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "meituan": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "minimax": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "modao": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "netease-music": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "oceanengine": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "pixso": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "qcc": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "qq-mail": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "quark-drive": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "taobao": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "tencent-docs": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "tencent-map": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "tencent-meeting": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "tianyancha": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "unionpay": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "volcengine": {
+    "pad": true,
+    "source": "https://portal.volccdn.com/obj/volcfe/misc/favicon.png",
+    "size": 192
+  },
+  "wechat-pay": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "wecom": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "weiyun": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "weread": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "wps": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "yinxiang": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "youdao-note": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "yuque": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "zhihu": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  },
+  "zhipu": {
+    "pad": false,
+    "source": "appstore",
+    "size": 256
+  }
+}

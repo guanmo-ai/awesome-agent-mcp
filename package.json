@@ -1,0 +1,13 @@
+{
+  "name": "awesome-agent-mcp",
+  "private": true,
+  "type": "module",
+  "description": "国内官方 MCP · Skill · CLI 大全",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check && node --test tests/*.test.mjs",
+    "serve": "node scripts/build.mjs && node scripts/serve.mjs",
+    "links": "node scripts/check-links.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
