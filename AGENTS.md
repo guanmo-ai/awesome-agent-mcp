@@ -34,6 +34,11 @@
 8. 不要把内部研究记录、私人信息或凭据写进仓库。
 9. 提交身份用 `观默 <316967716+guanmo-ai@users.noreply.github.com>`。
 
+## 分工
+
+- **视觉设计归 Claude**：配色、字体、布局、动画、页面结构和设计稿模板（如 `web/service.html`）。Codex 不改视觉；发现设计问题，写进 PR 描述交给 Claude。
+- **程序归 Codex**：数据收集与核验、图标、构建与生成脚本、按设计稿批量生成页面、性能和 SEO 优化、测试。
+
 ## 合并
 
 - 不需要等维护者。自己开 PR，`npm run check` 和 CI 都通过后，用 `gh pr merge --squash --delete-branch` 合并，再确认「发布网站」这个 Action 成功。

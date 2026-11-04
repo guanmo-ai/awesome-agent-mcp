@@ -182,7 +182,8 @@ if (process.argv.includes('--check')) {
   const dist = join(root, 'dist');
   rmSync(dist, { recursive: true, force: true });
   mkdirSync(dist, { recursive: true });
-  cpSync(join(root, 'web'), dist, { recursive: true });
+  // service.html 是服务独立页的模板，不直接发布
+  cpSync(join(root, 'web'), dist, { recursive: true, filter: (src) => !src.endsWith('service.html') });
   const version = createHash('sha1')
     .update(readFileSync(join(root, 'web/app.js')))
     .update(readFileSync(join(root, 'web/app.css')))
