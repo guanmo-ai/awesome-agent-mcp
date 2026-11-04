@@ -6,6 +6,15 @@
 
 下面都只是**线索**。确认要以厂商官方页面为准，规则见 `docs/VERIFYING.md`。
 
+先查厂商维护的集中目录，可以一次得到多条线索，再按上市集团与少数头部品牌的范围筛选：
+
+- [腾讯云 MCP 广场](https://cloud.tencent.com/developer/mcp)及[腾讯云产品 MCP 源码目录](https://github.com/TencentCloudCommunity/mcp-server/blob/main/README-ZH.md)。广场混有第三方；源码目录的详情链接也可能串项，需核对产品、发布者和对应子目录。
+- [火山引擎 MCP 服务目录](https://github.com/volcengine/mcp-server)及[生态广场](https://www.volcengine.com/mcp-marketplace)。只把官方云产品与厂商自己维护的实现作为待核验对象，不能把收录的社区工具当成官方实现。
+- [阿里云百炼 MCP 广场说明](https://docs.agent.bailian.aliyun.com/en/mcp/official-services)、[魔搭 MCP 广场](https://modelscope.cn/mcp)及[灵码 MCP 文档](https://help.aliyun.com/zh/lingma/mcp)。官方运营的平台不代表其中每项服务由平台厂商出品。
+- [华为云官方 MCP 仓库](https://github.com/huaweicloud/huaweicloud-mcp)与[讯飞开放平台工具文档](https://www.xfyun.cn/xfyun-cli/doc)。
+
+同一产品的多个传输方式或工具版本合为一个条目；已有云厂商总入口不按每个 API 重复拆条，独立产品有专用文档和 MCP 实现时再收录。
+
 **客户端里的连接器和插件市场**：Agent 客户端集成的服务，基本就是已开放接入的服务。
 - WorkBuddy：「专家 · 技能 · 连接器」页面。其中「连接器」对应 MCP，「技能」和「专家」对应 Skill。
 - 其他客户端或平台的 MCP 市场，例如阿里云百炼、魔搭 ModelScope、火山引擎、通义灵码、Trae、CodeBuddy 等。名称和入口可能有变，以实际为准。

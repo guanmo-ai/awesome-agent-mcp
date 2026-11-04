@@ -676,7 +676,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -693,7 +693,8 @@
         "url": "https://doc.biji.com/docs/FmYfw0yXsiXdTtkVzhLcuX8lnxd",
         "checkedAt": "2026-11-04",
         "note": "得到大脑官方 MCP、Skill 和 CLI 指南明确授权登录、会员及笔记读写。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "flomo",
@@ -712,7 +713,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -727,7 +728,8 @@
         "url": "https://help.flomoapp.com/advance/mcp/connect-cursor.html",
         "checkedAt": "2026-11-04",
         "note": "官方 Cursor 连接指南明确 HTTP 端点、个人 Token、MAX 会员及笔记读写。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "yinxiang",
@@ -746,7 +748,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "skill": "https://cdn.yinxiang.com/ai/yinxiang-skill-v1.0.4.zip"
@@ -755,7 +757,8 @@
         "url": "https://guide.yinxiang.com/docs/yxai/skill.html",
         "checkedAt": "2026-11-04",
         "note": "印象笔记官方说明文档发布 Skill 下载，明确会员 AuthToken 与笔记管理能力。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "youdao-note",
@@ -924,7 +927,7 @@
         "account",
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -945,7 +948,8 @@
         "url": "https://github.com/BochaAI",
         "checkedAt": "2026-11-04",
         "note": "博查官方 GitHub 组织主页链接 bochaai.com，仓库明确搜索工具与 Key 配置。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "qcc",
@@ -1094,7 +1098,7 @@
         "membership",
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -1112,7 +1116,8 @@
         "url": "https://mastergo.com/help/ai-features/magic-mcp.html",
         "checkedAt": "2026-11-04",
         "note": "MasterGo 官方 Magic MCP 文档明确团队版权限、Token 与启动命令。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "modao",
@@ -1166,7 +1171,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -1179,7 +1184,8 @@
         "url": "https://pixso.net/developer/zh/mcp/tools.html",
         "checkedAt": "2026-11-04",
         "note": "Pixso 官方新版远程 MCP 和工具文档明确设计读写、席位要求及配套 Skill。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "kling",
@@ -1696,7 +1702,7 @@
         "account",
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -1713,7 +1719,8 @@
         "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/",
         "checkedAt": "2026-11-04",
         "note": "Gitee 官方博客直接发布 MCP 仓库，列出代码协作写操作和 stdio 配置。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "jihulab",
@@ -1731,7 +1738,7 @@
       "access": [
         "account"
       ],
-      "status": "verified",
+      "status": "rejected",
       "addedAt": "2026-11-04",
       "install": {
         "mcp": {
@@ -1743,7 +1750,8 @@
         "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/",
         "checkedAt": "2026-11-04",
         "note": "极狐官方 MCP 文档明确正式发布、OAuth、HTTP 端点及项目协作操作。"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "lexiang",
@@ -1867,13 +1875,14 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://docs.apifox.com/apifox-mcp-server",
         "checkedAt": "2026-11-04",
         "note": "Apifox 官方帮助文档；另有官方 CLI 和 Agent 使用指南。"
       },
-      "addedAt": "2026-11-04"
+      "addedAt": "2026-11-04",
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "caiyun-weather",
@@ -1889,7 +1898,7 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://github.com/caiyunapp",
         "checkedAt": "2026-11-04",
@@ -1905,7 +1914,8 @@
           }
         }
       },
-      "appStoreId": 847764912
+      "appStoreId": 847764912,
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "variflight",
@@ -1923,7 +1933,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://ai.variflight.com/zh/docs/aviation",
         "checkedAt": "2026-11-04",
@@ -1940,7 +1950,8 @@
           }
         }
       },
-      "appStoreId": 498818574
+      "appStoreId": 498818574,
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "tuniu",
@@ -1993,7 +2004,7 @@
         "key",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://capybrowser.app.baizhi.cloud/docs/installation.md",
         "checkedAt": "2026-11-04",
@@ -2009,7 +2020,8 @@
           }
         },
         "skill": "https://capybrowser.app.baizhi.cloud/docs/skills.md"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "aihot",
@@ -2026,7 +2038,7 @@
       "access": [
         "free"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://aihot.news/agent?tab=mcp",
         "checkedAt": "2026-11-04",
@@ -2039,7 +2051,8 @@
           "url": "https://aihot.news/api/mcp"
         },
         "skill": "https://aihot.news/agent"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "mineru",
@@ -2058,7 +2071,7 @@
         "free",
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://github.com/opendatalab",
         "checkedAt": "2026-11-04",
@@ -2074,7 +2087,8 @@
           ]
         },
         "skill": "https://github.com/opendatalab/MinerU-Ecosystem/tree/main/skills"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "dida",
@@ -2091,7 +2105,7 @@
       "access": [
         "account"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://help.dida365.com/articles/7438132116019216384",
         "checkedAt": "2026-11-04",
@@ -2105,7 +2119,8 @@
         },
         "cli": "npm install -g @suibiji/dida-cli"
       },
-      "appStoreId": 626144601
+      "appStoreId": 626144601,
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "feishu-project",
@@ -2145,7 +2160,7 @@
         "key",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://doc2x.noedgeai.com/help/en/api/doc2x-mcp.html",
         "checkedAt": "2026-11-04",
@@ -2166,7 +2181,8 @@
           }
         },
         "skill": "https://github.com/NoEdgeAI/doc2x-mcp"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "jiandaoyun",
@@ -2182,14 +2198,15 @@
       "access": [
         "account"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://hc.finecloud.com/app/open/25090",
         "checkedAt": "2026-11-04",
         "note": "简道云官方 AI 连接指南；新增数据需管理员审核，个人连接地址由产品生成。"
       },
       "addedAt": "2026-11-04",
-      "appStoreId": 6755710065
+      "appStoreId": 6755710065,
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "jinshuju",
@@ -2205,7 +2222,7 @@
       "access": [
         "account"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://open.jinshuju.net/mcp/",
         "checkedAt": "2026-11-04",
@@ -2217,7 +2234,8 @@
           "transport": "http",
           "url": "https://jinshuju.net/mcp"
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "sealos",
@@ -2233,13 +2251,14 @@
       "access": [
         "account"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://sealos.io/docs/AI/mcp/",
         "checkedAt": "2026-11-04",
         "note": "Sealos 官方文档，使用工作空间 KubeConfig 授权，服务随地域提供。"
       },
-      "addedAt": "2026-11-04"
+      "addedAt": "2026-11-04",
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "rongcloud",
@@ -2255,7 +2274,7 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://github.com/rongcloud",
         "checkedAt": "2026-11-04",
@@ -2274,7 +2293,8 @@
             "RONGCLOUD_APP_SECRET": "<你的融云AppSecret>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "lava",
@@ -2293,7 +2313,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://lava.ai-dolphin.com/subscribe/docs",
         "checkedAt": "2026-11-04",
@@ -2308,7 +2328,8 @@
             "Authorization": "Bearer <你的熔岩Key>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "yuandian",
@@ -2357,7 +2378,7 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://open.zhihuiya.com/devportal/guides/mcp-installation",
         "checkedAt": "2026-11-04",
@@ -2372,7 +2393,8 @@
             "Authorization": "Bearer <你的智慧芽MCPKey>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "libtv",
@@ -2388,7 +2410,7 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://github.com/libtv-labs",
         "checkedAt": "2026-11-04",
@@ -2397,7 +2419,8 @@
       "addedAt": "2026-11-04",
       "install": {
         "skill": "https://github.com/libtv-labs/libtv-skills"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "flova",
@@ -2416,7 +2439,7 @@
         "account",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://www.flova.ai/zh-CN/docs/features/cli/",
         "checkedAt": "2026-11-04",
@@ -2425,7 +2448,8 @@
       "addedAt": "2026-11-04",
       "install": {
         "cli": "curl -fsSL https://cli.flova.ai/install.sh | sh"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "meshy",
@@ -2445,7 +2469,7 @@
         "key",
         "membership"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://docs.meshy.ai/zh/webapp/plugins/deepseek-harness/introduction",
         "checkedAt": "2026-11-04",
@@ -2455,7 +2479,8 @@
       "repo": "https://github.com/meshy-dev/meshy-mcp-server",
       "install": {
         "skill": "https://github.com/meshy-dev/meshy-3d-agent"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "antv",
@@ -2505,7 +2530,7 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://metaso.cn/search-api/playground",
         "checkedAt": "2026-11-04",
@@ -2520,7 +2545,8 @@
             "Authorization": "Bearer <你的秘塔Key>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "kuaidi100",
@@ -2572,7 +2598,7 @@
         "account",
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://www.pushplus.plus/download.html",
         "checkedAt": "2026-11-04",
@@ -2595,7 +2621,8 @@
         },
         "skill": "https://clawhub.ai/pcstx/pushplus-notification"
       },
-      "appStoreId": 6755597125
+      "appStoreId": 6755597125,
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "niutrans",
@@ -2612,7 +2639,7 @@
         "key",
         "free"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://github.com/NiuTrans",
         "checkedAt": "2026-11-04",
@@ -2632,7 +2659,8 @@
             "NIUTRANS_API_KEY": "<你的小牛翻译Key>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "aippt",
@@ -2649,7 +2677,7 @@
         "apply",
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://open.aippt.cn/docs/zh/claw/docs.html",
         "checkedAt": "2026-11-04",
@@ -2658,7 +2686,8 @@
       "addedAt": "2026-11-04",
       "install": {
         "skill": "https://clawhub.ai/huiyuan1234/aipptskill"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "meituhub",
@@ -2755,7 +2784,7 @@
       "homepage": "https://greptime.cn/",
       "risk": "write",
       "access": [],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://docs.greptime.cn/user-guide/integrations/mcp/",
         "checkedAt": "2026-11-04",
@@ -2780,7 +2809,8 @@
           }
         },
         "skill": "https://docs.greptime.com/SKILL.md"
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "milvus",
@@ -2794,14 +2824,15 @@
       "homepage": "https://milvus.io/",
       "risk": "write",
       "access": [],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://milvus.io/docs/milvus_and_mcp.md",
         "checkedAt": "2026-11-04",
         "note": "Milvus 官方文档直接链接 Zilliz MCP 仓库，需已有 Milvus 实例。"
       },
       "addedAt": "2026-11-04",
-      "repo": "https://github.com/zilliztech/mcp-server-milvus"
+      "repo": "https://github.com/zilliztech/mcp-server-milvus",
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "apisix",
@@ -2817,7 +2848,7 @@
       "access": [
         "key"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://docs.api7.ai/apisix/reference/apisix-mcp",
         "checkedAt": "2026-11-04",
@@ -2841,7 +2872,8 @@
             "APISIX_ADMIN_KEY": "<你的APISIXAdminKey>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "higress",
@@ -2904,7 +2936,7 @@
       "homepage": "https://cn.pingcap.com/",
       "risk": "write",
       "access": [],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/",
         "checkedAt": "2026-11-04",
@@ -2928,7 +2960,8 @@
             "TIDB_DATABASE": "<你的TiDB数据库名>"
           }
         }
-      }
+      },
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     },
     {
       "id": "dolphindb",
@@ -2944,13 +2977,14 @@
       "access": [
         "account"
       ],
-      "status": "verified",
+      "status": "rejected",
       "evidence": {
         "url": "https://docs.dolphindb.cn/zh/mcp/mcp_use_guide.html",
         "checkedAt": "2026-11-04",
         "note": "DolphinDB 官方文档：3.00.4 起原生提供 MCP Server；另有官方 Stock MCP 工具包。"
       },
-      "addedAt": "2026-11-04"
+      "addedAt": "2026-11-04",
+      "rejectedReason": "2026-11-04 收录范围收紧：暂未建立符合上市集团或少数头部知名厂商例外的充分依据；保留官方身份记录，停止公开展示。"
     }
   ]
 }
