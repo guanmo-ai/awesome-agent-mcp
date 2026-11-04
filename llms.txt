@@ -24,24 +24,24 @@
 
 ## 办公和协作
 
-- [飞书](https://github.com/larksuite/cli): 消息、文档、日历与多维表格。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npx @larksuite/cli@latest install`；Skill https://github.com/larksuite/cli/tree/main/skills
+- [飞书](https://github.com/larksuite/cli): 消息、文档、日历与多维表格。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npx @larksuite/cli@latest install`；Skill https://github.com/larksuite/cli/tree/main/skills
 - [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview): 消息、文档、表格、日志、日历与待办的查询和操作。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验
-- [企业微信](https://work.weixin.qq.com/nl/index/aicli): 企业消息、通讯录与办公应用。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 —；待核验
-- [腾讯文档](https://docs.qq.com/open/document/mcp/): 在线文档与表格的读取和编辑。 类型 MCP；权限 可执行操作；门槛 —；待核验
-- [腾讯会议](https://cloud.tencent.com/document/product/1095/133826): 会议预约、查询与管理。 类型 MCP；权限 可执行操作；门槛 —；待核验
-- [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction): 文档、表格与演示的处理。 类型 MCP；权限 可执行操作；门槛 —；待核验
-- [金山文档](https://github.com/kdocs-app/kdocs-skill): 在线文档的读取与协作。 类型 Skill；权限 可执行操作；门槛 —；待核验
-- [语雀](https://github.com/yuque/yuque-mcp-server): 知识库与文档的读写。 类型 MCP；权限 可执行操作；门槛 —；待核验
-- [QQ 邮箱](https://github.com/Tencent/AgentlyMail): 收发、搜索和整理邮件。 类型 Skill；权限 可执行操作；门槛 —；待核验
+- [企业微信](https://work.weixin.qq.com/nl/index/aicli): 企业消息、通讯录与办公应用。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；CLI `npm install -g @wecom/cli`；Skill https://github.com/WecomTeam/wecom-unified
+- [腾讯文档](https://docs.qq.com/open/document/mcp/): 在线文档与表格的读取和编辑。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、免费可用；已核验
+- [腾讯会议](https://cloud.tencent.com/document/product/1095/133826): 预约和管理会议，读取参会信息、录制、转写与纪要。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencentcloud/tmeet`；Skill https://github.com/TencentCloud/tencentmeeting-cli
+- [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction): 通过 WPS 365 API 查询和操作企业文档及协作数据。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验
+- [金山文档](https://github.com/kdocs-app/kdocs-skill): 在线文档的读取与协作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；待核验
+- [语雀](https://github.com/yuque/yuque-mcp-server): 知识库与文档的读写。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y yuque-mcp
+- [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail): 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencent-qqmail/agently-cli`；Skill https://github.com/Tencent/AgentlyMail
 
 ## 笔记、阅读和网盘
 
-- [微信读书](https://weread.qq.com/r/weread-skills): 书架、笔记与划线。 类型 Skill；权限 只读查询；门槛 —；待核验
-- [腾讯 ima](https://ima.qq.com/agent-interface): 个人知识库的搜索与读写。 类型 Skill；权限 可执行操作；门槛 —；待核验
-- [Get 笔记](https://www.biji.com/skill): 笔记的记录与检索。 类型 MCP · Skill；权限 可执行操作；门槛 —；待核验
-- [flomo](https://help.flomoapp.com/advance/mcp): 卡片笔记的记录与检索。 类型 MCP；权限 可执行操作；门槛 —；待核验
-- [印象笔记](https://skillhub.cn/skills/yinxiangskill): 笔记的创建、搜索与整理。 类型 Skill；权限 可执行操作；门槛 —；待核验
-- [有道云笔记](https://note.youdao.com/help-center/skill-guide.html): 笔记的创建与检索。 类型 MCP · Skill；权限 可执行操作；门槛 —；待核验
+- [微信读书](https://weread.qq.com/r/weread-skills): 书架、笔记与划线。 类型 Skill；权限 只读查询；门槛 需授权账号、需 API Key；已核验；Skill https://github.com/Tencent/WeChatReading
+- [腾讯 ima](https://ima.qq.com/agent-interface): 个人知识库的搜索与读写。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；Skill https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip
+- [得到大脑（原 Get 笔记）](https://www.biji.com/openapi): 笔记的记录与检索。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；MCP stdio npx -y @getnote/mcp；Skill https://github.com/iswalle/getnote-openclaw
+- [flomo](https://help.flomoapp.com/advance/mcp/): 卡片笔记的记录与检索。 类型 MCP；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；MCP Streamable HTTP https://flomoapp.com/mcp
+- [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html): 笔记的创建、搜索与整理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；Skill https://cdn.yinxiang.com/ai/yinxiang-skill-v1.0.4.zip
+- [有道云笔记](https://note.youdao.com/help-center/skill-guide.html): 笔记读写与搜索、待办管理和网页剪藏。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验
 - [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 —；待核验
 - [腾讯微云](https://www.weiyun.com/act/openclaw): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 —；待核验
 - [百度网盘](https://pan.baidu.com/union/doc/mcp-server/): 网盘文件的搜索、上传与管理。 类型 MCP；权限 可执行操作；门槛 —；待核验

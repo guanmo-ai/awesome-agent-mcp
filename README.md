@@ -11,7 +11,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>55 个服务 · 7 个分类 · 12 个已核验 · 更新于 2026-11-04</sub></p>
+<p align="center"><sub>55 个服务 · 7 个分类 · 24 个已核验 · 更新于 2026-11-04</sub></p>
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
@@ -72,15 +72,15 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [飞书](https://github.com/larksuite/cli) | 消息、文档、日历与多维表格。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [飞书](https://github.com/larksuite/cli) | 消息、文档、日历与多维表格。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) | 消息、文档、表格、日志、日历与待办的查询和操作。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [企业微信](https://work.weixin.qq.com/nl/index/aicli) | 企业消息、通讯录与办公应用。 | MCP · Skill · CLI | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [腾讯文档](https://docs.qq.com/open/document/mcp/) | 在线文档与表格的读取和编辑。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) | 会议预约、查询与管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction) | 文档、表格与演示的处理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [金山文档](https://github.com/kdocs-app/kdocs-skill) | 在线文档的读取与协作。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [语雀](https://github.com/yuque/yuque-mcp-server) | 知识库与文档的读写。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [QQ 邮箱](https://github.com/Tencent/AgentlyMail) | 收发、搜索和整理邮件。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [企业微信](https://work.weixin.qq.com/nl/index/aicli) | 企业消息、通讯录与办公应用。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯文档](https://docs.qq.com/open/document/mcp/) | 在线文档与表格的读取和编辑。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、免费可用 | ✅ 已核验 |
+| [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) | 预约和管理会议，读取参会信息、录制、转写与纪要。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction) | 通过 WPS 365 API 查询和操作企业文档及协作数据。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [金山文档](https://github.com/kdocs-app/kdocs-skill) | 在线文档的读取与协作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ⏳ 待核验 |
+| [语雀](https://github.com/yuque/yuque-mcp-server) | 知识库与文档的读写。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail) | 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -90,12 +90,12 @@ mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubuserc
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [微信读书](https://weread.qq.com/r/weread-skills) | 书架、笔记与划线。 | Skill | 🟢 只读查询 | — | ⏳ 待核验 |
-| [腾讯 ima](https://ima.qq.com/agent-interface) | 个人知识库的搜索与读写。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [Get 笔记](https://www.biji.com/skill) | 笔记的记录与检索。 | MCP · Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [flomo](https://help.flomoapp.com/advance/mcp) | 卡片笔记的记录与检索。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [印象笔记](https://skillhub.cn/skills/yinxiangskill) | 笔记的创建、搜索与整理。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
-| [有道云笔记](https://note.youdao.com/help-center/skill-guide.html) | 笔记的创建与检索。 | MCP · Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
+| [微信读书](https://weread.qq.com/r/weread-skills) | 书架、笔记与划线。 | Skill | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯 ima](https://ima.qq.com/agent-interface) | 个人知识库的搜索与读写。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [得到大脑（原 Get 笔记）](https://www.biji.com/openapi) | 笔记的记录与检索。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [flomo](https://help.flomoapp.com/advance/mcp/) | 卡片笔记的记录与检索。 | MCP | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html) | 笔记的创建、搜索与整理。 | Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
+| [有道云笔记](https://note.youdao.com/help-center/skill-guide.html) | 笔记读写与搜索、待办管理和网页剪藏。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
 | [腾讯微云](https://www.weiyun.com/act/openclaw) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | — | ⏳ 待核验 |
 | [百度网盘](https://pan.baidu.com/union/doc/mcp-server/) | 网盘文件的搜索、上传与管理。 | MCP | 🟡 可执行操作 | — | ⏳ 待核验 |

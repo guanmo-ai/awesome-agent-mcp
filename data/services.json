@@ -354,6 +354,7 @@
       "category": "office",
       "summary": "消息、文档、日历与多维表格。",
       "types": [
+        "mcp",
         "cli",
         "skill"
       ],
@@ -372,9 +373,9 @@
         "skill": "https://github.com/larksuite/cli/tree/main/skills"
       },
       "evidence": {
-        "url": "https://github.com/larksuite",
+        "url": "https://open.feishu.cn/changelog",
         "checkedAt": "2026-11-04",
-        "note": "官方 larksuite 组织主页链接 Lark 官网，CLI 仓库提供命令与 Skills。"
+        "note": "官方更新日志分别发布 OpenAPI MCP 与 CLI，CLI 仓库包含 Skills。"
       }
     },
     {
@@ -416,9 +417,21 @@
       "appStoreId": 1087897068,
       "color": "#2A8EF4",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "cli": "npm install -g @wecom/cli",
+        "skill": "https://github.com/WecomTeam/wecom-unified"
+      },
+      "evidence": {
+        "url": "https://work.weixin.qq.com/nl/index/aicli",
+        "checkedAt": "2026-11-04",
+        "note": "企业微信官方 AI 开放能力页列出 CLI、MCP、Skill 及机器人创建和业务操作。"
+      }
     },
     {
       "id": "tencent-docs",
@@ -426,39 +439,62 @@
       "category": "office",
       "summary": "在线文档与表格的读取和编辑。",
       "types": [
-        "mcp"
+        "mcp",
+        "skill"
       ],
       "url": "https://docs.qq.com/open/document/mcp/",
       "homepage": "https://docs.qq.com/",
       "appStoreId": 1370780836,
       "color": "#1E6FFF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "free"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://docs.qq.com/open/document/mcp/",
+        "checkedAt": "2026-11-04",
+        "note": "官方 MCP 与 Skill 文档明确账号授权、文档编辑和免费调用额度。"
+      }
     },
     {
       "id": "tencent-meeting",
       "name": "腾讯会议",
       "category": "office",
-      "summary": "会议预约、查询与管理。",
+      "summary": "预约和管理会议，读取参会信息、录制、转写与纪要。",
       "types": [
-        "mcp"
+        "mcp",
+        "cli",
+        "skill"
       ],
       "url": "https://cloud.tencent.com/document/product/1095/133826",
       "homepage": "https://meeting.tencent.com/",
       "appStoreId": 1484048379,
       "color": "#006EFF",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "repo": "https://github.com/TencentCloud/tencentmeeting-cli",
+      "install": {
+        "cli": "npm install -g @tencentcloud/tmeet",
+        "skill": "https://github.com/TencentCloud/tencentmeeting-cli"
+      },
+      "evidence": {
+        "url": "https://cloud.tencent.com/document/product/1095/133826",
+        "checkedAt": "2026-11-04",
+        "note": "官方 MCP/CLI 文档确认 Skill 封装包、会议写操作和 OAuth CLI。"
+      }
     },
     {
       "id": "wps",
       "name": "WPS",
       "category": "office",
-      "summary": "文档、表格与演示的处理。",
+      "summary": "通过 WPS 365 API 查询和操作企业文档及协作数据。",
       "types": [
         "mcp"
       ],
@@ -467,9 +503,17 @@
       "appStoreId": 599852710,
       "color": "#D9312B",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "apply"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction",
+        "checkedAt": "2026-11-04",
+        "note": "WPS 官方 MCP 介绍明确基于 WPS 365 API，企业需申请试用权限。"
+      }
     },
     {
       "id": "kdocs",
@@ -477,14 +521,17 @@
       "category": "office",
       "summary": "在线文档的读取与协作。",
       "types": [
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://github.com/kdocs-app/kdocs-skill",
       "homepage": "https://www.kdocs.cn/",
       "appStoreId": 1398120225,
       "color": "#2C6BFF",
       "risk": "write",
-      "access": [],
+      "access": [
+        "account"
+      ],
       "status": "unverified",
       "addedAt": "2026-11-04"
     },
@@ -501,26 +548,58 @@
       "appStoreId": 1601937668,
       "color": "#00B96B",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "yuque-mcp"
+          ],
+          "env": {
+            "YUQUE_TOKEN": "<你的语雀Token>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://github.com/yuque",
+        "checkedAt": "2026-11-04",
+        "note": "语雀 GitHub 官方组织主页链接 yuque.com，仓库提供 MCP 配置和读写工具。"
+      }
     },
     {
       "id": "qq-mail",
-      "name": "QQ 邮箱",
+      "name": "Agently Mail（QQ 邮箱团队）",
       "category": "office",
-      "summary": "收发、搜索和整理邮件。",
+      "summary": "专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。",
       "types": [
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://github.com/Tencent/AgentlyMail",
-      "homepage": "https://mail.qq.com/",
-      "appStoreId": 473225145,
+      "homepage": "https://agent.qq.com/",
       "color": "#F5A623",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://github.com/Tencent/AgentlyMail",
+        "cli": "npm install -g @tencent-qqmail/agently-cli"
+      },
+      "evidence": {
+        "url": "https://github.com/Tencent",
+        "checkedAt": "2026-11-04",
+        "note": "腾讯已验证官方组织下的 AgentlyMail 仓库；服务为 QQ 邮箱团队提供的独立 Agent 邮箱。"
+      }
     },
     {
       "id": "weread",
@@ -535,9 +614,20 @@
       "appStoreId": 952059546,
       "color": "#3E87F5",
       "risk": "read",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://github.com/Tencent/WeChatReading"
+      },
+      "evidence": {
+        "url": "https://weread.qq.com/r/weread-skills",
+        "checkedAt": "2026-11-04",
+        "note": "微信读书官方 Skill 页面直接发布 Tencent/WeChatReading 安装和 API Key 获取方式。"
+      }
     },
     {
       "id": "ima",
@@ -552,27 +642,58 @@
       "appStoreId": 6737188438,
       "color": "#1F1F1F",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip"
+      },
+      "evidence": {
+        "url": "https://ima.qq.com/agent-interface",
+        "checkedAt": "2026-11-04",
+        "note": "ima 官方接入页前端给出 Skill 下载、API Key 获取与知识库及笔记读写场景。"
+      }
     },
     {
       "id": "get-biji",
-      "name": "Get 笔记",
+      "name": "得到大脑（原 Get 笔记）",
       "category": "notes",
       "summary": "笔记的记录与检索。",
       "types": [
         "mcp",
-        "skill"
+        "skill",
+        "cli"
       ],
-      "url": "https://www.biji.com/skill",
+      "url": "https://www.biji.com/openapi",
       "homepage": "https://www.biji.com/",
       "appStoreId": 6711334436,
       "color": "#FF6B00",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "membership"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@getnote/mcp"
+          ]
+        },
+        "skill": "https://github.com/iswalle/getnote-openclaw"
+      },
+      "evidence": {
+        "url": "https://doc.biji.com/docs/FmYfw0yXsiXdTtkVzhLcuX8lnxd",
+        "checkedAt": "2026-11-04",
+        "note": "得到大脑官方 MCP、Skill 和 CLI 指南明确授权登录、会员及笔记读写。"
+      }
     },
     {
       "id": "flomo",
@@ -582,14 +703,31 @@
       "types": [
         "mcp"
       ],
-      "url": "https://help.flomoapp.com/advance/mcp",
+      "url": "https://help.flomoapp.com/advance/mcp/",
       "homepage": "https://flomoapp.com/",
       "appStoreId": 1552314395,
       "color": "#30CF79",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "membership"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://flomoapp.com/mcp",
+          "headers": {
+            "Authorization": "Bearer <你的flomoToken>"
+          }
+        }
+      },
+      "evidence": {
+        "url": "https://help.flomoapp.com/advance/mcp/connect-cursor.html",
+        "checkedAt": "2026-11-04",
+        "note": "官方 Cursor 连接指南明确 HTTP 端点、个人 Token、MAX 会员及笔记读写。"
+      }
     },
     {
       "id": "yinxiang",
@@ -599,32 +737,51 @@
       "types": [
         "skill"
       ],
-      "url": "https://skillhub.cn/skills/yinxiangskill",
+      "url": "https://guide.yinxiang.com/docs/yxai/skill.html",
       "homepage": "https://www.yinxiang.com/",
       "appStoreId": 1356054761,
       "color": "#00A82D",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "membership"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "install": {
+        "skill": "https://cdn.yinxiang.com/ai/yinxiang-skill-v1.0.4.zip"
+      },
+      "evidence": {
+        "url": "https://guide.yinxiang.com/docs/yxai/skill.html",
+        "checkedAt": "2026-11-04",
+        "note": "印象笔记官方说明文档发布 Skill 下载，明确会员 AuthToken 与笔记管理能力。"
+      }
     },
     {
       "id": "youdao-note",
       "name": "有道云笔记",
       "category": "notes",
-      "summary": "笔记的创建与检索。",
+      "summary": "笔记读写与搜索、待办管理和网页剪藏。",
       "types": [
-        "mcp",
-        "skill"
+        "skill",
+        "cli"
       ],
       "url": "https://note.youdao.com/help-center/skill-guide.html",
       "homepage": "https://note.youdao.com/",
       "appStoreId": 450748070,
       "color": "#E1251B",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
-      "addedAt": "2026-11-04"
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-04",
+      "evidence": {
+        "url": "https://note.youdao.com/help-center/skill-guide.html",
+        "checkedAt": "2026-11-04",
+        "note": "有道云笔记官方通用 Skill 指南和导航确认 Skill/CLI，使用个人 API Key。"
+      }
     },
     {
       "id": "quark-drive",
