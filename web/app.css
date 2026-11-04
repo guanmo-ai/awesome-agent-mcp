@@ -230,7 +230,7 @@ h1 span { display: block; }
 .logo.mono { background: var(--brand); color: #fff; font-weight: 700; font-size: 19px; background-image: linear-gradient(160deg, rgba(255, 255, 255, .25), transparent 60%); }
 .logo.lg { width: 68px; height: 68px; font-size: 28px; }
 .card-title { min-width: 0; flex: 1; }
-.card-title h4 { margin: 0; font-size: 16.5px; font-weight: 650; letter-spacing: -.015em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-title h3, .card-title h4 { margin: 0; font-size: 16.5px; font-weight: 650; letter-spacing: -.015em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .domain { margin: 2px 0 0; font: 400 11.5px/1.4 var(--mono); color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vbadge { flex: none; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
 .vbadge svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
@@ -330,6 +330,7 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .note.warn { background: color-mix(in srgb, var(--payment) 9%, transparent); border-color: color-mix(in srgb, var(--payment) 25%, transparent); color: color-mix(in srgb, var(--payment) 75%, var(--text)); }
 .code-tabs { border-radius: 14px; background: var(--code-bg); border: 1px solid rgba(255, 255, 255, .06); overflow: hidden; }
 .ct-bar { display: flex; align-items: center; gap: 2px; padding: 6px; border-bottom: 1px solid rgba(255, 255, 255, .06); overflow-x: auto; scrollbar-width: none; }
+.ct-formats { display: contents; }
 .ct-bar button { flex: none; height: 28px; padding: 0 10px; border: 0; border-radius: 8px; background: transparent; color: #8a91a0; font-size: 12.5px; }
 .ct-bar button[aria-selected="true"] { background: rgba(255, 255, 255, .1); color: #fff; }
 .ct-copy { margin-left: auto !important; color: #c9ced8 !important; border: 1px solid rgba(255, 255, 255, .12) !important; }
