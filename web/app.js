@@ -16,11 +16,6 @@ const scheduleRender = () => {
   renderFrame = requestAnimationFrame(() => { renderFrame = 0; render(); });
 };
 
-init().catch((e) => {
-  console.error(e);
-  $('#directory-status').textContent = '筛选暂时不可用，可直接点卡片查看官方接入。';
-});
-
 async function init() {
   wireChrome();
   const embedded = $('#catalog-data');
@@ -556,3 +551,9 @@ function renderForAi() {
     .replace(/(:\s*)(&quot;.*?&quot;)/g, '$1<span class="s">$2</span>')
     .replace(/^(\s+)(&quot;.*?&quot;)(,?)$/gm, '$1<span class="s">$2</span>$3');
 }
+
+// Bundled data makes init synchronous: start after scene/search constants exist.
+init().catch((e) => {
+  console.error(e);
+  $('#directory-status').textContent = '筛选暂时不可用，可直接点卡片查看官方接入。';
+});
