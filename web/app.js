@@ -52,6 +52,7 @@ async function init() {
   render();
   setTimeout(() => $('#groups').classList.remove('intro'), 1600);
   buildOrbit();
+  buildDemo();
   renderForAi();
   openFromHash();
   addEventListener('hashchange', openFromHash);
@@ -108,7 +109,7 @@ function wireChrome() {
   });
 
   const groups = $('#groups');
-  groups.addEventListener('click', (e) => { const c = e.target.closest('.card'); if (c) openSheet(c.dataset.id); });
+  groups.addEventListener('click', (e) => { const c = e.target.closest('.card'); if (c) openFromCard(c); });
   let raf = 0;
   groups.addEventListener('pointermove', (e) => {
     if (raf || e.pointerType === 'touch') return;
@@ -281,18 +282,20 @@ function render() {
 /* ── Detail sheet ────────────────────────────────────── */
 function snippets(s) {
   const out = [];
+  const shell = (value) => `'${String(value).replaceAll("'", "'\\''")}'`;
   const mcp = s.install?.mcp;
   if (mcp) {
     if (mcp.transport === 'stdio') {
       const env = Object.entries(mcp.env ?? {});
-      const cmd = [mcp.command, ...(mcp.args ?? [])].join(' ');
-      out.push(['Claude Code', `claude mcp add ${s.id}${env.map(([k, v]) => ` -e ${k}=${v}`).join('')} -- ${cmd}`]);
+      const cmd = [mcp.command, ...(mcp.args ?? [])].map(shell).join(' ');
+      out.push(['Claude Code', `claude mcp add${env.map(([k, v]) => ` --env ${shell(`${k}=${v}`)}`).join('')} --transport stdio ${shell(s.id)} -- ${cmd}`]);
       out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { command: mcp.command, args: mcp.args ?? [], ...(env.length ? { env: mcp.env } : {}) } } }, null, 2)]);
       out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\ncommand = ${JSON.stringify(mcp.command)}\nargs = ${JSON.stringify(mcp.args ?? [])}` + (env.length ? `\n\n[mcp_servers.${s.id}.env]\n${env.map(([k, v]) => `${k} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     } else {
-      out.push(['Claude Code', `claude mcp add --transport ${mcp.transport} ${s.id} "${mcp.url}"`]);
-      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url } } }, null, 2)]);
-      out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}`]);
+      const headers = Object.entries(mcp.headers ?? {});
+      out.push(['Claude Code', `claude mcp add --transport ${mcp.transport}${headers.map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} ${shell(s.id)} ${shell(mcp.url)}`]);
+      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url, ...(headers.length ? { headers: mcp.headers } : {}) } } }, null, 2)]);
+      if (mcp.transport === 'http') out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}` + (headers.length ? `\n\n[mcp_servers.${s.id}.http_headers]\n${headers.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     }
   }
   if (s.install?.cli) out.push(['CLI', s.install.cli]);
@@ -319,7 +322,7 @@ function openSheet(id) {
     ? `<div class="code-tabs">
         <div class="ct-bar" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}">${esc(label)}</button>`).join('')}<button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
         <pre><code>${esc(snips[0][1])}</code></pre>
-      </div>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}`
+      </div>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}`
     : '<p class="note">一键配置还在整理中，先按官方文档接入。</p>';
 
   const box = $('#sheet-in');
@@ -363,6 +366,21 @@ function openSheet(id) {
 function openFromHash() {
   const m = location.hash.match(/^#s-([a-z0-9-]+)$/);
   if (m && byId?.has(m[1])) openSheet(m[1]);
+}
+
+// Card logo morphs into the sheet logo where View Transitions are supported.
+function openFromCard(card) {
+  const id = card.dataset.id;
+  const from = card.querySelector('.logo');
+  if (!document.startViewTransition || reduced || !from) return openSheet(id);
+  from.style.viewTransitionName = 'svc-logo';
+  const vt = document.startViewTransition(() => {
+    from.style.viewTransitionName = '';
+    openSheet(id);
+    const to = $('#sheet .s-id .logo');
+    if (to) to.style.viewTransitionName = 'svc-logo';
+  });
+  vt.finished.finally(() => { const to = $('#sheet .s-id .logo'); if (to) to.style.viewTransitionName = ''; });
 }
 
 /* ── Command palette ─────────────────────────────────── */
@@ -568,6 +586,153 @@ function buildOrbit() {
   document.addEventListener('visibilitychange', () => setRunning(visible && !document.hidden));
   resize();
   setRunning(true);
+}
+
+/* ── Demo: one sentence → Agent calls official connectors ─ */
+const SCENES = [
+  {
+    id: 'amap', title: '查路线',
+    ask: '下午三点从望京去首都机场 T3，开车要多久？',
+    steps: [
+      { tool: 'amap', act: '路线规划', args: '起点 望京 · 终点 首都机场 T3 · 驾车' },
+      { card: { svc: 'amap', title: '驾车路线', rows: [['约 38 分钟', ' · 26 公里'], ['推荐', '：机场高速，途经京密路'], ['14:20 出发', '，可避开晚高峰']] } },
+    ],
+    reply: '建议 14:20 出发，走机场高速大约 38 分钟。要我帮你设个出发提醒吗？',
+  },
+  {
+    id: 'feishu', title: '写文档',
+    ask: '把今天周会的要点整理成飞书文档，发到产品群。',
+    steps: [
+      { tool: 'feishu', act: '创建文档', args: '标题「11 月 4 日产品周会纪要」' },
+      { tool: 'feishu', act: '发送消息', args: '群聊 产品组 · 附文档链接' },
+      { card: { svc: 'feishu', title: '11 月 4 日产品周会纪要', rows: [['3 项', '决议'], ['5 项', '待办，已 @ 负责人'], ['已发送', '到「产品组」']] } },
+    ],
+    reply: '文档建好了，也发到了产品群，待办都 @ 了对应的同事。',
+  },
+  {
+    id: 'luckin', title: '点咖啡',
+    ask: '老样子，帮我点一杯生椰拿铁，送到公司。',
+    steps: [
+      { tool: 'luckin', act: '查询门店', args: '公司附近 · 可配送' },
+      { tool: 'luckin', act: '生成订单', args: '生椰拿铁 · 大杯 · 少冰 · 配送' },
+      { confirm: { svc: 'luckin', title: '等你确认付款', rows: [['生椰拿铁', ' · 大杯 · 少冰'], ['配送到', '公司 · 约 25 分钟']], price: '¥ 16.90' } },
+    ],
+    reply: '付好了，预计 25 分钟送到。',
+  },
+];
+
+function buildDemo() {
+  const tabs = $('#demo-tabs');
+  const body = $('#demo-body');
+  const input = $('#demo-input');
+  const scenes = SCENES.filter((s) => byId.has(s.id));
+  if (!scenes.length) return;
+  tabs.innerHTML = scenes.map((sc, i) => {
+    const s = byId.get(sc.id);
+    return `<button class="dtab" type="button" role="tab" aria-selected="false" data-i="${i}" style="--brand:${esc(s.color || 'var(--a2)')}">
+      ${logoHtml(s)}<span><b>${esc(sc.title)}</b><small><i class="dot ${esc(s.risk)}"></i><span>${esc(s.name)} · </span>${esc(L.risk[s.risk])}</small></span><i class="bar"></i></button>`;
+  }).join('');
+
+  let cur = 0, run = 0, visible = false;
+  const ok = (id) => id === run;
+  const wait = (ms, id) => new Promise((res, rej) => setTimeout(() => (ok(id) ? res() : rej(0)), reduced ? 0 : ms));
+  const add = (html) => {
+    body.insertAdjacentHTML('beforeend', html);
+    while (body.scrollHeight > body.clientHeight && body.children.length > 1) body.firstElementChild.remove();
+    return body.lastElementChild;
+  };
+  const toolHtml = (st) => {
+    const s = byId.get(st.tool);
+    return `<div class="d-tool d-in">${logoHtml(s)}<b>${esc(s.name)} · ${esc(st.act)}</b><code>${esc(st.args)}</code><span class="st"><i class="spin"></i></span></div>`;
+  };
+  const rowsHtml = (rows) => `<ul>${rows.map(([a, b]) => `<li><b>${esc(a)}</b>${esc(b)}</li>`).join('')}</ul>`;
+  const typeInto = async (el, text, id, speed) => {
+    if (reduced) { el.textContent = text; return; }
+    for (let i = 1; i <= text.length; i++) {
+      if (!ok(id)) throw 0;
+      el.textContent = text.slice(0, i);
+      await wait(speed, id);
+    }
+  };
+
+  async function play(i) {
+    const id = ++run;
+    cur = i;
+    const sc = scenes[i];
+    const s = byId.get(sc.id);
+    $$('.dtab', tabs).forEach((b, k) => {
+      b.setAttribute('aria-selected', k === i);
+      b.tabIndex = k === i ? 0 : -1;
+      b.classList.toggle('static', reduced);
+      const bar = $('.bar', b);
+      bar.style.animation = 'none';
+      void bar.offsetWidth;
+      bar.style.animation = '';
+    });
+    body.style.setProperty('--brand', s.color || 'var(--a2)');
+    body.innerHTML = '';
+    input.textContent = '';
+    try {
+      await wait(500, id);
+      await typeInto(input, sc.ask, id, 45);
+      await wait(350, id);
+      input.textContent = '';
+      add(`<div class="d-me d-in">${esc(sc.ask)}</div>`);
+      await wait(400, id);
+      const think = add('<div class="d-ai d-in"><span class="ai-avatar"></span><span class="d-think"><i></i><i></i><i></i></span></div>');
+      await wait(900, id);
+      think.remove();
+      for (const st of sc.steps) {
+        if (st.tool) {
+          const el = add(toolHtml(st));
+          await wait(1100, id);
+          $('.st', el).innerHTML = `<span class="ok">${ICON.check}</span>`;
+          await wait(300, id);
+        } else if (st.card) {
+          const c = byId.get(st.card.svc);
+          add(`<div class="d-card d-in"><h5>${logoHtml(c)}${esc(st.card.title)}</h5>${rowsHtml(st.card.rows)}</div>`);
+          await wait(900, id);
+        } else if (st.confirm) {
+          const c = byId.get(st.confirm.svc);
+          const el = add(`<div class="d-card confirm d-in"><h5>${logoHtml(c)}${esc(st.confirm.title)}</h5>${rowsHtml(st.confirm.rows)}
+            <div class="pay"><span>实付</span><b>${esc(st.confirm.price)}</b></div><div class="acts"><span>取消</span><span class="yes">确认付款</span></div></div>`);
+          await wait(1800, id);
+          const yes = $('.yes', el);
+          yes.classList.add('press');
+          await wait(180, id);
+          yes.classList.remove('press');
+          yes.classList.add('done');
+          yes.textContent = '已确认 ✓';
+          await wait(600, id);
+        }
+      }
+      const r = add('<div class="d-ai d-in"><span class="ai-avatar"></span><span></span></div>');
+      await typeInto(r.lastElementChild, sc.reply, id, 30);
+      if (reduced) return;
+      await wait(3200, id);
+      if (visible) play((i + 1) % scenes.length);
+    } catch { /* superseded by a newer run */ }
+  }
+
+  tabs.addEventListener('click', (e) => { const b = e.target.closest('.dtab'); if (b) play(+b.dataset.i); });
+  tabs.addEventListener('keydown', (e) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+    e.preventDefault();
+    const n = (cur + (/Right|Down/.test(e.key) ? 1 : scenes.length - 1)) % scenes.length;
+    $$('.dtab', tabs)[n].focus();
+    play(n);
+  });
+  const syncPlayback = () => {
+    const active = visible && !document.hidden;
+    $$('.dtab .bar', tabs).forEach((bar) => { bar.style.animationPlayState = active ? 'running' : 'paused'; });
+    if (active) play(cur);
+    else run++;
+  };
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    syncPlayback();
+  }, { threshold: 0.35 }).observe($('.demo-win'));
+  document.addEventListener('visibilitychange', syncPlayback);
 }
 
 /* ── For AI section ──────────────────────────────────── */
