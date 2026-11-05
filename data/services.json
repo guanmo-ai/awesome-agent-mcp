@@ -512,7 +512,8 @@
       "category": "office",
       "summary": "消息、文档、表格、日志、日历与待办的查询和操作。",
       "types": [
-        "mcp"
+        "mcp",
+        "cli"
       ],
       "url": "https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview",
       "homepage": "https://www.dingtalk.com/",
@@ -549,7 +550,16 @@
         ],
         "verify": "检查已发布工具列表，再查询当前账号可访问的一条文档或待办并与钉钉中内容核对。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "cli": "curl -fsSL https://gitee.com/DingTalk-Real-AI/dingtalk-workspace-cli/raw/main/scripts/install.sh | DWS_GITEE_REPO=DingTalk-Real-AI/dingtalk-workspace-cli sh"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://open.dingtalk.com/dingtalk-dev/wiki"
+        }
+      ]
     },
     {
       "id": "wecom",
@@ -658,7 +668,28 @@
         "note": "官方 MCP/CLI 文档确认 Skill 封装包、会议写操作和 OAuth CLI。"
       },
       "nameEn": "Tencent Meeting",
-      "summaryEn": "Schedule and manage meetings, and retrieve attendance, recordings, transcripts, and minutes."
+      "summaryEn": "Schedule and manage meetings, and retrieve attendance, recordings, transcripts, and minutes.",
+      "setup": {
+        "requirements": "需腾讯会议账号和 OAuth2 授权；会议、录制等权限与套餐按账号核实。",
+        "steps": [
+          {
+            "text": "按官方 npm 命令安装 tmeet，运行 tmeet auth login 完成本机授权。",
+            "url": "https://github.com/TencentCloud/tencentmeeting-cli"
+          },
+          {
+            "text": "如需 Skill，按官方仓库安装并重载 Agent；已有 CLI 无需重复配置其他接入。",
+            "url": "https://github.com/TencentCloud/tencentmeeting-cli"
+          }
+        ],
+        "verify": "执行 tmeet meeting list，只查询已有会议并核对结果。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloud/tencentmeeting-cli"
+        }
+      ]
     },
     {
       "id": "wps",
@@ -698,13 +729,28 @@
             "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
           },
           {
-            "text": "选择支持 MCP 的客户端，按指南从工具列表选择对应端点，在请求头配置用户访问凭证。",
+            "text": "下方配置采用官方日历 MCP 2.0 示例；在请求头填用户 access token。其他工具需按工具列表换端点，不是通用文档服务地址。",
             "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
           }
         ],
         "verify": "先确认客户端显示服务与工具列表，再使用日历只读查询核对授权用户已有日程；不要以创建日程作为首测。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://openapi.wps.cn/mcp/v2/kso-calendar/message",
+          "headers": {
+            "Authorization": "Bearer <你的WPS用户AccessToken>"
+          }
+        }
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
+        }
+      ]
     },
     {
       "id": "kdocs",
@@ -785,7 +831,28 @@
         "note": "语雀 GitHub 官方组织主页链接 yuque.com，仓库提供 MCP 配置和读写工具。"
       },
       "nameEn": "Yuque",
-      "summaryEn": "Read and write knowledge bases and documents."
+      "summaryEn": "Read and write knowledge bases and documents.",
+      "setup": {
+        "requirements": "需 Node.js、个人或团队语雀 API Token；空间绑定的团队 Token 还需配置空间 host。费用和 Token 权限以账号为准。",
+        "steps": [
+          {
+            "text": "在语雀开发者设置创建 Token；团队空间账号同时确认所属 host。",
+            "url": "https://github.com/yuque/yuque-mcp-server"
+          },
+          {
+            "text": "按官方 README 的客户端方式安装，或使用下方 npx 配置；在本地填写 Token。",
+            "url": "https://github.com/yuque/yuque-mcp-server"
+          }
+        ],
+        "verify": "列出自己可访问的知识库，核对返回名称；先不写入文档。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/yuque/yuque-mcp-server"
+        }
+      ]
     },
     {
       "id": "qq-mail",
@@ -815,7 +882,28 @@
         "note": "腾讯已验证官方组织下的 AgentlyMail 仓库；服务为 QQ 邮箱团队提供的独立 Agent 邮箱。"
       },
       "nameEn": "Agently Mail (QQ Mail Team)",
-      "summaryEn": "Use an agent mailbox to send, receive, search, and organize email and manage attachments."
+      "summaryEn": "Use an agent mailbox to send, receive, search, and organize email and manage attachments.",
+      "setup": {
+        "requirements": "需安装 Agently CLI 并授权邮箱；这是 Agent 专用邮箱服务，不能直接当作原 QQ 邮箱的通用读写入口。",
+        "steps": [
+          {
+            "text": "按官方 npm 命令安装 CLI，运行 agently-cli auth login 完成本地授权。",
+            "url": "https://github.com/Tencent/AgentlyMail"
+          },
+          {
+            "text": "按仓库说明安装 Skill，重载 Agent。",
+            "url": "https://github.com/Tencent/AgentlyMail"
+          }
+        ],
+        "verify": "运行 agently-cli +me 核对当前身份，再查询已有邮件列表。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/Tencent/AgentlyMail"
+        }
+      ]
     },
     {
       "id": "weread",
@@ -1027,7 +1115,21 @@
         ],
         "verify": "在 Agent 中输入“列出我有道云笔记中的笔记”，返回账号的笔记列表后再核对。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "skill": "https://artifact.lx.netease.com/download/youdaonote-cli/youdaonote-skill-latest.zip",
+        "cli": "curl -fsSL https://artifact.lx.netease.com/download/youdaonote-cli/install.sh | bash"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://note.youdao.com/help-center/cli-install-guide.html"
+        },
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://note.youdao.com/help-center/skill-install-guide.html"
+        }
+      ]
     },
     {
       "id": "quark-drive",
@@ -1277,7 +1379,28 @@
         "note": "天眼查 GitHub 组织主页链接官网；CLI 文档明确官方 MCP 端点及鉴权。"
       },
       "nameEn": "Tianyancha",
-      "summaryEn": "Look up company registration and corporate relationships."
+      "summaryEn": "Look up company registration and corporate relationships.",
+      "setup": {
+        "requirements": "需 Node.js 18+；可使用官方 OAuth 登录或已有天眼查 API Token，接口额度和费用以授权账户为准。",
+        "steps": [
+          {
+            "text": "按官方 npm 命令安装 tyc-cli，运行 tyc login 完成浏览器授权；已有 API Token 可按 tyc init 路径配置。",
+            "url": "https://github.com/tyc-tech/tyc-cli"
+          },
+          {
+            "text": "需要 MCP 时按官方地址添加客户端并保留认证头；凭据只在本地保存。",
+            "url": "https://github.com/tyc-tech/tyc-cli"
+          }
+        ],
+        "verify": "用一个公开企业名称做只读查询，核对企业名称及返回来源。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/tyc-tech/tyc-cli"
+        }
+      ]
     },
     {
       "id": "douyin-open",
@@ -1558,7 +1681,28 @@
         "note": "MiniMax 官方组织主页链接官网；MCP 与推荐 CLI 仓库明确工具、Skill 和接入。"
       },
       "nameEn": "MiniMax",
-      "summaryEn": "Synthesize and clone voices, generate images and videos, and use text and search via CLI."
+      "summaryEn": "Synthesize and clone voices, generate images and videos, and use text and search via CLI.",
+      "setup": {
+        "requirements": "MCP 需 uv 与 MiniMax API Key；国内站 Key 须匹配 api.minimaxi.com，国际站使用各自的 Key 与主机。模型调用可能计费。",
+        "steps": [
+          {
+            "text": "按官方 README 准备 uv，并在对应站点创建 API Key。",
+            "url": "https://github.com/MiniMax-AI/MiniMax-MCP"
+          },
+          {
+            "text": "配置下方环境变量，选择可写的本地输出目录；需要 CLI 时按官方 CLI 文档安装。",
+            "url": "https://github.com/MiniMax-AI/MiniMax-MCP"
+          }
+        ],
+        "verify": "先列出工具确认连接；生成语音或图片前确认模型费用，不以实际生成作为免费只读首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/MiniMax-AI/MiniMax-MCP"
+        }
+      ]
     },
     {
       "id": "netease-music",
@@ -2131,7 +2275,28 @@
         "note": "七牛官方开发文档发布 MCP 用法并链接官方 qiniu/qiniu-mcp-server 仓库。"
       },
       "nameEn": "Qiniu Cloud",
-      "summaryEn": "Read and write object storage, process images, refresh or prefetch CDN content, and manage live streams."
+      "summaryEn": "Read and write object storage, process images, refresh or prefetch CDN content, and manage live streams.",
+      "setup": {
+        "requirements": "需 Python 3.12+、uv，以及目标七牛资源的 AK/SK、地域、S3 Endpoint 和 Bucket；存储和流量费用按账号确认。",
+        "steps": [
+          {
+            "text": "准备自己已授权的存储桶、地域与 S3 Endpoint。",
+            "url": "https://github.com/qiniu/qiniu-mcp-server"
+          },
+          {
+            "text": "把凭据在本地填入下方环境变量，按官方客户端示例启动 MCP。",
+            "url": "https://github.com/qiniu/qiniu-mcp-server"
+          }
+        ],
+        "verify": "只读列出获授权存储桶或文件，核对资源所属账号与地域。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/qiniu/qiniu-mcp-server"
+        }
+      ]
     },
     {
       "id": "zhipu",
@@ -2273,7 +2438,28 @@
         "skill": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
       },
       "nameEn": "Tencent Lexiang",
-      "summaryEn": "Search and edit knowledge documents and smart tables, manage files, and import meeting materials."
+      "summaryEn": "Search and edit knowledge documents and smart tables, manage files, and import meeting materials.",
+      "setup": {
+        "requirements": "需授权乐享企业账号。内置连接器可走 OAuth；其他客户端需 COMPANY_FROM 和乐享 Token，费用按企业订购核实。",
+        "steps": [
+          {
+            "text": "客户端若内置乐享，直接在集成入口授权；不要同时手写可能被覆盖的 MCP 配置。",
+            "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
+          },
+          {
+            "text": "其他客户端登录 lexiangla.com/mcp 获取企业标识与 Token，填入下方 HTTP 配置。",
+            "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
+          }
+        ],
+        "verify": "先执行 whoami 核对身份，再搜索一份有权限的已有文档。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
+        }
+      ]
     },
     {
       "id": "textin",
@@ -2313,7 +2499,28 @@
         }
       },
       "nameEn": "TextIn",
-      "summaryEn": "Recognize text in images and documents, extract fields and tables, and convert documents to Markdown."
+      "summaryEn": "Recognize text in images and documents, extract fields and tables, and convert documents to Markdown.",
+      "setup": {
+        "requirements": "需 Node.js、TextIn 账号的 APP_ID 与 APP_SECRET；识别与转换额度按平台计费说明核实。",
+        "steps": [
+          {
+            "text": "注册 TextIn，在官方控制台取得 APP_ID 和 APP_SECRET。",
+            "url": "https://github.com/intsig-textin/textin-mcp"
+          },
+          {
+            "text": "将密钥填入下方本地环境变量，按官方 README 添加 MCP。",
+            "url": "https://github.com/intsig-textin/textin-mcp"
+          }
+        ],
+        "verify": "先列出工具；确认额度后用一份无敏感信息的小文档核对识别结果，不把付费处理称为免费首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/intsig-textin/textin-mcp"
+        }
+      ]
     },
     {
       "id": "edgeone-makers",
@@ -2392,7 +2599,27 @@
         ],
         "verify": "先让 MCP 读取已有接口文档并核对项目和接口名称；CLI 测试仅在确认环境与用例不会产生意外写入后运行。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "apifox-mcp-server@latest",
+            "--project=<你的项目ID>"
+          ],
+          "env": {
+            "APIFOX_ACCESS_TOKEN": "<你的Apifox访问令牌>"
+          }
+        }
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://docs.apifox.com/6327888m0"
+        }
+      ]
     },
     {
       "id": "caiyun-weather",
@@ -2426,7 +2653,28 @@
       },
       "appStoreId": 847764912,
       "nameEn": "Caiyun (ColorfulClouds) Weather",
-      "summaryEn": "Query current weather, hourly forecasts, air quality, and weather alerts."
+      "summaryEn": "Query current weather, hourly forecasts, air quality, and weather alerts.",
+      "setup": {
+        "requirements": "需彩云天气开发者 API Key；接口额度、天气权限和费用以平台账号为准。",
+        "steps": [
+          {
+            "text": "在彩云天气开发者平台注册并申请 API Key。",
+            "url": "https://github.com/caiyunapp/mcp-caiyun-weather"
+          },
+          {
+            "text": "按官方远程服务配置，把 Key 填到 X-Caiyun-API-Key 请求头。",
+            "url": "https://github.com/caiyunapp/mcp-caiyun-weather"
+          }
+        ],
+        "verify": "查询一个公开地点的天气，核对位置和时间；调用前确认剩余额度。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/caiyunapp/mcp-caiyun-weather"
+        }
+      ]
     },
     {
       "id": "variflight",
@@ -2463,7 +2711,28 @@
       },
       "appStoreId": 498818574,
       "nameEn": "VariFlight",
-      "summaryEn": "Query flight status, connections, fares, airport weather, and aircraft positions."
+      "summaryEn": "Query flight status, connections, fares, airport weather, and aircraft positions.",
+      "setup": {
+        "requirements": "需飞常准 API Key；支持 OAuth 2.1 的客户端也可按文档登录。试用额度不等于永久免费。",
+        "steps": [
+          {
+            "text": "在 ai.variflight.com 注册并从控制台取得 Key，或按支持的 OAuth 流程授权。",
+            "url": "https://github.com/variflight/variflight-mcp"
+          },
+          {
+            "text": "按官方远程 MCP 地址配置 X-API-Key 请求头，保留完整服务路径。",
+            "url": "https://github.com/variflight/variflight-mcp"
+          }
+        ],
+        "verify": "查询一趟已知航班的状态，核对航班号和日期，并确认账号调用额度。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/variflight/variflight-mcp"
+        }
+      ]
     },
     {
       "id": "tuniu",
@@ -2603,7 +2872,28 @@
         "skill": "https://github.com/opendatalab/MinerU-Ecosystem/tree/main/skills"
       },
       "nameEn": "MinerU",
-      "summaryEn": "Parse PDFs, Office files, images, and web pages into Markdown and structured data."
+      "summaryEn": "Parse PDFs, Office files, images, and web pages into Markdown and structured data.",
+      "setup": {
+        "requirements": "需 uv；标准解析需 API Token，Flash 轻量路径有独立限制。文件大小、页数、额度以官方当前说明为准。",
+        "steps": [
+          {
+            "text": "按生态仓库的 MCP 入口阅读对应配置，先确定标准或轻量解析路径。",
+            "url": "https://github.com/opendatalab/MinerU-Ecosystem"
+          },
+          {
+            "text": "添加下方本地 MCP 配置；标准路径按文档在本地配置 Token，勿把 Flash 限制套到标准解析。",
+            "url": "https://github.com/opendatalab/MinerU-Ecosystem"
+          }
+        ],
+        "verify": "先列出工具，再按额度许可用公开的小 PDF 验证输出 Markdown；不上传私人文档。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/opendatalab/MinerU-Ecosystem"
+        }
+      ]
     },
     {
       "id": "dida",
@@ -3075,7 +3365,28 @@
         "skill": "https://github.com/antvis/chart-visualization-skills"
       },
       "nameEn": "AntV",
-      "summaryEn": "Turn structured data into charts and choose visualizations for analytical tasks."
+      "summaryEn": "Turn structured data into charts and choose visualizations for analytical tasks.",
+      "setup": {
+        "requirements": "需能运行 npx 的 Node.js 环境；图表渲染与本地资源使用按官方配置确认。",
+        "steps": [
+          {
+            "text": "按官方 README 添加 npx @antv/mcp-server-chart 的 MCP 配置。",
+            "url": "https://github.com/antvis/mcp-server-chart"
+          },
+          {
+            "text": "需要图表选择指导时按官方 Skill 仓库安装，重载 Agent。",
+            "url": "https://github.com/antvis/mcp-server-chart"
+          }
+        ],
+        "verify": "先列出图表工具，再用简单示例数据生成图表并核对类型与数值。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/antvis/mcp-server-chart"
+        }
+      ]
     },
     {
       "id": "metaso",
@@ -3356,7 +3667,28 @@
         "skill": "https://github.com/TencentCloudBase/cloudbase-skills"
       },
       "nameEn": "Tencent CloudBase",
-      "summaryEn": "Manage cloud databases, functions, storage, and app deployments, with development workflows."
+      "summaryEn": "Manage cloud databases, functions, storage, and app deployments, with development workflows.",
+      "setup": {
+        "requirements": "需腾讯云 CloudBase 账号及环境权限；支持的远程客户端走 OAuth，底层数据库、函数和部署费用独立核实。",
+        "steps": [
+          {
+            "text": "按官方远程 MCP 指南添加服务并完成 OAuth 授权。",
+            "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit"
+          },
+          {
+            "text": "确认当前云环境；按需要选择官方 Skill 或客户端插件，避免重复接入。",
+            "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit"
+          }
+        ],
+        "verify": "先读取 initialize 给出的首个只读调用指引，查询已有环境，核对环境 ID。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit"
+        }
+      ]
     },
     {
       "id": "greptimedb",
@@ -3435,7 +3767,27 @@
         ],
         "verify": "客户端能列出工具后，先查询实例的集合列表。连接失败先查实例地址、网络和认证；尚无实例时不能宣称接入完成。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "<你的uv绝对路径>",
+          "args": [
+            "--directory",
+            "<你的仓库绝对路径>/src/mcp_server_milvus",
+            "run",
+            "server.py",
+            "--milvus-uri",
+            "<你的MilvusURI>"
+          ]
+        }
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/zilliztech/mcp-server-milvus"
+        }
+      ]
     },
     {
       "id": "apisix",
@@ -3477,7 +3829,28 @@
         }
       },
       "nameEn": "API7 APISIX",
-      "summaryEn": "Query and manage API gateway routes, upstreams, plugins, consumers, and certificate settings."
+      "summaryEn": "Query and manage API gateway routes, upstreams, plugins, consumers, and certificate settings.",
+      "setup": {
+        "requirements": "需已运行且可访问的 APISIX、Admin API 地址与管理员 Key，以及 Node.js/npx；不是仅安装 MCP 就会部署网关。",
+        "steps": [
+          {
+            "text": "先按 APISIX 官方入门配置网关，确认 Admin API 的访问地址和权限。",
+            "url": "https://github.com/api7/apisix-mcp"
+          },
+          {
+            "text": "按下方环境变量填写实际网关端口、Admin API 路径和 Key，不沿用公开示例密钥。",
+            "url": "https://github.com/api7/apisix-mcp"
+          }
+        ],
+        "verify": "只读列出已有路由或上游配置，核对网关；不创建或删除路由作首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/api7/apisix-mcp"
+        }
+      ]
     },
     {
       "id": "higress",
@@ -3547,7 +3920,28 @@
         }
       },
       "nameEn": "Espressif ESP RainMaker",
-      "summaryEn": "Query and control IoT devices, set device parameters, and manage automation schedules."
+      "summaryEn": "Query and control IoT devices, set device parameters, and manage automation schedules.",
+      "setup": {
+        "requirements": "本地部署需 Python 3.10+、uv，并先运行 esp-rainmaker-cli login；账号中应已有设备，MCP 不负责设备配网。远程路径按官网授权。",
+        "steps": [
+          {
+            "text": "选择官方远程服务并完成客户端授权，或按仓库说明准备本地运行环境。",
+            "url": "https://github.com/espressif/esp-rainmaker-mcp"
+          },
+          {
+            "text": "本地路径先登录 RainMaker CLI 并确认已有设备，再添加对应 MCP 配置。",
+            "url": "https://github.com/espressif/esp-rainmaker-mcp"
+          }
+        ],
+        "verify": "查询账号的设备列表并核对名称，不切换电源或修改设备参数。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/espressif/esp-rainmaker-mcp"
+        }
+      ]
     },
     {
       "id": "tidb",
@@ -3666,7 +4060,28 @@
         }
       },
       "nameEn": "Tencent TAPD",
-      "summaryEn": "Query and manage requirements, tasks, bugs, iterations, and comments."
+      "summaryEn": "Query and manage requirements, tasks, bugs, iterations, and comments.",
+      "setup": {
+        "requirements": "需 uv，以及 TAPD 个人访问令牌或 API 账号密码二选一；可见项目受账号权限限制。",
+        "steps": [
+          {
+            "text": "在 TAPD 个人设置创建访问令牌并在本地保存。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd"
+          },
+          {
+            "text": "按官方下方 uvx 配置添加服务；只有确实需发送企业微信消息时才配置可选 webhook。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd"
+          }
+        ],
+        "verify": "只读查询已有项目或需求列表，核对项目身份及返回内容。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd"
+        }
+      ]
     },
     {
       "id": "tencent-tca",
@@ -3710,7 +4125,28 @@
         }
       },
       "nameEn": "Tencent Cloud Code Analysis (TCA)",
-      "summaryEn": "Run code analysis and query code quality, security defects, and analysis reports."
+      "summaryEn": "Run code analysis and query code quality, security defects, and analysis reports.",
+      "setup": {
+        "requirements": "需 TCA 用户名与个人令牌；本地开发文档要求 Node.js 22+，项目访问受账号权限限制。",
+        "steps": [
+          {
+            "text": "在 TCA 个人中心获取用户名和个人令牌。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tca-mcp-server"
+          },
+          {
+            "text": "按官方 npx 配置填写 TCA_TOKEN、TCA_USER_NAME 并启动 MCP。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tca-mcp-server"
+          }
+        ],
+        "verify": "先查询已有代码分析报告或项目，不启动新的扫描作连通性首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tca-mcp-server"
+        }
+      ]
     },
     {
       "id": "tdesign",
@@ -3746,7 +4182,28 @@
         }
       },
       "nameEn": "Tencent TDesign",
-      "summaryEn": "Retrieve component lists, documentation, DOM structures, and release changes for UI development."
+      "summaryEn": "Retrieve component lists, documentation, DOM structures, and release changes for UI development.",
+      "setup": {
+        "requirements": "需 Node.js/npx；开发文档说明缺少本地组件仓库时可能自动克隆组件源码，先确认工作目录和磁盘空间。",
+        "steps": [
+          {
+            "text": "按官方 README 添加下方 npx 配置。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server"
+          },
+          {
+            "text": "若需本地源码分析，按仓库说明在独立目录准备对应框架组件仓库。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server"
+          }
+        ],
+        "verify": "调用 get-component-list 或读取已知组件文档，核对框架和组件名。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server"
+        }
+      ]
     },
     {
       "id": "coding",
@@ -3786,7 +4243,28 @@
         }
       },
       "nameEn": "Tencent CODING DevOps",
-      "summaryEn": "Manage development projects, work items, repositories, and merge requests."
+      "summaryEn": "Manage development projects, work items, repositories, and merge requests.",
+      "setup": {
+        "requirements": "需 Node.js/npx 与 CODING 个人令牌；只能访问令牌获授权的项目和代码仓库。",
+        "steps": [
+          {
+            "text": "在 CODING 准备仅授予所需项目权限的个人令牌。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/coding_devops_mcp_server"
+          },
+          {
+            "text": "将 CODING_TOKEN 在本地填入下方配置，按官方 README 启动服务。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/coding_devops_mcp_server"
+          }
+        ],
+        "verify": "查询已有项目、工作项或合并请求，核对所属团队；不提交代码或修改状态作首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/coding_devops_mcp_server"
+        }
+      ]
     },
     {
       "id": "dnspod",
@@ -3823,11 +4301,36 @@
           {
             "text": "按官方说明安装 mcp-server-dnspod，再配置 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY；示例使用 uv run，先确认包在该运行环境可找到。",
             "url": "https://cloud.tencent.com/developer/mcp/server/11743"
+          },
+          {
+            "text": "先按官方页面运行 pip install mcp-server-dnspod，再使用下方 uv run 配置；地域应与实际业务一致。",
+            "url": "https://cloud.tencent.com/developer/mcp/server/11743"
           }
         ],
         "verify": "列出工具后查询你已授权的域名或解析记录，核对域名是否正确；不要改解析记录来测试连接。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uv",
+          "args": [
+            "run",
+            "mcp-server-dnspod"
+          ],
+          "env": {
+            "TENCENTCLOUD_SECRET_ID": "<你的SecretId>",
+            "TENCENTCLOUD_SECRET_KEY": "<你的SecretKey>",
+            "TENCENTCLOUD_REGION": "<你的地域>"
+          }
+        }
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11743"
+        }
+      ]
     },
     {
       "id": "hunyuan-image",
@@ -3946,11 +4449,32 @@
           {
             "text": "从指标语义层文档选实际地域的服务 URL，保留 TENCENTCLOUD_SECRET_ID、TENCENTCLOUD_SECRET_KEY、TENCENTCLOUD_REGION 三个请求头；不要混用另一种 WeData Server 的端点及连字符请求头。",
             "url": "https://cloud.tencent.com/document/product/1267/126220"
+          },
+          {
+            "text": "下方 URL 使用官方广州地域示例。若开通其他地域，URL 中的 ap-guangzhou 和 TENCENTCLOUD_REGION 必须一并替换为实际地域。",
+            "url": "https://cloud.tencent.com/document/product/1267/126220"
           }
         ],
         "verify": "先列工具，再查询一个已授权的指标。地域、底层产品或指标权限缺失时会失败，不能把拿到密钥当作开通成功。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "install": {
+        "mcp": {
+          "transport": "http",
+          "url": "https://api-ap-guangzhou.wedata.cloud.tencent.com/api/mcp/v1/metric",
+          "headers": {
+            "TENCENTCLOUD_SECRET_ID": "<你的SecretId>",
+            "TENCENTCLOUD_SECRET_KEY": "<你的SecretKey>",
+            "TENCENTCLOUD_REGION": "<你的WeData地域>"
+          }
+        }
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://cloud.tencent.com/document/product/1267/126220"
+        }
+      ]
     },
     {
       "id": "tencent-cos",
@@ -3989,7 +4513,28 @@
         }
       },
       "nameEn": "Tencent Cloud Object Storage (COS)",
-      "summaryEn": "Upload, download, and search cloud files, and process images, videos, and documents."
+      "summaryEn": "Upload, download, and search cloud files, and process images, videos, and documents.",
+      "setup": {
+        "requirements": "需 Node.js/npx、腾讯云 SecretId/SecretKey、已有 COS Bucket 与 Region；存储、请求及流量费用按资源核实。",
+        "steps": [
+          {
+            "text": "在腾讯云控制台取得具备目标存储桶权限的密钥，确认 Bucket 完整名称与地域。",
+            "url": "https://github.com/Tencent/cos-mcp"
+          },
+          {
+            "text": "按官方下方命令参数填本地凭据，勿把实际密钥提交到仓库。",
+            "url": "https://github.com/Tencent/cos-mcp"
+          }
+        ],
+        "verify": "查询目标桶中的已有文件或元数据，不上传、覆盖或删除文件作首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/Tencent/cos-mcp"
+        }
+      ]
     },
     {
       "id": "tencent-cls",
@@ -4033,7 +4578,28 @@
       },
       "mark": "CLS",
       "nameEn": "Tencent Cloud Log Service (CLS)",
-      "summaryEn": "Search and analyze logs, and query monitoring metrics and alert records."
+      "summaryEn": "Search and analyze logs, and query monitoring metrics and alert records.",
+      "setup": {
+        "requirements": "需 Node.js/npx、腾讯云 API 密钥及日志资源权限；日志查询额度和产品费用按账号确认。",
+        "steps": [
+          {
+            "text": "准备有目标日志权限的 SecretId/SecretKey。",
+            "url": "https://github.com/Tencent/cls-mcp-server"
+          },
+          {
+            "text": "按官方 README 设置 TRANSPORT=stdio 及本地环境变量；时区应与业务查询一致。",
+            "url": "https://github.com/Tencent/cls-mcp-server"
+          }
+        ],
+        "verify": "查询已有日志主题或一小段日志，核对地域、主题和时间范围。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/Tencent/cls-mcp-server"
+        }
+      ]
     },
     {
       "id": "volc-bytehouse",
@@ -4078,7 +4644,28 @@
         }
       },
       "nameEn": "Volcengine ByteHouse",
-      "summaryEn": "Inspect databases and tables, query data, and execute DML and DDL statements."
+      "summaryEn": "Inspect databases and tables, query data, and execute DML and DDL statements.",
+      "setup": {
+        "requirements": "需 uv、可访问的 ByteHouse 实例和数据库账号；凭据权限、网络及实例费用按部署确认。",
+        "steps": [
+          {
+            "text": "按官方仓库准备实例主机、端口、账号密码与 TLS 设置。",
+            "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse"
+          },
+          {
+            "text": "填入下方环境变量并用 uvx 启动 MCP，保留安全连接设置。",
+            "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse"
+          }
+        ],
+        "verify": "只读查询数据库或表结构，核对实例；不执行 DDL、DML 验证连接。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse"
+        }
+      ]
     },
     {
       "id": "volc-veimagex",
@@ -4121,7 +4708,28 @@
         }
       },
       "nameEn": "Volcengine veImageX",
-      "summaryEn": "Query and upload image assets, generate images, enhance quality, expand images, and recognize text."
+      "summaryEn": "Query and upload image assets, generate images, enhance quality, expand images, and recognize text.",
+      "setup": {
+        "requirements": "需 uv、火山引擎 AK/SK、已开通的 veImageX Service ID 和域名；图片处理与模型额度需另行确认。",
+        "steps": [
+          {
+            "text": "在控制台确认服务、地域和授权，准备 Service ID 与域名。",
+            "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex"
+          },
+          {
+            "text": "按下方官方 uvx 配置填写本地环境变量。",
+            "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex"
+          }
+        ],
+        "verify": "先查询已有图片资产或服务信息；生成、处理、上传前确认费用与操作范围。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex"
+        }
+      ]
     },
     {
       "id": "volc-browser-use",
@@ -4160,7 +4768,28 @@
         }
       },
       "nameEn": "Volcengine veFaaS Browser-Use",
-      "summaryEn": "Start cloud browser tasks and query their status and results."
+      "summaryEn": "Start cloud browser tasks and query their status and results.",
+      "setup": {
+        "requirements": "需 uv 和已经部署的 veFaaS Browser-Use 服务 Endpoint；服务计算资源与网络费用按部署确认。",
+        "steps": [
+          {
+            "text": "按官方仓库先部署或取得自己有权限的 Browser-Use 服务入口。",
+            "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use"
+          },
+          {
+            "text": "将 BROWSER_USE_ENDPOINT 填入本地配置，用官方 uvx 命令启动 MCP。",
+            "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use"
+          }
+        ],
+        "verify": "先列出工具，再按已授权服务查询任务状态；不登录第三方账号或提交表单作首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use"
+        }
+      ]
     },
     {
       "id": "xfyun",
@@ -4220,7 +4849,28 @@
         "skill": "https://github.com/modelstudioai/cli"
       },
       "nameEn": "Alibaba Cloud Model Studio",
-      "summaryEn": "Use image and video models, and manage applications, tasks, and platform resources."
+      "summaryEn": "Use image and video models, and manage applications, tasks, and platform resources.",
+      "setup": {
+        "requirements": "需 Node.js 18.17+；原生 MCP、账号操作及训练部署等能力目前要求阿里云中国站账号，国际站不能直接套用。模型调用可能计费。",
+        "steps": [
+          {
+            "text": "按官方 npm 命令安装 bailian-cli，依 CLI 引导完成本地认证。",
+            "url": "https://github.com/modelstudioai/cli"
+          },
+          {
+            "text": "按目标模型或平台操作确认中国站资格、权限和费用，按需安装官方 Skill。",
+            "url": "https://github.com/modelstudioai/cli"
+          }
+        ],
+        "verify": "先查询已有应用或任务，核对账号区域；不发起训练或模型生成作首测。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方接入文档",
+          "url": "https://github.com/modelstudioai/cli"
+        }
+      ]
     },
     {
       "id": "ctrip-business",

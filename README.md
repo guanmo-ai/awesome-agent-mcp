@@ -99,7 +99,7 @@
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
 | [飞书](https://github.com/larksuite/cli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/) | 消息、文档、日历与多维表格。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk/) | 消息、文档、表格、日志、日历与待办的查询和操作。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk/) | 消息、文档、表格、日志、日历与待办的查询和操作。 | MCP · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [企业微信](https://work.weixin.qq.com/nl/index/aicli) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wecom/) | 企业消息、通讯录与办公应用。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [腾讯文档](https://docs.qq.com/open/document/mcp/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/) | 在线文档与表格的读取和编辑。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、免费可用 | ✅ 已核验 |
 | [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/) | 预约和管理会议，读取参会信息、录制、转写与纪要。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
