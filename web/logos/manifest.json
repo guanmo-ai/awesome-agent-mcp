@@ -344,6 +344,11 @@
     "source": "https://avatars.githubusercontent.com/u/39209342?v=4&s=256",
     "size": 256
   },
+  "oceanbase": {
+    "pad": true,
+    "source": "https://mdn.alipayobjects.com/huamei_22khvb/afts/img/A*J1dHTY5oBJQAAAAAQEAAAAgAeiGDAQ/original",
+    "size": 441
+  },
   "oceanengine": {
     "pad": false,
     "source": "appstore",

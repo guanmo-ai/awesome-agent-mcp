@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>93 个服务 · 7 个分类 · 93 个已核验 · 更新于 2026-11-05</sub></p>
+<p align="center"><sub>99 个服务 · 7 个分类 · 99 个已核验 · 更新于 2026-11-05</sub></p>
 
 > **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)
 
@@ -65,7 +65,7 @@
 - [搜索、内容和企业数据](#cat-search)（9）
 - [设计和创作](#cat-design)（8）
 - [支付和金融](#cat-finance)（7）
-- [云和开发](#cat-cloud)（31）
+- [云和开发](#cat-cloud)（37）
 
 <a id="cat-life"></a>
 
@@ -220,6 +220,12 @@
 | [阿里云百炼](https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-bailian/) | 调用图像、视频等模型能力，管理百炼应用、任务和平台资源。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [阿里云日志服务 SLS](https://help.aliyun.com/en/sls/sls-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-sls/) | 检索日志项目与 LogStore，查询分析日志并诊断告警。 | MCP | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
 | [阿里云 DMS Agent 数据网关](https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dms/) | 发现数据库资产、查询权限与知识，按授权执行 SQL。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [阿里云对象存储 OSS](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-oss/) | 通过 MCP 查询 OSS 存储空间列表、属性、容量与文件数量。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [OceanBase](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanbase/) | 执行数据库 SQL，查询租户与诊断信息，并支持全文、向量检索及可选记忆管理。 | MCP | 🟡 可执行操作 | 见独立页说明 | ✅ 已核验 |
+| [腾讯云数据库 PostgreSQL](https://developer.cloud.tencent.com/mcp/server/11830) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-postgresql/) | 查询与管理 PostgreSQL 云实例、数据库、备份及监控，并提供运维诊断 Skill。 | MCP · Skill | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯云向量数据库 VectorDB](https://cloud.tencent.com/developer/mcp/server/11771) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb/) | 查询向量数据库实例列表、安全组和维护时间窗。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯云消息队列 CKafka](https://cloud.tencent.com/developer/mcp/server/11776) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka/) | 查询 CKafka 主题、消息、消费分组及实例信息。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯云数据库 Redis](https://cloud.tencent.com/developer/mcp/server/11755) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis/) | 查询 Redis 实例、备份和慢日志，创建实例及管理参数与安全组。 | MCP | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 

@@ -1,6 +1,6 @@
 # Awesome Agent MCP
 
-> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 93 个，更新于 2026-11-05。
+> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 99 个，更新于 2026-11-05。
 
 结构化数据：https://guanmo-ai.github.io/awesome-agent-mcp/services.json（字段说明见 https://github.com/guanmo-ai/awesome-agent-mcp/blob/main/docs/SCHEMA.md）
 
@@ -278,3 +278,40 @@
 - [阿里云百炼](https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation): 调用图像、视频等模型能力，管理百炼应用、任务和平台资源。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g bailian-cli`；Skill https://github.com/modelstudioai/cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-bailian/)
 - [阿里云日志服务 SLS](https://help.aliyun.com/en/sls/sls-mcp-server): 检索日志项目与 LogStore，查询分析日志并诊断告警。 类型 MCP；权限 只读查询；门槛 需授权账号；已核验；MCP stdio uvx alibabacloud-sls-mcp-proxy@latest --profile default；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-sls/)
 - [阿里云 DMS Agent 数据网关](https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp): 发现数据库资产、查询权限与知识，按授权执行 SQL。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dms/)
+- [阿里云对象存储 OSS](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha): 通过 MCP 查询 OSS 存储空间列表、属性、容量与文件数量。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y alibabacloud-oss-mcp-server@alpha；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-oss/)
+  - 接入前准备：需要可访问 OSS 的阿里云账号与授权凭证，Node.js 不低于 18.20.5。MCP 目前为 Alpha，只提供存储空间信息查询；OSS 资源和请求费用以产品规则为准。
+  - 步骤 1：按官方文档准备具备目标 OSS 查询权限的 AccessKey，在本地填写下方 stdio 配置。 [官方入口](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha)
+  - 步骤 2：使用临时身份凭证时，按文档额外添加 OSS_SECURITY_TOKEN；需要限定地域或端点时再配置 OSS_REGION、OSS_ENDPOINT。 [官方入口](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha)
+  - 步骤 3：将配置加入支持本地 stdio 的 MCP 客户端并启用，服务由 npx 启动；无需把本机 HTTP 示例当成公网端点。 [官方入口](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha)
+  - 如何确认成功：先查看工具列表，再列举授权范围内的存储空间并核对名称；空列表可能表示没有资源，鉴权错误需检查凭证和权限。（指引核对于 2026-11-05，不代表已实测）
+- [OceanBase](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server): 执行数据库 SQL，查询租户与诊断信息，并支持全文、向量检索及可选记忆管理。 类型 MCP；权限 可执行操作；门槛 见接入前准备；已核验；MCP stdio uvx --from oceanbase-mcp oceanbase_mcp_server；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanbase/)
+  - 接入前准备：需已有可连接的 OceanBase 实例及数据库凭证，准备 uv 和 Python 3.10 至 3.12；本地部署与云实例条件不同，云资源费用另按产品规则计算。实验性记忆功能默认关闭，不是基础 SQL 接入的必选项。
+  - 步骤 1：从实例或租户获取地址、端口和数据库凭证；首次验证使用已有只读账号或只读权限，确认客户端能访问数据库网络。 [官方入口](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000005282562)
+  - 步骤 2：按官方 PyPI 路径，将下方 uvx 配置添加到客户端，逐项替换 OB_HOST、OB_PORT、OB_USER、OB_PASSWORD 和 OB_DATABASE；使用受支持的 Python 环境。 [官方入口](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server)
+  - 步骤 3：如改用源码部署，进入仓库的 src/oceanbase_mcp_server 子目录并按其 README 安装，不要将仓库根目录下的其他 MCP 组件当成同一启动入口。 [官方入口](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server)
+  - 如何确认成功：先确认客户端列出 OceanBase 工具，再对已授权数据库执行 SHOW TABLES 并核对结果；写 SQL 和记忆写入需按实际权限与任务授权执行。（指引核对于 2026-11-05，不代表已实测）
+- [腾讯云数据库 PostgreSQL](https://developer.cloud.tencent.com/mcp/server/11830): 查询与管理 PostgreSQL 云实例、数据库、备份及监控，并提供运维诊断 Skill。 类型 MCP · Skill；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；Skill https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-postgresql/)
+  - 接入前准备：本地 stdio 需要 Go 1.25 以上、外网连接，以及具有 PostgreSQL API 权限的腾讯云账号 SecretId、SecretKey 和实例地域代码。实例及云托管资源可能产生费用。
+  - 步骤 1：按官方页面的本地 stdio 步骤克隆仓库并切换到 src/postgres，复制 .env.example 为 .env。 [官方入口](https://developer.cloud.tencent.com/mcp/server/11830)
+  - 步骤 2：按官方示例在 .env 中设置 MCP_TRANSPORT=stdio、MCP_AUTH_MODE=request-credential、MCP_REQUEST_VALIDATE_IDENTITY=true、MCP_REQUEST_CREDENTIAL_SCOPES=pg.read、READ_ONLY=true，以及 MCP_REQUEST_SECRET_ID 和 MCP_REQUEST_SECRET_KEY。 [官方入口](https://developer.cloud.tencent.com/mcp/server/11830)
+  - 步骤 3：将客户端配置的 command 指向本机 src/postgres/scripts/run_stdio.sh 的绝对路径，并按官方 JSON 示例填入凭证环境变量；按工具参数提供实例所在地域代码。 [官方入口](https://developer.cloud.tencent.com/mcp/server/11830)
+  - 步骤 4：如需 Skill，按仓库说明选用巡检、慢查询诊断或运维排障技能包。 [官方入口](https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills)
+  - 如何确认成功：客户端连接后，使用实例所在地域调用 DescribeDBInstances 查询实例列表。（指引核对于 2026-11-05，不代表已实测）
+- [腾讯云向量数据库 VectorDB](https://cloud.tencent.com/developer/mcp/server/11771): 查询向量数据库实例列表、安全组和维护时间窗。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb/)
+  - 接入前准备：需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；VectorDB 实例按产品规则计费。腾讯云托管 MCP 连接后免费调用，不代表实例免费。
+  - 步骤 1：在腾讯云控制台取得有对应产品 API 权限的 SecretId 和 SecretKey。 [官方入口](https://console.cloud.tencent.com/cam/capi)
+  - 步骤 2：登录该服务页面，在 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY 中填写凭证，点击「连接Server」，复制生成的个人 SSE 地址。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11771)
+  - 步骤 3：在 MCP 客户端按 SSE 方式配置该个人地址并保存；调用工具时按要求提供实例所在的 region，例如广州为 ap-guangzhou。 [官方入口](https://cloud.tencent.com/document/product/1212/123193)
+  - 如何确认成功：在客户端查看工具列表，使用所在地域调用 DescribeInstances 查询实例。（指引核对于 2026-11-05，不代表已实测）
+- [腾讯云消息队列 CKafka](https://cloud.tencent.com/developer/mcp/server/11776): 查询 CKafka 主题、消息、消费分组及实例信息。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka/)
+  - 接入前准备：需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；CKafka 云资源按产品规则计费。腾讯云托管 MCP 连接后免费调用，不代表实例免费。
+  - 步骤 1：在腾讯云控制台取得有对应产品 API 权限的 SecretId 和 SecretKey。 [官方入口](https://console.cloud.tencent.com/cam/capi)
+  - 步骤 2：登录该服务页面，在 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY 中填写凭证，点击「连接Server」，复制生成的个人 SSE 地址。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11776)
+  - 步骤 3：在 MCP 客户端按 SSE 方式配置该个人地址并保存；调用工具时按要求提供实例所在的 region，例如广州为 ap-guangzhou。 [官方入口](https://cloud.tencent.com/document/product/1212/123193)
+  - 如何确认成功：在客户端查看工具列表，使用所在地域调用 DescribeInstances 查询实例。（指引核对于 2026-11-05，不代表已实测）
+- [腾讯云数据库 Redis](https://cloud.tencent.com/developer/mcp/server/11755): 查询 Redis 实例、备份和慢日志，创建实例及管理参数与安全组。 类型 MCP；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis/)
+  - 接入前准备：需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；创建实例可产生费用。腾讯云托管 MCP 连接后免费调用，不代表云资源免费。
+  - 步骤 1：在腾讯云控制台取得有对应产品 API 权限的 SecretId 和 SecretKey。 [官方入口](https://console.cloud.tencent.com/cam/capi)
+  - 步骤 2：登录该服务页面，在 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY 中填写凭证，点击「连接Server」，复制生成的个人 SSE 地址。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11755)
+  - 步骤 3：在 MCP 客户端按 SSE 方式配置该个人地址并保存；调用工具时按要求提供实例所在的 region，例如广州为 ap-guangzhou。 [官方入口](https://cloud.tencent.com/document/product/1212/123193)
+  - 如何确认成功：在客户端查看工具列表，使用所在地域调用 DescribeInstances 查询已有实例。（指引核对于 2026-11-05，不代表已实测）
