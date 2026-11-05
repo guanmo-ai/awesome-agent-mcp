@@ -136,10 +136,11 @@
         }
       },
       "evidence": {
-        "url": "https://lbs.baidu.com/docs/ai?title=mcpserver/quickstart",
-        "checkedAt": "2026-11-04",
+        "url": "https://lbs.baidu.com/docs/ai?title=mcpserver%2Fquickstart",
+        "checkedAt": "2026-11-05",
         "note": "官方概览与快速开始明确 MCP、服务端 AK 和 HTTP 端点。",
-        "agentReadable": true
+        "agentReadable": true,
+        "quote": "https://mcp.map.baidu.com/mcp?ak=您的AK"
       },
       "nameEn": "Baidu Maps",
       "summaryEn": "Search places, geocode addresses, and plan routes.",
@@ -151,6 +152,15 @@
         "附近商家"
       ],
       "setup": {
+        "requirements": "需要百度地图开放平台账号和服务器端 API 密钥 AK；配额与商用授权按账号实际规则核对。",
+        "steps": [
+          {
+            "text": "在开放平台注册、创建服务器端 AK，按下方 HTTP 配置在本地填入 AK。",
+            "url": "https://lbs.baidu.com/docs/ai?title=mcpserver%2Fquickstart"
+          }
+        ],
+        "verify": "列出工具后，用公开地点做一次只读查询并核对返回地点。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "官方说明认证开发者的基础服务有每日免费额度，高级服务需付费申请；商业使用另有授权要求，具体配额按账号和服务核对。",
           "url": "https://lbs.baidu.com/faq/details?id=2294&title=2588",
@@ -211,6 +221,15 @@
         "坐标转换"
       ],
       "setup": {
+        "requirements": "需要腾讯位置服务账号，创建 Key 并开通 WebServiceAPI 与相应调用配额。",
+        "steps": [
+          {
+            "text": "按腾讯位置服务指南创建 Key，选择 Streamable HTTP 地址并在本地填写。",
+            "url": "https://lbs.qq.com/service/MCPServer/MCPServerGuide/userGuide"
+          }
+        ],
+        "verify": "连接后用公开地点做一次只读搜索并核对结果。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://lbs.qq.com/service/MCPServer/MCPServerGuide/userGuide",
@@ -1452,6 +1471,15 @@
         "我的书架"
       ],
       "setup": {
+        "requirements": "需要微信读书账号及绑定本人身份的 API Key；Agent 需支持 Skill。",
+        "steps": [
+          {
+            "text": "按官方仓库安装 Skill，在微信读书官方入口取得 Key 并在本地设置 WEREAD_API_KEY。",
+            "url": "https://github.com/Tencent/WeChatReading"
+          }
+        ],
+        "verify": "只读查看本人书架或搜索一本公开书籍并核对结果。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://weread.qq.com/r/weread-skills",
@@ -1501,7 +1529,20 @@
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://ima.qq.com/agent-interface",
           "checkedAt": "2026-11-05"
-        }
+        },
+        "requirements": "需要 ima 账号、Client ID、API Key 和 Node.js 18 或以上；凭证从 ima 官方 Agent 接口页获取。",
+        "steps": [
+          {
+            "text": "下载官方 Skill 压缩包并按所用客户端的 Skill 安装方式解压；保留 notes 和 knowledge-base 子目录。",
+            "url": "https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip"
+          },
+          {
+            "text": "在官方 Agent 接口页获取 Client ID 与 API Key，按包内说明设置 IMA_OPENAPI_CLIENTID 和 IMA_OPENAPI_APIKEY；不要公开凭据。",
+            "url": "https://ima.qq.com/agent-interface"
+          }
+        ],
+        "verify": "在已安装的 Skill 目录按官方说明列出自己的文档，确认认证及读取正常；无需创建或修改笔记。",
+        "checkedAt": "2026-11-05"
       }
     },
     {
@@ -1587,6 +1628,15 @@
         "随手记"
       ],
       "setup": {
+        "requirements": "MCP 属于 Max 会员权益，需要本人 flomo 账号及 Token；客户端自身费用另计。",
+        "steps": [
+          {
+            "text": "在 flomo 的 MCP 指南中按客户端创建 Token 并填写配置，保留 Token 在本地。",
+            "url": "https://help.flomoapp.com/advance/mcp/connect-cursor.html"
+          }
+        ],
+        "verify": "先只读检索一条本人的笔记，核对返回内容。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "MCP 包含在 Max 会员权益中，无需另付 MCP 费用；Agent 客户端本身可能需要订阅，会员价格以 App 为准。",
           "url": "https://help.flomoapp.com/advance/mcp",
@@ -1633,6 +1683,15 @@
         "保存灵感"
       ],
       "setup": {
+        "requirements": "需要印象笔记会员才能生成 AuthToken；登录授权与笔记访问受账号实际权限约束。",
+        "steps": [
+          {
+            "text": "按官方 Skill 页面安装并登录，生成 AuthToken 完成授权，密钥只保存在本地。",
+            "url": "https://guide.yinxiang.com/docs/yxai/skill.html"
+          }
+        ],
+        "verify": "先只读搜索一条本人的笔记，核对返回内容。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "生成 AuthToken 需要印象笔记会员，具体会员费用以官方套餐为准。",
           "url": "https://guide.yinxiang.com/docs/yxai/skill.html",
@@ -1758,6 +1817,15 @@
         "备份文件"
       ],
       "setup": {
+        "requirements": "需要夸克网盘账号和本人授权；实际功能与会员权益、Agent 支持情况有关。",
+        "steps": [
+          {
+            "text": "按官网 Skill 页面安装对应技能并完成账号授权；授权码仅在本地使用。",
+            "url": "https://www.quark.cn/documents/help/quark-drive-skill"
+          }
+        ],
+        "verify": "先搜索一条本人有权限访问的文件并核对名称。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "基础网盘操作与升级会员后可用的智能搜索、总结等能力不同；费用以官方会员规则为准。",
           "url": "https://www.quark.cn/documents/help/quark-drive-skill",
@@ -1771,6 +1839,7 @@
       "category": "notes",
       "summary": "网盘文件的搜索与管理。",
       "types": [
+        "mcp",
         "skill"
       ],
       "url": "https://www.weiyun.com/act/openclaw",
@@ -1785,12 +1854,20 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "install": {
-        "skill": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip"
+        "skill": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip",
+        "mcp": {
+          "transport": "http",
+          "url": "https://www.weiyun.com/api/v3/mcpserver",
+          "headers": {
+            "WyHeader": "<你的完整WyHeader值>"
+          }
+        }
       },
       "evidence": {
-        "url": "https://www.weiyun.com/act/openclaw",
-        "checkedAt": "2026-11-04",
-        "note": "微云官方接入页前端发布 Skill 安装包、API Key，列出上传、下载、删除与分享。",
+        "url": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip",
+        "checkedAt": "2026-11-05",
+        "note": "官方微云接入页提供的 Skill 压缩包中 references/auth.md 给出 MCP 地址、WyHeader 格式与授权流程。",
+        "quote": "https://www.weiyun.com/api/v3/mcpserver",
         "agentReadable": false
       },
       "nameEn": "Tencent Weiyun",
@@ -1806,7 +1883,20 @@
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://www.weiyun.com/act/openclaw",
           "checkedAt": "2026-11-05"
-        }
+        },
+        "requirements": "需要微云账号、个人授权及 Token；官方 Skill 使用 Node.js 和 mcporter。",
+        "steps": [
+          {
+            "text": "下载官方 Skill 包并按客户端要求安装，保留 references 和脚本；先阅读包内 setup 脚本。",
+            "url": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip"
+          },
+          {
+            "text": "按包内 references/auth.md 完成个人授权；配置 WyHeader 时，完整请求头值须为 mcp_token=你的Token，并通过环境变量安全提供。",
+            "url": "https://www.weiyun.com/act/openclaw"
+          }
+        ],
+        "verify": "授权后先列出自己有权访问的文件，确认连接；不要以删除或上传作为首测。",
+        "checkedAt": "2026-11-05"
       }
     },
     {
@@ -1859,6 +1949,15 @@
         }
       ],
       "setup": {
+        "requirements": "需要百度网盘账号及本人授权的 Access Token；此配置使用 SSE，客户端须支持该传输方式。",
+        "steps": [
+          {
+            "text": "依照百度网盘指南完成 OAuth 授权，在本地将 Access Token 用于 SSE 配置。",
+            "url": "https://pan.baidu.com/union/doc/mcp-server/操作指南/在-agent-中自定义使用/"
+          }
+        ],
+        "verify": "查询本人百度网盘容量或自己有权限的文件并核对返回结果。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://pan.baidu.com/union/doc/mcp-server/%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/%E5%9C%A8-agent-%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BD%BF%E7%94%A8/",
@@ -1914,6 +2013,15 @@
         "知识库上传"
       ],
       "setup": {
+        "requirements": "需要知乎开放平台账号和 Access Secret；不同数据接口的额外权限、配额与费用以平台为准。",
+        "steps": [
+          {
+            "text": "按知乎开放平台 MCP 指南获取 Access Secret，按所用客户端配置服务和授权头；密钥留在本地。",
+            "url": "https://developer.zhihu.com/docs?key=zhihu_cli"
+          }
+        ],
+        "verify": "先查询公开内容并核对来源，个人数据需另有相应授权。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://developer.zhihu.com/docs?key=zhihu_cli",
@@ -2061,6 +2169,15 @@
         "查企业"
       ],
       "setup": {
+        "requirements": "注册并登录企查查智能体数据平台获取 API Key；历史存档服务另需企业认证，工具查询按积分计费。",
+        "steps": [
+          {
+            "text": "按官方指南选择需要的 MCP 服务，在本地配置统一 API Key；历史存档先完成企业认证。",
+            "url": "https://agent.qcc.com/guide"
+          }
+        ],
+        "verify": "先查询一家公开企业的工商信息，核对名称及返回结果；查询可能消耗积分。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "注册赠送 500 积分（30 天有效）；普通用户每日赠送 100 积分，当日有效。不同工具每次消耗 1、3、5 或 20 积分，赠送不足可充值，1 元兑换 10 积分。",
           "url": "https://agent.qcc.com/credits",
@@ -2190,6 +2307,15 @@
         "经营任务"
       ],
       "setup": {
+        "requirements": "需要抖音开放平台应用及对应 Token；涉及已授权用户的工具与应用级工具认证要求不同。",
+        "steps": [
+          {
+            "text": "查看官方服务广场文档，按所选工具申请权限并在本地配置对应 Token。",
+            "url": "https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc"
+          }
+        ],
+        "verify": "确认已连接并查看获授权工具；涉及用户数据时先核对访问范围。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc",
@@ -2333,6 +2459,15 @@
         "修改原型"
       ],
       "setup": {
+        "requirements": "需要墨刀账号与个人空间令牌；OAuth 是否可用取决于客户端和服务端兼容情况。",
+        "steps": [
+          {
+            "text": "在墨刀 AI 头像菜单的令牌设置创建令牌，并按官方文档在本地配置 MCP。",
+            "url": "https://modao.cc/feature/ai-mcp.html"
+          }
+        ],
+        "verify": "连接后查询账号和积分状态，检查工具列表；不以修改原型验证。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://modao.cc/feature/ai-mcp.html",
@@ -2567,6 +2702,15 @@
         "播放音乐"
       ],
       "setup": {
+        "requirements": "需要 Node.js 18 以上、网易云音乐开放平台入驻及 API Key（appId 与 privateKey），账号操作需登录授权。",
+        "steps": [
+          {
+            "text": "按网易云官方仓库安装 ncm-cli，运行 configure 设置凭据，再通过 login 完成本人授权。",
+            "url": "https://github.com/NetEase/skills"
+          }
+        ],
+        "verify": "确认身份后搜索一首公开歌曲或查看本人歌单并核对结果。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://music.163.com/st/ncmcli",
@@ -2804,6 +2948,15 @@
         "查公告"
       ],
       "setup": {
+        "requirements": "需要登录同花顺或 iFinD 账号并开通服务，Skill 和 MCP 共用 MCP 密钥；额度以个人中心为准。",
+        "steps": [
+          {
+            "text": "按官方文档安装 iFinD Skill，在个人中心取得 MCP 密钥并在本地配置，不将密钥发到对话。",
+            "url": "https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/llms-full.txt"
+          }
+        ],
+        "verify": "先查询一只公开股票的行情并核对标的与数据时间。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "免费试用版共有 2,000 次永久调用额度，不按月刷新；个人基础、专业、旗舰版分别为每月 3,000、8,000、20,000 次，部分工具另有限额，大数据量请求可能额外扣次。",
           "url": "https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/llms-full.txt",
@@ -2835,10 +2988,11 @@
         "cli": "curl -fsSL https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh | bash -s"
       },
       "evidence": {
-        "url": "https://search.10jqka.com.cn/skillhub",
-        "checkedAt": "2026-11-04",
-        "note": "问财官方 SkillHub 前端及公开目录将自有技能标为 OFFICIAL，提供 CLI 与 API Key 指引。",
-        "agentReadable": false
+        "url": "https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh",
+        "checkedAt": "2026-11-05",
+        "note": "官方安装脚本下载并执行其压缩包内安装器；原接入页提供 CLI 和 API Key 指引。",
+        "quote": "# 脚本功能：下载远端的 zip 文件，解压后执行 iwencai-install.sh 命令",
+        "agentReadable": true
       },
       "nameEn": "Tonghuashun iWencai",
       "summaryEn": "Use official skills to query prices, announcements, research, and macro data, and screen by conditions.",
@@ -2855,7 +3009,20 @@
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://search.10jqka.com.cn/skillhub",
           "checkedAt": "2026-11-05"
-        }
+        },
+        "requirements": "需要 Python 3；部分技能需要问财账户及对应 API Key，具体权限以官方技能说明为准。",
+        "steps": [
+          {
+            "text": "先阅读官方远程安装脚本及其下载的安装器，再按需要运行安装命令；安装器可能修改用户 shell 配置。",
+            "url": "https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh"
+          },
+          {
+            "text": "安装后使用 iwencai-skillhub-cli 查看帮助并按技能名称安装；所需账号和密钥在官方 SkillHub 获取。",
+            "url": "https://search.10jqka.com.cn/skillhub"
+          }
+        ],
+        "verify": "运行 iwencai-skillhub-cli --help 查看命令；实际数据权限和结果需使用自己的账户核验。",
+        "checkedAt": "2026-11-05"
       }
     },
     {
@@ -3017,6 +3184,15 @@
         "腾讯云接口"
       ],
       "setup": {
+        "requirements": "需要腾讯云账号、TCCLI 和目标云资源的权限；创建或修改云资源可能产生费用。",
+        "steps": [
+          {
+            "text": "按云 API Skill 文档安装 TCCLI，并通过浏览器完成本人授权；再按 Agent 支持方式安装 Skill。",
+            "url": "https://cloud.tencent.com/document/product/1278/131433"
+          }
+        ],
+        "verify": "运行官方只读地域列表查询，检查实际返回结果。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://cloud.tencent.com/document/product/1278/131433",
@@ -3453,6 +3629,15 @@
         "GLM搜索"
       ],
       "setup": {
+        "requirements": "联网搜索 MCP 面向 GLM Coding Plan 用户，需对应套餐 API Key；额度按套餐规则核对。",
+        "steps": [
+          {
+            "text": "按官方联网搜索 MCP 页面添加 Streamable HTTP 服务和本地 Bearer 凭据。",
+            "url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server"
+          }
+        ],
+        "verify": "确认工具可用后查询一条公开信息，并核对来源。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "此联网搜索 MCP 面向 Coding Plan 用户；套餐费用与额度以官方套餐页面为准。",
           "url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
@@ -3512,6 +3697,15 @@
         }
       ],
       "setup": {
+        "requirements": "本地服务需要 Go 安装工具或官方发行版，以及有相应仓库权限的 Gitee 个人访问令牌。",
+        "steps": [
+          {
+            "text": "按照 Gitee 官方文档安装 mcp-gitee，在本地配置 GITEE_ACCESS_TOKEN。",
+            "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/"
+          }
+        ],
+        "verify": "列出已有权限的仓库或查询公开仓库，核对名称。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://gitee.com/oschina/mcp-gitee",
@@ -3560,6 +3754,15 @@
         "Git"
       ],
       "setup": {
+        "requirements": "需要可访问的极狐 GitLab 实例、账号和所需项目权限；支持 OAuth 2.0，具体能力受实例与账号配置约束。",
+        "steps": [
+          {
+            "text": "按官方文档为客户端添加 MCP 服务地址，完成该实例要求的授权。",
+            "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/"
+          }
+        ],
+        "verify": "先查询自己已有权限的项目或议题，核对返回内容。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "基础版、专业版与旗舰版均列在官方 MCP 支持范围；部分 AI Agent 工具需专业版或旗舰版及对应席位，或使用 Credits，具体费用按账户核实。",
           "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/",
@@ -3785,6 +3988,15 @@
         "生成网站链接"
       ],
       "setup": {
+        "requirements": "本地全栈部署方式需要 npx 和兼容 MCP 客户端；部署会产生公开访问链接，实际账号和资源条件以所选方式为准。",
+        "steps": [
+          {
+            "text": "按官方 Pages MCP 文档配置本地服务；分享 HTML 的远程服务是另一种无需登录的路径。",
+            "url": "https://edgeone.cloud.tencent.com/pages/document/173172415568367616"
+          }
+        ],
+        "verify": "先检查客户端是否列出工具；没有部署授权时不创建公开页面。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://edgeone.cloud.tencent.com/pages/document/173172415568367616",
@@ -4653,6 +4865,15 @@
         "核对法律依据"
       ],
       "setup": {
+        "requirements": "需要元典开放平台 API Key 及所用服务权限；法律、案例、企业、证券和幻觉校验使用不同 MCP 端点。",
+        "steps": [
+          {
+            "text": "按官方接入页选择所需服务，并在本地配置对应 URL 和 Bearer API Key。",
+            "url": "https://open.chineselaw.com/mcp-config/"
+          }
+        ],
+        "verify": "先使用公开法律法规做一次只读检索，核对结果和来源。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://open.chineselaw.com/mcp-config/",
@@ -5103,6 +5324,15 @@
         "本地媒体处理"
       ],
       "setup": {
+        "requirements": "需要 MeituHub 账号、Access Key 与 Secret Key；图片和视频等能力的额度与费用按所选服务确认。",
+        "steps": [
+          {
+            "text": "按官方文档安装 meitu-cli，在本地配置凭据或使用官方支持的环境变量，然后检查认证状态。",
+            "url": "https://www.meituhub.com/zh-cn/docs?id=150"
+          }
+        ],
+        "verify": "先运行官方 auth verify 检查凭据；图像或视频生成需先核对费用。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://www.meituhub.com/zh-cn/docs?id=150",
@@ -6164,6 +6394,15 @@
         "垂直信息"
       ],
       "setup": {
+        "requirements": "需要腾讯云元宝搜索服务 API Key；免费额度和产品版本按腾讯云控制台确认。",
+        "steps": [
+          {
+            "text": "按腾讯云官方指南取得服务 API Key，在本地按 Streamable HTTP 方式添加服务。",
+            "url": "https://cloud.tencent.com/developer/mcp/server/11764"
+          }
+        ],
+        "verify": "核对额度后搜索一条公开信息，并检查返回来源。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "免费额度与规则需登录腾讯云元宝搜索活动专区查看；调用规则按所开版本确认。",
           "url": "https://cloud.tencent.com/developer/mcp/server/11764",
@@ -6689,6 +6928,15 @@
         "语音合成"
       ],
       "setup": {
+        "requirements": "需要 Node.js 18 以上和讯飞开放平台账号；CLI 令牌在控制台创建，应用和各能力需分别开通。",
+        "steps": [
+          {
+            "text": "按官方指南安装 CLI 与可选 Skill，在本地创建并配置 CLI 访问令牌。",
+            "url": "https://www.xfyun.cn/xfyun-cli/doc"
+          }
+        ],
+        "verify": "先查询已有应用或能力清单；实际调用前确认授权与费用。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "CLI 不承诺免费额度；需查看目标能力是否有免费试用或套餐，以及是否需要购买服务量。",
           "url": "https://www.xfyun.cn/xfyun-cli/doc",
@@ -6858,6 +7106,15 @@
         "查LogStore"
       ],
       "setup": {
+        "requirements": "需要 uvx、已配置的阿里云 CLI Profile 和所需日志资源权限；日志产品费用按实际用量核对。",
+        "steps": [
+          {
+            "text": "按阿里云文档配置本地凭据 Profile，并将其名称填入 MCP 启动参数。",
+            "url": "https://help.aliyun.com/en/sls/sls-mcp-server"
+          }
+        ],
+        "verify": "先只读查询已有日志项目，核对地域和项目名称。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
           "url": "https://help.aliyun.com/en/sls/sls-mcp-server",
@@ -6956,6 +7213,15 @@
         "MySQL"
       ],
       "setup": {
+        "requirements": "需要阿里云账号、已开通的数据网关和 Agent Access Token；数据权限、地域与费用按实际网关配置确认。",
+        "steps": [
+          {
+            "text": "按官方迁移指南配置数据源与 Agent 权限，在本地使用目标地域的 MCP 地址与 Access Token。",
+            "url": "https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp"
+          }
+        ],
+        "verify": "先按授权查询已有数据资产，不执行写入或更改权限。",
+        "checkedAt": "2026-11-05",
         "cost": {
           "text": "Agent 数据网关支持按访问量或实例数量计费，另有预付费方案；按访问量每个 Agent 每天最低 9.9 元，含 200 次访问，超出每次 0.05 元。",
           "url": "https://help.aliyun.com/zh/aidbs/product-overview/billing-items",

@@ -268,3 +268,13 @@ test('企查查和多地域服务保留官方端点及各自接入条件', (t) =
   assert.match(fixture.read('s/didi.md'), /mcp-servers-sandbox/);
   assert.match(fixture.read('s/cloudbase.md'), /国际站账号和环境，与国内站账户及凭据不互通/);
 });
+
+test('远程脚本执行提示同时出现在 Markdown 和网页', (t) => {
+  const fixture = buildFixture();
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  for (const id of ['luckin', 'dingtalk', 'youdao-note', 'iwencai']) {
+    for (const path of [`s/${id}.md`, `s/${id}/index.html`]) {
+      assert.ok(fixture.read(path).includes('这条命令会直接执行官方脚本，请让 Agent 先读脚本内容再运行。'), path);
+    }
+  }
+});
