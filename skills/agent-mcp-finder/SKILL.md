@@ -23,6 +23,7 @@ description: 查找中国服务厂商官方出品的 MCP Server、Agent Skill �
 | `url` | 官方入口，接入以它为准 |
 | `risk` | `read` 只读查询；`write` 会创建或修改数据；`payment` 可能下单或付款 |
 | `access` | 接入门槛，例如 `key`（需 API Key）、`membership`（需会员）、`desktop-app`（需桌面客户端）；空数组表示尚未整理 |
+| `evidence` | 官方出处、核验及摘录日期 `checkedAt`、逐字原文 `quote`、页面可否直接读取正文 `agentReadable`；未提供摘录时不能推断 |
 | `status` | `verified` 已确认为官方出品；`unverified` 尚未逐条确认 |
 | `install.mcp` | 现成的 MCP 配置：`transport`（`http` / `sse` / `stdio`）、`url` 或 `command` 加 `args` |
 | `setup` | 接入前准备 `requirements`、带官方入口的 `steps`、验证方法 `verify` 与核对日期；验证方法并非本项目实测结果 |
@@ -31,7 +32,7 @@ description: 查找中国服务厂商官方出品的 MCP Server、Agent Skill �
 ## 步骤
 
 1. 把用户的需求拆成要用的服务或能力，例如「点咖啡」对应瑞幸、麦当劳，「查路线」对应地图类服务。
-2. 读取数据，排除 `status: rejected`，按 `name`、`summary` 和分类匹配。优先选 `status: verified` 的条目，其次是 `unverified`。回到厂商文档核对实际能力、适用对象、账号与费用门槛，区分商家接口和面向个人的服务。官方身份核验不代表已实测接入。
+2. 读取数据，排除 `status: rejected`，按 `name`、`summary` 和分类匹配。优先选 `status: verified` 的条目，其次是 `unverified`。回到厂商文档核对实际能力、适用对象、账号与费用门槛，区分商家接口和面向个人的服务。官方身份核验不代表已实测接入。官方页面读不到时，以索引中的官方原文摘录为依据，并告诉我这一点。没有对应摘录的内容仍须核实，不要猜测。
 3. 有 `setup` 时先读接入前准备和步骤，按用户身份选择一条可用路径；如 CLI 已能完成任务，不要求同时安装 MCP 和 Skill。指引里未知的门槛要如实说明。对每个候选，告诉用户：
    - 服务名、能做什么、类型（MCP / Skill / CLI）
    - 接入门槛（`access` 和 `setup.requirements`）；access 为空但有准备说明时引用说明，两者均缺失才说「门槛未整理，请看官方文档」

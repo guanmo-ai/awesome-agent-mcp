@@ -14,6 +14,7 @@ export function agentPrompt(url, need = '') {
     `读取 ${url}，作为查找官方 MCP、Skill 和 CLI 的参考索引；找到服务后读取它链接的 Markdown，获取完整配置与步骤。`,
     '根据我在末尾或后续消息中提供的服务名或需求查找；如果我还没说，先问我想找什么。',
     '核对厂商官方文档，告诉我能做什么、账号权限、费用，以及当前 Agent 是否支持和如何接入。未收录不代表不存在，不确定的信息不要猜。',
+    '官方页面读不到时，以索引中的官方原文摘录为依据，并告诉我这一点。没有对应摘录的内容仍须核实，不要猜测。',
     '本索引仅供参考，已核验不等于实测或安全保证。需要安装或配置时按我的授权执行，密钥和登录由我在本地完成；下单、付款前让我确认。',
     '给出官方链接；如进行了接入，报告实际验证结果和剩余步骤。',
     ...(need.trim() ? ['', `我的需求：${need.trim()}`] : []),
@@ -178,7 +179,7 @@ export function renderDetails(s, db, { detailPage = false } = {}) {
       <div class="ct-bar"><div class="ct-formats" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}</div><button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
       <pre role="tabpanel" aria-label="配置内容" tabindex="0"><code>${esc(snips[0][1])}</code></pre>
     </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">配置片段尚未整理。复制接入提示词，让 Agent 继续核对官方文档。</p>'),
-    verify: s.status === 'verified' ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p><p class="code-hint">官方核验仅说明发布者身份，接入是否成功需在你的 Agent 中验证。</p>` : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>',
+    verify: s.status === 'verified' ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p>${s.evidence.quote ? `<p>官方原文摘录（${esc(s.evidence.checkedAt)}）</p><blockquote>${esc(s.evidence.quote)}</blockquote>` : ''}${s.evidence.agentReadable === false ? '<p class="code-hint">官方页需浏览器打开，Agent 可能读不到。</p>' : ''}<p class="code-hint">官方核验仅说明发布者身份，接入是否成功需在你的 Agent 中验证。</p>` : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>',
     sources: s.sources?.length ? `<p>${s.sources.map((x) => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join('、')}</p>` : '',
   };
 }

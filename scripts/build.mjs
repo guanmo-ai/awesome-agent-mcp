@@ -71,6 +71,7 @@ function readme(english = false) {
     t(agentPrompt(`${config.siteUrl}llms.txt`), `Read ${config.siteUrl}llms.txt as a reference index for official MCP servers, skills and CLIs.
 Follow the matching service's Markdown link for complete configuration and setup instructions.\nFind integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
 Check official vendor documentation for capabilities, account permissions, costs, compatibility with this agent and setup instructions. An absent entry does not mean no integration exists; do not guess missing information.
+If an official page is unreadable, use the official excerpt in this index as evidence and tell me. Unquoted information still needs verification; do not guess.
 This index is for reference; verified does not mean tested or guaranteed safe. Install or configure only within my authorization. I will enter keys and log in locally; ask before placing orders or making payments.
 Provide official links. If you set up an integration, report actual verification results and remaining steps.`),
     '```',
@@ -230,6 +231,8 @@ function serviceMarkdown(s) {
     ...(s.install?.mcp?.transport === 'sse' ? ['Codex 远程配置只支持 Streamable HTTP，不能直接使用此 SSE 地址。', ''] : []),
     '## 核验与来源', '',
     ...(s.evidence ? [`${s.evidence.checkedAt} 核对官方身份：[依据](${s.evidence.url})${s.evidence.note ? `。${s.evidence.note}` : ''}`, ''] : ['待核验。', '']),
+    ...(s.evidence?.quote ? [`官方原文摘录（${s.evidence.checkedAt}，来自上述依据）：`, '', codeBlock(s.evidence.quote), ''] : []),
+    ...(s.evidence?.agentReadable === false ? ['官方页需浏览器打开，Agent 可能读不到。可依据上述摘录核对已覆盖的配置；未覆盖的信息不要猜测。', ''] : []),
     ...(s.sources ?? []).map((source) => `- [${source.name}](${source.url})`), '',
     `[使用说明与免责声明](${config.siteUrl}#disclaimer)`, '',
   ].join('\n');

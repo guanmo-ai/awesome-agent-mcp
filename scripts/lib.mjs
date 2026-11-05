@@ -86,6 +86,10 @@ export function validate(data) {
     else for (const a of s.access) if (!member(LABELS.access, a)) err(w, `未知门槛 ${valueLabel(a)}`);
     if (!member(LABELS.status, s.status)) err(w, `status 必须是 ${Object.keys(LABELS.status).join('/')}`);
     if (s.evidence !== undefined && !isObject(s.evidence)) err(w, 'evidence 必须是对象');
+    if (isObject(s.evidence)) {
+      if (s.evidence.quote !== undefined && (typeof s.evidence.quote !== 'string' || !s.evidence.quote.trim() || Array.from(s.evidence.quote).length > 80)) err(w, 'evidence.quote 必须是80字以内的非空原文');
+      if (s.evidence.agentReadable !== undefined && typeof s.evidence.agentReadable !== 'boolean') err(w, 'evidence.agentReadable 必须是布尔值');
+    }
     if (s.status === 'verified') {
       if (!isHttps(s.evidence?.url)) err(w, '已核验条目需要 evidence.url');
       if (!isDate(s.evidence?.checkedAt)) err(w, '已核验条目需要有效的 evidence.checkedAt');
