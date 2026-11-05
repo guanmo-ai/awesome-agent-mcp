@@ -15,6 +15,14 @@
 
 <p align="center"><sub>93 个服务 · 7 个分类 · 91 个已核验 · 更新于 2026-11-04</sub></p>
 
+## 一句话交给你的 AI
+
+复制下面这句话，发给 Claude Code、Codex、Cursor 等能联网的 Agent：
+
+```text
+读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt，把它作为国内官方 MCP、Skill、CLI 的服务索引；根据我的需求找到合适的服务，说明接入门槛，并帮我配置到当前 Agent，Key 和账号授权由我完成。
+```
+
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
 
 > 只收**厂商官方**出品的 MCP Server、Agent Skill 与命令行工具（CLI），社区封装不收。
@@ -22,6 +30,12 @@
 <a id="for-ai"></a>
 
 ## 给 AI 用
+
+**已经知道要接哪个服务？** 直接发这一句，以飞书为例：
+
+```text
+读取 https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/，按官方文档帮我把飞书接入当前 Agent，Key 和账号授权由我完成。
+```
 
 不用复制粘贴清单，直接让你的 Agent 来读：
 
@@ -35,6 +49,12 @@
 
 ```bash
 mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md -o ~/.claude/skills/agent-mcp-finder/SKILL.md
+```
+
+**让 AI 帮你安装查找 Skill：**
+
+```text
+读取 https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md，按当前 Agent 的 Skill 安装方式安装 agent-mcp-finder；以后我需要接入国内服务时，先查询这份官方索引。
 ```
 
 <a id="toc"></a>
