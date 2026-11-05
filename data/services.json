@@ -179,7 +179,19 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0"
+          "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0",
+          "endpoints": [
+            {
+              "name": "Streamable HTTP",
+              "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0",
+              "note": "Streamable HTTP；需要启用 WebService API 的位置服务 Key"
+            },
+            {
+              "name": "SSE",
+              "url": "https://mcp.map.qq.com/sse?key=<你的腾讯位置服务Key>",
+              "note": "SSE 传输；需要启用 WebService API 的位置服务 Key，Codex 远程配置不支持 SSE"
+            }
+          ]
         }
       },
       "evidence": {
@@ -229,7 +241,19 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>"
+          "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>",
+          "endpoints": [
+            {
+              "name": "生产",
+              "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>",
+              "note": "真实打车订单及费用；URL 填入 MCP Key"
+            },
+            {
+              "name": "调试",
+              "url": "https://mcp.didichuxing.com/mcp-servers-sandbox?key=<你的滴滴MCPKey>",
+              "note": "模拟数据，不产生真实订单；URL 填入 MCP Key"
+            }
+          ]
         },
         "skill": "https://clawhub.ai/didi/didi-ride-skill-official"
       },
@@ -5163,7 +5187,19 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://tcb-api.cloud.tencent.com/mcp/v1"
+          "url": "https://tcb-api.cloud.tencent.com/mcp/v1",
+          "endpoints": [
+            {
+              "name": "国内站",
+              "url": "https://tcb-api.cloud.tencent.com/mcp/v1",
+              "note": "国内 CloudBase 账号和环境；交互客户端可通过 OAuth 授权"
+            },
+            {
+              "name": "国际站",
+              "url": "https://tcb-api.tencentcloud.com/mcp/v1",
+              "note": "国际站账号和环境，与国内站账户及凭据不互通；国际站不提供文档数据库工具"
+            }
+          ]
         },
         "skill": "https://github.com/TencentCloudBase/cloudbase-skills"
       },
@@ -5473,7 +5509,39 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.rainmaker.espressif.com/api/mcp"
+          "url": "https://mcp.rainmaker.espressif.com/api/mcp",
+          "endpoints": [
+            {
+              "name": "RainMaker",
+              "url": "https://mcp.rainmaker.espressif.com/api/mcp",
+              "note": "管理 RainMaker 设备；按官方说明完成账户授权"
+            },
+            {
+              "name": "乐鑫文档",
+              "url": "https://mcp.espressif.com/docs",
+              "note": "检索乐鑫文档；每用户每小时 40 次、每日 200 次"
+            },
+            {
+              "name": "组件注册表",
+              "url": "https://components.espressif.com/mcp",
+              "note": "搜索 ESP-IDF 组件与示例；独立服务，按官方说明接入"
+            },
+            {
+              "name": "ESP-VISION",
+              "url": "https://mcp.vision.espressif.com",
+              "note": "查询视觉开发 API；独立服务，按官方说明接入"
+            },
+            {
+              "name": "工程技术支持",
+              "url": "https://ts-mcp.espressif.com/mcp",
+              "note": "乐鑫工程技术支持；独立服务，按官方说明接入"
+            },
+            {
+              "name": "ESP Pilot",
+              "url": "https://mcp.esp-pilot.espressif.com/mcp",
+              "note": "ESP 多媒体应用开发；独立服务，按官方说明接入"
+            }
+          ]
         }
       },
       "nameEn": "Espressif ESP RainMaker",
@@ -6827,7 +6895,54 @@
           "url": "https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate",
           "headers": {
             "Authorization": "Bearer <你的AgentAccessToken>"
-          }
+          },
+          "endpoints": [
+            {
+              "name": "杭州",
+              "url": "https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "上海",
+              "url": "https://dgate-mcp-cn-shanghai.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "北京",
+              "url": "https://dgate-mcp-cn-beijing.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "深圳",
+              "url": "https://dgate-mcp-cn-shenzhen.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "张家口",
+              "url": "https://dgate-mcp-cn-zhangjiakou.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "中国香港",
+              "url": "https://dgate-mcp-cn-hongkong.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "新加坡",
+              "url": "https://dgate-mcp-ap-southeast-1.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "吉隆坡",
+              "url": "https://dgate-mcp-ap-southeast-3.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "东京",
+              "url": "https://dgate-mcp-ap-northeast-1.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            }
+          ]
         }
       },
       "nameEn": "Alibaba Cloud DMS Agent Data Gateway",

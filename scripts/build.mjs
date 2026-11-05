@@ -227,7 +227,7 @@ function serviceMarkdown(s) {
     ...(s.setup?.permissionEvidence ? [`权限依据：[官方页面](${s.setup.permissionEvidence.url})${s.setup.permissionEvidence.agentReadable ? '' : '（官方页面 Agent 可能读不到）'}`, '', ...(s.setup.permissionEvidence.quote ? [`官方原文：${s.setup.permissionEvidence.quote}`, ''] : [])] : []),
     ...(s.setup?.cost ? ['## 费用', '', `${s.setup.cost.text} [官方来源](${s.setup.cost.url})（核对日期：${s.setup.cost.checkedAt}）`, '', ...(s.setup.cost.quote ? [`官方原文：${s.setup.cost.quote}`, ''] : [])] : []),
     '## 安装配置', '',
-    ...(s.install?.mcp?.endpoints?.length ? ['### 其他官方服务端点', '', '按用途选择端点，沿用下方示例中的传输方式和认证；具体权限以说明为准。', '', ...s.install.mcp.endpoints.map(e => `- ${e.name}：${e.url} — ${e.note}`), ''] : []),
+    ...(s.install?.mcp?.endpoints?.length ? ['### 官方服务端点', '', '按用途选择端点，分别核对官方认证方式、地域及权限要求。', '', ...s.install.mcp.endpoints.map(e => `- ${e.name}：${e.url} — ${e.note}`), ''] : []),
     ...snippets(s).flatMap(([name, code]) => [`### ${name}`, '', codeBlock(code), '']),
     ...snippetNotes(s).flatMap(note => [note, '']),
     ...(s.install?.skill ? [`- [官方 Skill](${s.install.skill})`, ''] : []),

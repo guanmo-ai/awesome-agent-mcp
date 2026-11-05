@@ -256,3 +256,15 @@ test('同一服务的其他官方端点连同用途和门槛出现在 Markdown �
     for (const text of ['风险', 'https://example.com/risk', '需开通权限']) assert.ok(content.includes(text));
   }
 });
+
+test('企查查和多地域服务保留官方端点及各自接入条件', (t) => {
+  const fixture = buildFixture();
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const qcc = fixture.read('s/qcc.md');
+  for (const path of ['company', 'risk', 'ipr', 'operation', 'history', 'executive', 'regulation', 'case', 'tender', 'document']) assert.ok(qcc.includes(`https://agent.qcc.com/mcp/${path}/stream`), path);
+  assert.ok(qcc.includes('企业认证'));
+  const dms = fixture.read('s/aliyun-dms.md');
+  for (const region of ['cn-hangzhou', 'cn-shanghai', 'cn-beijing', 'cn-shenzhen', 'cn-zhangjiakou', 'cn-hongkong', 'ap-southeast-1', 'ap-southeast-3', 'ap-northeast-1']) assert.ok(dms.includes(`dgate-mcp-${region}.aliyuncs.com`), region);
+  assert.match(fixture.read('s/didi.md'), /mcp-servers-sandbox/);
+  assert.match(fixture.read('s/cloudbase.md'), /国际站账号和环境，与国内站账户及凭据不互通/);
+});
