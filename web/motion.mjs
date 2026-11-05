@@ -1,4 +1,4 @@
-// Motion timing adapted from Microsoft Fluent UI (MIT). See licenses/fluentui.txt.
+// 动效时长与曲线（见 docs/MOTION.md）
 // All animation behavior below is authored for this site; no framework runtime.
 const preference = matchMedia('(prefers-reduced-motion: reduce)');
 export const motionReduced = () => preference.matches;
