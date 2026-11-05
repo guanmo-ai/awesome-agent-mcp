@@ -2,8 +2,8 @@ import { agentPrompt, esc, safeUrl, brandColor, serviceUrl, logoHtml, host, badg
 
 export function renderServicePage(service, db, config, template, version) {
   const category = db.categories.find((c) => c.id === service.category);
-  const details = renderDetails(service, db);
-  const prompt = agentPrompt(serviceUrl(db.homepage, service.id), `帮我接入${service.name}`);
+  const details = renderDetails(service, db, { detailPage: true });
+  const prompt = agentPrompt(`${db.homepage}llms.txt`, `帮我查${service.name}的官方接入方式`);
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: service.name,
     description: service.summary, url: serviceUrl(db.homepage, service.id),

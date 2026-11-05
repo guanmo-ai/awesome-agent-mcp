@@ -85,7 +85,6 @@
             <div><dt>服务</dt><dd data-count="{{count}}">{{count}}</dd></div>
             <div><dt>分类</dt><dd id="st-cats">{{categoryCount}}</dd></div>
             <div><dt>官方已核验</dt><dd id="st-verified">{{verifiedCount}}</dd></div>
-            <div><dt>最近更新</dt><dd id="st-updated">{{updatedLabel}}</dd></div>
           </dl>
         </div>
         <div class="orbit-wrap reveal">
@@ -168,18 +167,20 @@
         <div class="sec-head center">
           <p class="kicker">FOR AGENTS</p>
           <h2 id="ai-title">人看卡片，<span class="shine">AI 直接读</span></h2>
-          <p class="sec-sub">写下想做的事，复制提示词，发到你自己的 Agent 对话里。无需先安装 Skill。</p>
+          <p class="sec-sub">复制通用提示词，直接发给你的 Agent。服务名或需求可以在末尾补，也可以下一条消息再说。</p>
         </div>
         <div class="bento">
           <article class="bento-card b-chat">
-            <header><span class="step">01</span><div><h3>你想让 Agent 做什么？</h3><p>例如查路线、整理飞书文档，或找某个服务的官方接入</p></div></header>
-            <label for="agent-need">我的需求</label>
-            <textarea id="agent-need" rows="3" maxlength="1000" placeholder="例如：帮我把会议纪要整理成飞书文档" aria-describedby="handoff-help"></textarea>
-            <p class="code-hint" id="handoff-help">需求只在当前页面生成提示词，不会发送给本站。请勿填写密钥。</p>
-            <p class="code-hint">复制后发给 Claude Code、Codex、Cursor 等 Agent；需要它能读取网页，实际接入还需要配置权限。</p>
-            <button class="btn btn-primary btn-sm" type="button" id="copy-prompt-2">复制提示词，发给我的 Agent</button>
+            <header><span class="step">01</span><div><h3>一段通用提示词，直接复制</h3><p>不必先选服务、改链接或安装 Skill；不补需求时，Agent 会先问你</p></div></header>
+            <p class="code-hint">发给能读取网页的 Agent 即可。只查询不会自动安装，实际接入按你的授权进行。</p>
+            <button class="btn btn-primary btn-sm" type="button" id="copy-prompt-2">复制通用提示词</button>
+            <details><summary>可选：在提示词末尾补充需求</summary>
+              <label for="agent-need">服务名或需求（选填）</label>
+              <textarea id="agent-need" rows="3" maxlength="1000" placeholder="例如：帮我查飞书的 MCP" aria-describedby="handoff-help"></textarea>
+              <p class="code-hint" id="handoff-help">自动追加到提示词末尾，不会发送给本站。留空也能复制。请勿填写密钥。</p>
+            </details>
             <details><summary>查看将发给 Agent 的提示词</summary><pre class="handoff-prompt" id="agent-prompt" tabindex="0" aria-label="发给 Agent 的提示词">{{agentPrompt}}</pre></details>
-            <noscript><p>展开提示词，选中文字复制，并把第一行换成你的需求。</p></noscript>
+            <noscript><p>展开提示词，选中整段文字复制即可；也可自行在末尾补充需求。</p></noscript>
           </article>
           <article class="bento-card b-skill">
             <header><span class="step">可选</span><div><h3>以后也能查：让 Agent 安装 Skill</h3><p>这是查找工具，服务仍需各自完成接入</p></div></header>

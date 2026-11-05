@@ -32,7 +32,6 @@ async function init() {
     $('[data-count]').textContent = DB.count;
     $('#st-cats').textContent = DB.categories.length;
     $('#st-verified').textContent = DB.services.filter((s) => s.status === 'verified').length;
-    $('#st-updated').textContent = `${Number(DB.updatedAt.slice(5, 7))}月${Number(DB.updatedAt.slice(8, 10))}日`;
   }
   cards = new Map($$('#groups .card').map((el) => { el.dataset.query = ''; return [el.dataset.id, el]; }));
   groups = new Map(DB.categories.map((c) => [c.id, document.getElementById(`cat-${c.id}`)]));
@@ -240,7 +239,7 @@ function buildOrbit() {
     b.dataset.id = it.s.id;
     b.style.setProperty('--brand', it.s.color || '');
     b.setAttribute('aria-label', it.s.name);
-    b.innerHTML = `<img src="./${esc(it.s.logo)}" alt="" width="128" height="128" decoding="async">`;
+    b.innerHTML = `<img src="./${esc(it.s.logo)}" alt="" width="128" height="128" decoding="async" draggable="false">`;
     wrap.append(b);
     it.el = b;
   }
@@ -278,9 +277,10 @@ function buildOrbit() {
     if (auto) labelTimer = setTimeout(() => { if (!hovered) label.classList.remove('show'); }, 1500);
   };
   wrap.addEventListener('pointerover', (e) => {
+    if (e.pointerType === 'touch') return;
     const n = e.target.closest('.onode'); if (!n) return;
     hovered = items.find((it) => it.el === n);
-    target = 0;
+    mul = target = 0; // Keep the hit target still between pointer down and up.
     showLabel(hovered, false);
   });
   wrap.addEventListener('pointerout', (e) => {

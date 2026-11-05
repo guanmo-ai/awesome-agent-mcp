@@ -116,7 +116,7 @@ function chipIndicator() {
   place();
 }
 
-// 首页：轨道与光斑随鼠标轻微反向移动，形成景深。仅限精确指针。
+// 首页：背景随鼠标轻微移动；可点击的轨道保持位置稳定。仅限精确指针。
 function parallax() {
   const hero = $('.hero');
   if (!hero || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;

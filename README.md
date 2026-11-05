@@ -17,35 +17,25 @@
 
 > **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)
 
-## 一句话交给你的 AI
-
-复制下面这句话，发给 Claude Code、Codex、Cursor 等能联网的 Agent：
-
-```text
-我的需求：[换成你想完成的事，例如：整理飞书文档]
-先读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt
-根据需求筛选官方接入，核对厂商文档，说明适用对象、账号或费用门槛，以及当前 Agent 是否支持。
-已核验仅代表官方身份，未收录不代表不存在；缺少的信息请明确说明，不要编造配置。
-选定服务后，按我的授权帮助配置并验证连接；Key 和账号授权由我在本地完成，不要让我把密钥发到对话里。
-最后报告实际验证结果和剩余步骤；下单、付款前由我确认。
-```
-
-<p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
-
-> 只收**厂商官方**出品的 MCP Server、Agent Skill 与命令行工具（CLI），社区封装不收。
-
 <a id="for-ai"></a>
 
 ## 给 AI 用
 
-**已经知道要接哪个服务？** 直接发这一句，以飞书为例：
+**直接复制下面整段，发给你的 Agent。** 不用改链接、填写占位符或先装 Skill；需要 Agent 能读取网页。
 
 ```text
-我想把飞书接入当前 Agent。
-读取 https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/
-核对官方文档，说明账号权限和接入步骤，按我的授权配置并验证。
-Key 和账号授权由我在本地完成。
+读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt，作为查找官方 MCP、Skill 和 CLI 的参考索引。
+根据我在末尾或后续消息中提供的服务名或需求查找；如果我还没说，先问我想找什么。
+核对厂商官方文档，告诉我能做什么、账号权限、费用，以及当前 Agent 是否支持和如何接入。未收录不代表不存在，不确定的信息不要猜。
+本索引仅供参考，已核验不等于实测或安全保证。需要安装或配置时按我的授权执行，密钥和登录由我在本地完成；下单、付款前让我确认。
+给出官方链接；如进行了接入，报告实际验证结果和剩余步骤。
 ```
+
+**可选：在末尾加一句，或下一条消息再说。** 例如 `帮我查飞书的 MCP`、`帮我找能查路线的官方接入`。不补也能直接发送，Agent 会先询问你的需求。
+
+<p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
+
+> 只收**厂商官方**出品的 MCP Server、Agent Skill 与命令行工具（CLI），社区封装不收。
 
 不用复制粘贴清单，直接让你的 Agent 来读：
 

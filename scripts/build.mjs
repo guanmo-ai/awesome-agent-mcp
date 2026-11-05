@@ -61,38 +61,25 @@ function readme(english = false) {
     '',
     t('> **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)', '> **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)'),
     '',
-    t('## 一句话交给你的 AI', '## One Prompt for Your AI'),
-    '',
-    t('复制下面这句话，发给 Claude Code、Codex、Cursor 等能联网的 Agent：', 'Copy this prompt into an internet-enabled agent such as Claude Code, Codex, or Cursor:'),
-    '',
-    '```text',
-    t(agentPrompt(`${config.siteUrl}llms.txt`, '[换成你想完成的事，例如：整理飞书文档]'), `My task: [describe what you want to do]
-Read ${config.siteUrl}llms.txt
-Find relevant vendor integrations and check official documentation for eligibility, costs, and client support.
-Verified means vendor identity, not tested connectivity. Report missing information instead of guessing.
-Help configure the selected service within my authorization and verify the connection.
-I will enter keys and authorize accounts locally. Ask before placing orders or making payments.`),
-    '```',
-    '',
-    `<p align="center"><a href="${config.siteUrl}"><img src="web/og.jpg" alt="${config.title} ${t('网站预览', 'website preview')}" width="100%"></a></p>`,
-    '',
-    t('> 只收**厂商官方**出品的 MCP Server、Agent Skill 与命令行工具（CLI），社区封装不收。', '> Only MCP servers, agent skills, and CLIs **published by the service vendor** are included. Community wrappers are excluded.'),
-    '',
     '<a id="for-ai"></a>',
     '',
     t('## 给 AI 用', '## For AI Agents'),
     '',
-    t('**已经知道要接哪个服务？** 直接发这一句，以飞书为例：', '**Already know the service you want?** Send this prompt, using Feishu as an example:'),
+    t('**直接复制下面整段，发给你的 Agent。** 不用改链接、填写占位符或先装 Skill；需要 Agent 能读取网页。', '**Copy this entire prompt into your agent.** No URL edits, placeholders or skill installation required; the agent needs web access.'),
     '',
     '```text',
-    t(`我想把飞书接入当前 Agent。
-读取 ${serviceUrl(config.siteUrl, 'feishu')}
-核对官方文档，说明账号权限和接入步骤，按我的授权配置并验证。
-Key 和账号授权由我在本地完成。`, `I want to connect Feishu to my current agent.
-Read ${serviceUrl(config.siteUrl, 'feishu')}
-Check official docs, explain requirements, configure within my authorization, and verify.
-I will enter keys and authorize accounts locally.`),
+    t(agentPrompt(`${config.siteUrl}llms.txt`), `Read ${config.siteUrl}llms.txt as a reference index for official MCP servers, skills and CLIs.
+Find integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
+Check official vendor documentation for capabilities, account permissions, costs, compatibility with this agent and setup instructions. An absent entry does not mean no integration exists; do not guess missing information.
+This index is for reference; verified does not mean tested or guaranteed safe. Install or configure only within my authorization. I will enter keys and log in locally; ask before placing orders or making payments.
+Provide official links. If you set up an integration, report actual verification results and remaining steps.`),
     '```',
+    '',
+    t('**可选：在末尾加一句，或下一条消息再说。** 例如 `帮我查飞书的 MCP`、`帮我找能查路线的官方接入`。不补也能直接发送，Agent 会先询问你的需求。', '**Optionally add one sentence at the end or send it next.** For example, `Find the official Feishu MCP` or `Find an official integration for route planning`. You can also send the prompt unchanged; the agent will ask what you need.'),
+    '',
+    `<p align="center"><a href="${config.siteUrl}"><img src="web/og.jpg" alt="${config.title} ${t('网站预览', 'website preview')}" width="100%"></a></p>`,
+    '',
+    t('> 只收**厂商官方**出品的 MCP Server、Agent Skill 与命令行工具（CLI），社区封装不收。', '> Only MCP servers, agent skills, and CLIs **published by the service vendor** are included. Community wrappers are excluded.'),
     '',
     t('不用复制粘贴清单，直接让你的 Agent 来读：', 'Let your agent read the index directly:'),
     '',
@@ -274,7 +261,6 @@ if (process.argv.includes('--check')) {
     categoryCount: groups.length, verifiedCount: verified,
     agentPrompt: agentPrompt(`${config.siteUrl}llms.txt`), skillPrompt: skillPrompt(rawUrl(config, skillPath), config.skill),
     skill: config.skill, branch: config.branch,
-    updatedLabel: `${Number(data.updatedAt.slice(5, 7))}月${Number(data.updatedAt.slice(8, 10))}日`,
   };
   const db = JSON.parse(publicJson());
   const html = {
