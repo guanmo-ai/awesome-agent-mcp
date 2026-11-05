@@ -59,11 +59,20 @@
   - 如何确认成功：先列出工具，再进行一次门店或商品查询，核对结果是否属于当前账号可用的门店。不要用创建订单作为连通测试；下单和付款前需确认门店、商品、配送方式及金额。（指引核对于 2026-11-05，不代表已实测）
 - [飞猪](https://github.com/alibaba-flyai/flyai-skill): 机票、酒店和景点搜索，返回价格与预订跳转链接。 类型 Skill · CLI；权限 只读查询；门槛 免费可用；已核验；CLI `npm i -g @fly-ai/flyai-cli`；Skill https://github.com/alibaba-flyai/flyai-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy/)
 - [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli): 企业差旅资源查询、差旅政策校验与方案推荐。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/)
+  - 接入前准备：面向企业客户、开发者和生态伙伴；接入方案、企业账户权限及费用需向同程商旅确认，公开公告未给出通用安装配置。
+  - 步骤 1：查看官方开放能力公告，确定需要 MCP、Skill 或 CLI 及要接入的企业系统。 [官方入口](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli)
+  - 步骤 2：在公告页面选择“联系我们”或填写企业咨询表，向同程商旅确认开通、授权、配置和费用，再按其提供的具体方案接入。 [官方入口](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli)
+  - 如何确认成功：开通后先用企业授权范围内的差旅资源或差旅政策查询核对返回结果；具体测试方式以同程商旅提供的接口说明为准。（指引核对于 2026-11-05，不代表已实测）
 - [彩云天气](https://github.com/caiyunapp/mcp-caiyun-weather): 查询实时天气、逐小时预报、空气质量与天气预警。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp-weather.caiyunapp.com/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/caiyun-weather/)
 - [飞常准](https://ai.variflight.com/zh/docs/aviation): 查询航班动态、中转方案、机票价格、机场天气与飞机位置。 类型 MCP；权限 只读查询；门槛 需 API Key、需授权账号、需会员或付费；已核验；MCP Streamable HTTP https://ai.variflight.com/servers/aviation/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/variflight/)
 - [途牛](https://open.tuniu.com/mcp/docs/guide/mcp-auth.html): 搜索并预订酒店、机票、火车票、门票、邮轮与度假产品。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://openapi.tuniu.cn/hybrid/mcp/hotel；CLI `npm install -g tuniu-cli@latest`；Skill https://github.com/tuniucorp/tuniu-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tuniu/)
 - [快递100](https://api.kuaidi100.com/document/how-to-use-mcp-service): 查询物流轨迹、预估运费与时效，并支持获授权的上门取件下单。 类型 MCP · Skill；权限 涉及资金；门槛 需 API Key、需授权账号、需申请开通；已核验；MCP Streamable HTTP https://api.kuaidi100.com/mcp/streamable?key=<你的快递100Key>；Skill https://clawhub.ai/kuaidi100-api/kuaidi100-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kuaidi100/)
 - [携程商旅](https://openapi.ctripbiz.com/#/advertise/mcp): 查询差旅政策、机票酒店与行程方案，读取差旅和合规数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ctrip-business/)
+  - 接入前准备：面向企业客户和生态伙伴；需申请开通并确认企业数据权限。平台分标准、高级、定制层，价格和实际能力以携程商旅确认结果为准。
+  - 步骤 1：阅读携程商旅 AI 开放平台说明，了解标准、高级和定制层的差异。 [官方入口](https://ct.ctrip.com/thinktanks/235566117077549)
+  - 步骤 2：点击公告底部“立即申请”进入 MCP 开放平台，按页面要求申请，并向携程确认企业授权、配置和费用。 [官方入口](https://ct.ctrip.com/thinktanks/235566117077549)
+  - 步骤 3：取得开通方案后，按照携程提供的企业专属说明将 MCP 接入企业 AI。 [官方入口](https://openapi.ctripbiz.com/#/advertise/mcp)
+  - 如何确认成功：开通后先按携程提供的工具说明查询一条授权范围内的差旅政策，核对返回结果。（指引核对于 2026-11-05，不代表已实测）
 
 ## 办公和协作
 
@@ -76,10 +85,24 @@
   - 步骤 5：如果明确要用远程 MCP，先查看个人调用指南与开放范围；具体配置以本人在官方平台取得的内容为准，不把 CLI 安装命令当成 MCP 端点。 [官方入口](https://open.feishu.cn/document/mcp_open_tools/end-user-call-remote-mcp-server?lang=zh-CN)
   - 如何确认成功：先用 lark-cli auth status 查看登录及权限。保存文档后检查返回的 ok、document.url 和 warnings，再运行 lark-cli docs +fetch --doc "返回的文档 URL" --detail with-ids，回读核对标题和正文，并把可打开的文档链接交给你；登录成功不等于文档已保存。（指引核对于 2026-11-05，不代表已实测）
 - [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview): 消息、文档、表格、日志、日历与待办的查询和操作。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk/)
+  - 接入前准备：需要钉钉账号；可见服务与数据受当前身份及组织授权约束。企业接入和费用以实际服务页面及组织权限为准。
+  - 步骤 1：在钉钉开放平台能力中心了解所需 MCP 服务及工具范围。 [官方入口](https://open.dingtalk.com/group)
+  - 步骤 2：参照钉钉官方 DWS 指南安装并登录；运行 dws mcp published tools，查看当前身份可用的已发布工具与输入格式。 [官方入口](https://open.dingtalk.com/dingtalk-dev/wiki)
+  - 步骤 3：按实际发布的工具契约选择目标与参数，从只读工具开始；使用具体客户端连接时按相应服务页面说明完成授权。 [官方入口](https://open.dingtalk.com/dingtalk-dev/wiki)
+  - 如何确认成功：检查已发布工具列表，再查询当前账号可访问的一条文档或待办并与钉钉中内容核对。（指引核对于 2026-11-05，不代表已实测）
 - [企业微信](https://work.weixin.qq.com/nl/index/aicli): 企业消息、通讯录与办公应用。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；CLI `npm install -g @wecom/cli`；Skill https://github.com/WecomTeam/wecom-unified；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wecom/)
 - [腾讯文档](https://docs.qq.com/open/document/mcp/): 在线文档与表格的读取和编辑。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、免费可用；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/)
+  - 接入前准备：个人需以 QQ 或微信登录并授权对应腾讯文档账号。官方文档列出免费用户 2000 次/天、超级会员 20000 次/天、超级会员 Plus 40000 次/天；企业场景及实际权限以账号和产品说明为准。
+  - 步骤 1：阅读官方 MCP 概述和服务使用须知，确认账号和调用频率限制。 [官方入口](https://docs.qq.com/open/document/mcp/)
+  - 步骤 2：打开官方 MCP 使用指南，按所用客户端的说明添加服务，并登录 QQ 或微信授权要访问的腾讯文档账号。 [官方入口](https://docs.qq.com/aio/p/scscyt11f44r7mn?p=zUl82NjI94qGab1NeQghFDF&nlc=1)
+  - 如何确认成功：连接后先读取自己有权限的一份文档，核对名称或内容；未授权文件不可作为连通性依据。（指引核对于 2026-11-05，不代表已实测）
 - [腾讯会议](https://cloud.tencent.com/document/product/1095/133826): 预约和管理会议，读取参会信息、录制、转写与纪要。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencentcloud/tmeet`；Skill https://github.com/TencentCloud/tencentmeeting-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/)
 - [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction): 通过 WPS 365 API 查询和操作企业文档及协作数据。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps/)
+  - 接入前准备：面向 WPS 365 企业；需申请 MCP 试用、创建企业自建应用，申请所需应用权限并取得用户访问凭证。公开文档未说明通用价格。
+  - 步骤 1：在官方 MCP 简介中打开试用申请表，向 WPS 申请企业 MCP 权限。 [官方入口](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction)
+  - 步骤 2：按对接指南创建企业自建应用，在应用详情的权限管理申请目标工具所需权限，并按用户授权流程取得 access token；文档要求关闭接口签名。 [官方入口](https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide)
+  - 步骤 3：选择支持 MCP 的客户端，按指南从工具列表选择对应端点，在请求头配置用户访问凭证。 [官方入口](https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide)
+  - 如何确认成功：先确认客户端显示服务与工具列表，再使用日历只读查询核对授权用户已有日程；不要以创建日程作为首测。（指引核对于 2026-11-05，不代表已实测）
 - [金山文档](https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA): 搜索、读取和整理云文档，生成文档内容。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/)
   - 接入前准备：需要登录并授权金山文档账号，按官网提供的安装指令接入。
   - 步骤 1：登录金山文档，在右上角更多菜单中选择「龙虾专属入口」。 [官方入口](https://www.kdocs.cn/latest)
@@ -92,6 +115,11 @@
 - [MinerU](https://github.com/opendatalab/MinerU-Ecosystem): 将 PDF、Office、图片与网页解析为 Markdown 和结构化数据。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 免费可用、需 API Key；已核验；MCP stdio uvx mineru-open-mcp；Skill https://github.com/opendatalab/MinerU-Ecosystem/tree/main/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mineru/)
 - [滴答清单](https://help.dida365.com/articles/7438132116019216384): 查询和管理任务、清单、习惯、专注记录与纪念日。 类型 MCP · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.dida365.com；CLI `npm install -g @suibiji/dida-cli`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dida/)
 - [飞书项目](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc): 按账号权限查询和更新项目、工作项及相关项目数据。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu-project/)
+  - 接入前准备：需有飞书项目账号和目标空间访问权限；MCP 在个人权限范围内运行，可选择读写授权。版本及费用以组织实际订购为准。
+  - 步骤 1：进入飞书项目，在左下角个人头像菜单选择“配置 MCP”，打开服务开关并选择所需的读或写授权。 [官方入口](https://project.feishu.cn/b/helpcenter/1ykiuvvj/qaq5d7ru)
+  - 步骤 2：按官方客户端指南选择 HTTP OAuth、HTTP Header 或 Stdio，配置所属域名及相应认证；OAuth 需要客户端支持动态 client_id。 [官方入口](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc)
+  - 步骤 3：完成客户端提示的授权并启用服务；例如 Codex CLI 保存配置后重启，首次调用按提示授权。 [官方入口](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc)
+  - 如何确认成功：先查询有权限的空间基本信息或工作项列表，核对返回内容；写操作仅在确需修改时使用。（指引核对于 2026-11-05，不代表已实测）
 - [腾讯 TAPD](https://cloud.tencent.com/developer/mcp/server/11474): 查询和管理需求、任务、缺陷、迭代及评论。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx mcp-server-tapd；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tapd/)
 
 ## 笔记、阅读和网盘
@@ -101,6 +129,11 @@
 - [flomo](https://help.flomoapp.com/advance/mcp/): 卡片笔记的记录与检索。 类型 MCP；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；MCP Streamable HTTP https://flomoapp.com/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/flomo/)
 - [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html): 笔记的创建、搜索与整理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；Skill https://cdn.yinxiang.com/ai/yinxiang-skill-v1.0.4.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang/)
 - [有道云笔记](https://note.youdao.com/help-center/skill-guide.html): 笔记读写与搜索、待办管理和网页剪藏。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note/)
+  - 接入前准备：适合个人有道云笔记账号；通用 Skill 依赖 YoudaoNote CLI 和个人 API Key。编程 Agent 的官方安装方式需要 Node.js；服务费用和额度以网易智能开发者平台为准。
+  - 步骤 1：按所用 Agent 打开官方通用 Skill 安装指南：编程 Agent 下载并解压 Skill 包，再按指南用 npx skills 安装；有道龙虾最新版已内置。 [官方入口](https://note.youdao.com/help-center/skill-guide.html)
+  - 步骤 2：按指南安装 YoudaoNote CLI，并在网易智能开发者平台获取或确认个人 API Key；按本机引导配置。 [官方入口](https://note.youdao.com/help-center/skill-install-guide.html)
+  - 步骤 3：重启或重载相应 Agent，使新安装的 Skill 生效。 [官方入口](https://note.youdao.com/help-center/skill-install-guide.html)
+  - 如何确认成功：在 Agent 中输入“列出我有道云笔记中的笔记”，返回账号的笔记列表后再核对。（指引核对于 2026-11-05，不代表已实测）
 - [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；Skill https://pdds.quark.cn/download/stfile/uu66xuuuuuvyuw8wx/quarkclouddrive-1.0.20.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive/)
 - [腾讯微云](https://www.weiyun.com/act/openclaw): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；Skill https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/)
 - [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/): 网盘文件的搜索、上传与管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP SSE https://mcp-pan.baidu.com/sse；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk/)
@@ -112,6 +145,11 @@
 - [天眼查](https://github.com/tyc-tech/tyc-cli): 企业工商与关系信息查询。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.tianyancha.com/mcp；CLI `npm install -g tyc-cli`；Skill https://github.com/tyc-tech/mcp-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tianyancha/)
 - [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc): 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；MCP SSE https://open.douyin.com/sse?token=<你的抖音Token>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/douyin-open/)
 - [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712): 查询授权的巨量广告账户、投放指标与报表数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanengine/)
+  - 接入前准备：面向已获授权的巨量广告业务账户；需登录商业化账号、授权目标账户并申请 API Key。接口费用及账户权限以平台当前规则为准。
+  - 步骤 1：打开巨量引擎 MCP 页面，在「使用方式」选择授权，登录商业化账号并勾选要查询的业务账户。 [官方入口](https://open.oceanengine.com/mcp)
+  - 步骤 2：按页面提示在 API Key 管理中申请 Key，再复制系统按授权生成的客户端配置。 [官方入口](https://open.oceanengine.com/api-key)
+  - 步骤 3：将配置添加到支持 Streamable HTTP 的 MCP 客户端；未勾选的账户不会获得对应操作权限。 [官方入口](https://open.oceanengine.com/mcp)
+  - 如何确认成功：先查询自己可操作的业务账户列表，核对返回账户与授权范围；再查询已有报表。（指引核对于 2026-11-05，不代表已实测）
 - [华宇元典](https://open.chineselaw.com/mcp-config/): 检索法律法规、案例、企业和证券合规资料，并校验法律幻觉。 类型 MCP · Skill；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://open.chineselaw.com/mcp/law/stream；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuandian/)
 - [腾讯元宝搜索](https://cloud.tencent.com/developer/mcp/server/11764): 检索实时网页与垂直信息，可限定站点、时效和结果数量。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://api.wsa.cloud.tencent.com/Mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuanbao-search/)
 - [百度 AI 搜索](https://cloud.baidu.com/doc/BAIDU_AI_SEARCH/index.html): 搜索实时网页、图片和视频，并按站点或结果类型筛选。 类型 MCP；权限 只读查询；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-search/)
@@ -138,6 +176,11 @@
 - [AntV](https://github.com/antvis/mcp-server-chart): 把结构化数据生成为图表，并按分析场景选择适合的可视化形式。 类型 MCP · Skill；权限 可执行操作；门槛 免费可用；已核验；MCP stdio npx -y @antv/mcp-server-chart；Skill https://github.com/antvis/chart-visualization-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/antv/)
 - [美图 MeituHub](https://www.meituhub.com/zh-cn/docs?id=150): 用命令行调用图片、视频和音频创作能力，支持本地批量处理。 类型 CLI；权限 可执行操作；门槛 需 API Key、需会员或付费；已核验；CLI `npm install -g meitu-cli meitu`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituhub/)
 - [腾讯混元生图](https://cloud.tencent.com/developer/mcp/server/11765): 生成图片、图生图、扩图与清晰度增强。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/)
+  - 接入前准备：需要腾讯云账号、已开通且仍可用的混元生图服务、具备相应权限的 SecretId / SecretKey 和 Docker。接口按产品规则计费，调用前确认剩余额度及迁移状态。
+  - 步骤 1：先在腾讯云确认混元生图服务是否可开通及计费状态，并在访问管理控制台获取具备所需权限的密钥。 [官方入口](https://cloud.tencent.com/document/product/1668/90896)
+  - 步骤 2：按 aiart 源码 README 构建 Docker 镜像，在本地 .env 配置密钥和地域；启动时将容器的 9000 端口映射到本机，例如 docker run -it -p 127.0.0.1:9000:9000 --env-file .env mcp-server-aiart:latest。 [官方入口](https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart)
+  - 步骤 3：按源码说明在 MCP 客户端配置 http://127.0.0.1:9000/sse；如果修改了容器端口，需同步调整端口映射和地址。 [官方入口](https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart)
+  - 如何确认成功：先确认 MCP 已连接并列出图像工具；实际生成图片会消耗额度或产生费用，确认后再做一次最小调用并核对结果。（指引核对于 2026-11-05，不代表已实测）
 - [火山引擎 veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex): 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_veimagex mcp-server-veimagex；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/)
 
 ## 支付和金融
@@ -157,11 +200,24 @@
 - [同花顺 iFinD](https://mcp.51ifind.com/): 查询行情、财务、公告、宏观等金融数据。 类型 MCP · Skill；权限 只读查询；门槛 需授权账号、需 API Key、需会员或付费；已核验；Skill https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/skills/ifind-finance-data-1.5.1.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ifind/)
 - [同花顺问财](https://search.10jqka.com.cn/skillhub): 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 类型 Skill · CLI；权限 只读查询；门槛 需授权账号、需 API Key；已核验；CLI `curl -fsSL https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh | bash -s`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai/)
 - [东方财富妙想](https://ai.eastmoney.com/skills): 金融资讯与数据分析、选股，以及自选和模拟组合管理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/eastmoney-miaoxiang/)
+  - 接入前准备：面向金融数据和资讯查询；需要东方财富账号及妙想 API Key。官方页面标注限时免费体验及每日领取限制，额度与后续费用以官方页面为准。
+  - 步骤 1：在东方财富 App 打开妙想 Skills 页面并登录，领取 API Key；领取情况和额度以页面显示为准。 [官方入口](https://marketing.dfcfs.com/views/finskillshub/index)
+  - 步骤 2：选择金融数据或资讯搜索 Skill，按详情中的下载或使用指引安装，并按其说明在本地配置 Key。 [官方入口](https://marketing.dfcfs.com/views/finskillshub/index)
+  - 如何确认成功：先查询一只公开股票的行情或一条资讯，核对名称与数据时间；自选或模拟组合操作前确认目标。（指引核对于 2026-11-05，不代表已实测）
 - [国信证券小信](https://www.guosen.com.cn/gs/xxskills/index.html): 查询宏观、行情与财务数据，进行基金对比、选股和 ETF 筛选。 类型 Skill；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/guosen/)
+  - 接入前准备：面向金融数据查询，官方页面提供手机号验证码登录和 API Key；页面标注限时免费，具体额度及后续费用以官方为准。
+  - 步骤 1：在小信 Skills 中心使用手机号验证码注册或登录，领取个人 API Key。 [官方入口](https://www.guosen.com.cn/gs/xxskills/index.html)
+  - 步骤 2：选择已开放的行情或财务数据技能，点击「下载 Skill」，按使用说明在 Agent 中安装并配置 API Key；「敬请期待」项目暂不可用。 [官方入口](https://www.guosen.com.cn/gs/xxskills/index.html)
+  - 如何确认成功：先查询一只公开股票的行情，核对标的和行情时间；检查返回数据而非只看安装提示。（指引核对于 2026-11-05，不代表已实测）
 
 ## 云和开发
 
 - [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide): 云资源查询与管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/)
+  - 接入前准备：适用于阿里云账号管理已授权云资源。OAuth 需管理员安装并分配 OpenAPI MCP Server 官方应用，RAM 用户还需相应权限；云资源与 API 的计费以所用产品为准。
+  - 步骤 1：登录 OpenAPI MCP 控制台，在 Core 标签获取账号专属 Streamable HTTP Endpoint；如需限定 API，可改用自定义版。 [官方入口](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide)
+  - 步骤 2：管理员在 RAM 控制台安装并分配 OpenAPI MCP Server 官方 OAuth 应用，再在控制台选择 OAuth 和对应客户端的配置模板。 [官方入口](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide)
+  - 步骤 3：将自己的端点与配置导入客户端，按浏览器提示完成授权；如走静态凭证，另按文档完成 RAM 策略和授权预检查。 [官方入口](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide)
+  - 如何确认成功：连接后先查询当前有权限查看的云资源清单，核对账号和地域；不要以创建资源作为首次验证。（指引核对于 2026-11-05，不代表已实测）
 - [腾讯云](https://cloud.tencent.com/document/product/1278/131433): 云资源查询与管理。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `pip install tccli`；Skill https://clawhub.ai/tencent-adm/tencentcloud-api-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cloud/)
 - [华为云](https://github.com/huaweicloud/huaweicloud-mcp): 云资源查询与管理。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/huaweicloud/huaweicloud-mcp#subdirectory=server/mcp_server_rfs mcp-huaweicloud-rfs；Skill https://github.com/huaweicloud/huaweicloud-devkit；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/)
 - [火山引擎](https://github.com/volcengine/mcp-server): 云资源与 AI 能力接入。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from mcp-server-ecs>=0.2.0 mcp-server-ecs；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/)
@@ -171,8 +227,18 @@
 - [Gitee](https://gitee.com/oschina/mcp-gitee): 代码仓库、Issue 与 PR 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio mcp-gitee；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/)
 - [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/): 代码仓库与 DevOps 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://jihulab.com/api/v4/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/)
 - [腾讯 EdgeOne Makers](https://edgeone.cloud.tencent.com/pages/document/173172415568367616): 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP stdio npx edgeone-pages-mcp-fullstack --region china；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers/)
-- [Apifox](https://docs.apifox.com/apifox-mcp-server): 读取接口文档，并通过命令行运行接口测试。 类型 MCP · CLI；权限 可执行操作；门槛 需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apifox/)
+- [Apifox](https://docs.apifox.com/apifox-mcp-server): 读取接口文档，并通过命令行运行接口测试。 类型 MCP · CLI；权限 可执行操作；门槛 见接入前准备；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apifox/)
+  - 接入前准备：项目内文档需要有权限的 Apifox 账号及个人访问令牌；公开文档可走不使用个人令牌的路径。MCP 需 Node.js 18 或更高；CLI 所需环境和套餐以官方说明为准。
+  - 步骤 1：读取项目文档时，在头像「账号设置 → API 访问令牌」创建令牌；进入项目基本设置可取得项目 ID。 [官方入口](https://docs.apifox.com/6327888m0)
+  - 步骤 2：在项目接口的「AI 编程」入口复制 MCP 配置并添加到客户端。公开文档另可在已启用 MCP 的接口页面点击 MCP 按钮复制配置。 [官方入口](https://docs.apifox.com/6327890m0)
+  - 步骤 3：需要运行测试时，按 CLI 文档安装，运行 apifox auth login 登录；在 Apifox 场景用例的 CI/CD 标签配置环境、生成令牌并复制对应命令。 [官方入口](https://docs.apifox.com/install-and-run-cli)
+  - 如何确认成功：先让 MCP 读取已有接口文档并核对项目和接口名称；CLI 测试仅在确认环境与用例不会产生意外写入后运行。（指引核对于 2026-11-05，不代表已实测）
 - [Sealos](https://sealos.io/docs/AI/mcp/): 创建开发环境，管理数据库，查询账单、性能监控与日志。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/sealos/)
+  - 接入前准备：需要 Sealos 账号及目标工作空间的 KubeConfig；各地域提供的 MCP 服务不同，资源费用以工作空间和产品规则为准。
+  - 步骤 1：登录 Sealos 控制台，在对应地域的 MCP 服务中复制需要使用的服务 URL。 [官方入口](https://sealos.io/docs/AI/mcp/)
+  - 步骤 2：在控制台右上角头像下选择 KubeConfig，复制当前工作空间配置；按官方文档在本地进行 URL 编码。 [官方入口](https://sealos.io/docs/AI/mcp/)
+  - 步骤 3：在支持 Streamable HTTP 的客户端添加该服务 URL，并将编码后的 KubeConfig 作为 Authorization 请求头的值。 [官方入口](https://sealos.io/docs/AI/mcp/)
+  - 如何确认成功：先列出服务工具并查询已有资源或监控，核对工作空间与地域；不创建开发环境或数据库作为首次测试。（指引核对于 2026-11-05，不代表已实测）
 - [腾讯云开发 CloudBase](https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/): 管理云数据库、云函数、存储和应用部署，并提供开发工作流。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://tcb-api.cloud.tencent.com/mcp/v1；Skill https://github.com/TencentCloudBase/cloudbase-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/cloudbase/)
 - [Milvus／Zilliz](https://milvus.io/docs/milvus_and_mcp.md): 检索向量数据，查询数据库结构，并管理集合和数据。 类型 MCP；权限 可执行操作；门槛 见接入前准备；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/milvus/)
   - 接入前准备：需要已经运行、可访问的本地或远程 Milvus 实例，以及 Python 3.10+、uv；不是安装 MCP 就会自动得到数据库。认证 Token 取决于实例配置，托管和自建成本分别确认，因此不统一标成免费或必须 API Key。
