@@ -44,36 +44,58 @@ async function probe(url) {
   }
 }
 
-const initialize = JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-03-26', capabilities: {}, clientInfo: { name: 'awesome-agent-mcp-check', version: '1' } } });
+const protocolVersion = '2025-03-26';
+const initialize = JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion, capabilities: {}, clientInfo: { name: 'awesome-agent-mcp-check', version: '1' } } });
 const auth = (r) => [401, 403].includes(r.status);
+const needsAuth = (status) => `待确认：HTTP ${status}，端点需鉴权，未完成 MCP 握手`;
+function streamEvents(text) {
+  return text.split('\n\n').slice(0, -1).map((block) => {
+    const lines = block.split('\n');
+    return {
+      event: lines.find((l) => l.startsWith('event:'))?.slice(6).trim() ?? 'message',
+      data: lines.filter((l) => l.startsWith('data:')).map((l) => l.slice(5).replace(/^ /, '')).join('\n'),
+    };
+  });
+}
 function rpc(text) {
-  const messages = [text, ...text.split('\n').filter((l) => l.startsWith('data:')).map((l) => l.slice(5))];
-  return messages.some((t) => { try { const m = JSON.parse(t); return m.jsonrpc === '2.0' && m.id === 1 && (m.result?.protocolVersion || typeof m.error?.code === 'number'); } catch { return false; } });
+  for (const message of [text, ...streamEvents(text).map((e) => e.data)]) {
+    let m;
+    try { m = JSON.parse(message); } catch { continue; }
+    if (m?.jsonrpc !== '2.0' || m.id !== 1) continue;
+    if (m.error) return '失败：MCP initialize 返回错误';
+    const result = m.result;
+    if (result?.protocolVersion && result.protocolVersion !== protocolVersion) return '待确认：服务协商了探针不支持的协议版本';
+    if (result?.protocolVersion === protocolVersion && result.capabilities && typeof result.capabilities === 'object' && !Array.isArray(result.capabilities)
+      && typeof result.serverInfo?.name === 'string' && result.serverInfo.name.trim() && typeof result.serverInfo.version === 'string' && result.serverInfo.version.trim()) return '通过：收到有效 MCP initialize 响应';
+    return '失败：MCP initialize 响应缺少必需字段';
+  }
 }
 export async function mcp(url, transport) {
   const u = new URL(url);
   for (const [k, v] of [...u.searchParams]) if (/<[^>]+>/.test(v)) u.searchParams.delete(k);
   const options = { signal: AbortSignal.timeout(20000), headers: { Accept: 'application/json, text/event-stream', 'Content-Type': 'application/json' } };
   let r = await fetch(u, { ...options, method: transport === 'sse' ? 'GET' : 'POST', ...(transport === 'sse' ? {} : { body: initialize }) });
-  if (auth(r)) { await r.body?.cancel(); return `通过：HTTP ${r.status}，端点需鉴权`; }
-  if (r.status === 404 || r.status >= 500) { await r.body?.cancel(); return `失败：HTTP ${r.status}`; }
+  if (auth(r)) { await r.body?.cancel(); return needsAuth(r.status); }
+  if (!r.ok) { await r.body?.cancel(); return `失败：HTTP ${r.status}`; }
   const reader = r.body.getReader(), decoder = new TextDecoder();
-  let text = '', sent = transport !== 'sse';
+  let raw = '', text = '', sent = transport !== 'sse';
   try {
     while (text.length < 65536) {
       const chunk = await reader.read(); if (chunk.done) break;
-      text += decoder.decode(chunk.value, { stream: true }).replaceAll('\r\n', '\n');
+      raw += decoder.decode(chunk.value, { stream: true });
+      text = raw.replace(/\r\n?/g, '\n');
       if (!sent) {
-        const endpoint = /event:\s*endpoint\ndata:\s*(.+)\n\n/.exec(text);
+        const endpoint = streamEvents(text).find((e) => e.event === 'endpoint' && e.data);
         if (!endpoint) continue;
-        const post = new URL(endpoint[1].trim(), u);
+        const post = new URL(endpoint.data.trim(), u);
         if (post.origin !== u.origin) return '待确认：SSE 消息端点跨域';
         const reply = await fetch(post, { ...options, method: 'POST', body: initialize });
         const status = reply.status; await reply.body?.cancel(); sent = true;
-        if (auth(reply)) return `通过：HTTP ${status}，端点需鉴权`;
+        if (auth(reply)) return needsAuth(status);
         if (!reply.ok) return `失败：SSE initialize HTTP ${status}`;
       }
-      if (rpc(text)) return '通过：收到 MCP initialize 响应';
+      const result = rpc(text);
+      if (result) return result;
     }
     return '失败：没有 MCP initialize 响应';
   } finally { await reader.cancel().catch(() => {}); }
@@ -92,7 +114,7 @@ export async function inspect(field, url, s, note) {
     const links = [repo, v.homepage, ...Object.values(v.project_urls ?? {})].filter(Boolean).map((x) => x.replace(/^git\+/, '').replace(/\.git$/, '').toLowerCase());
     const official = [s.url, s.repo, s.evidence?.url].filter(Boolean).filter((x) => /^https:\/\/github.com\/[^/]+/i.test(x)).map((x) => x.toLowerCase().split('/').slice(0, 4).join('/') + '/');
     const matched = links.some((x) => official.some((o) => x.startsWith(o)));
-    return `${matched ? '通过' : '待确认'}：包存在且未废弃；发布者 ${publisher || '未提供'}；${matched ? '仓库匹配官方组织' : '厂商归属需人工核对'}；${links.join(', ')}`;
+    return `待确认：包存在且未废弃；发布者 ${publisher || '未提供'}；${matched ? '包声明关联官方组织，归属仍需官方反向确认' : '厂商归属需人工核对'}；${links.join(', ')}`;
   }
   if (field === 'skill' && /\/SKILL\.md(?:[?#]|$)/i.test(url)) {
     const text = await r.text();
