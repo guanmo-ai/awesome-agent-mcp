@@ -1,6 +1,6 @@
 # Awesome Agent MCP
 
-> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 104 个，更新于 2026-11-05。
+> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 105 个，更新于 2026-11-05。
 
 结构化数据：https://guanmo-ai.github.io/awesome-agent-mcp/services.json（字段说明见 https://github.com/guanmo-ai/awesome-agent-mcp/blob/main/docs/SCHEMA.md）
 
@@ -270,6 +270,11 @@
   - 步骤 1：从阿里云官方技能详情核对能力和源码，按页面安装方式将该技能连同配套文件加入当前 Agent。 [官方入口](https://skills.aliyun.com/skills/alibabacloud-video-translation)
   - 步骤 2：按 Skill 说明确认字幕翻译或语音翻译模式、语言和素材地址，核对 CLI、插件与认证后再提交任务。 [官方入口](https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/mediaservices/ice/alibabacloud-video-translation)
   - 如何确认成功：先确认技能加载和认证条件；确认费用并获授权后再提交短小的公开样例，核对任务状态和输出文件。（指引核对于 2026-11-05，不代表已实测）
+- [火山引擎视频点播](https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide): 通过 MCP 裁剪、拼接视频，添加字幕并处理媒资。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server.git#subdirectory=server/mcp_server_vod mcp-server-vod；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine-vod/)
+  - 接入前准备：需要火山引擎实名认证账号、访问密钥、已开通的视频点播服务和点播空间；本地运行需 uvx。视频处理、存储及流量可能产生费用。
+  - 步骤 1：开通视频点播并创建空间，获取火山引擎 Access Key 和 Secret Key。 [官方入口](https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide)
+  - 步骤 2：按官方本地模式配置 uvx、密钥及空间名称；edit 分组提供剪辑工具。 [官方入口](https://github.com/volcengine/mcp-server/blob/main/server/mcp_server_vod/README_zh.md)
+  - 如何确认成功：连接客户端后先检查工具列表包含 audio_video_clipping；处理素材前确认权限和费用。（指引核对于 2026-11-05，不代表已实测）
 
 ## 支付和金融
 

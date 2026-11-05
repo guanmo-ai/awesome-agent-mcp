@@ -1,6 +1,6 @@
 # Awesome Agent MCP
 
-> 中国厂商官方 MCP、Skill 与 CLI 索引，104 个服务，更新于 2026-11-05。
+> 中国厂商官方 MCP、Skill 与 CLI 索引，105 个服务，更新于 2026-11-05。
 
 独立社区索引，仅供参考；已核验不代表实测或安全保证，使用前核对官方文档：[使用说明与免责声明](https://guanmo-ai.github.io/awesome-agent-mcp/#disclaimer)。
 先找到服务，再读取对应 Markdown 中的完整配置和接入步骤；密钥与登录由用户在本地完成，下单或付款前取得确认。
@@ -75,6 +75,7 @@
 - [腾讯混元生图](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image.md): 生成图片、图生图、扩图与清晰度增强。 MCP；可执行操作
 - [火山引擎 veImageX](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex.md): 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 MCP；可执行操作
 - [阿里云智能媒体服务 IMS](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims.md): 提取视频字幕并翻译，支持语音合成和配音替换。 Skill；可执行操作
+- [火山引擎视频点播](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine-vod.md): 通过 MCP 裁剪、拼接视频，添加字幕并处理媒资。 MCP；可执行操作
 
 ## 支付和金融
 

@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">Follow @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>104 services · 7 categories · 87 with install config · Updated 2026-11-05</sub></p>
+<p align="center"><sub>105 services · 7 categories · 88 with install config · Updated 2026-11-05</sub></p>
 
 > **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
 
@@ -67,7 +67,7 @@ Test one lookup and report the result; skill installation does not establish a s
 - [Office](#cat-office) (15)
 - [Notes & Storage](#cat-notes) (8)
 - [Search & Data](#cat-search) (9)
-- [Design & Creation](#cat-design) (9)
+- [Design & Creation](#cat-design) (10)
 - [Payment & Finance](#cat-finance) (7)
 - [Cloud & Dev](#cat-cloud) (41)
 
@@ -169,6 +169,7 @@ Test one lookup and report the result; skill installation does not establish a s
 | [Tencent Hunyuan Image](https://cloud.tencent.com/developer/mcp/server/11765) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/) | Generate and edit images, expand images, and enhance clarity. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Volcengine veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/) | Query and upload image assets, generate images, enhance quality, expand images, and recognize text. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Alibaba Cloud Intelligent Media Services](https://skills.aliyun.com/skills/alibabacloud-video-translation) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims/) | Extract and translate video subtitles, with speech synthesis and voice replacement. | Skill | 🟡 Write access | Account authorization | ✅ Verified |
+| [Volcengine VOD](https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine-vod/) | Clip and join videos, add subtitles, and process media through MCP. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
 
 <sub>[↑ Back to contents](#toc)</sub>
 
