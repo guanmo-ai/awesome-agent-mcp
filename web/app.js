@@ -17,7 +17,7 @@ const scheduleRender = () => {
 };
 
 async function init() {
-  wireChrome();
+  const restoreSearch = wireChrome();
   const embedded = $('#catalog-data');
   DB = embedded ? JSON.parse(embedded.textContent) : await loadCatalog();
   L = DB.labels;
@@ -42,13 +42,15 @@ async function init() {
   buildDemo();
   renderForAi();
   openFromHash();
+  restoreSearch();
+  addEventListener('popstate', openFromHash);
   addEventListener('hashchange', openFromHash);
   loadStars(DB);
 }
 
 /* ── Chrome: nav, theme, keyboard, filters ───────────── */
 function wireChrome() {
-  initChrome({ getData: () => DB, onChoose: openSheet,
+  const restoreSearch = initChrome({ getData: () => DB, onChoose: openSheet,
     beforeOpen: () => { if ($('#sheet').open) $('#sheet').close(); }, focusSearch: () => $('#q').focus() });
   const q = $('#q');
   q.addEventListener('input', () => { state.q = q.value.trim(); scheduleRender(); });
@@ -105,12 +107,14 @@ function wireChrome() {
     if (e.target === sheet || e.target.closest('[data-close]')) closeDialog(sheet);
   });
   sheet.addEventListener('close', () => {
-    if (location.hash.startsWith('#s-')) history.replaceState(null, '', location.pathname + location.search);
+    if (history.state?.overlay === 'detail') history.back();
+    else if (location.hash.startsWith('#s-')) history.replaceState(null, '', location.pathname + location.search);
   });
 
   $('#copy-prompt').addEventListener('click', (e) => copy(PROMPT, e.currentTarget, '已复制，发给你的 Agent 吧'));
   $('#copy-prompt-2').addEventListener('click', (e) => copy(PROMPT, e.currentTarget));
   $('#copy-skill').addEventListener('click', (e) => copy(SKILL_CMD, e.currentTarget));
+  return restoreSearch;
 }
 
 function resetFilters() {
@@ -181,7 +185,7 @@ function render() {
 }
 
 /* ── Detail sheet ────────────────────────────────────── */
-function openSheet(id) {
+function openSheet(id, fromHistory = false) {
   const s = byId.get(id);
   if (!s) return;
   const detail = renderDetails(s, DB);
@@ -207,12 +211,13 @@ function openSheet(id) {
   openDialog(sheet);
   box.scrollTop = 0;
   box.focus({ preventScroll: true });
-  if (location.hash !== `#s-${s.id}`) history.replaceState(null, '', `#s-${s.id}`);
+  if (!fromHistory) history.pushState({ overlay: 'detail' }, '', `#s-${s.id}`);
 }
 
 function openFromHash() {
   const m = location.hash.match(/^#s-([a-z0-9-]+)$/);
-  if (m && byId?.has(m[1])) openSheet(m[1]);
+  if (m && byId?.has(m[1]) && history.state?.overlay !== 'search') openSheet(m[1], true);
+  else if ($('#sheet').open) $('#sheet').close();
 }
 
 /* ── Hero orbit: Agent → official services ───────────── */
