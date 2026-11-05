@@ -1,9 +1,9 @@
-import { esc, safeUrl, brandColor, serviceUrl, logoHtml, host, badge, cardHtml, renderDetails } from '../web/render.mjs';
+import { agentPrompt, esc, safeUrl, brandColor, serviceUrl, logoHtml, host, badge, cardHtml, renderDetails } from '../web/render.mjs';
 
 export function renderServicePage(service, db, config, template, version) {
   const category = db.categories.find((c) => c.id === service.category);
   const details = renderDetails(service, db);
-  const prompt = `读取 ${serviceUrl(db.homepage, service.id)} ，帮我把${service.name}的官方接入配置进我的 Agent，Key 我自己填。`;
+  const prompt = agentPrompt(serviceUrl(db.homepage, service.id), `帮我接入${service.name}`);
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: service.name,
     description: service.summary, url: serviceUrl(db.homepage, service.id),

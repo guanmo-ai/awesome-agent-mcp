@@ -4,6 +4,7 @@ import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } 
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { agentPrompt, esc } from '../web/render.mjs';
 import { root, readJson } from '../scripts/lib.mjs';
 
 // Run the real build in an isolated fixture; never mutate the working catalog.
@@ -26,6 +27,12 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
   const version = home.match(/app\.js\?v=([a-f0-9]+)/)[1];
   const embedded = JSON.parse(home.match(/<script type="application\/json" id="catalog-data">([\s\S]*?)<\/script>/)[1]);
   const published = JSON.parse(fixture.read('services.json'));
+  assert.ok(home.includes(esc(agentPrompt(`${config.siteUrl}llms.txt`))), '不开 JavaScript 也能读到完整交接提示词');
+  for (const href of ['./llms.txt', './services.json', './skills/agent-mcp-finder/SKILL.md']) {
+    assert.ok(home.includes(`href="${href}"`), `静态首页缺少 Agent 阅读入口 ${href}`);
+  }
+  assert.doesNotMatch(home, /\{\{[a-zA-Z]+\}\}/, '首页不能残留构建占位符');
+
   assert.deepEqual(embedded, published, '首页的交互数据应与同次构建的公开目录一致');
   for (const file of ['app.js', 'ui.mjs', 'service.js']) {
     const imports = [...fixture.read(file).matchAll(/from\s+['"]\.\/([^'"]+)['"]/g)].map((m) => m[1]);
@@ -42,7 +49,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
     assert.doesNotMatch(html, /\{\{[a-zA-Z]+\}\}/, `${s.id} 有残留占位符`);
     assert.match(html, /<h1>[^<]+<\/h1>/);
     assert.ok(html.includes(`<link rel="canonical" href="${config.siteUrl}s/${s.id}/">`));
-    assert.ok(html.includes(`读取 ${config.siteUrl}s/${s.id}/ ，帮我把${s.name}的官方接入配置进我的 Agent，Key 我自己填。`));
+    assert.ok(html.includes(esc(agentPrompt(`${config.siteUrl}s/${s.id}/`, `帮我接入${s.name}`))));
     assert.ok(sitemap.includes(`<loc>${config.siteUrl}s/${s.id}/</loc>`));
     const jsonLd = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     assert.equal(jsonLd['@type'], 'SoftwareApplication');

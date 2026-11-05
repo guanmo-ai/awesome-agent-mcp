@@ -20,7 +20,12 @@
 Copy this prompt into an internet-enabled agent such as Claude Code, Codex, or Cursor:
 
 ```text
-Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt as an index of official MCP servers, skills, and CLIs from China. Find services for my needs, explain their requirements, and help configure them in my current agent. I will supply keys and authorize accounts myself.
+My task: [describe what you want to do]
+Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt
+Find relevant vendor integrations and check official documentation for eligibility, costs, and client support.
+Verified means vendor identity, not tested connectivity. Report missing information instead of guessing.
+Help configure the selected service within my authorization and verify the connection.
+I will enter keys and authorize accounts locally. Ask before placing orders or making payments.
 ```
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP website preview" width="100%"></a></p>
@@ -34,7 +39,10 @@ Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt as an index of offic
 **Already know the service you want?** Send this prompt, using Feishu as an example:
 
 ```text
-Read https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/ and help connect Feishu to my current agent using its official documentation. I will supply keys and authorize accounts myself.
+I want to connect Feishu to my current agent.
+Read https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/
+Check official docs, explain requirements, configure within my authorization, and verify.
+I will enter keys and authorize accounts locally.
 ```
 
 Let your agent read the index directly:
@@ -45,17 +53,16 @@ Let your agent read the index directly:
 | JSON (structured data) | https://guanmo-ai.github.io/awesome-agent-mcp/services.json |
 | GitHub raw file | https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/data/services.json |
 
-You can also install the included skill [`agent-mcp-finder`](skills/agent-mcp-finder/SKILL.md). Then ask “Order me a Luckin coffee.” Your agent checks this index for official integrations, required keys, and configuration. For Claude Code:
-
-```bash
-mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md -o ~/.claude/skills/agent-mcp-finder/SKILL.md
-```
-
-**Ask your AI to install the finder skill:**
+**Want to reuse the finder?** Optionally install [`agent-mcp-finder`](skills/agent-mcp-finder/SKILL.md). Send the prompt below to your agent. The skill finds integrations; installing it does not connect every service.
 
 ```text
-Read https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md and install agent-mcp-finder using my current agent's skill installation method. When I need to connect to a service from China, consult this official index first.
+Read https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md
+Review it, then install agent-mcp-finder using the current agent's official instructions.
+Preserve any existing skill with the same name. If skills are unsupported, read the index directly.
+Test one lookup and report the result; skill installation does not establish a service connection.
 ```
+
+**What happens next?** Your agent checks eligibility, accounts, and costs, then configures within your authorization. After you authenticate locally, it should report actual connection results. Verified means vendor identity; missing information does not imply free access, immediate availability, or no official integration.
 
 <a id="toc"></a>
 

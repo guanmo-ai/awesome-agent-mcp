@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } fr
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { root, load, grouped, LABELS, rawUrl } from './lib.mjs';
-import { esc, serviceUrl } from '../web/render.mjs';
+import { agentPrompt, skillPrompt, esc, serviceUrl } from '../web/render.mjs';
 import { renderServicePage, sitemap } from './service-pages.mjs';
 import { directoryHtml, chipsHtml } from '../web/directory.mjs';
 
@@ -55,7 +55,12 @@ function readme(english = false) {
     t('复制下面这句话，发给 Claude Code、Codex、Cursor 等能联网的 Agent：', 'Copy this prompt into an internet-enabled agent such as Claude Code, Codex, or Cursor:'),
     '',
     '```text',
-    t(`读取 ${config.siteUrl}llms.txt，把它作为国内官方 MCP、Skill、CLI 的服务索引；根据我的需求找到合适的服务，说明接入门槛，并帮我配置到当前 Agent，Key 和账号授权由我完成。`, `Read ${config.siteUrl}llms.txt as an index of official MCP servers, skills, and CLIs from China. Find services for my needs, explain their requirements, and help configure them in my current agent. I will supply keys and authorize accounts myself.`),
+    t(agentPrompt(`${config.siteUrl}llms.txt`, '[换成你想完成的事，例如：整理飞书文档]'), `My task: [describe what you want to do]
+Read ${config.siteUrl}llms.txt
+Find relevant vendor integrations and check official documentation for eligibility, costs, and client support.
+Verified means vendor identity, not tested connectivity. Report missing information instead of guessing.
+Help configure the selected service within my authorization and verify the connection.
+I will enter keys and authorize accounts locally. Ask before placing orders or making payments.`),
     '```',
     '',
     `<p align="center"><a href="${config.siteUrl}"><img src="web/og.jpg" alt="${config.title} ${t('网站预览', 'website preview')}" width="100%"></a></p>`,
@@ -69,7 +74,13 @@ function readme(english = false) {
     t('**已经知道要接哪个服务？** 直接发这一句，以飞书为例：', '**Already know the service you want?** Send this prompt, using Feishu as an example:'),
     '',
     '```text',
-    t(`读取 ${serviceUrl(config.siteUrl, 'feishu')}，按官方文档帮我把飞书接入当前 Agent，Key 和账号授权由我完成。`, `Read ${serviceUrl(config.siteUrl, 'feishu')} and help connect Feishu to my current agent using its official documentation. I will supply keys and authorize accounts myself.`),
+    t(`我想把飞书接入当前 Agent。
+读取 ${serviceUrl(config.siteUrl, 'feishu')}
+核对官方文档，说明账号权限和接入步骤，按我的授权配置并验证。
+Key 和账号授权由我在本地完成。`, `I want to connect Feishu to my current agent.
+Read ${serviceUrl(config.siteUrl, 'feishu')}
+Check official docs, explain requirements, configure within my authorization, and verify.
+I will enter keys and authorize accounts locally.`),
     '```',
     '',
     t('不用复制粘贴清单，直接让你的 Agent 来读：', 'Let your agent read the index directly:'),
@@ -80,17 +91,16 @@ function readme(english = false) {
     `| ${t('JSON 数据（适合程序）', 'JSON (structured data)')} | ${config.siteUrl}services.json |`,
     `| ${t('GitHub 原始文件', 'GitHub raw file')} | ${rawUrl(config, 'data/services.json')} |`,
     '',
-    `${t('也可以装上仓库自带的 Skill', 'You can also install the included skill')} [\`${config.skill}\`](${skillPath})${t('。装好后说「帮我点杯瑞幸」，Agent 会先查这份索引，告诉你有没有官方接入、需要什么 Key、配置怎么写。以 Claude Code 为例：', '. Then ask “Order me a Luckin coffee.” Your agent checks this index for official integrations, required keys, and configuration. For Claude Code:')}`,
-    '',
-    '```bash',
-    `mkdir -p ~/.claude/skills/${config.skill} && curl -fsSL ${rawUrl(config, skillPath)} -o ~/.claude/skills/${config.skill}/SKILL.md`,
-    '```',
-    '',
-    t('**让 AI 帮你安装查找 Skill：**', '**Ask your AI to install the finder skill:**'),
+    `${t('**以后也想随时查？** 可选安装', '**Want to reuse the finder?** Optionally install')} [\`${config.skill}\`](${skillPath})${t('。复制下面的提示词，让 Agent 按自己的安装方式处理；无需先学终端命令。这个 Skill 用来查找接入，不会自动接通所有服务。', '. Send the prompt below to your agent. The skill finds integrations; installing it does not connect every service.')}`,
     '',
     '```text',
-    t(`读取 ${rawUrl(config, skillPath)}，按当前 Agent 的 Skill 安装方式安装 ${config.skill}；以后我需要接入国内服务时，先查询这份官方索引。`, `Read ${rawUrl(config, skillPath)} and install ${config.skill} using my current agent's skill installation method. When I need to connect to a service from China, consult this official index first.`),
+    t(skillPrompt(rawUrl(config, skillPath), config.skill), `Read ${rawUrl(config, skillPath)}
+Review it, then install ${config.skill} using the current agent's official instructions.
+Preserve any existing skill with the same name. If skills are unsupported, read the index directly.
+Test one lookup and report the result; skill installation does not establish a service connection.`),
     '```',
+    '',
+    t('**接下来会发生什么？** Agent 先核对适用对象、账号和费用门槛，再按你的授权接入；你完成本地登录或填写 Key 后，它应报告实际连接验证结果。已核验仅代表官方身份，缺少信息不代表免费、即装即用或没有官方接入。', '**What happens next?** Your agent checks eligibility, accounts, and costs, then configures within your authorization. After you authenticate locally, it should report actual connection results. Verified means vendor identity; missing information does not imply free access, immediate availability, or no official integration.'),
     '',
     '<a id="toc"></a>',
     '',
@@ -151,7 +161,11 @@ function llms() {
     '使用这份索引时请遵守：',
     '- 「涉及资金」的服务可能下单或付款，执行前必须让用户确认。',
     '- 「待核验」的条目尚未确认是否为官方出品，推荐给用户时要说明。',
-    '- 接入方式以每条的官方链接为准；本索引不提供任何 Key 或账号。',
+    '- 已核验只表示确认官方身份，不代表已实测接入成功。未收录不代表没有官方接入。',
+    '- 先确认用户要完成的任务和当前 Agent，核对厂商文档中的适用对象、账号、费用及客户端支持；区分商家接口与消费者服务。',
+    '- 安装字段缺失、门槛为 — 时表示未整理，不代表无需授权或可以免费使用；需要时读取结构化数据和官方文档。',
+    '- 接入方式以每条的官方链接为准；保留认证请求头和参数，不编造端点。本索引不提供任何 Key 或账号。',
+    '- 按用户已有授权配置，由用户在本地填写密钥和完成登录；验证连接后报告实际结果及剩余步骤，不以配置写入代替成功。',
     '',
   ];
   for (const g of groups) {
@@ -230,6 +244,8 @@ if (process.argv.includes('--check')) {
     title: config.title, tagline: config.tagline, description: config.description, siteUrl: config.siteUrl,
     repo: config.repo, x: config.maintainer.x, maintainerName: config.maintainer.name, count: live.length, v: version,
     categoryCount: groups.length, verifiedCount: verified,
+    agentPrompt: agentPrompt(`${config.siteUrl}llms.txt`), skillPrompt: skillPrompt(rawUrl(config, skillPath), config.skill),
+    skill: config.skill, branch: config.branch,
     updatedLabel: `${Number(data.updatedAt.slice(5, 7))}月${Number(data.updatedAt.slice(8, 10))}日`,
   };
   const db = JSON.parse(publicJson());

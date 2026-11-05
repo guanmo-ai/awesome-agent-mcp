@@ -20,7 +20,7 @@
   <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#07080a" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="alternate" type="text/plain" href="./llms.txt" title="llms.txt">
+  <link rel="describedby" type="text/plain" href="./llms.txt" title="Agent 阅读入口">
   <link rel="alternate" type="application/json" href="./services.json" title="services.json">
   <link rel="preload" href="./fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="modulepreload" href="./ui.mjs?v={{v}}">
@@ -78,7 +78,7 @@
           <p class="lede reveal">国内厂商<b>官方出品</b>的 MCP、Skill 与命令行工具，一页查全。<br>人看卡片，AI 直接读。</p>
           <div class="cta reveal">
             <a class="btn btn-primary" href="#directory">浏览全部服务<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a>
-            <button class="btn btn-ghost" type="button" id="copy-prompt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5-2 2m-7 7-2 2m11 0-2-2m-7-7-2-2"/></svg>复制给 AI 的提示词</button>
+            <a class="btn btn-ghost" href="#for-ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5-2 2m-7 7-2 2m11 0-2-2m-7-7-2-2"/></svg>把需求交给我的 Agent</a>
           </div>
           <dl class="stats reveal">
             <div><dt>服务</dt><dd data-count="{{count}}">{{count}}</dd></div>
@@ -123,7 +123,7 @@
       <div class="wrap sec-head">
         <p class="kicker">DIRECTORY</p>
         <h2 id="dir-title">全部服务</h2>
-        <p class="sec-sub">每一条都链接到厂商自己的页面。点开卡片，看接入门槛和一键配置。</p>
+        <p class="sec-sub">每一条都链接到厂商自己的页面。点开卡片，看接入门槛、官方文档和已整理的配置。</p>
       </div>
       <div class="filterbar" id="filterbar">
         <div class="wrap fb-in">
@@ -167,29 +167,33 @@
         <div class="sec-head center">
           <p class="kicker">FOR AGENTS</p>
           <h2 id="ai-title">人看卡片，<span class="shine">AI 直接读</span></h2>
-          <p class="sec-sub">不用复制清单。三种方式，把这份索引交给你的 Agent。</p>
+          <p class="sec-sub">写下想做的事，复制提示词，发到你自己的 Agent 对话里。无需先安装 Skill。</p>
         </div>
         <div class="bento">
           <article class="bento-card b-chat">
-            <header><span class="step">01</span><div><h3>在对话里说一句</h3><p>Claude、Codex、Kimi，能联网的 Agent 都行</p></div></header>
-            <div class="chat" id="chat" aria-live="off">
-              <div class="bubble me" id="chat-me"></div>
-              <div class="bubble ai"><span class="ai-avatar" aria-hidden="true"></span><div id="chat-ai"></div></div>
-            </div>
-            <button class="btn btn-ghost btn-sm" type="button" id="copy-prompt-2">复制这句话</button>
+            <header><span class="step">01</span><div><h3>你想让 Agent 做什么？</h3><p>例如查路线、整理飞书文档，或找某个服务的官方接入</p></div></header>
+            <label for="agent-need">我的需求</label>
+            <textarea id="agent-need" rows="3" maxlength="1000" placeholder="例如：帮我把会议纪要整理成飞书文档" aria-describedby="handoff-help"></textarea>
+            <p class="code-hint" id="handoff-help">需求只在当前页面生成提示词，不会发送给本站。请勿填写密钥。</p>
+            <p class="code-hint">复制后发给 Claude Code、Codex、Cursor 等 Agent；需要它能读取网页，实际接入还需要配置权限。</p>
+            <button class="btn btn-primary btn-sm" type="button" id="copy-prompt-2">复制提示词，发给我的 Agent</button>
+            <details><summary>查看将发给 Agent 的提示词</summary><pre class="handoff-prompt" id="agent-prompt" tabindex="0" aria-label="发给 Agent 的提示词">{{agentPrompt}}</pre></details>
+            <noscript><p>展开提示词，选中文字复制，并把第一行换成你的需求。</p></noscript>
           </article>
           <article class="bento-card b-skill">
-            <header><span class="step">02</span><div><h3>装上 Skill</h3><p>以后直接说「帮我点杯瑞幸」</p></div></header>
-            <div class="term">
-              <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>Claude Code</span></div>
-              <pre><code id="skill-cmd"></code></pre>
-            </div>
-            <button class="btn btn-ghost btn-sm" type="button" id="copy-skill">复制安装命令</button>
+            <header><span class="step">可选</span><div><h3>以后也能查：让 Agent 安装 Skill</h3><p>这是查找工具，服务仍需各自完成接入</p></div></header>
+            <details><summary>查看安装提示词</summary><p class="handoff-prompt">{{skillPrompt}}</p></details>
+            <button class="btn btn-ghost btn-sm" type="button" data-copy="{{skillPrompt}}">复制 Skill 安装提示词</button>
+            <a href="./skills/{{skill}}/SKILL.md">阅读 Skill 内容</a>
           </article>
           <article class="bento-card b-data">
-            <header><span class="step">03</span><div><h3>直接读数据</h3><p>给程序和脚本用，结构稳定</p></div></header>
-            <ul class="files" id="files"></ul>
-            <pre class="json"><code id="json-sample"></code></pre>
+            <header><span class="step">读取</span><div><h3>Agent 从这里开始读</h3><p>先读纯文本索引，需要完整字段再读 JSON</p></div></header>
+            <ul class="files" id="files">
+              <li><a href="./llms.txt"><b>llms.txt</b><span>Agent 阅读入口</span><em>↗</em></a></li>
+              <li><a href="./services.json"><b>services.json</b><span>完整数据与核验依据</span><em>↗</em></a></li>
+              <li><a href="https://raw.githubusercontent.com/{{repo}}/{{branch}}/data/services.json" target="_blank" rel="noopener"><b>GitHub 原始数据</b><span>备用入口</span><em>↗</em></a></li>
+            </ul>
+            <p class="code-hint">“官方已核验”确认的是厂商身份，不代表接入已实测。缺少配置或门槛时，Agent 应继续查官方文档。</p>
           </article>
         </div>
       </div>
