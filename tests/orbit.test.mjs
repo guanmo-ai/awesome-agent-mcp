@@ -14,3 +14,17 @@ test('轨道标签避开中心圆与当前图标，并留在轨道横向边界�
     assert.ok(right <= x - size / 2 || left >= x + size / 2 || bottom <= y - size / 2 || top >= y + size / 2, `图标 ${JSON.stringify({width,deg,p})}`);
   }
 });
+
+test('三个安全候选中优先避开相邻图标，均被遮挡时保留原位置', () => {
+  const base = { x: 450, y: 300, size: 52, width: 600, labelWidth: 140, labelHeight: 34 };
+  const above = render.orbitLabelPosition(base);
+  const first = { x: 450, y: above.y + 17, size: 52 };
+  const below = render.orbitLabelPosition({ ...base, nodes: [first] });
+  assert.notDeepEqual(below, above);
+  assert.ok(below.y > 300);
+  const second = { x: 450, y: below.y + 17, size: 52 };
+  const side = render.orbitLabelPosition({ ...base, nodes: [first, second] });
+  assert.notDeepEqual(side, below);
+  const third = { x: side.x, y: side.y + 17, size: 52 };
+  assert.deepEqual(render.orbitLabelPosition({ ...base, nodes: [first, second, third] }), above);
+});

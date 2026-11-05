@@ -526,6 +526,12 @@
     "source": "appstore",
     "size": 256
   },
+  "xfyun": {
+    "pad": false,
+    "source": "https://www.xfyun.cn/static/img/xfyun-cli/xfyun-logo.svg",
+    "size": 128,
+    "note": "截取官方 SVG 左侧云形标识，等比缩放并加白色留白。"
+  },
   "yinxiang": {
     "pad": false,
     "source": "appstore",
