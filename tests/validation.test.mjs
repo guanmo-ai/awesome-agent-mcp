@@ -119,3 +119,10 @@ test('接入指引渲染时转义文本并限制链接协议', () => {
   assert.doesNotMatch(html, /<script>|href="javascript:/);
   assert.match(html, /&lt;b&gt;完成&lt;\/b&gt;/);
 });
+
+test('官方摘录必须是80字内原文字符串，可读性必须是布尔值', () => {
+  for (const quote of ['', ' ', 12, '字'.repeat(81)]) rejects((_, s) => { s.evidence.quote = quote; }, /evidence.quote/);
+  for (const agentReadable of ['false', 0, null]) rejects((_, s) => { s.evidence.agentReadable = agentReadable; }, /evidence.agentReadable/);
+  const data = base(); data.services[0].evidence.quote = '字'.repeat(80); data.services[0].evidence.agentReadable = false;
+  assert.deepEqual(validate(data), []);
+});

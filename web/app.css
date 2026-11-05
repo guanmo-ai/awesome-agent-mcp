@@ -332,6 +332,7 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .s-sec h3 { margin: 0 0 12px; font: 600 12px/1 var(--mono); letter-spacing: .14em; color: var(--faint); text-transform: uppercase; }
 .s-sec > p { margin: 0; color: var(--muted); font-size: 14px; }
 .s-sec > p a { color: var(--text); }
+.s-sec blockquote { margin: 12px 0; padding: 12px; border-left: 2px solid var(--line-2); background: var(--bg-2); color: var(--text-2); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .note { padding: 13px 15px; border-radius: 12px; background: var(--card-2); border: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
 .note.warn { background: color-mix(in srgb, var(--payment) 9%, transparent); border-color: color-mix(in srgb, var(--payment) 25%, transparent); color: color-mix(in srgb, var(--payment) 75%, var(--text)); }
 .code-tabs { border-radius: 14px; background: var(--code-bg); border: 1px solid rgba(255, 255, 255, .06); overflow: hidden; }

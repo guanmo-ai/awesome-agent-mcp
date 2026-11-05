@@ -70,8 +70,10 @@
       },
       "evidence": {
         "url": "https://developer.amap.com/api/mcp-server/gettingstarted",
-        "checkedAt": "2026-11-04",
-        "note": "官方 MCP 快速接入文档，并由官方导航确认 Skill 与 CLI。"
+        "checkedAt": "2026-11-05",
+        "note": "官方 MCP 快速接入文档，并由官方导航确认 Skill 与 CLI。",
+        "quote": "\"url\": \"https://mcp.amap.com/mcp?key=您在高德官网上申请的key\"",
+        "agentReadable": true
       },
       "nameEn": "AMap",
       "summaryEn": "Look up places and weather, plan routes, generate maps, and build map applications.",
@@ -130,7 +132,8 @@
       "evidence": {
         "url": "https://lbs.baidu.com/docs/ai?title=mcpserver/quickstart",
         "checkedAt": "2026-11-04",
-        "note": "官方概览与快速开始明确 MCP、服务端 AK 和 HTTP 端点。"
+        "note": "官方概览与快速开始明确 MCP、服务端 AK 和 HTTP 端点。",
+        "agentReadable": true
       },
       "nameEn": "Baidu Maps",
       "summaryEn": "Search places, geocode addresses, and plan routes.",
@@ -168,8 +171,10 @@
       },
       "evidence": {
         "url": "https://lbs.qq.com/service/MCPServer/MCPServerGuide/userGuide",
-        "checkedAt": "2026-11-04",
-        "note": "官方接入说明明确 WebServiceAPI Key 和 Streamable HTTP 端点。"
+        "checkedAt": "2026-11-05",
+        "note": "官方接入说明明确 WebServiceAPI Key 和 Streamable HTTP 端点。",
+        "quote": "https://mcp.map.qq.com/mcp?key=",
+        "agentReadable": true
       },
       "nameEn": "Tencent Maps",
       "summaryEn": "Search places, plan routes, and use location services.",
@@ -211,7 +216,9 @@
       "evidence": {
         "url": "https://mcp.didichuxing.com/api",
         "checkedAt": "2026-11-05",
-        "note": "滴滴自有域名；文档区分跳转链接与直接创建真实订单，个人账号激活 Key。"
+        "note": "滴滴自有域名；文档区分跳转链接与直接创建真实订单，个人账号激活 Key。",
+        "quote": "https://mcp.didichuxing.com/mcp-servers?key=YOUR_MCP_KEY",
+        "agentReadable": true
       },
       "nameEn": "DiDi",
       "summaryEn": "Request rides, get fare estimates, and look up trips.",
@@ -269,7 +276,9 @@
       "evidence": {
         "url": "https://developer.meituan.com/ai-hub/skill-list/detail/44",
         "checkedAt": "2026-11-05",
-        "note": "美团 AI Hub 官方小程序支付操作 Skill；明确 mt-tech CLI、退款、追加支付及预支付下单。"
+        "note": "美团 AI Hub 官方小程序支付操作 Skill；明确 mt-tech CLI、退款、追加支付及预支付下单。",
+        "quote": "安装命令：npm install -g mt-tech",
+        "agentReadable": false
       },
       "nameEn": "Meituan",
       "summaryEn": "Manage merchant orders, vouchers, products, and inventory, and query business data.",
@@ -335,7 +344,9 @@
       "evidence": {
         "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "淘宝自有 CDN 的桌面客户端 Skill；本地登录后支持购物、下单及页面交互。"
+        "note": "淘宝自有 CDN 的桌面客户端 Skill；本地登录后支持购物、下单及页面交互。",
+        "quote": "确保mcporter在系统PATH中，如果不在通过npm install -g mcporter来安装下",
+        "agentReadable": true
       },
       "nameEn": "Taobao",
       "summaryEn": "Search products and shop through the required desktop client.",
@@ -399,7 +410,9 @@
       "evidence": {
         "url": "https://open.mcd.cn/mcp/doc",
         "checkedAt": "2026-11-05",
-        "note": "麦当劳官方 MCP 文档；create-order 创建真实点餐订单并返回支付链接，需账号及 Token。"
+        "note": "麦当劳官方 MCP 文档；create-order 创建真实点餐订单并返回支付链接，需账号及 Token。",
+        "quote": "服务器接入地址：https://mcp.mcd.cn\nAuthorization: Bearer YOUR_MCP_TOKEN",
+        "agentReadable": false
       },
       "nameEn": "McDonald's China",
       "summaryEn": "Order food and find restaurants and offers.",
@@ -465,9 +478,11 @@
         "cli": "curl -fsSL https://open.lkcoffee.com/install | bash"
       },
       "evidence": {
-        "url": "https://open.lkcoffee.com/docs",
+        "url": "https://open.lkcoffee.com/mcp",
         "checkedAt": "2026-11-05",
-        "note": "瑞幸自有域名；createOrder 返回订单 ID 和支付链接，属于创建订单而非仅生成跳转地址。"
+        "note": "瑞幸自有域名；createOrder 返回订单 ID 和支付链接，属于创建订单而非仅生成跳转地址。",
+        "quote": "\"url\": \"https://gwmcp.lkcoffee.com/order/user/mcp\",",
+        "agentReadable": false
       },
       "nameEn": "Luckin Coffee",
       "summaryEn": "Order coffee and find stores.",
@@ -525,9 +540,11 @@
         "cli": "npm i -g @fly-ai/flyai-cli"
       },
       "evidence": {
-        "url": "https://flyai.open.fliggy.com/",
+        "url": "https://github.com/alibaba-flyai/flyai-skill",
         "checkedAt": "2026-11-05",
-        "note": "飞猪官网直接链接官方 Skill 仓库；现有命令为搜索并返回预订链接，没有直接下单工具。"
+        "note": "飞猪官网直接链接官方 Skill 仓库；现有命令为搜索并返回预订链接，没有直接下单工具。",
+        "quote": "npm i -g @fly-ai/flyai-cli",
+        "agentReadable": true
       },
       "nameEn": "Fliggy",
       "summaryEn": "Search flights, hotels, and attractions, with prices and booking links.",
@@ -635,9 +652,11 @@
         "skill": "https://github.com/larksuite/cli/tree/main/skills"
       },
       "evidence": {
-        "url": "https://open.feishu.cn/changelog",
-        "checkedAt": "2026-11-04",
-        "note": "官方更新日志分别发布 OpenAPI MCP 与 CLI，CLI 仓库包含 Skills。"
+        "url": "https://github.com/larksuite/cli",
+        "checkedAt": "2026-11-05",
+        "note": "官方更新日志分别发布 OpenAPI MCP 与 CLI，CLI 仓库包含 Skills。",
+        "quote": "npx @larksuite/cli@latest install",
+        "agentReadable": true
       },
       "nameEn": "Feishu",
       "summaryEn": "Work with messages, documents, calendars, and multidimensional tables.",
@@ -675,6 +694,12 @@
         "建多维表格",
         "查日历",
         "发通知"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://open.feishu.cn/changelog"
+        }
       ]
     },
     {
@@ -697,9 +722,11 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
-        "url": "https://open.dingtalk.com/",
-        "checkedAt": "2026-11-04",
-        "note": "钉钉官方能力中心列出消息、文档、表格、日志、日历等 MCP 服务。"
+        "url": "https://open.dingtalk.com/document/ai-dev/second-level-node-1",
+        "checkedAt": "2026-11-05",
+        "note": "钉钉官方能力中心列出消息、文档、表格、日志、日历等 MCP 服务。",
+        "quote": "\"dingtalk-mcp@latest\"",
+        "agentReadable": false
       },
       "nameEn": "DingTalk",
       "summaryEn": "Query and manage messages, documents, spreadsheets, work logs, calendars, and tasks.",
@@ -729,6 +756,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://open.dingtalk.com/dingtalk-dev/wiki"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://open.dingtalk.com/"
         }
       ],
       "keywords": [
@@ -767,8 +798,10 @@
       },
       "evidence": {
         "url": "https://work.weixin.qq.com/nl/index/aicli",
-        "checkedAt": "2026-11-04",
-        "note": "企业微信官方 AI 开放能力页列出 CLI、MCP、Skill 及机器人创建和业务操作。"
+        "checkedAt": "2026-11-05",
+        "note": "企业微信官方 AI 开放能力页列出 CLI、MCP、Skill 及机器人创建和业务操作。",
+        "quote": "npm install -g @wecom/cli",
+        "agentReadable": true
       },
       "nameEn": "WeCom",
       "summaryEn": "Use enterprise messaging, contacts, and workplace applications.",
@@ -857,9 +890,11 @@
         "skill": "https://github.com/TencentCloud/tencentmeeting-cli"
       },
       "evidence": {
-        "url": "https://cloud.tencent.com/document/product/1095/133826",
-        "checkedAt": "2026-11-04",
-        "note": "官方 MCP/CLI 文档确认 Skill 封装包、会议写操作和 OAuth CLI。"
+        "url": "https://github.com/TencentCloud/tencentmeeting-cli",
+        "checkedAt": "2026-11-05",
+        "note": "官方 MCP/CLI 文档确认 Skill 封装包、会议写操作和 OAuth CLI。",
+        "quote": "npm install -g @tencentcloud/tmeet",
+        "agentReadable": true
       },
       "nameEn": "Tencent Meeting",
       "summaryEn": "Schedule and manage meetings, and retrieve attendance, recordings, transcripts, and minutes.",
@@ -882,6 +917,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloud/tencentmeeting-cli"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://cloud.tencent.com/document/product/1095/133826"
         }
       ],
       "keywords": [
@@ -913,9 +952,11 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
-        "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction",
-        "checkedAt": "2026-11-04",
-        "note": "WPS 官方 MCP 介绍明确基于 WPS 365 API，企业需申请试用权限。"
+        "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide",
+        "checkedAt": "2026-11-05",
+        "note": "WPS 官方 MCP 介绍明确基于 WPS 365 API，企业需申请试用权限。",
+        "quote": "\"https://openapi.wps.cn/mcp/v2/kso-calendar/message\"",
+        "agentReadable": true
       },
       "nameEn": "WPS",
       "summaryEn": "Query and manage enterprise documents and collaboration data through WPS 365 APIs.",
@@ -951,6 +992,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction"
         }
       ],
       "keywords": [
@@ -1042,8 +1087,10 @@
       },
       "evidence": {
         "url": "https://github.com/yuque",
-        "checkedAt": "2026-11-04",
-        "note": "语雀 GitHub 官方组织主页链接 yuque.com，仓库提供 MCP 配置和读写工具。"
+        "checkedAt": "2026-11-05",
+        "note": "语雀 GitHub 官方组织主页链接 yuque.com，仓库提供 MCP 配置和读写工具。",
+        "quote": "yuque-mcp-server",
+        "agentReadable": true
       },
       "nameEn": "Yuque",
       "summaryEn": "Read and write knowledge bases and documents.",
@@ -1098,9 +1145,11 @@
         "cli": "npm install -g @tencent-qqmail/agently-cli"
       },
       "evidence": {
-        "url": "https://github.com/Tencent",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯已验证官方组织下的 AgentlyMail 仓库；服务为 QQ 邮箱团队提供的独立 Agent 邮箱。"
+        "url": "https://github.com/Tencent/AgentlyMail",
+        "checkedAt": "2026-11-05",
+        "note": "腾讯已验证官方组织下的 AgentlyMail 仓库；服务为 QQ 邮箱团队提供的独立 Agent 邮箱。",
+        "quote": "npm install -g @tencent-qqmail/agently-cli",
+        "agentReadable": true
       },
       "nameEn": "Agently Mail (QQ Mail Team)",
       "summaryEn": "Use an agent mailbox to send, receive, search, and organize email and manage attachments.",
@@ -1123,6 +1172,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/Tencent/AgentlyMail"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/Tencent"
         }
       ],
       "keywords": [
@@ -1157,8 +1210,10 @@
       },
       "evidence": {
         "url": "https://weread.qq.com/r/weread-skills",
-        "checkedAt": "2026-11-04",
-        "note": "微信读书官方 Skill 页面直接发布 Tencent/WeChatReading 安装和 API Key 获取方式。"
+        "checkedAt": "2026-11-05",
+        "note": "微信读书官方 Skill 页面直接发布 Tencent/WeChatReading 安装和 API Key 获取方式。",
+        "quote": "npx skills add Tencent/WeChatReading -g",
+        "agentReadable": true
       },
       "nameEn": "WeRead",
       "summaryEn": "Access bookshelves, notes, and highlights.",
@@ -1193,8 +1248,10 @@
       },
       "evidence": {
         "url": "https://ima.qq.com/agent-interface",
-        "checkedAt": "2026-11-04",
-        "note": "ima 官方接入页前端给出 Skill 下载、API Key 获取与知识库及笔记读写场景。"
+        "checkedAt": "2026-11-05",
+        "note": "ima 官方接入页前端给出 Skill 下载、API Key 获取与知识库及笔记读写场景。",
+        "quote": "下载地址：https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip",
+        "agentReadable": false
       },
       "nameEn": "Tencent ima",
       "summaryEn": "Search, read, and update personal knowledge bases.",
@@ -1274,8 +1331,10 @@
       },
       "evidence": {
         "url": "https://help.flomoapp.com/advance/mcp/connect-cursor.html",
-        "checkedAt": "2026-11-04",
-        "note": "官方 Cursor 连接指南明确 HTTP 端点、个人 Token、MAX 会员及笔记读写。"
+        "checkedAt": "2026-11-05",
+        "note": "官方 Cursor 连接指南明确 HTTP 端点、个人 Token、MAX 会员及笔记读写。",
+        "quote": "\"https://flomoapp.com/mcp\"",
+        "agentReadable": true
       },
       "nameEn": "flomo",
       "summaryEn": "Capture and retrieve short notes.",
@@ -1310,8 +1369,10 @@
       },
       "evidence": {
         "url": "https://guide.yinxiang.com/docs/yxai/skill.html",
-        "checkedAt": "2026-11-04",
-        "note": "印象笔记官方说明文档发布 Skill 下载，明确会员 AuthToken 与笔记管理能力。"
+        "checkedAt": "2026-11-05",
+        "note": "印象笔记官方说明文档发布 Skill 下载，明确会员 AuthToken 与笔记管理能力。",
+        "quote": "请安装印象笔记 Skill：https://cdn.yinxiang.com/ai/yinxiang-skill-v1.0.4.zip",
+        "agentReadable": true
       },
       "nameEn": "Yinxiang Biji",
       "summaryEn": "Create, search, and organize notes.",
@@ -1343,9 +1404,11 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
-        "url": "https://note.youdao.com/help-center/skill-guide.html",
-        "checkedAt": "2026-11-04",
-        "note": "有道云笔记官方通用 Skill 指南和导航确认 Skill/CLI，使用个人 API Key。"
+        "url": "https://note.youdao.com/help-center/cli-install-guide.html",
+        "checkedAt": "2026-11-05",
+        "note": "有道云笔记官方通用 Skill 指南和导航确认 Skill/CLI，使用个人 API Key。",
+        "quote": "https://artifact.lx.netease.com/download/youdaonote-cli/install.sh",
+        "agentReadable": true
       },
       "nameEn": "Youdao Note",
       "summaryEn": "Read, write, and search notes, manage tasks, and clip web pages.",
@@ -1380,6 +1443,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://note.youdao.com/help-center/skill-install-guide.html"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://note.youdao.com/help-center/skill-guide.html"
         }
       ],
       "keywords": [
@@ -1413,8 +1480,10 @@
       },
       "evidence": {
         "url": "https://www.quark.cn/documents/help/quark-drive-skill",
-        "checkedAt": "2026-11-04",
-        "note": "夸克官方帮助页发布 Skill 安装包，支持账号授权、文件搜索、存储、下载和整理。"
+        "checkedAt": "2026-11-05",
+        "note": "夸克官方帮助页发布 Skill 安装包，支持账号授权、文件搜索、存储、下载和整理。",
+        "quote": "请安装 夸克网盘Skill,并授权账号",
+        "agentReadable": true
       },
       "nameEn": "Quark Drive",
       "summaryEn": "Search and manage cloud drive files.",
@@ -1450,7 +1519,8 @@
       "evidence": {
         "url": "https://www.weiyun.com/act/openclaw",
         "checkedAt": "2026-11-04",
-        "note": "微云官方接入页前端发布 Skill 安装包、API Key，列出上传、下载、删除与分享。"
+        "note": "微云官方接入页前端发布 Skill 安装包、API Key，列出上传、下载、删除与分享。",
+        "agentReadable": false
       },
       "nameEn": "Tencent Weiyun",
       "summaryEn": "Search and manage cloud drive files.",
@@ -1489,9 +1559,11 @@
         }
       },
       "evidence": {
-        "url": "https://pan.baidu.com/union/doc/mcp-server/操作指南/在-agent-中自定义使用/",
-        "checkedAt": "2026-11-04",
-        "note": "百度网盘官方 MCP 使用概述与自定义接入指南明确文件写操作及带鉴权的 SSE。"
+        "url": "https://pan.baidu.com/union/doc/mcp-server/%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/%E5%9C%A8-agent-%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BD%BF%E7%94%A8/",
+        "checkedAt": "2026-11-05",
+        "note": "百度网盘官方 MCP 使用概述与自定义接入指南明确文件写操作及带鉴权的 SSE。",
+        "quote": "https://mcp-pan.baidu.com/sse",
+        "agentReadable": true
       },
       "nameEn": "Baidu Netdisk",
       "summaryEn": "Search, upload, and manage cloud drive files.",
@@ -1501,6 +1573,12 @@
         "找资源",
         "管理云文件",
         "上传资料"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://pan.baidu.com/union/doc/mcp-server/操作指南/在-agent-中自定义使用/"
+        }
       ]
     },
     {
@@ -1536,8 +1614,10 @@
       },
       "evidence": {
         "url": "https://developer.zhihu.com/docs?key=zhihu_cli",
-        "checkedAt": "2026-11-04",
-        "note": "知乎官方文档接口提供 CLI、Skill 与 MCP 指南；CLI 还支持上传知识库文件。"
+        "checkedAt": "2026-11-05",
+        "note": "知乎官方文档接口提供 CLI、Skill 与 MCP 指南；CLI 还支持上传知识库文件。",
+        "quote": "请下载安装 zhihu-cli skill 并完成初始化配置",
+        "agentReadable": false
       },
       "nameEn": "Zhihu",
       "summaryEn": "Search Zhihu and the web, read trends and personal content, and retrieve or upload knowledge base files.",
@@ -1621,8 +1701,10 @@
       },
       "evidence": {
         "url": "https://agent.qcc.com/guide",
-        "checkedAt": "2026-11-04",
-        "note": "企查查官方指南明确企业数据 MCP 端点、API Key 与 qcc-agent-cli。"
+        "checkedAt": "2026-11-05",
+        "note": "企查查官方指南明确企业数据 MCP 端点、API Key 与 qcc-agent-cli。",
+        "quote": "npm install -g qcc-agent-cli",
+        "agentReadable": true
       },
       "nameEn": "Qichacha",
       "summaryEn": "Look up company registration and risk information.",
@@ -1666,9 +1748,11 @@
         "skill": "https://github.com/tyc-tech/mcp-skills"
       },
       "evidence": {
-        "url": "https://github.com/tyc-tech",
-        "checkedAt": "2026-11-04",
-        "note": "天眼查 GitHub 组织主页链接官网；CLI 文档明确官方 MCP 端点及鉴权。"
+        "url": "https://github.com/tyc-tech/tyc-cli",
+        "checkedAt": "2026-11-05",
+        "note": "天眼查 GitHub 组织主页链接官网；CLI 文档明确官方 MCP 端点及鉴权。",
+        "quote": "npm install -g tyc-cli",
+        "agentReadable": true
       },
       "nameEn": "Tianyancha",
       "summaryEn": "Look up company registration and corporate relationships.",
@@ -1691,6 +1775,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/tyc-tech/tyc-cli"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/tyc-tech"
         }
       ],
       "keywords": [
@@ -1728,8 +1816,10 @@
       },
       "evidence": {
         "url": "https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc",
-        "checkedAt": "2026-11-04",
-        "note": "抖音官方文档区分官方能力与第三方工具，明确服务申请和带 token 的 SSE。"
+        "checkedAt": "2026-11-05",
+        "note": "抖音官方文档区分官方能力与第三方工具，明确服务申请和带 token 的 SSE。",
+        "quote": "https://open.douyin.com/sse",
+        "agentReadable": true
       },
       "nameEn": "Douyin Open Platform",
       "summaryEn": "Use official video and image-text search, deep links, and business tasks.",
@@ -1861,8 +1951,10 @@
       },
       "evidence": {
         "url": "https://modao.cc/feature/ai-mcp.html",
-        "checkedAt": "2026-11-04",
-        "note": "墨刀官方 MCP 页面明确生成与迭代内容、原型读取导出及 HTTP Token 接入。"
+        "checkedAt": "2026-11-05",
+        "note": "墨刀官方 MCP 页面明确生成与迭代内容、原型读取导出及 HTTP Token 接入。",
+        "quote": "https://modao.cc/agent-py/ai/mcp",
+        "agentReadable": true
       },
       "nameEn": "Modao",
       "summaryEn": "Generate and edit prototypes, PRDs, apps, and images, and read or export existing prototypes.",
@@ -1949,9 +2041,11 @@
         "skill": "https://github.com/klingai-tech/skills"
       },
       "evidence": {
-        "url": "https://kling.ai/app/mcp/guide",
+        "url": "https://github.com/klingai-tech/skills/blob/main/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "官方接入指南明确引用 klingai-tech/skills；其区域中立 Skill 区分国内 cli-cn 与全球 cli-global，并使用浏览器授权。"
+        "note": "官方接入指南明确引用 klingai-tech/skills；其区域中立 Skill 区分国内 cli-cn 与全球 cli-global，并使用浏览器授权。",
+        "quote": "npm i -g @klingai/cli-cn --registry=https://registry.npmjs.org",
+        "agentReadable": true
       },
       "keywords": [
         "做视频",
@@ -1959,6 +2053,12 @@
         "图生视频",
         "生成短片",
         "AI生图"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://kling.ai/app/mcp/guide"
+        }
       ]
     },
     {
@@ -2001,9 +2101,11 @@
         "skill": "https://github.com/MiniMax-AI/cli"
       },
       "evidence": {
-        "url": "https://github.com/MiniMax-AI",
-        "checkedAt": "2026-11-04",
-        "note": "MiniMax 官方组织主页链接官网；MCP 与推荐 CLI 仓库明确工具、Skill 和接入。"
+        "url": "https://github.com/MiniMax-AI/MiniMax-MCP",
+        "checkedAt": "2026-11-05",
+        "note": "MiniMax 官方组织主页链接官网；MCP 与推荐 CLI 仓库明确工具、Skill 和接入。",
+        "quote": "\"minimax-mcp\",",
+        "agentReadable": true
       },
       "nameEn": "MiniMax",
       "summaryEn": "Synthesize and clone voices, generate images and videos, and use text and search via CLI.",
@@ -2026,6 +2128,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/MiniMax-AI/MiniMax-MCP"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/MiniMax-AI"
         }
       ],
       "keywords": [
@@ -2062,8 +2168,10 @@
       },
       "evidence": {
         "url": "https://music.163.com/st/ncmcli",
-        "checkedAt": "2026-11-04",
-        "note": "网易云音乐官方 ncm-cli 页面发布 CLI 与 NetEase/skills，支持歌单、上传及笔记发布。"
+        "checkedAt": "2026-11-05",
+        "note": "网易云音乐官方 ncm-cli 页面发布 CLI 与 NetEase/skills，支持歌单、上传及笔记发布。",
+        "quote": "npm install -g @music163/ncm-cli",
+        "agentReadable": true
       },
       "nameEn": "NetEase Cloud Music",
       "summaryEn": "Search and play music, manage playlists, upload cloud files, and publish image-text posts.",
@@ -2100,7 +2208,9 @@
       "evidence": {
         "url": "https://aipay.alipay.com/merchant-guide",
         "checkedAt": "2026-11-05",
-        "note": "支付宝官方指南与 Skill 索引；支付处理技能可提交支付，需先开通并授权。"
+        "note": "支付宝官方指南与 Skill 索引；支付处理技能可提交支付，需先开通并授权。",
+        "quote": "npx -y @alipay/agent-payment@latest install",
+        "agentReadable": true
       },
       "nameEn": "Alipay",
       "summaryEn": "Authorize payments, process transactions, check payment status, and integrate payment collection.",
@@ -2154,9 +2264,11 @@
         "cli": "npm install -g @tenpay/wechatpay-dev-cli"
       },
       "evidence": {
-        "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116",
+        "url": "https://github.com/wechatpay-apiv3/wechatpay-skills/blob/main/wechatpay-payment-integration/references/APIv3%E6%8E%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%8E%92%E9%9A%9C.md",
         "checkedAt": "2026-11-05",
-        "note": "官网链接官方 Skill 仓库；新版含本地工程编码，CLI 查单不付款，按最高能力标为 write。"
+        "note": "官网链接官方 Skill 仓库；新版含本地工程编码，CLI 查单不付款，按最高能力标为 write。",
+        "quote": "npm install -g @tenpay/wechatpay-dev-cli",
+        "agentReadable": true
       },
       "nameEn": "Weixin Pay",
       "summaryEn": "Payment integration guidance, project code implementation and order-query troubleshooting; merchant credentials are needed for live queries.",
@@ -2275,8 +2387,10 @@
       },
       "evidence": {
         "url": "https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/llms-full.txt",
-        "checkedAt": "2026-11-04",
-        "note": "iFinD 官方首页链接全文文档，明确 MCP、Skill、密钥、试用与套餐权益。"
+        "checkedAt": "2026-11-05",
+        "note": "iFinD 官方首页链接全文文档，明确 MCP、Skill、密钥、试用与套餐权益。",
+        "quote": "1. MCP官网下载SKILL压缩包 `ifind-finance-data` ，解压后编辑 `mcp_config.json` 文件",
+        "agentReadable": true
       },
       "nameEn": "Tonghuashun iFinD",
       "summaryEn": "Query market prices, financial statements, announcements, macroeconomic indicators, and other financial data.",
@@ -2314,7 +2428,8 @@
       "evidence": {
         "url": "https://search.10jqka.com.cn/skillhub",
         "checkedAt": "2026-11-04",
-        "note": "问财官方 SkillHub 前端及公开目录将自有技能标为 OFFICIAL，提供 CLI 与 API Key 指引。"
+        "note": "问财官方 SkillHub 前端及公开目录将自有技能标为 OFFICIAL，提供 CLI 与 API Key 指引。",
+        "agentReadable": false
       },
       "nameEn": "Tonghuashun iWencai",
       "summaryEn": "Use official skills to query prices, announcements, research, and macro data, and screen by conditions.",
@@ -2395,9 +2510,11 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
-        "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide",
+        "url": "https://github.com/aliyun/alibabacloud-aiops-skills",
         "checkedAt": "2026-11-05",
-        "note": "官方 OpenAPI MCP 指南及阿里云 Skills 门户确认发布身份；Skill 可创建和部署计费云资源。"
+        "note": "官方 OpenAPI MCP 指南及阿里云 Skills 门户确认发布身份；Skill 可创建和部署计费云资源。",
+        "quote": "npx skills add aliyun/alibabacloud-aiops-skills",
+        "agentReadable": true
       },
       "nameEn": "Alibaba Cloud",
       "summaryEn": "Query, diagnose, and manage cloud resources through MCP and official skills.",
@@ -2432,6 +2549,12 @@
         "云资源诊断",
         "云运维",
         "阿里云资源"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide"
+        }
       ]
     },
     {
@@ -2458,8 +2581,10 @@
       },
       "evidence": {
         "url": "https://cloud.tencent.com/document/product/1278/131433",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云官方云 API Skill 文档发布 ClawHub 技能，并要求通过 TCCLI 执行资源操作。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云官方云 API Skill 文档发布 ClawHub 技能，并要求通过 TCCLI 执行资源操作。",
+        "quote": "Skill page: https://clawhub.ai/tencent-adm/tencentcloud-api-skill",
+        "agentReadable": true
       },
       "nameEn": "Tencent Cloud",
       "summaryEn": "Query and manage cloud resources.",
@@ -2508,9 +2633,11 @@
         "skill": "https://github.com/huaweicloud/huaweicloud-devkit"
       },
       "evidence": {
-        "url": "https://open.huaweicloud.com/",
+        "url": "https://github.com/huaweicloud/huaweicloud-mcp/tree/main/server/mcp_server_rfs",
         "checkedAt": "2026-11-05",
-        "note": "华为云官方开放能力首页链接 huaweicloud 组织的 DevKit；同组织 MCP 仓库给出 RFS 配置。云原生 Skill 官方文档另链接 huaweicloud-skills 产品集合，包含云资源部署。"
+        "note": "华为云官方开放能力首页链接 huaweicloud 组织的 DevKit；同组织 MCP 仓库给出 RFS 配置。云原生 Skill 官方文档另链接 huaweicloud-skills 产品集合，包含云资源部署。",
+        "quote": "uv run mcp-huaweicloud-rfs",
+        "agentReadable": true
       },
       "nameEn": "Huawei Cloud",
       "summaryEn": "Query and manage cloud resources.",
@@ -2538,6 +2665,12 @@
         "云资源编排",
         "云运维",
         "华为云资源"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://open.huaweicloud.com/"
+        }
       ]
     },
     {
@@ -2579,9 +2712,11 @@
         "cli": "npm install -g @volcengine/cli"
       },
       "evidence": {
-        "url": "https://github.com/volcengine",
+        "url": "https://github.com/volcengine/volcengine-cli",
         "checkedAt": "2026-11-05",
-        "note": "官方组织主页链接官网；同组织维护 MCP、ve CLI 和按产品分类的 Agent Toolkit，含资源部署和交易技能。"
+        "note": "官方组织主页链接官网；同组织维护 MCP、ve CLI 和按产品分类的 Agent Toolkit，含资源部署和交易技能。",
+        "quote": "npm install -g @volcengine/cli",
+        "agentReadable": true
       },
       "nameEn": "Volcengine",
       "summaryEn": "Query, diagnose, deploy, and manage cloud resources through MCP, the ve CLI, and product skills.",
@@ -2609,6 +2744,12 @@
         "云部署",
         "查云资源",
         "云运维"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/volcengine"
+        }
       ]
     },
     {
@@ -2642,9 +2783,11 @@
         "skill": "https://github.com/baidubce/skills/tree/develop/skills"
       },
       "evidence": {
-        "url": "https://github.com/baidubce",
+        "url": "https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0",
         "checkedAt": "2026-11-05",
-        "note": "百度智能云组织主页链接 cloud.baidu.com；同组织 Skills 的实际技能位于 develop 分支，MCP 另见官方 AI 开放能力指南。"
+        "note": "百度智能云组织主页链接 cloud.baidu.com；同组织 Skills 的实际技能位于 develop 分支，MCP 另见官方 AI 开放能力指南。",
+        "quote": "https://aip.baidubce.com/mcp/ocr_general/sse",
+        "agentReadable": true
       },
       "nameEn": "Baidu AI Cloud",
       "summaryEn": "Use MCP and skills for OCR, document parsing, search, image, and speech capabilities.",
@@ -2669,6 +2812,12 @@
         "语音识别",
         "图像处理",
         "联网检索"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/baidubce"
+        }
       ]
     },
     {
@@ -2707,8 +2856,10 @@
       },
       "evidence": {
         "url": "https://developer.qiniu.com/kodo/12914/mcp-aimodel-kodo",
-        "checkedAt": "2026-11-04",
-        "note": "七牛官方开发文档发布 MCP 用法并链接官方 qiniu/qiniu-mcp-server 仓库。"
+        "checkedAt": "2026-11-05",
+        "note": "七牛官方开发文档发布 MCP 用法并链接官方 qiniu/qiniu-mcp-server 仓库。",
+        "quote": "npx @modelcontextprotocol/inspector uvx qiniu-mcp-server",
+        "agentReadable": true
       },
       "nameEn": "Qiniu Cloud",
       "summaryEn": "Read and write object storage, process images, refresh or prefetch CDN content, and manage live streams.",
@@ -2772,8 +2923,10 @@
       },
       "evidence": {
         "url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
-        "checkedAt": "2026-11-04",
-        "note": "智谱官方联网搜索 MCP 文档明确 Coding Plan 权益、API Key 与 HTTP 鉴权配置。"
+        "checkedAt": "2026-11-05",
+        "note": "智谱官方联网搜索 MCP 文档明确 Coding Plan 权益、API Key 与 HTTP 鉴权配置。",
+        "quote": "https://open.bigmodel.cn/api/mcp/web_search_prime/mcp",
+        "agentReadable": true
       },
       "nameEn": "Zhipu",
       "summaryEn": "Search the web and retrieve current information for GLM Coding Plan users.",
@@ -2814,9 +2967,11 @@
         }
       },
       "evidence": {
-        "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/",
-        "checkedAt": "2026-11-04",
-        "note": "Gitee 官方博客直接发布 MCP 仓库，列出代码协作写操作和 stdio 配置。"
+        "url": "https://gitee.com/oschina/mcp-gitee",
+        "checkedAt": "2026-11-05",
+        "note": "Gitee 官方博客直接发布 MCP 仓库，列出代码协作写操作和 stdio 配置。",
+        "quote": "`mcp-gitee` 已加入 PATH 后（通过 Releases、源码构建或 `go install` 安装）：",
+        "agentReadable": true
       },
       "nameEn": "Gitee",
       "summaryEn": "Manage code repositories, issues, and pull requests.",
@@ -2826,6 +2981,12 @@
         "提PR",
         "管理Issue",
         "代码协作"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/"
+        }
       ]
     },
     {
@@ -2854,8 +3015,10 @@
       },
       "evidence": {
         "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/",
-        "checkedAt": "2026-11-04",
-        "note": "极狐官方 MCP 文档明确正式发布、OAuth、HTTP 端点及项目协作操作。"
+        "checkedAt": "2026-11-05",
+        "note": "极狐官方 MCP 文档明确正式发布、OAuth、HTTP 端点及项目协作操作。",
+        "quote": "https://<gitlab.example.com>/api/v4/mcp",
+        "agentReadable": true
       },
       "nameEn": "JiHu GitLab",
       "summaryEn": "Manage code repositories and DevOps workflows.",
@@ -2885,9 +3048,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/tencent-lexiang",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯乐享官方组织主页链接 lexiang.tencent.com；Skill v2 明确支持写入。"
+        "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill",
+        "checkedAt": "2026-11-05",
+        "note": "腾讯乐享官方组织主页链接 lexiang.tencent.com；Skill v2 明确支持写入。",
+        "quote": "https://mcp.lexiang-app.com/mcp?company_from=你的COMPANY_FROM",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -2921,6 +3086,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/tencent-lexiang"
         }
       ],
       "keywords": [
@@ -2947,9 +3116,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://www.textin.com/news/20250707161156842",
-        "checkedAt": "2026-11-04",
-        "note": "合合信息 TextIn 官方发布文章明确 MCP 并反链 intsig-textin GitHub 账号。"
+        "url": "https://github.com/intsig-textin/textin-mcp",
+        "checkedAt": "2026-11-05",
+        "note": "合合信息 TextIn 官方发布文章明确 MCP 并反链 intsig-textin GitHub 账号。",
+        "quote": "@intsig/server-textin",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/intsig-textin/textin-mcp",
@@ -2989,6 +3160,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/intsig-textin/textin-mcp"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://www.textin.com/news/20250707161156842"
         }
       ],
       "keywords": [
@@ -3019,8 +3194,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://edgeone.cloud.tencent.com/pages/document/173172415568367616",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云中国站官方文档提供 MCP 中国区 --region china 配置；产品现名 EdgeOne Makers。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云中国站官方文档提供 MCP 中国区 --region china 配置；产品现名 EdgeOne Makers。",
+        "quote": "// 如需部署至腾讯云国际站，保留\"edgeone-pages-mcp-fullstack\"参数即可",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -3058,9 +3235,11 @@
       "access": [],
       "status": "verified",
       "evidence": {
-        "url": "https://docs.apifox.com/apifox-mcp-server",
-        "checkedAt": "2026-11-04",
-        "note": "Apifox 官方帮助文档；另有官方 CLI 和 Agent 使用指南。"
+        "url": "https://docs.apifox.com/6327888m0",
+        "checkedAt": "2026-11-05",
+        "note": "Apifox 官方帮助文档；另有官方 CLI 和 Agent 使用指南。",
+        "quote": "\"apifox-mcp-server@latest\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "nameEn": "Apifox",
@@ -3102,6 +3281,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://docs.apifox.com/6327888m0"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://docs.apifox.com/apifox-mcp-server"
         }
       ],
       "keywords": [
@@ -3127,9 +3310,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/caiyunapp",
-        "checkedAt": "2026-11-04",
-        "note": "官方组织 caiyunapp 主页链接彩云官网，组织名称为彩云公司。"
+        "url": "https://github.com/caiyunapp/mcp-caiyun-weather",
+        "checkedAt": "2026-11-05",
+        "note": "官方组织 caiyunapp 主页链接彩云官网，组织名称为彩云公司。",
+        "quote": "https://mcp-weather.caiyunapp.com/mcp",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -3163,6 +3348,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/caiyunapp/mcp-caiyun-weather"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/caiyunapp"
         }
       ],
       "keywords": [
@@ -3192,8 +3381,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://ai.variflight.com/zh/docs/aviation",
-        "checkedAt": "2026-11-04",
-        "note": "飞常准官方 AI 开放平台文档，明确远程 HTTP、OAuth 与官方 npm 包。"
+        "checkedAt": "2026-11-05",
+        "note": "飞常准官方 AI 开放平台文档，明确远程 HTTP、OAuth 与官方 npm 包。",
+        "quote": "https://ai.variflight.com/servers/aviation/mcp",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/variflight/variflight-mcp",
@@ -3257,9 +3448,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://open.tuniu.com/mcp/docs/guide/mcp-auth.html",
+        "url": "https://github.com/tuniucorp/tuniu-cli",
         "checkedAt": "2026-11-05",
-        "note": "途牛官网文档导航链接官方组织；酒店工具可创建预订订单，远程走 OAuth、CLI 使用 API Key。"
+        "note": "途牛官网文档导航链接官方组织；酒店工具可创建预订订单，远程走 OAuth、CLI 使用 API Key。",
+        "quote": "npm install -g tuniu-cli@latest",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/tuniucorp/tuniu-cli",
@@ -3389,9 +3582,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/opendatalab",
-        "checkedAt": "2026-11-04",
-        "note": "OpenDataLab 官方组织主页链接 opendatalab.org.cn，仓库提供 MCP、CLI 与 Skills。"
+        "url": "https://github.com/opendatalab/MinerU-Ecosystem",
+        "checkedAt": "2026-11-05",
+        "note": "OpenDataLab 官方组织主页链接 opendatalab.org.cn，仓库提供 MCP、CLI 与 Skills。",
+        "quote": "mineru-open-mcp",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -3425,6 +3620,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/opendatalab/MinerU-Ecosystem"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/opendatalab"
         }
       ],
       "keywords": [
@@ -3453,8 +3652,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://help.dida365.com/articles/7438132116019216384",
-        "checkedAt": "2026-11-04",
-        "note": "滴答官方 MCP 指南；DIDA CLI 安装另见官方文章 7464976698707017728。"
+        "checkedAt": "2026-11-05",
+        "note": "滴答官方 MCP 指南；DIDA CLI 安装另见官方文章 7464976698707017728。",
+        "quote": "https://mcp.dida365.com",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -3756,8 +3957,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://open.chineselaw.com/mcp-config/",
-        "checkedAt": "2026-11-04",
-        "note": "元典官方开放平台列出五类 MCP 和统一法律研究 Skill。"
+        "checkedAt": "2026-11-05",
+        "note": "元典官方开放平台列出五类 MCP 和统一法律研究 Skill。",
+        "quote": "https://open.chineselaw.com/mcp/law/stream",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -3915,9 +4118,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/antvis",
-        "checkedAt": "2026-11-04",
-        "note": "AntV 官方组织主页链接蚂蚁 AntV 官网，仓库提供 MCP 与图表 Skill。"
+        "url": "https://github.com/antvis/mcp-server-chart",
+        "checkedAt": "2026-11-05",
+        "note": "AntV 官方组织主页链接蚂蚁 AntV 官网，仓库提供 MCP 与图表 Skill。",
+        "quote": "@antv/mcp-server-chart",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -3952,6 +4157,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/antvis/mcp-server-chart"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/antvis"
         }
       ],
       "keywords": [
@@ -4013,9 +4222,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api",
+        "url": "https://api.kuaidi100.com/document/how-to-use-mcp-service",
         "checkedAt": "2026-11-05",
-        "note": "快递100官方上门取件 MCP 公告；可真实寄件下单、线下付运费，需账号 Key 及商务加白。"
+        "note": "快递100官方上门取件 MCP 公告；可真实寄件下单、线下付运费，需账号 Key 及商务加白。",
+        "quote": "\"url\": \"https://api.kuaidi100.com/mcp/streamable?key=YOUR_API_KEY\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/kuaidi100-api/kuaidi100-MCP",
@@ -4183,8 +4394,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://www.meituhub.com/zh-cn/docs?id=150",
-        "checkedAt": "2026-11-04",
-        "note": "美图 MeituHub 官方接入文档明确 meitu-cli、AK/SK 与命令示例。"
+        "checkedAt": "2026-11-05",
+        "note": "美图 MeituHub 官方接入文档明确 meitu-cli、AK/SK 与命令示例。",
+        "quote": "面向本地批量处理与脚本自动化。安装后通过命令行调用平台能力，完整命令见",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -4266,9 +4479,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云开发官方文档链接官方 MCP、Skill 与 tcb CLI，并区分国内站和国际站。"
+        "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit",
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云开发官方文档链接官方 MCP、Skill 与 tcb CLI，并区分国内站和国际站。",
+        "quote": "https://tcb-api.cloud.tencent.com/mcp/v1",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit",
@@ -4300,6 +4515,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/"
         }
       ],
       "keywords": [
@@ -4365,9 +4584,11 @@
       "access": [],
       "status": "verified",
       "evidence": {
-        "url": "https://milvus.io/docs/milvus_and_mcp.md",
-        "checkedAt": "2026-11-04",
-        "note": "Milvus 官方文档直接链接 Zilliz MCP 仓库，需已有 Milvus 实例。"
+        "url": "https://github.com/zilliztech/mcp-server-milvus",
+        "checkedAt": "2026-11-05",
+        "note": "Milvus 官方文档直接链接 Zilliz MCP 仓库，需已有 Milvus 实例。",
+        "quote": "uv run src/mcp_server_milvus/server.py --milvus-uri http://localhost:19530",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/zilliztech/mcp-server-milvus",
@@ -4406,6 +4627,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/zilliztech/mcp-server-milvus"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://milvus.io/docs/milvus_and_mcp.md"
         }
       ],
       "keywords": [
@@ -4432,8 +4657,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://docs.api7.ai/apisix/reference/apisix-mcp",
-        "checkedAt": "2026-11-04",
-        "note": "API7 官方文档明确 APISIX MCP 工具与 npm 配置。"
+        "checkedAt": "2026-11-05",
+        "note": "API7 官方文档明确 APISIX MCP 工具与 npm 配置。",
+        "quote": "\"apisix-mcp\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/api7/apisix-mcp",
@@ -4547,8 +4774,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://mcp.espressif.com/",
-        "checkedAt": "2026-11-04",
-        "note": "乐鑫官方 MCP 门户列出 RainMaker 远程服务与设备读写能力。"
+        "checkedAt": "2026-11-05",
+        "note": "乐鑫官方 MCP 门户列出 RainMaker 远程服务与设备读写能力。",
+        "quote": "https://mcp.rainmaker.espressif.com/api/mcp",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/espressif/esp-rainmaker-mcp",
@@ -4604,8 +4833,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/",
-        "checkedAt": "2026-11-04",
-        "note": "PingCAP 官方中文文档提供 TiDB MCP；使用官方 pytidb 实现，不收个人封装。"
+        "checkedAt": "2026-11-05",
+        "note": "PingCAP 官方中文文档提供 TiDB MCP；使用官方 pytidb 实现，不收个人封装。",
+        "quote": "\"uvx --from pytidb[mcp] tidb-mcp-server\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -4693,8 +4924,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11474",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云 TAPD 团队发布页与官方源码目录对应，使用个人令牌或 API 凭据。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云 TAPD 团队发布页与官方源码目录对应，使用个人令牌或 API 凭据。",
+        "quote": "\"mcp-server-tapd\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd",
@@ -4763,8 +4996,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11709",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云 TCA 团队发布页提供配置；先创建获批团队、项目与分析配置。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云 TCA 团队发布页提供配置；先创建获批团队、项目与分析配置。",
+        "quote": "\"tca-mcp-server@latest\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tca-mcp-server",
@@ -4832,9 +5067,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://cloud.tencent.com/developer/mcp/server/11721",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯 TDesign 团队发布页和官方源码目录均给出四项查询工具及 npx 配置。"
+        "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server",
+        "checkedAt": "2026-11-05",
+        "note": "腾讯 TDesign 团队发布页和官方源码目录均给出四项查询工具及 npx 配置。",
+        "quote": "tdesign-mcp-server@latest",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server",
@@ -4869,6 +5106,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11721"
         }
       ],
       "keywords": [
@@ -4898,8 +5139,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11722",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云 CODING 团队发布页背书对应实现；官方汇总源码提供 Token 配置。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云 CODING 团队发布页背书对应实现；官方汇总源码提供 Token 配置。",
+        "quote": "\"coding-devops-mcp-server\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/coding_devops_mcp_server",
@@ -4966,8 +5209,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11743",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云 DNSPod 团队发布的专用 MCP；公开页未给出可复用的用户端点，配置留空。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云 DNSPod 团队发布的专用 MCP；公开页未给出可复用的用户端点，配置留空。",
+        "quote": "\"mcp-server-dnspod\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "nameEn": "Tencent DNSPod",
@@ -5091,8 +5336,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11764",
-        "checkedAt": "2026-11-04",
-        "note": "元宝搜索团队发布页已使用新名称，明确 Streamable HTTP 端点与 Bearer API Key。"
+        "checkedAt": "2026-11-05",
+        "note": "元宝搜索团队发布页已使用新名称，明确 Streamable HTTP 端点与 Bearer API Key。",
+        "quote": "https://api.wsa.cloud.tencent.com/Mcp",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5132,9 +5379,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://cloud.tencent.com/developer/mcp/server/11763",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云 WeData 团队发布页确认 MCP 数据检索和查询；接入门槛与个人端点未整理，留空。"
+        "url": "https://cloud.tencent.com/document/product/1267/126220",
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云 WeData 团队发布页确认 MCP 数据检索和查询；接入门槛与个人端点未整理，留空。",
+        "quote": "https://api-ap-guangzhou.wedata.cloud.tencent.com/api/mcp/v1/metric",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "nameEn": "Tencent WeData Semantic Layer",
@@ -5173,6 +5422,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://cloud.tencent.com/document/product/1267/126220"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11763"
         }
       ],
       "keywords": [
@@ -5202,8 +5455,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11472",
-        "checkedAt": "2026-11-04",
-        "note": "腾讯云产品目录和 Tencent 官方仓库相互印证，官方 README 提供 npx 参数。"
+        "checkedAt": "2026-11-05",
+        "note": "腾讯云产品目录和 Tencent 官方仓库相互印证，官方 README 提供 npx 参数。",
+        "quote": "\"cos-mcp\"",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5268,9 +5523,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://cloud.tencent.com/document/product/614/118699",
-        "checkedAt": "2026-11-04",
-        "note": "Tencent 官方仓库反链腾讯云产品文档；工具清单均为日志、指标、告警查询。"
+        "url": "https://github.com/Tencent/cls-mcp-server",
+        "checkedAt": "2026-11-05",
+        "note": "Tencent 官方仓库反链腾讯云产品文档；工具清单均为日志、指标、告警查询。",
+        "quote": "cls-mcp-server@latest",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/Tencent/cls-mcp-server",
@@ -5312,6 +5569,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/Tencent/cls-mcp-server"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://cloud.tencent.com/document/product/614/118699"
         }
       ],
       "keywords": [
@@ -5339,9 +5600,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/volcengine/mcp-server",
-        "checkedAt": "2026-11-04",
-        "note": "火山引擎官方目录链接专用实现；pyproject 确认 mcp_bytehouse 启动名，含写入工具。"
+        "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse",
+        "checkedAt": "2026-11-05",
+        "note": "火山引擎官方目录链接专用实现；pyproject 确认 mcp_bytehouse 启动名，含写入工具。",
+        "quote": "mcp_bytehouse",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5384,6 +5647,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/volcengine/mcp-server"
         }
       ],
       "keywords": [
@@ -5411,9 +5678,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/volcengine/mcp-server",
-        "checkedAt": "2026-11-04",
-        "note": "火山引擎官方目录和专用 README 列出图片读写、生成与处理工具，启动名已对照 pyproject。"
+        "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex",
+        "checkedAt": "2026-11-05",
+        "note": "火山引擎官方目录和专用 README 列出图片读写、生成与处理工具，启动名已对照 pyproject。",
+        "quote": "mcp-server-veimagex",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5454,6 +5723,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/volcengine/mcp-server"
         }
       ],
       "keywords": [
@@ -5481,9 +5754,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://github.com/volcengine/mcp-server",
-        "checkedAt": "2026-11-04",
-        "note": "火山引擎官方目录列出专用 MCP；须先部署 Browser Use 应用，再填写自己的服务入口。"
+        "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use",
+        "checkedAt": "2026-11-05",
+        "note": "火山引擎官方目录列出专用 MCP；须先部署 Browser Use 应用，再填写自己的服务入口。",
+        "quote": "mcp-server-vefaas-browser-use",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5521,6 +5796,10 @@
         {
           "name": "厂商官方接入文档",
           "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use"
+        },
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://github.com/volcengine/mcp-server"
         }
       ],
       "keywords": [
@@ -5549,8 +5828,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://www.xfyun.cn/xfyun-cli/doc",
-        "checkedAt": "2026-11-04",
-        "note": "讯飞开放平台自有文档明确官方 CLI 与随包 Skill，需 CLI 令牌及已开通的应用能力。"
+        "checkedAt": "2026-11-05",
+        "note": "讯飞开放平台自有文档明确官方 CLI 与随包 Skill，需 CLI 令牌及已开通的应用能力。",
+        "quote": "npm install -g @xfyun/cli",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5586,8 +5867,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation",
-        "checkedAt": "2026-11-04",
-        "note": "百炼官方安装文档给出 bailian-cli 和配套 Skill 仓库；安装后使用 bl skill init。"
+        "checkedAt": "2026-11-05",
+        "note": "百炼官方安装文档给出 bailian-cli 和配套 Skill 仓库；安装后使用 bl skill init。",
+        "quote": "npm install -g bailian-cli",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/modelstudioai/cli",
@@ -5696,8 +5979,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://help.aliyun.com/en/sls/sls-mcp-server",
-        "checkedAt": "2026-11-04",
-        "note": "阿里云官方文档明确本地 SLS MCP 的 11 项工具；先以阿里云 CLI OAuth 登录，配置示例使用 default Profile。"
+        "checkedAt": "2026-11-05",
+        "note": "阿里云官方文档明确本地 SLS MCP 的 11 项工具；先以阿里云 CLI OAuth 登录，配置示例使用 default Profile。",
+        "quote": "alibabacloud-sls-mcp-proxy@latest --profile <your profile name>",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5738,8 +6023,10 @@
       "status": "verified",
       "evidence": {
         "url": "https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp",
-        "checkedAt": "2026-11-04",
-        "note": "使用新版 Agent 数据网关 MCP，不收即将停服的旧包。示例为杭州，端点地域须与 Agent Token 相同。"
+        "checkedAt": "2026-11-05",
+        "note": "使用新版 Agent 数据网关 MCP，不收即将停服的旧包。示例为杭州，端点地域须与 Agent Token 相同。",
+        "quote": "https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate",
+        "agentReadable": true
       },
       "addedAt": "2026-11-04",
       "install": {
@@ -5874,7 +6161,9 @@
       "evidence": {
         "url": "https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha",
         "checkedAt": "2026-11-05",
-        "note": "阿里云 OSS 官方文档给出三个查询工具、npm 包和 stdio 配置；当前为 Alpha 版本。"
+        "note": "阿里云 OSS 官方文档给出三个查询工具、npm 包和 stdio 配置；当前为 Alpha 版本。",
+        "quote": "\"args\": [\"-y\", \"alibabacloud-oss-mcp-server@alpha\"],",
+        "agentReadable": true
       },
       "install": {
         "mcp": {
@@ -5937,7 +6226,9 @@
       "evidence": {
         "url": "https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000005282562",
         "checkedAt": "2026-11-05",
-        "note": "OceanBase 官方集成文档反向链接官方 MCP 仓库，专用说明给出 SQL、诊断、检索及可选记忆工具。"
+        "note": "OceanBase 官方集成文档反向链接官方 MCP 仓库，专用说明给出 SQL、诊断、检索及可选记忆工具。",
+        "quote": "git clone https://github.com/oceanbase/awesome-oceanbase-mcp.git",
+        "agentReadable": true
       },
       "install": {
         "mcp": {
@@ -6007,9 +6298,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://developer.cloud.tencent.com/mcp/server/11830",
+        "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills",
         "checkedAt": "2026-11-05",
-        "note": "腾讯云 PostgreSQL 团队当前 48 工具版，含创建实例及规格变更；与旧版 11774 的能力分开核对。"
+        "note": "腾讯云 PostgreSQL 团队当前 48 工具版，含创建实例及规格变更；与旧版 11774 的能力分开核对。",
+        "quote": "：用户应从 GitHub Release 或 COS 安装打包好的 zip 资源，而不是直接使用源码目录。",
+        "agentReadable": true
       },
       "install": {
         "skill": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills"
@@ -6238,9 +6531,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://skills.aliyun.com/skills/alibabacloud-rds-copilot",
+        "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/database/rds/alibabacloud-rds-copilot/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。"
+        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。",
+        "quote": "name: alibabacloud-rds-copilot",
+        "agentReadable": true
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/database/rds/alibabacloud-rds-copilot"
@@ -6266,6 +6561,12 @@
         "数据库排障",
         "RDS运维",
         "运维知识"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://skills.aliyun.com/skills/alibabacloud-rds-copilot"
+        }
       ]
     },
     {
@@ -6288,9 +6589,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://skills.aliyun.com/skills/alibabacloud-pai-dlc-job",
+        "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/aiml/learn/alibabacloud-pai-dlc-job/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。"
+        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。",
+        "quote": "name: alibabacloud-pai-dlc-job",
+        "agentReadable": true
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/aiml/learn/alibabacloud-pai-dlc-job"
@@ -6317,6 +6620,12 @@
         "训练日志",
         "停止训练",
         "计算健康检查"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://skills.aliyun.com/skills/alibabacloud-pai-dlc-job"
+        }
       ]
     },
     {
@@ -6339,9 +6648,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://skills.aliyun.com/skills/alibabacloud-dataworks-datastudio-develop",
+        "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/analyticscomputing/dide/alibabacloud-dataworks-datastudio-develop/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。"
+        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。",
+        "quote": "name: alibabacloud-dataworks-datastudio-develop",
+        "agentReadable": true
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/analyticscomputing/dide/alibabacloud-dataworks-datastudio-develop"
@@ -6368,6 +6679,12 @@
         "数据开发节点",
         "管理UDF",
         "数据集成"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://skills.aliyun.com/skills/alibabacloud-dataworks-datastudio-develop"
+        }
       ]
     },
     {
@@ -6390,9 +6707,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://skills.aliyun.com/skills/alibabacloud-lindorm-agent-skill",
+        "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/database/hitsdb/alibabacloud-lindorm-agent-skill/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。"
+        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。",
+        "quote": "name: alibabacloud-lindorm-agent-skill",
+        "agentReadable": true
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/database/hitsdb/alibabacloud-lindorm-agent-skill"
@@ -6419,6 +6738,12 @@
         "连接排障",
         "性能分析",
         "检索开发"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://skills.aliyun.com/skills/alibabacloud-lindorm-agent-skill"
+        }
       ]
     },
     {
@@ -6441,9 +6766,11 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://skills.aliyun.com/skills/alibabacloud-video-translation",
+        "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/mediaservices/ice/alibabacloud-video-translation/SKILL.md",
         "checkedAt": "2026-11-05",
-        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。"
+        "note": "阿里云官方 Skills 门户提供技能详情并链接 aliyun 官方源码集合；能力按实际 SKILL.md 核对。",
+        "quote": "name: alibabacloud-video-translation",
+        "agentReadable": true
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/mediaservices/ice/alibabacloud-video-translation"
@@ -6470,6 +6797,12 @@
         "视频配音",
         "替换配音",
         "语音合成"
+      ],
+      "sources": [
+        {
+          "name": "厂商官方发布依据",
+          "url": "https://skills.aliyun.com/skills/alibabacloud-video-translation"
+        }
       ]
     }
   ]

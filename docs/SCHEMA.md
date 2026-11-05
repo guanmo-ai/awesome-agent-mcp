@@ -33,6 +33,8 @@
 | `access` | ✓ | 接入门槛，可多选：`free` 免费可用、`key` 需 API Key、`account` 需授权账号、`membership` 需会员或付费、`desktop-app` 需桌面客户端、`apply` 需申请开通。尚未整理时填 `[]`；门槛因场景或部署方式不同、无法统一标注时也填 `[]`，并在 `setup.requirements` 写明具体条件 |
 | `status` | ✓ | `unverified` 待核验；`verified` 已核验；`rejected` 不收录（不展示，留着是为了防止被重复提交） |
 | `evidence` | 已核验时必填 | `{ "url": "证明官方身份的页面", "checkedAt": "YYYY-MM-DD", "note": "可选，一句话说明" }` |
+| `evidence.quote` |  | 从 `evidence.url` 逐字摘录的官方原文或配置片段，不超过 80 字；只摘能证明端点、安装命令或能力的内容，不改写。无法确认时省略，摘录日期沿用 `checkedAt` |
+| `evidence.agentReadable` |  | 布尔值：核对时可不借助浏览器读取该依据正文则为 `true`，只有页面外壳、导航或受限则为 `false`；有其他可读官方来源时可将 `url` 更新为该来源。可读性是当次记录 |
 | `rejectedReason` | 不收录时必填 | 为什么不收录 |
 | `install.mcp` |  | 远程服务填 `{ "transport": "http" 或 "sse", "url": "..." }`；本地服务填 `{ "transport": "stdio", "command": "npx", "args": [...], "env": { "KEY": "<你的Key>" } }`。用户要替换的部分写成 `<说明>`，不要有空格 |
 | `install.cli` |  | 命令行工具的安装命令 |

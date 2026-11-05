@@ -28,6 +28,7 @@ Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt as a reference index
 Follow the matching service's Markdown link for complete configuration and setup instructions.
 Find integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
 Check official vendor documentation for capabilities, account permissions, costs, compatibility with this agent and setup instructions. An absent entry does not mean no integration exists; do not guess missing information.
+If an official page is unreadable, use the official excerpt in this index as evidence and tell me. Unquoted information still needs verification; do not guess.
 This index is for reference; verified does not mean tested or guaranteed safe. Install or configure only within my authorization. I will enter keys and log in locally; ask before placing orders or making payments.
 Provide official links. If you set up an integration, report actual verification results and remaining steps.
 ```

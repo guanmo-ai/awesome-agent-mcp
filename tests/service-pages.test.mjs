@@ -200,3 +200,18 @@ test('服务提示词三行直达Markdown，并按权限提醒；详情与独立
     assert.ok(renderDetails(s, { homepage: siteUrl, categories: [], labels }).actions.includes(`data-copy="${esc(prompt)}"`));
   }
 });
+
+test('官方原文与摘录日期同步到Markdown和网页，并说明不可直读的来源', (t) => {
+  const quote = '<script>不执行</script> 官方配置原文';
+  const fixture = buildFixture(data => { data.services[0].evidence = { url: 'https://example.com/source', checkedAt: '2026-11-05', quote, agentReadable: false }; });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const id = fixture.data.services[0].id;
+  for (const path of [`s/${id}.md`, `s/${id}/index.html`]) {
+    const body = fixture.read(path);
+    assert.ok(body.includes('官方原文摘录'));
+    assert.ok(body.includes('2026-11-05'));
+    assert.ok(body.includes('官方页需浏览器打开，Agent 可能读不到'));
+    assert.ok(body.includes(path.endsWith('.md') ? quote : esc(quote)));
+  }
+  for (const path of ['index.html', 'skills/agent-mcp-finder/SKILL.md']) assert.ok(fixture.read(path).includes('官方页面读不到时，以索引中的官方原文摘录为依据，并告诉我这一点。'));
+});
