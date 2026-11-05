@@ -7488,6 +7488,88 @@
           "url": "https://skills.aliyun.com/skills/alibabacloud-video-translation"
         }
       ]
+    },
+    {
+      "id": "volcengine-vod",
+      "name": "火山引擎视频点播",
+      "nameEn": "Volcengine VOD",
+      "category": "design",
+      "summary": "通过 MCP 裁剪、拼接视频，添加字幕并处理媒资。",
+      "summaryEn": "Clip and join videos, add subtitles, and process media through MCP.",
+      "types": [
+        "mcp"
+      ],
+      "url": "https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide",
+      "repo": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vod",
+      "homepage": "https://www.volcengine.com/product/vod",
+      "color": "#185BFF",
+      "mark": "VOD",
+      "risk": "write",
+      "access": [
+        "account",
+        "key"
+      ],
+      "status": "verified",
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "剪视频",
+        "视频剪辑",
+        "视频拼接",
+        "裁剪视频",
+        "加字幕"
+      ],
+      "install": {
+        "mcp": {
+          "transport": "stdio",
+          "command": "uvx",
+          "args": [
+            "--from",
+            "git+https://github.com/volcengine/mcp-server.git#subdirectory=server/mcp_server_vod",
+            "mcp-server-vod"
+          ],
+          "env": {
+            "VOLCENGINE_ACCESS_KEY": "<你的AccessKey>",
+            "VOLCENGINE_SECRET_KEY": "<你的SecretKey>",
+            "MCP_TOOLS_TYPE": "groups",
+            "MCP_TOOLS_SOURCE": "edit,video_play,media_tasks",
+            "MCP_SPACE_NAME": "<你的视频点播空间>"
+          }
+        }
+      },
+      "setup": {
+        "requirements": "需要火山引擎实名认证账号、访问密钥、已开通的视频点播服务和点播空间；本地运行需 uvx。视频处理、存储及流量可能产生费用。",
+        "steps": [
+          {
+            "text": "开通视频点播并创建空间，获取火山引擎 Access Key 和 Secret Key。",
+            "url": "https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide"
+          },
+          {
+            "text": "按官方本地模式配置 uvx、密钥及空间名称；edit 分组提供剪辑工具。",
+            "url": "https://github.com/volcengine/mcp-server/blob/main/server/mcp_server_vod/README_zh.md"
+          }
+        ],
+        "verify": "连接客户端后先检查工具列表包含 audio_video_clipping；处理素材前确认权限和费用。",
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "MCP 开源工具及协议层不额外收费；视频点播的存储、云剪辑、其他处理和流量按资源使用计费。云端部署还涉及 API 网关和函数服务费用。",
+          "url": "https://docs.volcengine.com/docs/video-on-demand/vod-mcp-integration-guide?lang=zh",
+          "checkedAt": "2026-11-05",
+          "quote": "根据输出视频的分辨率和时长计费"
+        }
+      },
+      "evidence": {
+        "url": "https://github.com/volcengine/mcp-server/blob/main/server/mcp_server_vod/README_zh.md",
+        "checkedAt": "2026-11-05",
+        "note": "火山引擎官方仓库与接入指南均列出 VOD MCP 视频剪辑工具及本地接入配置。",
+        "quote": "多片段拼接",
+        "agentReadable": true
+      },
+      "sources": [
+        {
+          "name": "火山引擎官方接入指南",
+          "url": "https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide"
+        }
+      ]
     }
   ]
 }

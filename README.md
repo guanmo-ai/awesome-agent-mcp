@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>104 个服务 · 7 个分类 · 附安装配置 87 · 更新于 2026-11-05</sub></p>
+<p align="center"><sub>105 个服务 · 7 个分类 · 附安装配置 88 · 更新于 2026-11-05</sub></p>
 
 > **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)
 
@@ -65,7 +65,7 @@
 - [办公和协作](#cat-office)（15）
 - [笔记、阅读和网盘](#cat-notes)（8）
 - [搜索、内容和企业数据](#cat-search)（9）
-- [设计和创作](#cat-design)（9）
+- [设计和创作](#cat-design)（10）
 - [支付和金融](#cat-finance)（7）
 - [云和开发](#cat-cloud)（41）
 
@@ -167,6 +167,7 @@
 | [腾讯混元生图](https://cloud.tencent.com/developer/mcp/server/11765) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/) | 生成图片、图生图、扩图与清晰度增强。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [火山引擎 veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/) | 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [阿里云智能媒体服务 IMS](https://skills.aliyun.com/skills/alibabacloud-video-translation) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims/) | 提取视频字幕并翻译，支持语音合成和配音替换。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [火山引擎视频点播](https://docs.volcengine.com/docs/video_on_demand/VODMCPAccessGuide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine-vod/) | 通过 MCP 裁剪、拼接视频，添加字幕并处理媒资。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
