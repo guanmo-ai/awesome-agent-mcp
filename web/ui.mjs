@@ -89,13 +89,18 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   const pal = $('#palette');
   wireDialog(pal);
   const input = $('#pal-q');
-  let items = [], active = 0;
+  const list = $('#pal-list');
+  let items = [], active = 0, choosing = false;
+  const saveSearch = () => {
+    if (pal.open && history.state?.overlay === 'search') history.replaceState({ overlay: 'search', query: input.value, active, top: list.scrollTop }, '');
+  };
   const paint = (scroll = true) => {
     $$('.pal-item', pal).forEach((el, i) => el.setAttribute('aria-selected', i === active));
     const cur = items[active];
-    if (!cur) { input.removeAttribute('aria-activedescendant'); return; }
+    if (!cur) { input.removeAttribute('aria-activedescendant'); saveSearch(); return; }
     input.setAttribute('aria-activedescendant', `pal-${cur.id}`);
     if (scroll) document.getElementById(`pal-${cur.id}`)?.scrollIntoView({ block: 'nearest' });
+    saveSearch();
   };
   const render = () => {
     const db = getData();
@@ -104,7 +109,6 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     const byId = new Map(db.services.map((s) => [s.id, s]));
     items = toks.length ? db.services.filter((s) => textMatch(s, toks, db)).slice(0, 50) : FEATURED.map((id) => byId.get(id)).filter(Boolean).slice(0, 8);
     active = 0;
-    const list = $('#pal-list');
     if (!items.length) {
       list.innerHTML = `<div class="pal-empty">没有找到「${esc(input.value)}」。<a href="https://github.com/${esc(db.site.repo)}/issues/new?template=submit.yml" target="_blank" rel="noopener">提交给我们</a></div>`;
       paint(false);
@@ -117,16 +121,42 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
       </button>`).join('');
     paint();
   };
-  const choose = (id) => { pal.close(); onChoose(id); };
+  const restoreSearch = () => {
+    const saved = history.state;
+    if (saved?.overlay !== 'search') { if (pal.open) pal.close(); return; }
+    if (!getData()) return;
+    choosing = false;
+    beforeOpen();
+    input.value = saved.query;
+    openDialog(pal);
+    render();
+    active = Math.min(saved.active, Math.max(0, items.length - 1));
+    paint(false);
+    input.focus({ preventScroll: true });
+    list.scrollTop = saved.top;
+    saveSearch();
+  };
+  const choose = (id) => {
+    active = items.findIndex((s) => s.id === id);
+    saveSearch();
+    choosing = true;
+    pal.close();
+    onChoose(id);
+  };
   const toggle = () => {
     if (pal.open) { closeDialog(pal); return; }
     if (!getData()) { toast('服务索引正在载入，请稍后重试。'); return; }
-    beforeOpen();
-    openDialog(pal);
-    input.value = '';
-    render();
-    input.focus();
+    const hash = location.hash.startsWith('#s-') ? '' : location.hash;
+    history.pushState({ overlay: 'search', query: input.value, active, top: list.scrollTop }, '', location.pathname + location.search + hash);
+    restoreSearch();
   };
+  pal.addEventListener('close', () => {
+    if (choosing) { choosing = false; return; }
+    if (history.state?.overlay === 'search') history.back();
+  });
+  list.addEventListener('scroll', saveSearch, { passive: true });
+  addEventListener('popstate', restoreSearch);
+  addEventListener('pageshow', restoreSearch);
   input.addEventListener('input', render);
   input.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -172,6 +202,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   const syncVisibility = () => document.documentElement.classList.toggle('page-paused', document.hidden);
   document.addEventListener('visibilitychange', syncVisibility);
   syncVisibility();
+  return restoreSearch;
 }
 
 const PALETTE_HTML = `<dialog class="palette" id="palette" aria-label="搜索服务">
