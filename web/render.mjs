@@ -39,8 +39,10 @@ const TYPE_ORDER = ['mcp', 'skill', 'cli'];
 export const sortedTypes = (s) => [...s.types].sort((a, b) => TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b));
 export const typeTags = (s, labels) => sortedTypes(s).map((t) => `<span class="tag ${esc(t)}">${esc(labels.types[t])}</span>`).join('');
 export const riskLabel = (s, labels) => `<span class="risk"><i class="dot ${esc(s.risk)}"></i>${esc(labels.risk[s.risk])}</span>`;
+// 认证章：卡片上只放图形，详情与独立页配文字
+const SEAL = '<svg class="seal" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.00 1.60 L13.76 3.17 L15.98 2.39 L17.00 4.52 L19.35 4.65 L19.48 7.00 L21.61 8.02 L20.83 10.24 L22.40 12.00 L20.83 13.76 L21.61 15.98 L19.48 17.00 L19.35 19.35 L17.00 19.48 L15.98 21.61 L13.76 20.83 L12.00 22.40 L10.24 20.83 L8.02 21.61 L7.00 19.48 L4.65 19.35 L4.52 17.00 L2.39 15.98 L3.17 13.76 L1.60 12.00 L3.17 10.24 L2.39 8.02 L4.52 7.00 L4.65 4.65 L7.00 4.52 L8.02 2.39 L10.24 3.17 Z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.4 12.3 2.4 2.4 4.8-4.9" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 export const badge = (s) => s.status === 'verified'
-  ? `<span class="vbadge verified" title="已确认为厂商官方出品">${ICON.check}官方已核验</span>`
+  ? `<span class="vbadge verified" title="已确认为厂商官方出品">${SEAL}官方已核验</span>`
   : `<span class="vbadge unverified" title="来自公开整理，尚未逐条确认官方身份">${ICON.clock}待核验</span>`;
 const searchIndexes = new WeakMap();
 export function textMatch(s, toks, db) {
@@ -58,7 +60,7 @@ function searchText(s, db) {
 }
 export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href, id, heading = href ? 'h3' : 'h4' } = {}) {
   return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"${id ? ` data-id="${esc(id)}"` : ''}` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}" aria-label="${esc(s.name)}：${esc(s.summary)}">
-    <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><${heading}>${highlight(s.name, toks)}</${heading}><p class="domain">${esc(host(s.url))}</p></div>${badge(s)}</div>
+    <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><${heading}><span class="nm">${highlight(s.name, toks)}</span>${s.status === 'verified' ? `<span class="vseal" title="官方已核验">${SEAL}</span>` : ''}</${heading}><p class="domain">${esc(host(s.url))}</p></div>${s.status === 'verified' ? '' : badge(s)}</div>
     <p class="card-sum">${highlight(s.summary, toks)}</p>
     <div class="card-foot">${typeTags(s, labels)}${riskLabel(s, labels)}</div>
   </${href ? 'a' : 'button'}>`;

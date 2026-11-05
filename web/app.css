@@ -48,7 +48,7 @@
 /* ── Base ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scrollbar-gutter: stable; }
+html { scrollbar-gutter: stable; background: var(--bg); }
 html:has(dialog[open]) { overflow: hidden; }
 .page-paused *, .page-paused *::before, .page-paused *::after,
 .motion-paused *, .motion-paused *::before, .motion-paused *::after { animation-play-state: paused !important; }
@@ -237,11 +237,15 @@ h1 span { display: block; }
 .logo.mono { background: var(--brand); color: #fff; font-weight: 700; font-size: 19px; background-image: linear-gradient(160deg, rgba(255, 255, 255, .25), transparent 60%); }
 .logo.lg { width: 68px; height: 68px; font-size: 28px; }
 .card-title { min-width: 0; flex: 1; }
-.card-title h3, .card-title h4 { margin: 0; font-size: 16.5px; font-weight: 650; letter-spacing: -.015em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-title h3, .card-title h4 { display: flex; align-items: center; gap: 5px; min-width: 0; margin: 0; font-size: 16.5px; font-weight: 650; letter-spacing: -.015em; }
+.card-title .nm { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vseal { flex: none; display: inline-grid; color: var(--a1); }
+.vseal .seal { width: 16px; height: 16px; }
 .domain { margin: 2px 0 0; font: 400 11.5px/1.4 var(--mono); color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vbadge { flex: none; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
 .vbadge svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-.vbadge.verified { color: var(--read); background: color-mix(in srgb, var(--read) 12%, transparent); }
+.vbadge.verified { color: var(--a1); background: color-mix(in srgb, var(--a1) 12%, transparent); }
+.vbadge .seal { width: 14px; height: 14px; }
 .vbadge.unverified { color: var(--faint); background: var(--card-2); }
 .card-sum { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-foot { display: flex; align-items: center; gap: 6px; margin-top: auto; }
@@ -412,7 +416,16 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
   .seg, .toggle { flex: none; }
   .result { display: none; }
   .grid { grid-template-columns: 1fr; gap: 10px; }
-  .card { min-height: 0; padding: 16px; }
+  /* 手机：紧凑横排卡片，图标在左，名称 / 一句话 / 标签三行 */
+  .card { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; row-gap: 5px; align-items: start; min-height: 0; padding: 14px 14px 14px 12px; border-radius: 16px; }
+  .card-top { display: contents; }
+  .card .logo { grid-row: 1 / span 3; width: 44px; height: 44px; }
+  .card-title, .card-sum, .card-foot, .card .vbadge { grid-column: 2; }
+  .card .domain { display: none; }
+  .card .vbadge { justify-self: start; height: 20px; font-size: 11px; }
+  .card-sum { -webkit-line-clamp: 1; font-size: 13.5px; }
+  .card-foot { margin-top: 2px; }
+  .card:hover { transform: none; }
   .for-ai { padding: 80px 0 48px; }
   .bento-card { padding: 18px; border-radius: 18px; }
   .chat { min-height: 0; }

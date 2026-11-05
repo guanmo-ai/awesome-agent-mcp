@@ -121,7 +121,10 @@ function resetFilters() {
   render();
 }
 
-const verb = (s) => s.summary.replace(/。$/, '').split(/[，,]/)[0].split('、').slice(0, 2).join('、');
+const verb = (s) => {
+  const v = s.summary.replace(/。$/, '').split(/[，,；;]/)[0].split('、').slice(0, 2).join('、');
+  return v.length > 14 ? `${v.slice(0, 13)}…` : v;
+};
 const typeTags = (s) => renderTypeTags(s, L);
 const textMatch = (s, toks) => renderTextMatch(s, toks, DB);
 
