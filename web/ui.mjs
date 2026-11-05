@@ -43,23 +43,31 @@ export async function loadStars(DB) {
   if (typeof n === 'number' && n > 0) { el.textContent = fmt(n); el.hidden = false; }
 }
 
+const copyFeedback = new WeakMap();
 export async function copy(text, btn, msg = '已复制') {
   try {
     await navigator.clipboard.writeText(text);
   } catch {
+    const focused = document.activeElement;
     const ta = Object.assign(document.createElement('textarea'), { value: text });
     ta.style.cssText = 'position:fixed;opacity:0';
     (btn?.closest('dialog') ?? document.body).append(ta);
     ta.select();
-    try { document.execCommand('copy'); } catch {}
+    let copied = false;
+    try { copied = document.execCommand('copy'); } catch {}
     ta.remove();
+    focused?.focus({ preventScroll: true });
+    if (!copied) { toast('复制失败，请选中文字手动复制。'); return; }
   }
   toast(msg);
   if (btn && (btn.classList.contains('btn') || btn.classList.contains('ct-copy'))) {
-    const old = btn.innerHTML;
+    const previous = copyFeedback.get(btn);
+    clearTimeout(previous?.timer);
+    const old = previous?.html ?? btn.innerHTML;
     btn.classList.add('done');
     btn.textContent = '已复制 ✓';
-    setTimeout(() => { btn.innerHTML = old; btn.classList.remove('done'); }, 1400);
+    const timer = setTimeout(() => { btn.innerHTML = old; btn.classList.remove('done'); copyFeedback.delete(btn); }, 1400);
+    copyFeedback.set(btn, { html: old, timer });
   }
 }
 let toastTimer;
