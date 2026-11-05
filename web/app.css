@@ -16,7 +16,7 @@
   --orbit-line: rgba(11, 12, 15, .10);
   --font: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, "PingFang SC", monospace;
-  /* 动效时长：按压与退出 150ms，结果进入 200ms，抽屉 250ms */
+  /* Microsoft Fluent UI motion tokens (MIT); licenses/fluentui.txt */
   --ease: cubic-bezier(.1, .9, .2, 1);
   --duration-fast: 150ms; --duration-normal: 200ms; --duration-gentle: 250ms;
   --nav-h: 64px;
