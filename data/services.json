@@ -661,7 +661,7 @@
       "nameEn": "Feishu",
       "summaryEn": "Work with messages, documents, calendars, and multidimensional tables.",
       "setup": {
-        "requirements": "消息、文档、日历等任务可优先使用官方 CLI；需要 Node.js/npm、飞书账号、应用与用户授权，组织策略及资源权限可能限制操作。远程 MCP 是另一条路线，官方个人指南仍标内测，不能默认覆盖 CLI 的所有功能。",
+        "requirements": "官方 CLI 提供应用配置和用户 OAuth 授权流程，需要 Node.js/npm、飞书账号及相应应用和资源权限。普通成员能否独立创建应用、哪些权限需要管理员审批及企业版要求，所引 CLI 说明中官方未说明，不能仅凭个人登录认定组织已批准。远程 MCP 是另一条路线，官方个人指南仍标内测。",
         "steps": [
           {
             "text": "按官方 CLI 安装说明安装；在当前环境运行 lark-cli config init --new，把生成的配置链接交给你在浏览器完成应用设置。",
@@ -699,6 +699,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://open.feishu.cn/changelog"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/larksuite/cli#authentication"
         }
       ]
     },
@@ -717,7 +721,8 @@
       "color": "#0089FF",
       "risk": "write",
       "access": [
-        "account"
+        "account",
+        "key"
       ],
       "status": "verified",
       "addedAt": "2026-11-04",
@@ -731,8 +736,12 @@
       "nameEn": "DingTalk",
       "summaryEn": "Query and manage messages, documents, spreadsheets, work logs, calendars, and tasks.",
       "setup": {
-        "requirements": "需要钉钉账号；可见服务与数据受当前身份及组织授权约束。企业接入和费用以实际服务页面及组织权限为准。",
+        "requirements": "官方企业应用 MCP 需要钉钉企业管理员或子管理员申请接口权限，普通成员需管理员协助准备企业内部应用、AppKey、AppSecret 和对应权限后使用；不能只凭个人登录接入。需 Node.js >= 16。CLI 的普通成员独立开通条件及企业版、费用要求，所引官方说明未说明。",
         "steps": [
+          {
+            "text": "使用企业应用 MCP 时，请管理员创建企业内部应用、取得 AppKey/AppSecret 并开通所需接口权限；按官方 npx 配置接入。示例 ACTIVE_PROFILES=ALL 覆盖全部模块，实际接入按高级配置缩小为任务所需模块。",
+            "url": "https://open.dingtalk.com/document/ai-dev/second-level-node-1"
+          },
           {
             "text": "在钉钉开放平台能力中心了解所需 MCP 服务及工具范围。",
             "url": "https://open.dingtalk.com/group"
@@ -746,11 +755,24 @@
             "url": "https://open.dingtalk.com/dingtalk-dev/wiki"
           }
         ],
-        "verify": "检查已发布工具列表，再查询当前账号可访问的一条文档或待办并与钉钉中内容核对。",
+        "verify": "MCP 路线先检查工具列表，再按官方只读示例搜索本人基本信息；CLI 路线先查看已发布工具。权限不足时记录缺少的接口权限，不以创建文档或发消息验证。",
         "checkedAt": "2026-11-05"
       },
       "install": {
-        "cli": "curl -fsSL https://gitee.com/DingTalk-Real-AI/dingtalk-workspace-cli/raw/main/scripts/install.sh | DWS_GITEE_REPO=DingTalk-Real-AI/dingtalk-workspace-cli sh"
+        "cli": "curl -fsSL https://gitee.com/DingTalk-Real-AI/dingtalk-workspace-cli/raw/main/scripts/install.sh | DWS_GITEE_REPO=DingTalk-Real-AI/dingtalk-workspace-cli sh",
+        "mcp": {
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "dingtalk-mcp@latest"
+          ],
+          "env": {
+            "DINGTALK_Client_ID": "<你的钉钉AppKey>",
+            "DINGTALK_Client_Secret": "<你的钉钉AppSecret>",
+            "ACTIVE_PROFILES": "ALL"
+          }
+        }
       },
       "sources": [
         {
@@ -760,6 +782,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://open.dingtalk.com/"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://open.dingtalk.com/document/ai-dev/second-level-node-1"
         }
       ],
       "keywords": [
@@ -812,6 +838,23 @@
         "办公应用",
         "发通知",
         "推送"
+      ],
+      "setup": {
+        "steps": [
+          {
+            "text": "按官方仓库安装所选企业微信 Skill 或 CLI，按首次使用引导配置凭证。",
+            "url": "https://github.com/WecomTeam/wecom-unified"
+          }
+        ],
+        "verify": "先列出已授权的能力，再只读查询本人有权访问的一条通讯录或文档，核对身份与企业。",
+        "requirements": "需企业微信账号及 Node.js >= 18；官方 Skill 会检查 CLI 并引导凭证配置。普通成员能否自行启用、哪些能力需管理员开通及企业版要求，所引官方安装说明中官方未说明，接入前须按所在企业策略核实。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/WecomTeam/wecom-unified"
+        }
       ]
     },
     {
@@ -842,7 +885,7 @@
       "nameEn": "Tencent Docs",
       "summaryEn": "Read and edit online documents and spreadsheets.",
       "setup": {
-        "requirements": "个人需以 QQ 或微信登录并授权对应腾讯文档账号。官方文档列出免费用户 2000 次/天、超级会员 20000 次/天、超级会员 Plus 40000 次/天；企业场景及实际权限以账号和产品说明为准。",
+        "requirements": "官方提供 QQ/微信登录后操作本人账号数据的授权路径，免费用户 2000 次/天、超级会员 20000 次/天、超级会员 Plus 40000 次/天。普通成员在企业内能否自行启用、管理员开通范围及企业版要求，所引说明中官方未说明；个人会员额度不能用于推断企业权限。",
         "steps": [
           {
             "text": "阅读官方 MCP 概述和服务使用须知，确认账号和调用频率限制。",
@@ -862,6 +905,12 @@
         "协同编辑",
         "读表格",
         "写文档"
+      ],
+      "sources": [
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://docs.qq.com/open/document/mcp/"
+        }
       ]
     },
     {
@@ -899,7 +948,7 @@
       "nameEn": "Tencent Meeting",
       "summaryEn": "Schedule and manage meetings, and retrieve attendance, recordings, transcripts, and minutes.",
       "setup": {
-        "requirements": "需腾讯会议账号和 OAuth2 授权；会议、录制等权限与套餐按账号核实。",
+        "requirements": "官方 CLI 通过本人腾讯会议账号 OAuth2 授权，以用户身份在授权范围内操作。普通成员能否绕过组织审批自行启用、管理员开通范围及企业版要求，所引 README 中官方未说明；会议、录制能力和套餐仍按账号核实，并遵守所在企业管理要求。",
         "steps": [
           {
             "text": "按官方 npm 命令安装 tmeet，运行 tmeet auth login 完成本机授权。",
@@ -921,6 +970,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://cloud.tencent.com/document/product/1095/133826"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/TencentCloud/tencentmeeting-cli"
         }
       ],
       "keywords": [
@@ -961,7 +1014,7 @@
       "nameEn": "WPS",
       "summaryEn": "Query and manage enterprise documents and collaboration data through WPS 365 APIs.",
       "setup": {
-        "requirements": "面向 WPS 365 企业；需申请 MCP 试用、创建企业自建应用，申请所需应用权限并取得用户访问凭证。公开文档未说明通用价格。",
+        "requirements": "面向 WPS 365 企业；需申请 MCP 试用、创建企业自建应用、申请目标工具权限并取得用户访问凭证。普通成员是否能独立申请、所需管理员角色及企业版档位，所引官方文档未说明，不能默认已获企业开通。通用价格官方未说明。",
         "steps": [
           {
             "text": "在官方 MCP 简介中打开试用申请表，向 WPS 申请企业 MCP 权限。",
@@ -996,6 +1049,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
         }
       ],
       "keywords": [
@@ -1032,7 +1089,7 @@
         "note": "金山文档官方公众号发布 Skill，并指向官网登录入口获取安装指令。"
       },
       "setup": {
-        "requirements": "需要登录并授权金山文档账号，按官网提供的安装指令接入。",
+        "requirements": "官方文章提供登录金山文档后本人确认授权、获取专属 Token 和安装指令的路径。普通成员在企业空间能否独立启用、哪些能力需管理员开通及企业版要求，官方未说明。Token 只在本地配置，文档操作仍受账号实际权限约束。",
         "steps": [
           {
             "text": "登录金山文档，在右上角更多菜单中选择「龙虾专属入口」。",
@@ -1051,6 +1108,12 @@
         "整理文档",
         "生成文稿",
         "读共享文件"
+      ],
+      "sources": [
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA"
+        }
       ]
     },
     {
@@ -1095,7 +1158,7 @@
       "nameEn": "Yuque",
       "summaryEn": "Read and write knowledge bases and documents.",
       "setup": {
-        "requirements": "需 Node.js、个人或团队语雀 API Token；空间绑定的团队 Token 还需配置空间 host。费用和 Token 权限以账号为准。",
+        "requirements": "需 Node.js 及个人或团队语雀 API Token；空间绑定的团队 Token 还需配置 host，工具权限等于 Token 权限。普通成员是否可自行创建对应 Token、管理员审批范围及企业版要求，所引官方 README 未说明；费用按账号核实。",
         "steps": [
           {
             "text": "在语雀开发者设置创建 Token；团队空间账号同时确认所属 host。",
@@ -1112,6 +1175,10 @@
       "sources": [
         {
           "name": "厂商官方接入文档",
+          "url": "https://github.com/yuque/yuque-mcp-server"
+        },
+        {
+          "name": "官方账号与权限说明",
           "url": "https://github.com/yuque/yuque-mcp-server"
         }
       ],
@@ -1154,7 +1221,7 @@
       "nameEn": "Agently Mail (QQ Mail Team)",
       "summaryEn": "Use an agent mailbox to send, receive, search, and organize email and manage attachments.",
       "setup": {
-        "requirements": "需安装 Agently CLI 并授权邮箱；这是 Agent 专用邮箱服务，不能直接当作原 QQ 邮箱的通用读写入口。",
+        "requirements": "需安装 Agently CLI 并完成本人邮箱授权，这是 Agent 专用邮箱服务。普通成员在企业环境能否自行接入、管理员审批范围及企业版要求，所引官方 README 未说明。",
         "steps": [
           {
             "text": "按官方 npm 命令安装 CLI，运行 agently-cli auth login 完成本地授权。",
@@ -1176,6 +1243,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://github.com/Tencent"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/Tencent/AgentlyMail"
         }
       ],
       "keywords": [
@@ -3068,7 +3139,7 @@
       "nameEn": "Tencent Lexiang",
       "summaryEn": "Search and edit knowledge documents and smart tables, manage files, and import meeting materials.",
       "setup": {
-        "requirements": "需授权乐享企业账号。内置连接器可走 OAuth；其他客户端需 COMPANY_FROM 和乐享 Token，费用按企业订购核实。",
+        "requirements": "需授权乐享企业账号。内置连接器可走本人 OAuth，其他客户端需同一企业的 COMPANY_FROM 与乐享 Token。普通成员是否可独立启用、管理员开通范围及企业版要求，所引官方配置指南未说明；费用按企业订购核实。",
         "steps": [
           {
             "text": "客户端若内置乐享，直接在集成入口授权；不要同时手写可能被覆盖的 MCP 配置。",
@@ -3090,6 +3161,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://github.com/tencent-lexiang"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill/blob/main/references/setup.md"
         }
       ],
       "keywords": [
@@ -3142,7 +3217,7 @@
       "nameEn": "TextIn",
       "summaryEn": "Recognize text in images and documents, extract fields and tables, and convert documents to Markdown.",
       "setup": {
-        "requirements": "需 Node.js、TextIn 账号的 APP_ID 与 APP_SECRET；识别与转换额度按平台计费说明核实。",
+        "requirements": "需 Node.js 及 TextIn 开发账号的 APP_ID、APP_SECRET。官方提供账号注册和密钥配置流程；普通成员使用企业账号能否自行取得密钥、管理员审批范围及企业版要求，所引 README 未说明，识别和转换额度按平台计费核实。",
         "steps": [
           {
             "text": "注册 TextIn，在官方控制台取得 APP_ID 和 APP_SECRET。",
@@ -3164,6 +3239,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://www.textin.com/news/20250707161156842"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/intsig-textin/textin-mcp"
         }
       ],
       "keywords": [
@@ -3602,7 +3681,7 @@
       "nameEn": "MinerU",
       "summaryEn": "Parse PDFs, Office files, images, and web pages into Markdown and structured data.",
       "setup": {
-        "requirements": "需 uv；标准解析需 API Token，Flash 轻量路径有独立限制。文件大小、页数、额度以官方当前说明为准。",
+        "requirements": "需 uv；标准解析需本人平台 API Token，Flash 轻量路径有独立限制。普通成员在企业账号下能否自行创建 Token、管理员开通范围及企业版要求，所引官方生态仓库未说明。文件大小、页数及额度以所选路径当前文档为准。",
         "steps": [
           {
             "text": "按生态仓库的 MCP 入口阅读对应配置，先确定标准或轻量解析路径。",
@@ -3624,6 +3703,10 @@
         {
           "name": "厂商官方发布依据",
           "url": "https://github.com/opendatalab"
+        },
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://github.com/opendatalab/MinerU-Ecosystem"
         }
       ],
       "keywords": [
@@ -3674,6 +3757,23 @@
         "习惯打卡",
         "番茄钟",
         "纪念日"
+      ],
+      "setup": {
+        "steps": [
+          {
+            "text": "在客户端添加官方 HTTP 地址，再按指南完成本人 OAuth 授权；如选 Bearer Token，在滴答网页版账户与安全中取得 API 口令并本地配置。",
+            "url": "https://help.dida365.com/articles/7438132116019216384"
+          }
+        ],
+        "verify": "只读列出本人已有任务或清单，核对返回内容，不创建任务验证。",
+        "requirements": "官方提供本人滴答清单账号的 OAuth 或 Bearer Token 授权方式。普通成员在组织环境能否独立启用、管理员开通范围及企业版要求，所引官方 MCP 指南未说明；操作限已授权账号的数据。",
+        "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://help.dida365.com/articles/7438132116019216384"
+        }
       ]
     },
     {
@@ -3700,7 +3800,7 @@
       "nameEn": "Feishu Project",
       "summaryEn": "Query and update projects, work items, and related data within account permissions.",
       "setup": {
-        "requirements": "需有飞书项目账号和目标空间访问权限；MCP 在个人权限范围内运行，可选择读写授权。版本及费用以组织实际订购为准。",
+        "requirements": "官方提供个人头像菜单的 MCP 开关和读写授权，普通成员可在本人已有空间和资源权限范围内使用。是否还需组织管理员启用及企业版档位限制，所引介绍中官方未说明；不得把个人授权当成额外空间访问权限。",
         "steps": [
           {
             "text": "进入飞书项目，在左下角个人头像菜单选择“配置 MCP”，打开服务开关并选择所需的读或写授权。",
@@ -3723,6 +3823,12 @@
         "改工作项",
         "项目管理",
         "查任务状态"
+      ],
+      "sources": [
+        {
+          "name": "官方账号与权限说明",
+          "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/qaq5d7ru"
+        }
       ]
     },
     {
@@ -4948,7 +5054,7 @@
       "nameEn": "Tencent TAPD",
       "summaryEn": "Query and manage requirements, tasks, bugs, iterations, and comments.",
       "setup": {
-        "requirements": "需 uv，以及 TAPD 个人访问令牌或 API 账号密码二选一；可见项目受账号权限限制。",
+        "requirements": "需 uv，使用 TAPD 个人访问令牌或 API 账号密码二选一，操作限账号已有项目权限。普通成员能否自行取得所需凭证、管理员开通范围及企业版要求，所引官方 README 未说明，接入前核实组织 API 权限。",
         "steps": [
           {
             "text": "在 TAPD 个人设置创建访问令牌并在本地保存。",
@@ -4965,6 +5071,10 @@
       "sources": [
         {
           "name": "厂商官方接入文档",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd"
+        },
+        {
+          "name": "官方账号与权限说明",
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd"
         }
       ],
