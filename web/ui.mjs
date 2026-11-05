@@ -121,7 +121,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     items = toks.length ? db.services.map((s) => ({ s, score: searchScore(s, toks, db) })).filter(({ score }) => score > 0).sort((a, b) => b.score - a.score).map(({ s }) => s) : FEATURED.map((id) => byId.get(id)).filter(Boolean).slice(0, 8);
     active = 0;
     if (!items.length) {
-      list.innerHTML = `<div class="pal-empty">没有找到「${esc(input.value)}」。<a href="https://github.com/${esc(db.site.repo)}/issues/new?template=submit.yml" target="_blank" rel="noopener">提交给我们</a></div>`;
+      list.innerHTML = `<div class="pal-empty">没有找到「${esc(input.value)}」。<a href="https://github.com/${esc(db.site.repo)}/issues/new?template=submit.yml${input.value.trim() ? `&amp;title=${encodeURIComponent('[收录] ' + input.value.trim())}` : ''}" target="_blank" rel="noopener">提交给我们</a></div>`;
       paint(false);
       return;
     }
