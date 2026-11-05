@@ -1,4 +1,4 @@
-import { agentPrompt, esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
+import { agentPrompt, orbitLabelPosition, esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
 import { $, $$, copy, initChrome, loadStars, loadCatalog } from './ui.mjs';
 import { motionReduced, onMotionChange, openDialog, closeDialog, wireDialog, revealResults } from './motion.mjs';
 import { directoryHtml, chipsHtml } from './directory.mjs';
@@ -271,10 +271,9 @@ function buildOrbit() {
   const showLabel = (it, auto) => {
     clearTimeout(labelTimer);
     label.innerHTML = `<b>${esc(it.s.name)}</b><span> · ${esc(verb(it.s))}</span>${auto ? '<i>连接示意</i>' : ''}`;
-    const above = it.y > size + 40;
-    const half = label.offsetWidth / 2 + 4;
-    label.style.setProperty('--label-x', `${Math.min(W - half, Math.max(half, it.x))}px`);
-    label.style.setProperty('--label-y', `${above ? it.y - size / 2 - 40 : it.y + size / 2 + 8}px`);
+    const position = orbitLabelPosition({ x: it.x, y: it.y, size, width: W, labelWidth: label.offsetWidth, labelHeight: label.offsetHeight });
+    label.style.setProperty('--label-x', `${position.x}px`);
+    label.style.setProperty('--label-y', `${position.y}px`);
     label.classList.add('show');
     if (auto) labelTimer = setTimeout(() => { if (!hovered) label.classList.remove('show'); }, 1500);
   };

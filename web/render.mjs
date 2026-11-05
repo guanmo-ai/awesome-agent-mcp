@@ -95,6 +95,29 @@ export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href,
     <div class="card-foot">${typeTags(s, labels)}${riskLabel(s, labels)}</div>
   </${href ? 'a' : 'button'}>`;
 }
+// Coordinates use the label's horizontal center and top edge.
+export function orbitLabelPosition({ x, y, size, width, labelWidth, labelHeight }) {
+  const c = width / 2, half = labelWidth / 2, gap = 8;
+  const clampX = (value) => Math.min(width - half - 4, Math.max(half + 4, value));
+  const hitsCore = (p) => {
+    const dx = Math.max(p.x - half - c, 0, c - p.x - half);
+    const dy = Math.max(p.y - c, 0, c - p.y - labelHeight);
+    return Math.hypot(dx, dy) < 74; // 56px core + 12px space + 6px entry motion.
+  };
+  const above = { x: clampX(x), y: y - size / 2 - gap - labelHeight };
+  const below = { x: clampX(x), y: y + size / 2 + gap };
+  if (above.y >= 4 && !hitsCore(above)) return above;
+  if (below.y + labelHeight <= width - 4 && !hitsCore(below)) return below;
+  const side = { x: clampX(x + (x >= c ? 1 : -1) * (size / 2 + gap + half)), y: y - labelHeight / 2 };
+  // At the horizontal edge a wide label cannot fit beside the icon.
+  // Keep the outward x shift and move it beyond both the icon and core.
+  const hitsNode = side.x + half > x - size / 2 && side.x - half < x + size / 2;
+  if (hitsCore(side) || hitsNode) side.y = y >= c
+    ? Math.max(below.y, c + 74 + gap)
+    : Math.min(above.y, c - 74 - gap - labelHeight);
+  return side;
+}
+
 export function snippets(s) {
   const out = [];
   const shell = (value) => `'${String(value).replaceAll("'", "'\\''")}'`;
