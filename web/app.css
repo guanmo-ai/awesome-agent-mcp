@@ -311,7 +311,7 @@ dialog { color: var(--text); }
 dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .sheet { position: fixed; inset: 0; width: min(680px, 100% - 32px); max-width: none; max-height: min(860px, 100dvh - 48px); margin: auto; padding: 0; border: 1px solid var(--line-2); border-radius: 24px; background: var(--bg); box-shadow: var(--shadow-lg); overflow: hidden; }
 .sheet-in { --brand: var(--a2); max-height: inherit; overflow-y: auto; overscroll-behavior: contain; outline: none; }
-.s-hero { position: relative; padding: 28px 28px 22px; background: radial-gradient(420px 220px at 15% 0%, color-mix(in srgb, var(--brand) 22%, transparent), transparent); }
+.s-hero { padding: 28px 28px 22px; background: radial-gradient(420px 220px at 15% 0%, color-mix(in srgb, var(--brand) 22%, transparent), transparent); }
 .s-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--line-2); background: var(--card); }
 .s-close svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .s-id { display: flex; gap: 16px; align-items: center; padding-right: 44px; }
@@ -330,6 +330,7 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .setup-guide p { margin: 0 0 12px; }
 .setup-guide ol { padding-left: 1.5em; }
 .setup-guide li + li { margin-top: 8px; }
+.s-sec { min-width: 0; }
 .s-sec h3 { margin: 0 0 12px; font: 600 12px/1 var(--mono); letter-spacing: .14em; color: var(--faint); text-transform: uppercase; }
 .s-sec > p { margin: 0; color: var(--muted); font-size: 14px; }
 .s-sec > p a { color: var(--text); }
@@ -337,7 +338,7 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .note.warn { background: color-mix(in srgb, var(--payment) 9%, transparent); border-color: color-mix(in srgb, var(--payment) 25%, transparent); color: color-mix(in srgb, var(--payment) 75%, var(--text)); }
 .code-tabs { border-radius: 14px; background: var(--code-bg); border: 1px solid rgba(255, 255, 255, .06); overflow: hidden; }
 .ct-bar { display: flex; align-items: center; gap: 2px; padding: 6px; border-bottom: 1px solid rgba(255, 255, 255, .06); overflow-x: auto; scrollbar-width: none; }
-.ct-formats { display: contents; }
+.ct-formats { display: flex; flex: 1; min-width: 0; gap: 2px; overflow-x: auto; scrollbar-width: none; }
 .ct-bar button { flex: none; height: 28px; padding: 0 10px; border: 0; border-radius: 8px; background: transparent; color: #8a91a0; font-size: 12.5px; }
 .ct-bar button[aria-selected="true"] { background: rgba(255, 255, 255, .1); color: #fff; }
 .ct-copy { position: sticky; right: 0; margin-left: auto !important; color: #c9ced8 !important; border: 1px solid rgba(255, 255, 255, .12) !important; background: var(--code-bg) !important; box-shadow: -16px 0 12px -4px var(--code-bg); }

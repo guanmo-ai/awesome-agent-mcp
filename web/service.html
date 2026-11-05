@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>{{name}} 官方 MCP / Skill 接入 · {{title}}</title>
+  <title>{{pageTitle}}</title>
   <meta name="description" content="{{metaDescription}}">
   <meta name="author" content="{{maintainerName}} · @{{x}}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{name}} 官方 MCP / Skill 接入 · {{title}}">
+  <meta property="og:title" content="{{pageTitle}}">
   <meta property="og:description" content="{{metaDescription}}">
   <meta property="og:url" content="{{siteUrl}}s/{{id}}/">
   <link rel="canonical" href="{{siteUrl}}s/{{id}}/">
@@ -71,7 +71,7 @@
   <!--
     服务独立页模板（设计：Claude；生成：scripts/build.mjs）
     构建时为每个服务生成 dist/s/<id>/index.html。占位符：
-      {{id}} {{name}} {{summary}} {{metaDescription}} {{categoryId}} {{categoryName}} {{v}} {{jsonLd}}
+      {{id}} {{name}} {{summary}} {{pageTitle}} {{metaDescription}} {{categoryId}} {{categoryName}} {{v}} {{jsonLd}}
       {{logo}}     logoHtml(s, 'lg') 的静态结果，图片路径前缀 ../../
       {{domain}}   官方入口的域名      {{badge}}   核验徽章
       {{actions}}  官方文档 / 代码仓库 / Skill 文件 / 复制链接 按钮

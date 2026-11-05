@@ -110,7 +110,7 @@
         <div class="demo-in">
           <div class="demo-tabs" id="demo-tabs" role="tablist" aria-label="使用场景"></div>
           <div class="demo-win">
-            <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Agent</span><em id="demo-status"><b class="live"></b>已接入官方连接器</em></div>
+            <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Agent</span><em id="demo-status"><b class="live"></b>接入效果示意</em></div>
             <div class="win-body" id="demo-body" aria-live="off"></div>
             <div class="win-input" aria-hidden="true"><span id="demo-input"></span><b class="send"><svg viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></b></div>
           </div>
@@ -148,14 +148,14 @@
             <button class="toggle" type="button" id="verified-only" aria-pressed="false"><span class="knob" aria-hidden="true"></span>只看已核验</button>
             <p class="result" id="result" role="status" aria-live="polite">{{count}} 个服务</p>
           </div>
+          <button class="btn btn-ghost btn-sm" id="reset" type="button" style="justify-self:start" hidden>清除筛选</button>
         </div>
       </div>
       <div class="wrap">
         <div id="groups">{{directory}}</div>
         <div class="empty" id="empty" hidden>
           <p class="empty-title">没有找到匹配的服务</p>
-          <p>换个关键词试试，或者<a id="suggest-link" href="https://github.com/{{repo}}/issues/new?template=submit.yml" target="_blank" rel="noopener">告诉我们该收录什么</a>。</p>
-          <button class="btn btn-ghost" id="reset" type="button">清除筛选</button>
+          <p>换个关键词或清除筛选试试，也可以<a id="suggest-link" href="https://github.com/{{repo}}/issues/new?template=submit.yml" target="_blank" rel="noopener">告诉我们该收录什么</a>。</p>
         </div>
         <p class="sr-only" id="directory-status" role="status"></p>
         <noscript><p class="loading">点击卡片可查看接入方式；启用 JavaScript 后可以筛选和搜索。</p></noscript>
@@ -237,11 +237,11 @@
 
   <dialog class="palette" id="palette" aria-label="搜索服务">
     <div class="pal-in">
-      <label class="pal-search">
+      <div class="pal-search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="pal-q" type="text" aria-label="搜索服务或能力" placeholder="搜索服务或能力，比如：外卖、文档、股票" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list">
-        <kbd>esc</kbd>
-      </label>
+        <input id="pal-q" type="text" aria-label="搜索服务或能力" placeholder="搜索服务或能力，比如：地图、文档、支付" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list">
+        <button class="icon-btn" type="button" data-close-palette aria-label="关闭搜索">×</button>
+      </div>
       <div class="pal-list" id="pal-list" role="listbox" aria-label="搜索结果"></div>
       <div class="pal-foot" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> 选择</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span></div>
     </div>

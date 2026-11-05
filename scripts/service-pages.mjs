@@ -3,6 +3,8 @@ import { agentPrompt, esc, safeUrl, brandColor, serviceUrl, logoHtml, host, badg
 export function renderServicePage(service, db, config, template, version) {
   const category = db.categories.find((c) => c.id === service.category);
   const details = renderDetails(service, db, { detailPage: true });
+  const types = service.types.map((type) => ({ mcp: 'MCP', skill: 'Skill', cli: 'CLI' })[type]).join(' / ');
+  const verified = service.status === 'verified';
   const prompt = agentPrompt(`${db.homepage}llms.txt`, `帮我查${service.name}的官方接入方式`);
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: service.name,
@@ -14,7 +16,8 @@ export function renderServicePage(service, db, config, template, version) {
     ...Object.fromEntries(Object.entries({
       ...service, title: config.title, siteUrl: config.siteUrl, repo: config.repo,
       maintainerName: config.maintainer.name, x: config.maintainer.x, v: version,
-      metaDescription: `${service.name}：${service.summary} 查看官方接入方式、权限与核验依据。`,
+      pageTitle: `${service.name} ${verified ? '官方 ' : ''}${types} ${verified ? '接入' : '接入线索'} · ${config.title}`,
+      metaDescription: `${service.name}：${service.summary} 查看${verified ? '官方接入方式' : '接入线索'}、权限与核验依据。`,
       categoryId: service.category, categoryName: category?.name ?? '', domain: host(service.url),
       color: brandColor(service), prompt,
     }).map(([k, v]) => [k, esc(v)])),
