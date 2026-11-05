@@ -42,7 +42,7 @@ function candidates(html, base) {
   return out.sort((a, b) => b.score - a.score).filter((c, i, a) => a.findIndex((x) => x.url === c.url) === i);
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH });
 const ctx = await browser.newContext({ userAgent: UA, ignoreHTTPSErrors: true });
 const page = await ctx.newPage();
 await page.setContent('<canvas id="c" width="128" height="128"></canvas>');

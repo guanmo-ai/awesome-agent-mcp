@@ -102,7 +102,7 @@ function readme() {
     '1. 由服务厂商官方发布：链接在厂商自己的域名，或在厂商官方的 GitHub 组织下。',
     '2. 面向国内用户的服务，能被 Agent 通过 MCP、Skill 或 CLI 调用。',
     '3. 第三方平台转载、社区封装、逆向接口一律不收。',
-    '4. 优先上市集团旗下服务；未上市厂商只保留少数头部企业或公众熟知品牌。',
+    '4. 官方出品之外，满足上市公司或其控股子公司、国内官方 App 评分数 ≥ 10,000、官方开源主仓库 star ≥ 10,000，或维护者点名收录（Gitee、极狐 GitLab、Apifox）之一。',
     '',
     `详细流程见 [docs/VERIFYING.md](docs/VERIFYING.md)。发现遗漏或错误？[提交服务](${issueUrl('submit.yml')}) 或 [报告问题](${issueUrl('correction.yml')})。`,
     '',
