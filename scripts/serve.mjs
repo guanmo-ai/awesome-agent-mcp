@@ -9,8 +9,12 @@ const port = Number(process.env.PORT || 4179);
 const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.txt': 'text/plain', '.md': 'text/markdown', '.png': 'image/png' };
 
 createServer(async (req, res) => {
-  const path = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname)).replace(/^(\.\.[/\\])+/, '');
-  const file = join(dist, path.endsWith('/') ? path + 'index.html' : path);
+  let file;
+  try {
+    const path = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname)).replace(/^(\.\.[/\\])+/, '');
+    if (path.includes('\0')) throw new Error('Invalid path');
+    file = join(dist, path.endsWith('/') ? path + 'index.html' : path);
+  } catch { return res.writeHead(400).end('请求地址无效'); }
   if (!file.startsWith(dist)) return res.writeHead(403).end();
   try {
     const body = await readFile(file);
