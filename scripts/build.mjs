@@ -296,7 +296,7 @@ if (process.argv.includes('--check')) {
   const vars = {
     title: config.title, tagline: config.tagline, description: config.description, siteUrl: config.siteUrl,
     repo: config.repo, x: config.maintainer.x, maintainerName: config.maintainer.name, count: live.length, v: version,
-    categoryCount: groups.length, verifiedCount: verified,
+    categoryCount: groups.length, installCount: live.filter((s) => s.install).length,
     agentPrompt: agentPrompt(`${config.siteUrl}llms.txt`), skillPrompt: skillPrompt(rawUrl(config, skillPath), config.skill),
     skill: config.skill, branch: config.branch,
   };

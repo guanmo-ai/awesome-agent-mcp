@@ -32,7 +32,7 @@ async function init() {
     $('#eyebrow-count').textContent = DB.count;
     $('[data-count]').textContent = DB.count;
     $('#st-cats').textContent = DB.categories.length;
-    $('#st-verified').textContent = DB.services.filter((s) => s.status === 'verified').length;
+    $('#st-install').textContent = DB.services.filter((s) => s.install).length;
   }
   cards = new Map($$('#groups .card').map((el) => { el.dataset.query = ''; return [el.dataset.id, el]; }));
   groups = new Map(DB.categories.map((c) => [c.id, document.getElementById(`cat-${c.id}`)]));
