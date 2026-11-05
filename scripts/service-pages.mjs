@@ -1,4 +1,4 @@
-import { agentPrompt, esc, safeUrl, brandColor, serviceUrl, logoHtml, host, badge, cardHtml, renderDetails } from '../web/render.mjs';
+import { agentPrompt, esc, safeUrl, brandColor, serviceUrl, logoHtml, host, badge, cardHtml, renderDetails, disclaimerHtml } from '../web/render.mjs';
 
 export function renderServicePage(service, db, config, template, version) {
   const category = db.categories.find((c) => c.id === service.category);
@@ -19,6 +19,7 @@ export function renderServicePage(service, db, config, template, version) {
       color: brandColor(service), prompt,
     }).map(([k, v]) => [k, esc(v)])),
     ...details,
+    disclaimer: disclaimerHtml(db),
     logo: logoHtml(service, 'lg', '../../'), badge: badge(service), jsonLd,
     // Retain attribution in the same verification section without changing the template's layout.
     verify: details.verify + (details.sources ? `<h3>来源</h3>${details.sources}` : ''),

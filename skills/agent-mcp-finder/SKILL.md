@@ -45,6 +45,7 @@ description: 查找中国服务厂商官方出品的 MCP Server、Agent Skill �
 
 ## 必须遵守
 
+- 本项目仅作独立信息索引，不代表厂商背书、功能实测或安全保证。使用前核对官方文档、安装内容、权限、费用及第三方条款；向用户说明仍未核实的事项。完整使用说明与免责声明：https://guanmo-ai.github.io/awesome-agent-mcp/#disclaimer 。
 - **涉及资金**（`risk: payment`）的服务可能下单或付款。任何会产生费用的步骤，执行前都要明确告诉用户并等他确认。
 - 推荐 `unverified` 条目时，要说明「尚未确认是否为官方出品」；执行安装前先取得厂商官方背书，不把仓库自称官方当作核验证据。
 - 索引里找不到，就直说没有收录，不等于没有官方接入，不要编造链接或配置。可以建议用户到 https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=submit.yml 提交。

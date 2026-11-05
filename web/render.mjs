@@ -5,6 +5,10 @@ export const safeUrl = (url) => {
 };
 export const brandColor = (s) => /^#[0-9a-f]{6}$/i.test(s.color ?? '') ? s.color : '#8b7dff';
 export const serviceUrl = (home, id) => `${home}s/${encodeURIComponent(id)}/`;
+export function disclaimerHtml(db) {
+  if (!db.disclaimer) return '';
+  return `<section class="disclaimer" id="disclaimer" aria-labelledby="disclaimer-title"><h2 id="disclaimer-title">使用说明与免责声明</h2>${db.disclaimer.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}<p><a href="${esc(safeUrl(db.disclaimer.feedbackUrl))}" target="_blank" rel="noopener">纠错与权利问题反馈 ↗</a></p></section>`;
+}
 export function agentPrompt(url, need = '') {
   return [
     `我的需求：${need.trim() || '请先问我想完成什么任务。'}`,
@@ -121,7 +125,7 @@ export function renderDetails(s, db) {
       <div><dt>接入门槛</dt><dd>${access}</dd></div>
       <div><dt>分类</dt><dd>${esc(category?.name ?? '')}</dd></div>
     </dl>`,
-    warn: s.risk === 'payment' ? '<p class="note warn">这个服务可能下单或付款。让 Agent 执行前，请确保付款这一步由你亲自确认。</p>' : '',
+    warn: `<p class="code-hint">本站仅作信息索引，收录不构成背书；使用前请自行核实。<a href="${esc(safeUrl(`${db.homepage}#disclaimer`))}" target="_blank" rel="noopener">使用说明与免责声明</a></p>` + (s.risk === 'payment' ? '<p class="note warn">这个服务可能下单或付款。让 Agent 执行前，请确保付款这一步由你亲自确认。</p>' : ''),
     install: setup + (snips.length ? `<div class="code-tabs">
       <div class="ct-bar"><div class="ct-formats" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}</div><button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
       <pre role="tabpanel" aria-label="配置内容" tabindex="0"><code>${esc(snips[0][1])}</code></pre>

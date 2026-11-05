@@ -300,6 +300,9 @@ mark { background: color-mix(in srgb, var(--a2) 24%, transparent); color: inheri
 .foot-links a:hover { color: var(--text); }
 .fine { margin: 20px 0 0; font-size: 13px; color: var(--faint); max-width: 60em; }
 .fine a { color: var(--muted); }
+.disclaimer { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 84px; font-size: 14px; line-height: 1.8; color: var(--muted); }
+.disclaimer h2 { font-size: 18px; color: var(--text); }
+.disclaimer p { margin-top: 12px; }
 .wordmark { margin: 36px 0 -0.24em; font-size: clamp(64px, 15vw, 210px); font-weight: 700; letter-spacing: -.06em; line-height: .9; text-align: center; color: transparent; -webkit-text-stroke: 1px var(--line-2); background: linear-gradient(180deg, color-mix(in srgb, var(--text) 8%, transparent), transparent 85%); -webkit-background-clip: text; background-clip: text; user-select: none; }
 
 /* ── Sheet (detail) ───────────────────────────────────── */

@@ -15,6 +15,8 @@
 
 <p align="center"><sub>93 services · 7 categories · 92 verified · Updated 2026-11-05</sub></p>
 
+> **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
+
 ## One Prompt for Your AI
 
 Copy this prompt into an internet-enabled agent such as Claude Code, Codex, or Cursor:
@@ -246,6 +248,24 @@ Test one lookup and report the result; skill installation does not establish a s
 4. In addition to vendor ownership, meets at least one criterion: a listed company or its controlled subsidiary; an official China App Store app with ≥ 10,000 ratings; an official main open-source repository with ≥ 10,000 stars; or explicit maintainer inclusion (Gitee, JiHu GitLab, Apifox).
 
 See [docs/VERIFYING.md](docs/VERIFYING.md). Found an omission or error? [Submit a service](https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=submit.yml) or [report a problem](https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=correction.yml).
+
+<a id="disclaimer"></a>
+
+## Usage and Disclaimer
+
+This independent community index collects public information and integration references. It does not provide or operate the listed third-party services. Inclusion, ordering, links and logos do not imply affiliation, partnership, authorization, recommendation, endorsement or a guarantee.
+
+“Verified” means publisher identity was checked against public sources on the stated date. It does not mean every feature was tested, a security audit was passed, or the vendor approved this project. Information and examples are provided as is and may contain errors, omissions or outdated details. We make reasonable verification efforts but do not guarantee accuracy, completeness, freshness, security, compatibility, continued availability or fitness for a particular purpose.
+
+Before use, independently check current official documentation, code and installation scripts, account eligibility, permissions, charges and quotas. Follow applicable law and the provider’s terms, licenses and privacy policies. Third-party sites, software and services are the responsibility of their providers and may change or stop. This project’s MIT license does not cover that third-party content.
+
+Prompts, configuration examples and agent output assist rather than replace your judgment and authorization. Review actual actions, validate with minimal permissions, protect credentials and back up important data. Do not submit credentials, personal or confidential data to this site or public issues. Give final confirmation before orders, payments or other financial actions.
+
+You decide whether to use this information or these services and bear the associated risks. To the extent permitted by applicable law, maintainers and contributors are not liable for losses arising from reliance on this index or use of third-party services, including charges, data loss, business interruption or other losses. Nothing here excludes or limits liability that cannot lawfully be excluded or limited.
+
+Names, logos and trademarks belong to their respective owners and are used for identification. Report errors, broken links or rights concerns through repository issues with public evidence or links. We will review and correct or remove entries as appropriate. Do not disclose sensitive information in reports.
+
+[Report errors or rights concerns](https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=correction.yml)
 
 ## License
 
