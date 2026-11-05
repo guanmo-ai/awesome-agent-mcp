@@ -43,3 +43,24 @@ test('网页渲染数据时都做了转义', () => {
     assert.doesNotMatch(js, raw, `${field} 未经 esc() 直接插入`);
   }
 });
+
+
+test('可用性检查拒绝伪 MCP 响应并移除 Key，占位符不发送到服务器', async () => {
+  const { mcp, inspect } = await import('../scripts/check-links.mjs');
+  const original = globalThis.fetch;
+  try {
+    for (const [status, body, pass] of [[401, '', true], [403, '', true], [404, '', false], [503, '', false], [200, '<html>login</html>', false], [200, '{"jsonrpc":"2.0","id":2,"result":{"protocolVersion":"2025-03-26"}}', false], [200, '{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-03-26"}}', true]]) {
+      globalThis.fetch = async (url, options) => { assert.equal(new URL(url).searchParams.has('key'), false); assert.equal(options.headers.Authorization, undefined); assert.equal(JSON.parse(options.body).method, 'initialize'); return new Response(body, { status }); };
+      assert.equal((await mcp('https://example.com/mcp?key=<你的Key>', 'http')).startsWith('通过'), pass);
+    }
+    let stream, sent = 0;
+    globalThis.fetch = async (url, options) => options.method === 'GET' ? new Response(new ReadableStream({ start(c) { stream = c; c.enqueue(new TextEncoder().encode('event: endpoint\ndata: /messages?session=1\n\n')); } })) : (sent++, stream.enqueue(new TextEncoder().encode('event: message\ndata: {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-03-26"}}\n\n')), new Response(null, { status: 202 }));
+    assert.match(await mcp('https://example.com/sse', 'sse'), /^通过/); assert.equal(sent, 1);
+    globalThis.fetch = async () => new Response('<html>---\nname: forged\ndescription: forged\n---</html>');
+    assert.match(await inspect('skill', 'https://example.com/SKILL.md', {}), /^失败/);
+    globalThis.fetch = async () => new Response('---\ndescription: skill\nname: example\n---\n');
+    assert.match(await inspect('skill', 'https://example.com/SKILL.md', {}), /^通过/);
+    globalThis.fetch = async () => new Response(JSON.stringify({ 'dist-tags': { latest: '1' }, versions: { 1: { deprecated: 'removed' } } }));
+    assert.match(await inspect('npm', 'https://registry.npmjs.org/example', {}), /^失败/);
+  } finally { globalThis.fetch = original; }
+});
