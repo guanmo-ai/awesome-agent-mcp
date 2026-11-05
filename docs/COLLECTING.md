@@ -13,7 +13,16 @@
 - [阿里云百炼 MCP 广场说明](https://docs.agent.bailian.aliyun.com/en/mcp/official-services)、[魔搭 MCP 广场](https://modelscope.cn/mcp)及[灵码 MCP 文档](https://help.aliyun.com/zh/lingma/mcp)。官方运营的平台不代表其中每项服务由平台厂商出品。
 - [华为云官方 MCP 仓库](https://github.com/huaweicloud/huaweicloud-mcp)与[讯飞开放平台工具文档](https://www.xfyun.cn/xfyun-cli/doc)。
 
-同一产品的多个传输方式或工具版本合为一个条目；已有云厂商总入口不按每个 API 重复拆条，独立产品有专用文档和 MCP 实现时再收录。
+Skill 也有厂商维护的集中入口，不能只查 MCP 广场：
+
+- [阿里云 Skills 门户](https://skills.aliyun.com/skills)、[官方 Skills 源码集合](https://github.com/aliyun/alibabacloud-aiops-skills)及 [Agent 服务目录](https://agentcatalog.aliyun.com/)。门户详情提供技能说明、源码和安装入口；服务目录还覆盖 CLI、MCP 与其他 Agent 能力，按实际类型筛选。
+- [百度智能云 Skills 集合](https://github.com/baidubce/skills/tree/develop/skills)。核对仓库默认分支和实际 `SKILL.md`，不要默认使用 `main`：2026-11-05 核对时技能在 `develop`，`main` 仅有模板。
+- [华为云 Skills 集合](https://github.com/huaweicloud/huaweicloud-skills)及 [DevKit](https://github.com/huaweicloud/huaweicloud-devkit)，官方反向说明见[云原生 Skill 文档](https://support.huaweicloud.com/skill-cce/cce_skill_0001.html)。两个仓库的技能范围不同，查重后按产品筛选。
+- [火山引擎 Agent Toolkit](https://github.com/volcengine/volcengine-agent-toolkit)。先读 README 的产品分类和 Skill 清单，再追到相应产品仓库；目录中引用的 Ark 等产品 Skill 不一定放在同一仓库。
+- [腾讯 SkillHub 官方仓库](https://github.com/Tencent/skillhub)及[平台](https://skillhub.cn/)。仓库 `skills/` 是平台自己维护的技能；市场含社区同步和企业上传，蓝 V、平台收录或安全评分都不能代替厂商发布依据。
+- [千问 AI 平台技能市场说明](https://platform.qianwenai.com/docs/agent-infra/skills/custom)。可按技能包、分类和作者找线索，但该市场允许用户发布，需回到对应厂商渠道核验。
+
+同一产品的多个传输方式或工具版本合为一个条目；已有云厂商总入口不按每个 API 或每个 Skill 重复拆条，独立产品有专用文档和 MCP 或 Skill 实现时再收录。
 
 **客户端里的连接器和插件市场**：Agent 客户端集成的服务，基本就是已开放接入的服务。
 - WorkBuddy：「专家 · 技能 · 连接器」页面。其中「连接器」对应 MCP，「技能」和「专家」对应 Skill。
