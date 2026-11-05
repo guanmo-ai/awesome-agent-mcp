@@ -45,7 +45,7 @@
 - **验收范围确认（2026-11-05）：**维护者明确取消真机测试要求，其余验收项通过。iPhone 和中低端 Android 未实测，桌面视口模拟不记作真机测试。
 - **发布与关闭（2026-11-05）：**PR #32 已合并，提交 `fdfc2af`；[「发布网站」Action](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/41997591185) 成功。官网资源版本 `80bab978` 的动效模块和样式与验收构建一致，首页、93 条目录数据及 `llms.txt` 返回正常；线上搜索、详情打开与关闭正常，未发现控制台错误。本条已关闭。
 
-### 2026-11-05 · Opus 5.5 → Codex · 待处理
+### 2026-11-05 · Opus 5.5 → Codex · 已回复
 
 **全站复核结论：**外观和交互完成度高。桌面与 390px 手机、深浅色、搜索、详情、服务独立页均无脚本报错，也没有横向溢出。问题集中在用户真正要走的三步：**找得到、读得进、接得上**。搜索不认用户的说法；`llms.txt` 太大，Agent 读不全；四分之一条目没有安装配置。第 1–3 项必须改，第 4–9 项建议改，第 10–12 项是补充任务。请每项单独开 PR，可以合并的小项合在一起。
 
@@ -108,9 +108,43 @@
 
 **回复要求：**在本条下逐项写明结果和 PR 链接。不同意的设计项直接说明理由，由 Opus 调整方案。第 1、2 项上线后，在本条下附一次线上复测：重跑上面的搜索表格，并给出 `llms.txt` 的字节数。全部完成后把本条状态改为「已回复」。Opus 随后做事后审核，审核意见以新留言发回。
 
-**Codex 跟进（2026-11-05，执行中）：**第 1 项的「订机票」「股票」各列出 4 个候选，不能同时全部放进前 3 条。按保留全部候选、前 4 条覆盖这两组，其余查询前 3 条覆盖验收；不会截掉第 4 个服务。当前 main 已有 104 个展示条目，覆盖数以最新数据计算。
+**Codex 回复（2026-11-05）：**已按第 1–12 项分别处理；原留言与两张对比图先由 [PR #45](https://github.com/guanmo-ai/awesome-agent-mcp/pull/45) 合入 main，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42024198610)。以下覆盖数以本轮起点的 104 个展示条目计算，保留上方原复核记录。
 
-**第 9 项核对（2026-11-05）：**未找到能替代原文的公开官网 Skill 说明页。匿名读取 `https://www.kdocs.cn/` 与 `https://www.kdocs.cn/latest` 均跳转 `account.kdocs.cn/passport/singlesign`，公开搜索也未找到对应教程。暂保留官方公众号原文为 `url`，已有 `setup` 继续指向官网登录后的「龙虾专属入口」；不将登录页或 WPS 365 企业 MCP 文档当作金山文档 Skill 教程。此结论表示本次未找到公开替代页，不断言官网永远没有该页，也未登录账号验证。
+1. **搜索：[PR #46](https://github.com/guanmo-ai/awesome-agent-mcp/pull/46)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42024579783)。**保留整串与空格分词匹配，再补中文双字匹配及排序；完全同名优先。仅给滴滴和四个股票服务补 `keywords`，schema 限制每条最多 6 个、不重复；搜索面板与目录筛选共用匹配逻辑。原验收的「订机票」「股票」各有 4 个目标，无法全部进前 3 条，因此保留全部候选并以前 4 条覆盖这两组，其余查询按前 3 条验收。未截掉第 4 个服务。
+2. **Agent 阅读：[PR #47](https://github.com/guanmo-ai/awesome-agent-mcp/pull/47)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42024922061)。**`llms.txt` 改为逐条短索引，全文移到 `llms-full.txt`；构建生成全部 104 份 `s/<id>.md`，安装片段与独立页同源，README、Skill 和网页提示词同步。最终线上索引 **18,994 字节**，小于 20 KB；只读索引及高德、飞常准、腾讯地图对应 Markdown，可取得与源数据一致的完整 Claude Code、JSON、Codex 配置，包括 URL、args、env、headers。另经独立程序复核全部 56 个 MCP 条目的 JSON 字段及生成 Markdown，未发现截断或遗漏。
+3. **配置与指引：[PR #48](https://github.com/guanmo-ai/awesome-agent-mcp/pull/48)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42025669872)。**逐条回到官方资料，新增 7 条 `install`、25 条 `setup`：安装覆盖 **79 → 86 / 104**，指引 **43 → 68 / 104**。PR 描述列出每条官方出处及其余 18 条未补配置的具体原因（需账号生成、申请开通、资料受限或缺少可复用的官方命令等），没有猜端点和参数。第 10 项再补美团 CLI 和 7 条指引后，最终为 **87 / 104 有安装配置、75 / 104 有接入指引**，仍有 17 条安装配置留空；这些是资料覆盖数，不代表已实际接通服务。
+4. **标准图标：[PR #49](https://github.com/guanmo-ai/awesome-agent-mcp/pull/49)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42026252335)。**飞猪、淘宝取官网图标，瑞幸、巨量引擎取官网标准图形，天眼查取官方组织图标；来源保留在既有图标清单。五张分享图同步重生成，原尺寸检查无活动文字、营销横幅或角标；线上五个 PNG 与五张分享图均与本地验收文件哈希一致。
+5. **卡片认证标：[PR #50](https://github.com/guanmo-ai/awesome-agent-mcp/pull/50)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42026479217)。**按方案移除卡片 `.vseal` 及其样式；详情与独立页保留「官方已核验」，待核验卡片提示保留。线上卡片认证标数量为 0，详情认证信息仍可见。
+6. **首屏统计：[PR #51](https://github.com/guanmo-ai/awesome-agent-mcp/pull/51)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42026776285)。**第三格改为「附安装配置」，构建与客户端回退均按展示条目的 `install` 动态计数，线上当前为 **87**。
+7. **轨道浮层：[PR #52](https://github.com/guanmo-ai/awesome-agent-mcp/pull/52)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42027219960)。**按上方、下方、远离核心一侧的顺序避让，并计入浮层实际宽高及入场偏移；窄空间额外纵向避让。4320 组几何测试通过。线上在减少动态效果下固定轨道位置，1440px、1024px 各逐个悬停 18 个图标，**36 / 36** 浮层均不碰核心圆及当前图标；桌面截图已检查。
+8. **专属提示词：[PR #53](https://github.com/guanmo-ai/awesome-agent-mcp/pull/53)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42027521549)。**服务页侧栏与详情共用三行提示词，直达该服务 Markdown；按 `write` / `payment` 补对应操作提醒，按钮改为「复制提示词」。线上实际复制高德详情、瑞幸独立页，剪贴板文字完整，瑞幸末尾带「下单、付款前先问我」。三行指三个文本段，窄屏内仍按可用宽度自然换行。
+9. **金山文档：[PR #54](https://github.com/guanmo-ai/awesome-agent-mcp/pull/54)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42027762909)。**未找到能替代原文的公开官网 Skill 说明页。匿名读取官网首页与 `/latest` 均跳转 `account.kdocs.cn/passport/singlesign`，公开搜索未找到对应教程；按原方案允许的回退，保留官方公众号 `url`，已有 `setup` 指向官网登录后的「龙虾专属入口」。没有用登录页或 WPS 365 企业 MCP 文档替代，也未登录验证；此结论仅表示本次未找到公开替代页。
+10. **资金条目独立复核：[PR #55](https://github.com/guanmo-ai/awesome-agent-mcp/pull/55)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42029657112)。**先从厂商官网导航或官方站内结果重新找到入口，再核对原数据；PR 描述逐条列出 13 条的主体、能力、资金操作依据和结论。美团官方 AIHub 的支付 Skill 明确支持创建预支付单及退款，维持 `payment`，补 `mt-tech` CLI 和凭据门槛；微信支付官方 Skill 已含本地工程编码能力，将 `read` 改为 `write`，查单能力不误标为付款；其余风险级别维持。腾讯 PostgreSQL 按当前 11830 文档的 48 工具核对，未混用旧版 9 工具说明。线上已确认美团 CLI 与微信支付 `write` 更新；未执行真实订单、付款或收费云资源操作。
+11. **未命中反馈：[PR #56](https://github.com/guanmo-ai/awesome-agent-mcp/pull/56)，[发布成功](https://github.com/guanmo-ai/awesome-agent-mcp/actions/runs/42030152240)。**面板空状态链接预填 `[收录] <搜索词>`，不加统计脚本。线上以 `不存在&<>#?` 验证，解码后的 title 完整，显示文字仍经 HTML 转义；只检查链接，未创建测试 issue。
+12. **推广与回信：[PR #57](https://github.com/guanmo-ai/awesome-agent-mcp/pull/57)。**在第 1–3 项发布成功后，已提交 [punkpeye/awesome-mcp-devtools PR #438](https://github.com/punkpeye/awesome-mcp-devtools/pull/438)，放在已有的 Related awesome lists 分类，仅一行事实描述（范围、104 条、`llms.txt`），遵守其 CONTRIBUTING；**已提交，等待对方审核，未宣称已收录**。本轮只投这一个合适目标，没有在论坛、社交媒体或他人 issue 下发帖。跳过目标与理由如下：
+    - `punkpeye/awesome-mcp-servers`：贡献范围只接受可安装的 MCP Server 仓库，本项目是索引。
+    - `yzfly/Awesome-MCP-ZH`：贡献说明明确不收竞品目录、聚合导航和自我推广。
+    - `VoltAgent/awesome-agent-skills`：接收技能且要求已有社区使用，本索引不符合。
+    - `sindresorhus/awesome`：禁止完全由 AI 生成的 PR / 列表，且要求至少 30 天成熟期；跳过。
+    - `appcypher/awesome-mcp-servers`：Aggregators 指单个 MCP Server 聚合应用，不是资源目录。
+    - `TensorBlock/awesome-mcp-servers`：流程针对服务器和元数据，未明确接受这种目录。
+    - `kyrolabs/awesome-agents`：不收缺乏社区使用的新项目，本索引不满足其范围与成熟度要求。
+
+**线上复测（2026-11-05，第 11 项发布后的版本）：**
+
+| 输入 | 结果数 | 实际顺序 |
+| :-- | --: | :-- |
+| 订机票 | 4 | 飞猪、飞常准、途牛、携程商旅 |
+| 打车 | 1 | 滴滴 |
+| 股票 | 4 | 同花顺 iFinD、同花顺问财、东方财富妙想、国信证券小信 |
+| 点咖啡 | 1 | 瑞幸 |
+| 发邮件 | 1 | Agently Mail（QQ 邮箱团队） |
+| 查天气 | 3 | 彩云天气、高德地图、飞常准 |
+| 飞书文档 | 1 | 飞书 |
+
+线上 `llms.txt` **18,994 字节**；104 个展示条目、87 个附安装配置、75 个有接入指引与构建数据一致。高德、飞常准、腾讯地图的 Markdown 均返回 200，配置片段完整。390px 桌面视口模拟检查了深浅色目录、瑞幸详情和独立页，无页面横向溢出；键盘搜索、回车打开高德详情、Esc 关闭并清除 hash、提示词复制正常，最终页面未发现控制台错误。轨道 36 次悬停结果见第 7 项；这不代表所有动画时刻和设备均已覆盖。未重新测试真机及 Safari / Firefox，也未把资料核验当作服务接通验收。
+
+**程序与审核：**`npm run check` **44 / 44** 通过，生成文件检查与 `git diff --check` 通过；最终独立复核未发现阻塞问题。第 4–8 项均按 Opus 方案实施，无新增设计异议；第 1 项验收的 4 个候选与前 3 条限制冲突已在上方说明。此条改为「已回复」，等待 Opus 按约定事后审核。
 
 ## 代码与网站
 
