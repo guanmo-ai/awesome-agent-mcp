@@ -50,3 +50,5 @@
 `scripts/lib.mjs` 中的 `validate()` 会检查以上规则，`npm run check` 不通过时不能合并。
 
 `setup.permissionEvidence` 可选记录办公权限依据，包含官方 HTTPS `url`、布尔 `agentReadable` 和可选的 80 字内逐字 `quote`。原文未覆盖的权限条件不可推断。
+
+`install.mcp.endpoints` 可选列出同认证方式与传输协议的其他官方服务端点，每项包含 `name`、HTTPS `url` 和 `note`（用途及额外门槛）。来源仍以该条目的官方核验来源为准。

@@ -125,6 +125,7 @@ export function validate(data) {
     const mcp = install.mcp;
     if (mcp !== undefined && !isObject(mcp)) err(w, 'install.mcp 必须是对象');
     if (isObject(mcp)) {
+      if (mcp.endpoints !== undefined && (!Array.isArray(mcp.endpoints) || !mcp.endpoints.length || mcp.endpoints.some(e => !isObject(e) || typeof e.name !== 'string' || !e.name.trim() || !isHttps(e.url) || typeof e.note !== 'string' || !e.note.trim()))) err(w, 'install.mcp.endpoints 需要非空 name、HTTPS url 和 note');
       if (!member(LABELS.transport, mcp.transport)) err(w, 'install.mcp.transport 必须是 http/sse/stdio');
       if (mcp.transport !== 'stdio' && !isHttps(mcp.url)) err(w, 'install.mcp 远程需 https url');
       if ((mcp.transport === 'stdio' || mcp.command !== undefined) && (typeof mcp.command !== 'string' || !mcp.command.trim())) err(w, 'install.mcp.command 必须是非空字符串');

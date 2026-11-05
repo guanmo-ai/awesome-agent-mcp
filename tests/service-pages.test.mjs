@@ -246,3 +246,13 @@ test('仅有费用信息时也在 Markdown 和网页显示来源与日期', (t) 
     assert.ok(content.includes('新用户注册成功即领'));
   }
 });
+
+test('同一服务的其他官方端点连同用途和门槛出现在 Markdown 与网页', (t) => {
+  const fixture = buildFixture(data => {
+    data.services[0].install.mcp.endpoints = [{ name: '风险', url: 'https://example.com/risk', note: '需开通权限' }];
+  });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  for (const content of [fixture.read('s/amap.md'), fixture.read('s/amap/index.html')]) {
+    for (const text of ['风险', 'https://example.com/risk', '需开通权限']) assert.ok(content.includes(text));
+  }
+});
