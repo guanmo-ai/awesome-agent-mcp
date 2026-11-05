@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">Follow @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>99 services · 7 categories · 99 verified · Updated 2026-11-05</sub></p>
+<p align="center"><sub>104 services · 7 categories · 104 verified · Updated 2026-11-05</sub></p>
 
 > **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
 
@@ -64,9 +64,9 @@ Test one lookup and report the result; skill installation does not establish a s
 - [Office](#cat-office) (15)
 - [Notes & Storage](#cat-notes) (8)
 - [Search & Data](#cat-search) (9)
-- [Design & Creation](#cat-design) (8)
+- [Design & Creation](#cat-design) (9)
 - [Payment & Finance](#cat-finance) (7)
-- [Cloud & Dev](#cat-cloud) (37)
+- [Cloud & Dev](#cat-cloud) (41)
 
 <a id="cat-life"></a>
 
@@ -165,6 +165,7 @@ Test one lookup and report the result; skill installation does not establish a s
 | [MeituHub](https://www.meituhub.com/zh-cn/docs?id=150) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituhub/) | Use a CLI for image, video, and audio creation, including local batch processing. | CLI | 🟡 Write access | API key, Membership or payment | ✅ Verified |
 | [Tencent Hunyuan Image](https://cloud.tencent.com/developer/mcp/server/11765) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/) | Generate and edit images, expand images, and enhance clarity. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Volcengine veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/) | Query and upload image assets, generate images, enhance quality, expand images, and recognize text. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
+| [Alibaba Cloud Intelligent Media Services](https://skills.aliyun.com/skills/alibabacloud-video-translation) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims/) | Extract and translate video subtitles, with speech synthesis and voice replacement. | Skill | 🟡 Write access | Account authorization | ✅ Verified |
 
 <sub>[↑ Back to contents](#toc)</sub>
 
@@ -190,11 +191,11 @@ Test one lookup and report the result; skill installation does not establish a s
 
 | Service | Capabilities | Type | Permissions | Requirements | Status |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Alibaba Cloud](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/) | Query and manage cloud resources. | MCP | 🟡 Write access | Account authorization | ✅ Verified |
+| [Alibaba Cloud](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/) | Query, diagnose, and manage cloud resources through MCP and official skills. | MCP · Skill | 🔴 Financial actions | Account authorization | ✅ Verified |
 | [Tencent Cloud](https://cloud.tencent.com/document/product/1278/131433) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cloud/) | Query and manage cloud resources. | Skill · CLI | 🟡 Write access | Account authorization | ✅ Verified |
-| [Huawei Cloud](https://github.com/huaweicloud/huaweicloud-mcp) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/) | Query and manage cloud resources. | MCP · Skill | 🟡 Write access | Account authorization, API key | ✅ Verified |
-| [Volcengine](https://github.com/volcengine/mcp-server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/) | Access cloud resources and AI capabilities. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
-| [Baidu AI Cloud](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud/) | Use OCR, document parsing, image processing, face recognition, and speech capabilities. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
+| [Huawei Cloud](https://github.com/huaweicloud/huaweicloud-mcp) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/) | Query and manage cloud resources. | MCP · Skill | 🔴 Financial actions | Account authorization, API key | ✅ Verified |
+| [Volcengine](https://github.com/volcengine/mcp-server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/) | Query, diagnose, deploy, and manage cloud resources through MCP, the ve CLI, and product skills. | MCP · Skill · CLI | 🔴 Financial actions | Account authorization, API key | ✅ Verified |
+| [Baidu AI Cloud](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud/) | Use MCP and skills for OCR, document parsing, search, image, and speech capabilities. | MCP · Skill | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Qiniu Cloud](https://github.com/qiniu/qiniu-mcp-server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/qiniu/) | Read and write object storage, process images, refresh or prefetch CDN content, and manage live streams. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Zhipu](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu/) | Search the web and retrieve current information for GLM Coding Plan users. | MCP | 🟢 Read only | Account authorization, Membership or payment, API key | ✅ Verified |
 | [Gitee](https://gitee.com/oschina/mcp-gitee) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/) | Manage code repositories, issues, and pull requests. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
@@ -227,6 +228,10 @@ Test one lookup and report the result; skill installation does not establish a s
 | [Tencent Cloud VectorDB](https://cloud.tencent.com/developer/mcp/server/11771) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb/) | Query VectorDB instances, security groups, and maintenance windows. | MCP | 🟢 Read only | Account authorization, API key | ✅ Verified |
 | [Tencent Cloud TDMQ for CKafka](https://cloud.tencent.com/developer/mcp/server/11776) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka/) | Query CKafka topics, messages, consumer groups, and instances. | MCP | 🟢 Read only | Account authorization, API key | ✅ Verified |
 | [TencentDB for Redis](https://cloud.tencent.com/developer/mcp/server/11755) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis/) | Query Redis instances, backups and slow logs, create instances, and manage parameters and security groups. | MCP | 🔴 Financial actions | Account authorization, API key | ✅ Verified |
+| [Alibaba Cloud RDS Copilot](https://skills.aliyun.com/skills/alibabacloud-rds-copilot) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-rds-copilot/) | Query RDS operations knowledge, SQL optimization advice, and troubleshooting results. | Skill | 🟢 Read only | Account authorization | ✅ Verified |
+| [Alibaba Cloud PAI-DLC](https://skills.aliyun.com/skills/alibabacloud-pai-dlc-job) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-pai-dlc/) | Create, query, update, and stop distributed training jobs; inspect logs, events, and compute health. | Skill | 🔴 Financial actions | Account authorization | ✅ Verified |
+| [Alibaba Cloud DataWorks](https://skills.aliyun.com/skills/alibabacloud-dataworks-datastudio-develop) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dataworks/) | Create, configure, and deploy data development nodes and workflows, and manage resources and UDFs. | Skill | 🟡 Write access | Account authorization | ✅ Verified |
+| [Alibaba Cloud Lindorm](https://skills.aliyun.com/skills/alibabacloud-lindorm-agent-skill) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-lindorm/) | Manage multi-model database instances, diagnose monitoring, performance and connection issues, and assist SQL and search development. | Skill | 🔴 Financial actions | Account authorization | ✅ Verified |
 
 <sub>[↑ Back to contents](#toc)</sub>
 

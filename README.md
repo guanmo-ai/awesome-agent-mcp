@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>99 个服务 · 7 个分类 · 99 个已核验 · 更新于 2026-11-05</sub></p>
+<p align="center"><sub>104 个服务 · 7 个分类 · 104 个已核验 · 更新于 2026-11-05</sub></p>
 
 > **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)
 
@@ -63,9 +63,9 @@
 - [办公和协作](#cat-office)（15）
 - [笔记、阅读和网盘](#cat-notes)（8）
 - [搜索、内容和企业数据](#cat-search)（9）
-- [设计和创作](#cat-design)（8）
+- [设计和创作](#cat-design)（9）
 - [支付和金融](#cat-finance)（7）
-- [云和开发](#cat-cloud)（37）
+- [云和开发](#cat-cloud)（41）
 
 <a id="cat-life"></a>
 
@@ -164,6 +164,7 @@
 | [美图 MeituHub](https://www.meituhub.com/zh-cn/docs?id=150) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituhub/) | 用命令行调用图片、视频和音频创作能力，支持本地批量处理。 | CLI | 🟡 可执行操作 | 需 API Key、需会员或付费 | ✅ 已核验 |
 | [腾讯混元生图](https://cloud.tencent.com/developer/mcp/server/11765) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/) | 生成图片、图生图、扩图与清晰度增强。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [火山引擎 veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/) | 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [阿里云智能媒体服务 IMS](https://skills.aliyun.com/skills/alibabacloud-video-translation) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims/) | 提取视频字幕并翻译，支持语音合成和配音替换。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
@@ -189,11 +190,11 @@
 
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
-| [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/) | 云资源查询与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/) | 通过 MCP 与官方 Skill 查询、诊断和管理云资源。 | MCP · Skill | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
 | [腾讯云](https://cloud.tencent.com/document/product/1278/131433) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cloud/) | 云资源查询与管理。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [华为云](https://github.com/huaweicloud/huaweicloud-mcp) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/) | 云资源查询与管理。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [火山引擎](https://github.com/volcengine/mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/) | 云资源与 AI 能力接入。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
-| [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud/) | 文字识别、文档解析、图像处理、人脸识别与语音能力。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [华为云](https://github.com/huaweicloud/huaweicloud-mcp) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/) | 云资源查询与管理。 | MCP · Skill | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [火山引擎](https://github.com/volcengine/mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/) | 通过 MCP、ve CLI 与产品 Skill 查询、诊断、部署和管理云资源。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud/) | 通过 MCP 与 Skill 使用文字识别、文档解析、搜索、图像和语音能力。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [七牛云](https://github.com/qiniu/qiniu-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qiniu/) | 对象存储读写、图片处理、CDN 刷新预取与直播管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu/) | 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 | MCP | 🟢 只读查询 | 需授权账号、需会员或付费、需 API Key | ✅ 已核验 |
 | [Gitee](https://gitee.com/oschina/mcp-gitee) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/) | 代码仓库、Issue 与 PR 管理。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
@@ -226,6 +227,10 @@
 | [腾讯云向量数据库 VectorDB](https://cloud.tencent.com/developer/mcp/server/11771) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb/) | 查询向量数据库实例列表、安全组和维护时间窗。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
 | [腾讯云消息队列 CKafka](https://cloud.tencent.com/developer/mcp/server/11776) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka/) | 查询 CKafka 主题、消息、消费分组及实例信息。 | MCP | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
 | [腾讯云数据库 Redis](https://cloud.tencent.com/developer/mcp/server/11755) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis/) | 查询 Redis 实例、备份和慢日志，创建实例及管理参数与安全组。 | MCP | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
+| [阿里云 RDS Copilot](https://skills.aliyun.com/skills/alibabacloud-rds-copilot) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-rds-copilot/) | 查询 RDS 运维知识、SQL 优化建议和故障诊断结果。 | Skill | 🟢 只读查询 | 需授权账号 | ✅ 已核验 |
+| [阿里云 PAI-DLC](https://skills.aliyun.com/skills/alibabacloud-pai-dlc-job) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-pai-dlc/) | 创建、查询、更新和停止分布式训练任务，查看日志、事件与计算健康检查。 | Skill | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
+| [阿里云 DataWorks](https://skills.aliyun.com/skills/alibabacloud-dataworks-datastudio-develop) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dataworks/) | 创建、配置和发布数据开发节点与工作流，管理资源和 UDF。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
+| [阿里云 Lindorm](https://skills.aliyun.com/skills/alibabacloud-lindorm-agent-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-lindorm/) | 管理多模数据库实例，分析监控、性能和连接问题，辅助 SQL 与检索开发。 | Skill | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
 
