@@ -79,7 +79,7 @@
 ## 支付和金融
 
 - [支付宝](https://guanmo-ai.github.io/awesome-agent-mcp/s/alipay.md): 支付授权、交易支付与状态查询，辅助应用收款接入。 Skill · CLI；涉及资金
-- [微信支付](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay.md): 提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。 Skill · CLI；只读查询
+- [微信支付](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay.md): 提供支付接入指导、工程编码与查单排障；读资料无需商户凭据，真实查单需授权。 Skill · CLI；可执行操作
 - [银联](https://guanmo-ai.github.io/awesome-agent-mcp/s/unionpay.md): 让智能体通过 MCP 接入银联支付服务。 MCP；涉及资金
 - [同花顺 iFinD](https://guanmo-ai.github.io/awesome-agent-mcp/s/ifind.md): 查询行情、财务、公告、宏观等金融数据。 MCP · Skill；只读查询
 - [同花顺问财](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai.md): 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 Skill · CLI；只读查询

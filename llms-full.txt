@@ -43,21 +43,36 @@
 - [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver/base): 地点检索、地理编码与路线规划。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp.map.baidu.com/mcp?ak=<你的百度地图AK>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-map/)
 - [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview): 地点搜索、路线规划与位置服务。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-map/)
 - [滴滴](https://mcp.didichuxing.com/): 叫车、估价与行程查询。 类型 MCP · Skill；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>；Skill https://clawhub.ai/didi/didi-ride-skill-official；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/didi/)
-- [美团](https://developer.meituan.com/ai-hub/mcp-list): 商家订单、团购核销、商品与库存管理及经营数据查询。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan/)
+  - 接入前准备：需已有滴滴个人账号并激活 MCP Key。Beta 跳端与 Pro 直接创建订单能力不同；生产地址会产生真实订单和费用。
+  - 步骤 1：在官方控制台用已注册账号登录并激活个人 MCP Key。 [官方入口](https://mcp.didichuxing.com/api)
+  - 步骤 2：按下方 HTTP 地址配置客户端；从工具列表确认账号可用版本与能力。 [官方入口](https://mcp.didichuxing.com/api)
+  - 如何确认成功：先列工具或查询路线、预估价格；不得用 taxi_create_order 验证连接。（指引核对于 2026-11-05，不代表已实测）
+- [美团](https://developer.meituan.com/ai-hub/mcp-list): 商家订单、团购核销、商品与库存管理及经营数据查询。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key、需申请开通；已核验；CLI `npm install -g mt-tech`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan/)
   - 接入前准备：本条是商家、服务商和开发者业务接入，不能直接当作个人美团外卖点单。个人开发者需实名认证；商家数据还需相应业务开通和授权。官网的免费接入说明不代表所有业务及订单免费。
   - 步骤 1：先确认你是个人开发者、商家还是服务商，按官网选择对应身份并完成实名认证或入驻。 [官方入口](https://developer.meituan.com/)
   - 步骤 2：在 AI Hub 按目标业务选具体 MCP 或 Skill，核对权限并从官方控制台取得配置；没有适用能力就停止，不编造通用端点或 CLI 命令。 [官方入口](https://developer.meituan.com/ai-hub/mcp-list)
-  - 步骤 3：使用 AI Coding 套件时按文档配置管理中心 toolsToken 和相关业务权限；不要用旅游 CLI 代替商家接口。 [官方入口](https://developer.meituan.com/docs/biz/biz_2023243_d08aeca9-3a9a-4bdb-81ff-351e691defd2)
+  - 步骤 3：官方 Skill 详情提供 mt-tech CLI 安装命令。按所选业务在本地配置 developerId、signKey 及需要时的 appAuthToken，并取得业务授权；支付类 Skill 面向商家业务，不等于个人美团点外卖。 [官方入口](https://developer.meituan.com/ai-hub/skill-list/detail/44)
   - 如何确认成功：由客户端列出所选工具，并查询一项你已授权的商家数据。个人消费者仅提出点外卖需求时，应先说明本条不匹配，不能宣称已能替你点单。（指引核对于 2026-11-05，不代表已实测）
 - [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md): 商品搜索与购物，需安装桌面客户端。 类型 MCP · Skill；权限 涉及资金；门槛 需桌面客户端、需授权账号；已核验；Skill https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/taobao/)
+  - 接入前准备：需安装并登录淘宝桌面客户端，接入其本地 taobao-native MCP；官方 Skill 还使用 mcporter。不是无需客户端的远程购物服务。
+  - 步骤 1：安装官方桌面客户端并在本地登录，然后按官方说明启用其 MCP。 [官方入口](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md)
+  - 步骤 2：加载官方 Skill；按文档确认 mcporter 可运行，并查看 mcporter list taobao-native --schema。 [官方入口](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md)
+  - 如何确认成功：只搜索商品或读取页面，核对客户端身份；不加购、下单或发消息作首测。（指引核对于 2026-11-05，不代表已实测）
 - [麦当劳中国](https://open.mcd.cn/mcp/doc): 点餐、门店与优惠查询。 类型 MCP；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.mcd.cn；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mcdonalds-cn/)
+  - 接入前准备：需麦当劳会员账号并在 MCP 控制台激活 Token；创建订单会产生真实餐品订单，支付另行确认。
+  - 步骤 1：在官方 MCP 首页登录，按接入指南激活本人 Token。 [官方入口](https://open.mcd.cn/mcp/doc)
+  - 步骤 2：按下方 HTTP 配置填 Authorization Bearer Token。 [官方入口](https://open.mcd.cn/mcp/doc)
+  - 如何确认成功：先查询餐品营养信息或门店菜单；不创建订单、兑换积分或领取权益作连通性首测。（指引核对于 2026-11-05，不代表已实测）
 - [瑞幸](https://open.lkcoffee.com/docs): 咖啡点单与门店查询。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://gwmcp.lkcoffee.com/order/user/mcp；CLI `curl -fsSL https://open.lkcoffee.com/install | bash`；Skill https://unpkg.luckincoffeecdn.com/@luckin/my-coffee-skill@latest/dist/my-coffee-skill.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin/)
-  - 接入前准备：面向消费者查询门店和咖啡点单；需要登录瑞幸 AI 开放平台并取得个人 Token。订单按商品价格付款；公开资料未确认接口本身的独立资费，不把它标成永久免费。
-  - 步骤 1：在官方开放平台登录并取得 Token，由你在本地填写，不发到公开对话或仓库。 [官方入口](https://open.lkcoffee.com/docs)
-  - 步骤 2：让 Agent 使用下方 MCP URL，并保留 Authorization: Bearer 认证头；也可以按官网导入 Skill，不需要三种方式一起安装。 [官方入口](https://open.lkcoffee.com/docs)
-  - 步骤 3：CLI 是可选路径：先阅读官方安装脚本，再按它的说明安装；脚本默认覆盖已有安装，先检查本机是否已有版本。 [官方入口](https://open.lkcoffee.com/install)
-  - 如何确认成功：先列出工具，再进行一次门店或商品查询，核对结果是否属于当前账号可用的门店。不要用创建订单作为连通测试；下单和付款前需确认门店、商品、配送方式及金额。（指引核对于 2026-11-05，不代表已实测）
+  - 接入前准备：需在瑞幸 AI 开放平台登录并取得 Token；下单会创建真实咖啡订单，返回支付链接不等于尚未下单。
+  - 步骤 1：在官方平台登录并按 MCP 指引取得本人 Token。 [官方入口](https://open.lkcoffee.com/docs)
+  - 步骤 2：依所选客户端配置官方 MCP，或按官网选择 CLI/Skill；在本地保管凭据。 [官方入口](https://open.lkcoffee.com/docs)
+  - 如何确认成功：先查询公开门店或商品信息；不要调用 createOrder 验证连接。（指引核对于 2026-11-05，不代表已实测）
 - [飞猪](https://github.com/alibaba-flyai/flyai-skill): 机票、酒店和景点搜索，返回价格与预订跳转链接。 类型 Skill · CLI；权限 只读查询；门槛 免费可用；已核验；CLI `npm i -g @fly-ai/flyai-cli`；Skill https://github.com/alibaba-flyai/flyai-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy/)
+  - 接入前准备：现有 Skill/CLI 可进行搜索并返回预订跳转链接；体验可不填 Key，正式 Key 用于更充足及稳定的调用。推广者入驻是另外的账号及协议流程。
+  - 步骤 1：按飞猪官网快速开始安装 Skill；CLI 如已安装无需重复安装。 [官方入口](https://flyai.open.fliggy.com/docs/quickstart)
+  - 步骤 2：需要正式 Key 时在官方控制台申请，并用 flyai config set FLYAI_API_KEY 在本地配置。 [官方入口](https://flyai.open.fliggy.com/)
+  - 如何确认成功：运行一次酒店或机票搜索，核对价格与返回链接；不把搜索结果说成预订已完成。（指引核对于 2026-11-05，不代表已实测）
 - [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli): 企业差旅资源查询、差旅政策校验与方案推荐。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/)
   - 接入前准备：面向企业客户、开发者和生态伙伴；接入方案、企业账户权限及费用需向同程商旅确认，公开公告未给出通用安装配置。
   - 步骤 1：查看官方开放能力公告，确定需要 MCP、Skill 或 CLI 及要接入的企业系统。 [官方入口](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli)
@@ -74,7 +89,15 @@
   - 步骤 2：按官方远程 MCP 地址配置 X-API-Key 请求头，保留完整服务路径。 [官方入口](https://github.com/variflight/variflight-mcp)
   - 如何确认成功：查询一趟已知航班的状态，核对航班号和日期，并确认账号调用额度。（指引核对于 2026-11-05，不代表已实测）
 - [途牛](https://open.tuniu.com/mcp/docs/guide/mcp-auth.html): 搜索并预订酒店、机票、火车票、门票、邮轮与度假产品。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://openapi.tuniu.cn/hybrid/mcp/hotel；CLI `npm install -g tuniu-cli@latest`；Skill https://github.com/tuniucorp/tuniu-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tuniu/)
+  - 接入前准备：需途牛开放平台账号。远程 MCP 用 OAuth 2.1；CLI 用 TUNIU_API_KEY。开放平台账号与手机号对应的会员绑定，预订会创建真实订单；普通会员身份不等于付费会员要求。
+  - 步骤 1：支持 OAuth 的客户端可添加官方远程服务地址，登录后授权；不支持时按官方 DCR/CIMD 或预注册流程处理。 [官方入口](https://open.tuniu.com/mcp/docs/guide/mcp-auth.html)
+  - 步骤 2：使用 CLI 则按官方仓库安装并在本地配置 TUNIU_API_KEY，不把 CLI 的旧端点套到远程 OAuth。 [官方入口](https://github.com/tuniucorp/tuniu-cli)
+  - 如何确认成功：先查询酒店或已有订单，确认账号及结果；不调用创建订单接口作首测。（指引核对于 2026-11-05，不代表已实测）
 - [快递100](https://api.kuaidi100.com/document/how-to-use-mcp-service): 查询物流轨迹、预估运费与时效，并支持获授权的上门取件下单。 类型 MCP · Skill；权限 涉及资金；门槛 需 API Key、需授权账号、需申请开通；已核验；MCP Streamable HTTP https://api.kuaidi100.com/mcp/streamable?key=<你的快递100Key>；Skill https://clawhub.ai/kuaidi100-api/kuaidi100-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kuaidi100/)
+  - 接入前准备：查询需快递100账号及 Key；真实上门取件还需商务完成 Key 加白。该 MCP 可创建寄件订单，运费线下支付，不能因未在线扣款就按只读处理。
+  - 步骤 1：登录官方 API 管理后台取得自己的授权 Key。 [官方入口](https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api)
+  - 步骤 2：要寄件时先联系商务开通加白，按本人获授权的 SSE 配置连接；通用查询 HTTP 配置不能当作已开通寄件。 [官方入口](https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api)
+  - 如何确认成功：先执行物流查询或经额度许可的价格估算；不创建或取消真实寄件单测试连接。（指引核对于 2026-11-05，不代表已实测）
 - [携程商旅](https://openapi.ctripbiz.com/#/advertise/mcp): 查询差旅政策、机票酒店与行程方案，读取差旅和合规数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ctrip-business/)
   - 接入前准备：面向企业客户和生态伙伴；需申请开通并确认企业数据权限。平台分标准、高级、定制层，价格和实际能力以携程商旅确认结果为准。
   - 步骤 1：阅读携程商旅 AI 开放平台说明，了解标准、高级和定制层的差异。 [官方入口](https://ct.ctrip.com/thinktanks/235566117077549)
@@ -243,8 +266,12 @@
 ## 支付和金融
 
 - [支付宝](https://aipay.alipay.com/merchant-guide): 支付授权、交易支付与状态查询，辅助应用收款接入。 类型 Skill · CLI；权限 涉及资金；门槛 需授权账号；已核验；CLI `npx -y @alipay/agent-payment@latest install`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/alipay/)
-- [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116): 提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。 类型 Skill · CLI；权限 只读查询；门槛 见接入前准备；已核验；CLI `npm install -g @tenpay/wechatpay-dev-cli`；Skill https://github.com/wechatpay-apiv3/wechatpay-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay/)
-  - 接入前准备：面向支付接入开发与排障，不是替个人微信钱包付款。阅读 Skill 和查看 CLI 接口目录不需要商户交易凭据；实际查单需要对应商户或服务商身份、签名凭据与业务参数。CLI 要求 Node.js 20+。
+  - 接入前准备：支付处理能力需开通支付宝支付服务并授权；商家接入还需已有收款服务。Node.js 22+、npm 10+，具体适配环境以官方当前说明为准。
+  - 步骤 1：按官方命令安装支付处理 Skill，先在本地完成开通与授权。 [官方入口](https://aipay.alipay.com/merchant-guide)
+  - 步骤 2：商家接入按指南生成交易信息，再交给支付宝支付处理技能；不能把支付技能当作普通短链工具。 [官方入口](https://aipay.alipay.com/merchant-guide)
+  - 如何确认成功：先查询支付能力开通状态；不提交支付或创建收费订单测试连接。（指引核对于 2026-11-05，不代表已实测）
+- [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116): 提供支付接入指导、工程编码与查单排障；读资料无需商户凭据，真实查单需授权。 类型 Skill · CLI；权限 可执行操作；门槛 见接入前准备；已核验；CLI `npm install -g @tenpay/wechatpay-dev-cli`；Skill https://github.com/wechatpay-apiv3/wechatpay-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay/)
+  - 接入前准备：面向支付接入开发与排障；新版 Skill 可修改本地工程代码，须先确认改动范围。CLI 仅查支付单和退款单，不代替个人微信钱包付款。读资料无需商户凭据；真实查单需要商户或服务商身份、签名凭据及业务参数。CLI 要求 Node.js 20+。
   - 步骤 1：把官方支付接入 Skill 按当前 Agent 的安装方式载入，再让 Agent 判断你需要接入指导、代码开发还是查单；境内与跨境 Skill 分开选择。 [官方入口](https://github.com/wechatpay-apiv3/wechatpay-skills)
   - 步骤 2：需要 CLI 时安装 @tenpay/wechatpay-dev-cli；运行 wechatpay-dev-cli --version 和 wechatpay-dev-cli api list --mode merchant 查看安装版本与普通商户接口目录。 [官方入口](https://github.com/wechatpay-apiv3/wechatpay-skills/blob/main/wechatpay-payment-integration/references/APIv3%E6%8E%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%8E%92%E9%9A%9C.md)
   - 步骤 3：只有需要真实查单时才按接口契约准备自己的商户参数与签名凭据；在本地配置，不要求你在对话里发私钥。 [官方入口](https://pay.weixin.qq.com/doc/v3/merchant/4019638116)
