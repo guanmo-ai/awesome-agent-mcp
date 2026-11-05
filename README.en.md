@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">Follow @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>93 services · 7 categories · 92 verified · Updated 2026-11-05</sub></p>
+<p align="center"><sub>93 services · 7 categories · 93 verified · Updated 2026-11-05</sub></p>
 
 > **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
 
@@ -104,7 +104,7 @@ Test one lookup and report the result; skill installation does not establish a s
 | [Tencent Docs](https://docs.qq.com/open/document/mcp/) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/) | Read and edit online documents and spreadsheets. | MCP · Skill | 🟡 Write access | Account authorization, Free | ✅ Verified |
 | [Tencent Meeting](https://cloud.tencent.com/document/product/1095/133826) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/) | Schedule and manage meetings, and retrieve attendance, recordings, transcripts, and minutes. | MCP · Skill · CLI | 🟡 Write access | Account authorization | ✅ Verified |
 | [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps/) | Query and manage enterprise documents and collaboration data through WPS 365 APIs. | MCP | 🟡 Write access | Account authorization, Application required | ✅ Verified |
-| [KDocs](https://github.com/kdocs-app/kdocs-skill) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/) | Read and collaborate on online documents. | Skill · CLI | 🟡 Write access | Account authorization | ⏳ Unverified |
+| [KDocs](https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/) | Search, read, and organize cloud documents and generate document content. | Skill | 🟡 Write access | Account authorization | ✅ Verified |
 | [Yuque](https://github.com/yuque/yuque-mcp-server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/) | Read and write knowledge bases and documents. | MCP | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Agently Mail (QQ Mail Team)](https://github.com/Tencent/AgentlyMail) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/) | Use an agent mailbox to send, receive, search, and organize email and manage attachments. | Skill · CLI | 🟡 Write access | Account authorization | ✅ Verified |
 | [Tencent Lexiang](https://github.com/tencent-lexiang/lexiang-mcp-skill) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/) | Search and edit knowledge documents and smart tables, manage files, and import meeting materials. | MCP · Skill | 🟡 Write access | Account authorization, API key | ✅ Verified |

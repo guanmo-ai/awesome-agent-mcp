@@ -639,12 +639,11 @@
       "id": "kdocs",
       "name": "金山文档",
       "category": "office",
-      "summary": "在线文档的读取与协作。",
+      "summary": "搜索、读取和整理云文档，生成文档内容。",
       "types": [
-        "skill",
-        "cli"
+        "skill"
       ],
-      "url": "https://github.com/kdocs-app/kdocs-skill",
+      "url": "https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA",
       "homepage": "https://www.kdocs.cn/",
       "appStoreId": 1398120225,
       "color": "#2C6BFF",
@@ -652,10 +651,30 @@
       "access": [
         "account"
       ],
-      "status": "unverified",
+      "status": "verified",
       "addedAt": "2026-11-04",
       "nameEn": "KDocs",
-      "summaryEn": "Read and collaborate on online documents."
+      "summaryEn": "Search, read, and organize cloud documents and generate document content.",
+      "evidence": {
+        "url": "https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA",
+        "checkedAt": "2026-11-05",
+        "note": "金山文档官方公众号发布 Skill，并指向官网登录入口获取安装指令。"
+      },
+      "setup": {
+        "requirements": "需要登录并授权金山文档账号，按官网提供的安装指令接入。",
+        "steps": [
+          {
+            "text": "登录金山文档，在右上角更多菜单中选择「龙虾专属入口」。",
+            "url": "https://www.kdocs.cn/latest"
+          },
+          {
+            "text": "按官方页面的授权提示复制安装指令，交给 Agent 使用。",
+            "url": "https://www.kdocs.cn/latest"
+          }
+        ],
+        "verify": "接入后先让 Agent 只读查询你已获授权的文档，核对返回结果。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "yuque",
