@@ -191,8 +191,11 @@ export function snippets(s) {
 
 export function snippetNotes(s) {
   const mcp = s.install?.mcp;
-  if (!mcp) return [];
+  const cliNote = /\bcurl\b[^\n]*\|\s*(?:[A-Za-z_][A-Za-z0-9_]*=\S+\s+)*(?:ba)?sh(?:\s|$)/.test(s.install?.cli ?? '')
+    ? ['这条命令会直接执行官方脚本，请让 Agent 先读脚本内容再运行。'] : [];
+  if (!mcp) return cliNote;
   return [
+    ...cliNote,
     'JSON 示例用于 Claude Code 的 .mcp.json；${VAR} 从启动客户端的环境读取。Codex 的环境变量也须在启动进程中可用，不能将变量名替换成密钥值。',
     ...(mcp.transport === 'http' && mcp.headers ? ['Codex 的 bearer_token_env_var 对应变量只填 Token，不带 Bearer；env_http_headers 对应变量提供完整请求头值。'] : []),
     ...(/<[^>]+>/.test(JSON.stringify(mcp)) ? ['命令会进入 shell 历史，请在本地执行，不要分享。保留命令中的 ${VAR} 引用；Codex 不支持在 URL 或命令参数中展开这些引用，此处保留待本地处理的占位符。'] : []),

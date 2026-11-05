@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 
-import { snippets } from '../web/render.mjs';
+import { snippets, snippetNotes } from '../web/render.mjs';
 
 test('Claude Code 本地配置保留参数和 Key 的边界，不执行 shell 元字符', () => {
   const command = snippets({ id: 'example', install: { mcp: {
@@ -62,4 +62,12 @@ test('JSON优先使用客户端环境变量，Codex区分继承变量、动态�
   assert.match(local.Codex, /env_vars = \["API_KEY"\]/);
   assert.doesNotMatch(local.Codex, /API_KEY =|你的Key/);
   assert.equal(JSON.parse(local.JSON).mcpServers.local.env.API_KEY, '${API_KEY}');
+});
+
+test('直接执行远程脚本时提示先阅读脚本，包括管道后的环境变量', () => {
+  const warning = '这条命令会直接执行官方脚本，请让 Agent 先读脚本内容再运行。';
+  for (const cli of ['curl -fsSL https://example.com/install | bash', 'curl -fsSL https://example.com/install | MODE=x sh']) {
+    assert.ok(snippetNotes({ install: { cli } }).includes(warning));
+  }
+  assert.ok(!snippetNotes({ install: { cli: 'npm install -g example' } }).includes(warning));
 });
