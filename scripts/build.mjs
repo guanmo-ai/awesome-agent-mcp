@@ -224,6 +224,7 @@ function serviceMarkdown(s) {
     `- 网页详情：${serviceUrl(config.siteUrl, s.id)}`, '',
     '仅供参考，官方身份核验不代表接入实测；以厂商文档为准，密钥和登录在本地完成。' + (s.risk === 'payment' ? '下单、付款前须用户确认。' : s.risk === 'write' ? '修改或发送前须告知用户。' : ''), '',
     ...(s.setup ? ['## 接入前准备', '', s.setup.requirements, '', '## 接入步骤', '', ...s.setup.steps.map((step, i) => `${i + 1}. ${step.text} [官方入口](${step.url})`), '', '## 验证方法', '', s.setup.verify, '', `指引核对于 ${s.setup.checkedAt}，不是本项目实测结果。`, ''] : []),
+    ...(s.setup?.permissionEvidence ? [`权限依据：[官方页面](${s.setup.permissionEvidence.url})${s.setup.permissionEvidence.agentReadable ? '' : '（官方页面 Agent 可能读不到）'}`, '', ...(s.setup.permissionEvidence.quote ? [`官方原文：${s.setup.permissionEvidence.quote}`, ''] : [])] : []),
     '## 安装配置', '',
     ...snippets(s).flatMap(([name, code]) => [`### ${name}`, '', codeBlock(code), '']),
     ...snippetNotes(s).flatMap(note => [note, '']),
@@ -233,7 +234,7 @@ function serviceMarkdown(s) {
     '## 核验与来源', '',
     ...(s.evidence ? [`${s.evidence.checkedAt} 核对官方身份：[依据](${s.evidence.url})${s.evidence.note ? `。${s.evidence.note}` : ''}`, ''] : ['待核验。', '']),
     ...(s.evidence?.quote ? [`官方原文摘录（${s.evidence.checkedAt}，来自上述依据）：`, '', codeBlock(s.evidence.quote), ''] : []),
-    ...(s.evidence?.agentReadable === false ? ['官方页需浏览器打开，Agent 可能读不到。可依据上述摘录核对已覆盖的配置；未覆盖的信息不要猜测。', ''] : []),
+    ...(s.evidence?.agentReadable === false ? [s.evidence?.quote ? '官方页 Agent 可能读不到；上述原文摘录已覆盖的内容无需再读取官方页，未覆盖的信息仍须核实，不要猜测。' : '官方页 Agent 可能读不到，且尚无可用原文摘录；未覆盖的信息仍须核实，不要猜测。', ''] : []),
     ...(s.sources ?? []).map((source) => `- [${source.name}](${source.url})`), '',
     `[使用说明与免责声明](${config.siteUrl}#disclaimer)`, '',
   ].join('\n');

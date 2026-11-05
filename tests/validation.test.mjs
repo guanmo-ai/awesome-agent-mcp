@@ -126,3 +126,9 @@ test('官方摘录必须是80字内原文字符串，可读性必须是布尔值
   const data = base(); data.services[0].evidence.quote = '字'.repeat(80); data.services[0].evidence.agentReadable = false;
   assert.deepEqual(validate(data), []);
 });
+
+test('办公权限来源必须是安全地址及布尔可读性', () => {
+  for (const value of [null, {}, { url: 'javascript:alert(1)', agentReadable: true }, { url: 'https://example.com', agentReadable: 'false' }, { url: 'https://example.com', agentReadable: true, quote: 'x'.repeat(81) }]) {
+    rejects((_, s) => { s.setup.permissionEvidence = value; }, /setup.permissionEvidence/);
+  }
+});

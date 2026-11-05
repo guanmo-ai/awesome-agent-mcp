@@ -116,7 +116,7 @@
   - 步骤 5：如果明确要用远程 MCP，先查看个人调用指南与开放范围；具体配置以本人在官方平台取得的内容为准，不把 CLI 安装命令当成 MCP 端点。 [官方入口](https://open.feishu.cn/document/mcp_open_tools/end-user-call-remote-mcp-server?lang=zh-CN)
   - 如何确认成功：先用 lark-cli auth status 查看登录及权限。保存文档后检查返回的 ok、document.url 和 warnings，再运行 lark-cli docs +fetch --doc "返回的文档 URL" --detail with-ids，回读核对标题和正文，并把可打开的文档链接交给你；登录成功不等于文档已保存。（指引核对于 2026-11-05，不代表已实测）
 - [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview): 消息、文档、表格、日志、日历与待办的查询和操作。 类型 MCP · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y dingtalk-mcp@latest；CLI `curl -fsSL https://gitee.com/DingTalk-Real-AI/dingtalk-workspace-cli/raw/main/scripts/install.sh | DWS_GITEE_REPO=DingTalk-Real-AI/dingtalk-workspace-cli sh`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk/)
-  - 接入前准备：官方企业应用 MCP 需要钉钉企业管理员或子管理员申请接口权限，普通成员需管理员协助准备企业内部应用、AppKey、AppSecret 和对应权限后使用；不能只凭个人登录接入。需 Node.js >= 16。CLI 的普通成员独立开通条件及企业版、费用要求，所引官方说明未说明。
+  - 接入前准备：官方企业应用 MCP 需要钉钉企业管理员或子管理员申请接口权限，普通成员需管理员协助准备企业内部应用、AppKey、AppSecret 和对应权限后使用；不能只凭个人登录接入。需 Node.js >= 16。CLI 的普通成员独立开通条件及企业版、费用要求，所引官方说明未说明。 下方摘录仅证明通讯录敏感权限的角色限制，其他接口以各自权限说明为准。
   - 步骤 1：使用企业应用 MCP 时，请管理员创建企业内部应用、取得 AppKey/AppSecret 并开通所需接口权限；按官方 npx 配置接入。示例 ACTIVE_PROFILES=ALL 覆盖全部模块，实际接入按高级配置缩小为任务所需模块。 [官方入口](https://open.dingtalk.com/document/ai-dev/second-level-node-1)
   - 步骤 2：在钉钉开放平台能力中心了解所需 MCP 服务及工具范围。 [官方入口](https://open.dingtalk.com/group)
   - 步骤 3：参照钉钉官方 DWS 指南安装并登录；运行 dws mcp published tools，查看当前身份可用的已发布工具与输入格式。 [官方入口](https://open.dingtalk.com/dingtalk-dev/wiki)
