@@ -73,9 +73,10 @@
       <div class="hero-grid-bg" aria-hidden="true"></div>
       <div class="wrap hero-in">
         <div class="hero-copy">
-          <a class="eyebrow reveal" href="#directory"><span class="live" aria-hidden="true"></span><b id="eyebrow-count">{{count}}</b> 个官方连接器<span class="eb-types"><span class="sep" aria-hidden="true"></span>MCP · Skill · CLI</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+          <a class="eyebrow reveal" href="#directory"><span class="live" aria-hidden="true"></span><b id="eyebrow-count">{{count}}</b> 个服务条目<span class="eb-types"><span class="sep" aria-hidden="true"></span>MCP · Skill · CLI</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
           <h1 id="hero-title" class="reveal"><span>让 Agent 接上</span><span class="shine">真实世界的服务</span></h1>
-          <p class="lede reveal">国内厂商<b>官方出品</b>的 MCP、Skill 与命令行工具，一页查全。<br>人看卡片，AI 直接读。</p>
+          <p class="lede reveal">集中查找国内厂商<b>官方出品</b>的 MCP、Skill 与命令行工具。<br>人看卡片，AI 直接读。</p>
+          <p class="code-hint">独立社区索引，仅供参考；收录不构成背书，使用前请自行核实。<a href="#disclaimer">使用说明与免责声明</a></p>
           <div class="cta reveal">
             <a class="btn btn-primary" href="#directory">浏览全部服务<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a>
             <a class="btn btn-ghost" href="#for-ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5-2 2m-7 7-2 2m11 0-2-2m-7-7-2-2"/></svg>把需求交给我的 Agent</a>
@@ -218,6 +219,7 @@
       <div class="foot-top">
         <a class="brand" href="./"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="url(#bm)"/><circle cx="16" cy="16" r="9.6" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/><circle cx="16" cy="16" r="3.6" fill="#fff"/><circle cx="16" cy="6.4" r="2.5" fill="#fff"/><circle cx="24.3" cy="20.8" r="2.5" fill="#fff"/><circle cx="7.7" cy="20.8" r="2.5" fill="#fff"/></svg><span class="brand-name">Agent MCP</span></a>
         <nav class="foot-links" aria-label="页脚链接">
+          <a href="#disclaimer">免责声明</a>
           <a href="./llms.txt">llms.txt</a>
           <a href="./services.json">services.json</a>
           <a href="https://github.com/{{repo}}" target="_blank" rel="noopener">GitHub</a>
@@ -226,6 +228,7 @@
       </div>
       <p class="fine">由 <a href="https://x.com/{{x}}" target="_blank" rel="noopener">{{maintainerName}} @{{x}}</a> 发起与维护。服务名称、图标与商标归各自厂商所有；接入方式以官方文档为准，涉及资金的操作请务必人工确认。</p>
       <p class="wordmark" aria-hidden="true">Agent MCP</p>
+      {{disclaimer}}
     </div>
   </footer>
 

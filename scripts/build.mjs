@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } fr
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { root, load, grouped, LABELS, rawUrl } from './lib.mjs';
-import { agentPrompt, skillPrompt, esc, serviceUrl } from '../web/render.mjs';
+import { agentPrompt, skillPrompt, esc, serviceUrl, disclaimerHtml } from '../web/render.mjs';
 import { renderServicePage, sitemap } from './service-pages.mjs';
 import { directoryHtml, chipsHtml } from '../web/directory.mjs';
 
@@ -24,6 +24,15 @@ const md = (s) => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
 const ORDER = Object.keys(LABELS.types);
 const types = (s) => [...s.types].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b)).map((t) => LABELS.types[t]).join(' · ');
 const access = (s) => (s.access.length ? s.access.map((a) => LABELS.access[a]).join('、') : s.setup ? '见接入前准备' : '—');
+// Shared by the repository, website and machine-readable index.
+const disclaimer = (english = false) => [
+  ['本项目是独立的社区信息索引，仅收集整理公开资料与接入线索供参考，不提供或运营所列第三方服务。收录、排序、链接及图标展示不代表与厂商存在隶属、合作或授权关系，也不构成推荐、背书或担保。', 'This independent community index collects public information and integration references. It does not provide or operate the listed third-party services. Inclusion, ordering, links and logos do not imply affiliation, partnership, authorization, recommendation, endorsement or a guarantee.'],
+  ['“官方已核验”仅表示在标注日期依据公开来源核对了发布者身份，不代表全部功能已实测、安全审计通过或厂商认可本项目。资料与示例按现状提供，可能有错误、遗漏或过时；我们尽力核对，但不保证其准确性、完整性、时效性、安全性、兼容性、持续可用性或适合特定用途。', '“Verified” means publisher identity was checked against public sources on the stated date. It does not mean every feature was tested, a security audit was passed, or the vendor approved this project. Information and examples are provided as is and may contain errors, omissions or outdated details. We make reasonable verification efforts but do not guarantee accuracy, completeness, freshness, security, compatibility, continued availability or fitness for a particular purpose.'],
+  ['使用前，请自行核对厂商最新官方文档、代码及安装脚本、账号资格、权限、费用和配额，并遵守适用法律及第三方的服务条款、许可证与隐私政策。第三方网站、软件和服务由相应提供方负责，可能随时变更或停止；本项目的 MIT 许可不适用于这些第三方内容。', 'Before use, independently check current official documentation, code and installation scripts, account eligibility, permissions, charges and quotas. Follow applicable law and the provider’s terms, licenses and privacy policies. Third-party sites, software and services are the responsibility of their providers and may change or stop. This project’s MIT license does not cover that third-party content.'],
+  ['提示词、配置示例和 Agent 生成结果仅为辅助，不替代你的判断与授权。请检查实际执行内容，以最小权限验证，妥善保管密钥并备份重要数据；不要向本站或公开 Issue 提交凭据、个人隐私或机密数据。下单、付款等涉及资金的操作须由你最终确认。', 'Prompts, configuration examples and agent output assist rather than replace your judgment and authorization. Review actual actions, validate with minimal permissions, protect credentials and back up important data. Do not submit credentials, personal or confidential data to this site or public issues. Give final confirmation before orders, payments or other financial actions.'],
+  ['你应自行判断是否使用相关信息或服务，并承担相应使用风险。在适用法律允许的范围内，本项目维护者及贡献者不对因依赖本索引或使用第三方服务造成的损失承担责任，包括费用、数据丢失、业务中断或其他损失；本声明不排除或限制依法不得排除或限制的责任。', 'You decide whether to use this information or these services and bear the associated risks. To the extent permitted by applicable law, maintainers and contributors are not liable for losses arising from reliance on this index or use of third-party services, including charges, data loss, business interruption or other losses. Nothing here excludes or limits liability that cannot lawfully be excluded or limited.'],
+  ['服务名称、图标与商标归各自权利人所有，仅用于识别。发现错误、失效链接或权利问题，请通过仓库 Issue 提供公开证据或问题链接，我们会核查并视情况更正或移除；请勿在反馈中披露敏感信息。', 'Names, logos and trademarks belong to their respective owners and are used for identification. Report errors, broken links or rights concerns through repository issues with public evidence or links. We will review and correct or remove entries as appropriate. Do not disclose sensitive information in reports.'],
+].map((pair) => pair[english ? 1 : 0]);
 
 function readme(english = false) {
   const t = (zh, en) => english ? en : zh;
@@ -49,6 +58,8 @@ function readme(english = false) {
     '</p>',
     '',
     `<p align="center"><sub>${live.length} ${t('个服务', 'services')} · ${groups.length} ${t('个分类', 'categories')} · ${verified} ${t('个已核验', 'verified')} · ${t('更新于', 'Updated')} ${data.updatedAt}</sub></p>`,
+    '',
+    t('> **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)', '> **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)'),
     '',
     t('## 一句话交给你的 AI', '## One Prompt for Your AI'),
     '',
@@ -142,6 +153,13 @@ Test one lookup and report the result; skill installation does not establish a s
     '',
     `${t('详细流程见', 'See')} [docs/VERIFYING.md](docs/VERIFYING.md)${t('。发现遗漏或错误？', '. Found an omission or error? ')}[${t('提交服务', 'Submit a service')}](${issueUrl('submit.yml')}) ${t('或', 'or')} [${t('报告问题', 'report a problem')}](${issueUrl('correction.yml')})${t('。', '.')}`,
     '',
+    '<a id="disclaimer"></a>',
+    '',
+    t('## 使用说明与免责声明', '## Usage and Disclaimer'),
+    '',
+    ...disclaimer(english).flatMap((paragraph) => [paragraph, '']),
+    `[${t('纠错与权利问题反馈', 'Report errors or rights concerns')}](${issueUrl('correction.yml')})`,
+    '',
     t('## 许可', '## License'),
     '',
     `${t('代码使用 [MIT](LICENSE) 许可。各服务的名称与商标归各自厂商所有。由', 'Code is licensed under [MIT](LICENSE). Service names and trademarks belong to their respective vendors. Created and maintained by')} [${t(config.maintainer.name, 'Guanmo')} @${config.maintainer.x}](https://x.com/${config.maintainer.x})${t(' 发起与维护。', '.')}`,
@@ -157,6 +175,13 @@ function llms() {
     `> ${config.tagline}。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 ${live.length} 个，更新于 ${data.updatedAt}。`,
     '',
     `结构化数据：${config.siteUrl}services.json（字段说明见 https://github.com/${config.repo}/blob/${config.branch}/docs/SCHEMA.md）`,
+    '',
+    '## 使用说明与免责声明',
+    '',
+    ...disclaimer().flatMap((paragraph) => [paragraph, '']),
+    `[纠错与权利问题反馈](${issueUrl('correction.yml')})`,
+    '',
+    '## 使用索引',
     '',
     '使用这份索引时请遵守：',
     '- 「涉及资金」的服务可能下单或付款，执行前必须让用户确认。',
@@ -200,6 +225,7 @@ function publicJson() {
         repository: `https://github.com/${config.repo}`,
         updatedAt: data.updatedAt,
         count: live.length,
+        disclaimer: { url: `${config.siteUrl}#disclaimer`, paragraphs: disclaimer(), feedbackUrl: issueUrl('correction.yml') },
         labels: LABELS,
         site: { repo: config.repo, maintainer: config.maintainer, skill: config.skill, skillUrl: rawUrl(config, skillPath) },
         categories: groups.map(({ services, ...c }) => ({ ...c, count: services.length })),
@@ -253,6 +279,7 @@ if (process.argv.includes('--check')) {
   const db = JSON.parse(publicJson());
   const html = {
     directory: directoryHtml(db), chips: chipsHtml(db),
+    disclaimer: disclaimerHtml(db),
     // Keep the rendered directory and its interactive data in one cache unit.
     // A data string must never terminate its application/json script element.
     catalog: publicJson().replaceAll('<', '\\u003c').replaceAll('>', '\\u003e').replaceAll('&', '\\u0026'),
