@@ -188,14 +188,35 @@
       },
       "evidence": {
         "url": "https://mcp.didichuxing.com/api",
-        "checkedAt": "2026-11-04",
-        "note": "官方首页发布 MCP 与 Skill；开发者文档明确 Key 和下单能力。"
+        "checkedAt": "2026-11-05",
+        "note": "滴滴自有域名；文档区分跳转链接与直接创建真实订单，个人账号激活 Key。"
       },
       "nameEn": "DiDi",
       "summaryEn": "Request rides, get fare estimates, and look up trips.",
       "keywords": [
         "打车"
-      ]
+      ],
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://mcp.didichuxing.com/api"
+        }
+      ],
+      "setup": {
+        "requirements": "需已有滴滴个人账号并激活 MCP Key。Beta 跳端与 Pro 直接创建订单能力不同；生产地址会产生真实订单和费用。",
+        "steps": [
+          {
+            "text": "在官方控制台用已注册账号登录并激活个人 MCP Key。",
+            "url": "https://mcp.didichuxing.com/api"
+          },
+          {
+            "text": "按下方 HTTP 地址配置客户端；从工具列表确认账号可用版本与能力。",
+            "url": "https://mcp.didichuxing.com/api"
+          }
+        ],
+        "verify": "先列工具或查询路线、预估价格；不得用 taxi_create_order 验证连接。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "meituan",
@@ -214,14 +235,15 @@
       "risk": "payment",
       "access": [
         "account",
+        "key",
         "apply"
       ],
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
-        "url": "https://developer.meituan.com/ai-hub/mcp-list",
-        "checkedAt": "2026-11-04",
-        "note": "官方 AI Hub 服务目录列出 MCP、Skill 及 mt-tech CLI；含预约预支付与退款操作。"
+        "url": "https://developer.meituan.com/ai-hub/skill-list/detail/44",
+        "checkedAt": "2026-11-05",
+        "note": "美团 AI Hub 官方小程序支付操作 Skill；明确 mt-tech CLI、退款、追加支付及预支付下单。"
       },
       "nameEn": "Meituan",
       "summaryEn": "Manage merchant orders, vouchers, products, and inventory, and query business data.",
@@ -237,12 +259,21 @@
             "url": "https://developer.meituan.com/ai-hub/mcp-list"
           },
           {
-            "text": "使用 AI Coding 套件时按文档配置管理中心 toolsToken 和相关业务权限；不要用旅游 CLI 代替商家接口。",
-            "url": "https://developer.meituan.com/docs/biz/biz_2023243_d08aeca9-3a9a-4bdb-81ff-351e691defd2"
+            "text": "官方 Skill 详情提供 mt-tech CLI 安装命令。按所选业务在本地配置 developerId、signKey 及需要时的 appAuthToken，并取得业务授权；支付类 Skill 面向商家业务，不等于个人美团点外卖。",
+            "url": "https://developer.meituan.com/ai-hub/skill-list/detail/44"
           }
         ],
         "verify": "由客户端列出所选工具，并查询一项你已授权的商家数据。个人消费者仅提出点外卖需求时，应先说明本条不匹配，不能宣称已能替你点单。",
         "checkedAt": "2026-11-05"
+      },
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://developer.meituan.com/ai-hub/skill-list/detail/44"
+        }
+      ],
+      "install": {
+        "cli": "npm install -g mt-tech"
       }
     },
     {
@@ -270,11 +301,32 @@
       },
       "evidence": {
         "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md",
-        "checkedAt": "2026-11-04",
-        "note": "淘宝自有 CDN 提供 SKILL.md，明确调用桌面客户端内的 MCP 工具。"
+        "checkedAt": "2026-11-05",
+        "note": "淘宝自有 CDN 的桌面客户端 Skill；本地登录后支持购物、下单及页面交互。"
       },
       "nameEn": "Taobao",
-      "summaryEn": "Search products and shop through the required desktop client."
+      "summaryEn": "Search products and shop through the required desktop client.",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md"
+        }
+      ],
+      "setup": {
+        "requirements": "需安装并登录淘宝桌面客户端，接入其本地 taobao-native MCP；官方 Skill 还使用 mcporter。不是无需客户端的远程购物服务。",
+        "steps": [
+          {
+            "text": "安装官方桌面客户端并在本地登录，然后按官方说明启用其 MCP。",
+            "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md"
+          },
+          {
+            "text": "加载官方 Skill；按文档确认 mcporter 可运行，并查看 mcporter list taobao-native --schema。",
+            "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md"
+          }
+        ],
+        "verify": "只搜索商品或读取页面，核对客户端身份；不加购、下单或发消息作首测。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "mcdonalds-cn",
@@ -306,11 +358,32 @@
       },
       "evidence": {
         "url": "https://open.mcd.cn/mcp/doc",
-        "checkedAt": "2026-11-04",
-        "note": "官方文档与其前端文档资源明确 HTTP 端点、Token、点餐与商城下单。"
+        "checkedAt": "2026-11-05",
+        "note": "麦当劳官方 MCP 文档；create-order 创建真实点餐订单并返回支付链接，需账号及 Token。"
       },
       "nameEn": "McDonald's China",
-      "summaryEn": "Order food and find restaurants and offers."
+      "summaryEn": "Order food and find restaurants and offers.",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://open.mcd.cn/mcp/doc"
+        }
+      ],
+      "setup": {
+        "requirements": "需麦当劳会员账号并在 MCP 控制台激活 Token；创建订单会产生真实餐品订单，支付另行确认。",
+        "steps": [
+          {
+            "text": "在官方 MCP 首页登录，按接入指南激活本人 Token。",
+            "url": "https://open.mcd.cn/mcp/doc"
+          },
+          {
+            "text": "按下方 HTTP 配置填 Authorization Bearer Token。",
+            "url": "https://open.mcd.cn/mcp/doc"
+          }
+        ],
+        "verify": "先查询餐品营养信息或门店菜单；不创建订单、兑换积分或领取权益作连通性首测。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "luckin",
@@ -346,30 +419,32 @@
       },
       "evidence": {
         "url": "https://open.lkcoffee.com/docs",
-        "checkedAt": "2026-11-04",
-        "note": "官方文档前端列出 MCP、CLI、Skill、Token 与门店商品和创建订单工具。"
+        "checkedAt": "2026-11-05",
+        "note": "瑞幸自有域名；createOrder 返回订单 ID 和支付链接，属于创建订单而非仅生成跳转地址。"
       },
       "nameEn": "Luckin Coffee",
       "summaryEn": "Order coffee and find stores.",
       "setup": {
-        "requirements": "面向消费者查询门店和咖啡点单；需要登录瑞幸 AI 开放平台并取得个人 Token。订单按商品价格付款；公开资料未确认接口本身的独立资费，不把它标成永久免费。",
+        "requirements": "需在瑞幸 AI 开放平台登录并取得 Token；下单会创建真实咖啡订单，返回支付链接不等于尚未下单。",
         "steps": [
           {
-            "text": "在官方开放平台登录并取得 Token，由你在本地填写，不发到公开对话或仓库。",
+            "text": "在官方平台登录并按 MCP 指引取得本人 Token。",
             "url": "https://open.lkcoffee.com/docs"
           },
           {
-            "text": "让 Agent 使用下方 MCP URL，并保留 Authorization: Bearer 认证头；也可以按官网导入 Skill，不需要三种方式一起安装。",
+            "text": "依所选客户端配置官方 MCP，或按官网选择 CLI/Skill；在本地保管凭据。",
             "url": "https://open.lkcoffee.com/docs"
-          },
-          {
-            "text": "CLI 是可选路径：先阅读官方安装脚本，再按它的说明安装；脚本默认覆盖已有安装，先检查本机是否已有版本。",
-            "url": "https://open.lkcoffee.com/install"
           }
         ],
-        "verify": "先列出工具，再进行一次门店或商品查询，核对结果是否属于当前账号可用的门店。不要用创建订单作为连通测试；下单和付款前需确认门店、商品、配送方式及金额。",
+        "verify": "先查询公开门店或商品信息；不要调用 createOrder 验证连接。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://open.lkcoffee.com/docs"
+        }
+      ]
     },
     {
       "id": "fliggy",
@@ -397,11 +472,32 @@
       },
       "evidence": {
         "url": "https://flyai.open.fliggy.com/",
-        "checkedAt": "2026-11-04",
-        "note": "飞猪自有域名直接发布该 GitHub Skill；仓库提供 CLI，搜索结果附预订跳转链接。"
+        "checkedAt": "2026-11-05",
+        "note": "飞猪官网直接链接官方 Skill 仓库；现有命令为搜索并返回预订链接，没有直接下单工具。"
       },
       "nameEn": "Fliggy",
-      "summaryEn": "Search flights, hotels, and attractions, with prices and booking links."
+      "summaryEn": "Search flights, hotels, and attractions, with prices and booking links.",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://flyai.open.fliggy.com/"
+        }
+      ],
+      "setup": {
+        "requirements": "现有 Skill/CLI 可进行搜索并返回预订跳转链接；体验可不填 Key，正式 Key 用于更充足及稳定的调用。推广者入驻是另外的账号及协议流程。",
+        "steps": [
+          {
+            "text": "按飞猪官网快速开始安装 Skill；CLI 如已安装无需重复安装。",
+            "url": "https://flyai.open.fliggy.com/docs/quickstart"
+          },
+          {
+            "text": "需要正式 Key 时在官方控制台申请，并用 flyai config set FLYAI_API_KEY 在本地配置。",
+            "url": "https://flyai.open.fliggy.com/"
+          }
+        ],
+        "verify": "运行一次酒店或机票搜索，核对价格与返回链接；不把搜索结果说成预订已完成。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "ly-tmc",
@@ -1759,18 +1855,39 @@
         "cli": "npx -y @alipay/agent-payment@latest install"
       },
       "evidence": {
-        "url": "https://aipay.alipay.com/.well-known/skills/index.json",
-        "checkedAt": "2026-11-04",
-        "note": "支付宝 AI付官方 Skill 索引发布支付处理技能，商户指南给出 CLI 安装与支付流程。"
+        "url": "https://aipay.alipay.com/merchant-guide",
+        "checkedAt": "2026-11-05",
+        "note": "支付宝官方指南与 Skill 索引；支付处理技能可提交支付，需先开通并授权。"
       },
       "nameEn": "Alipay",
-      "summaryEn": "Authorize payments, process transactions, check payment status, and integrate payment collection."
+      "summaryEn": "Authorize payments, process transactions, check payment status, and integrate payment collection.",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://aipay.alipay.com/merchant-guide"
+        }
+      ],
+      "setup": {
+        "requirements": "支付处理能力需开通支付宝支付服务并授权；商家接入还需已有收款服务。Node.js 22+、npm 10+，具体适配环境以官方当前说明为准。",
+        "steps": [
+          {
+            "text": "按官方命令安装支付处理 Skill，先在本地完成开通与授权。",
+            "url": "https://aipay.alipay.com/merchant-guide"
+          },
+          {
+            "text": "商家接入按指南生成交易信息，再交给支付宝支付处理技能；不能把支付技能当作普通短链工具。",
+            "url": "https://aipay.alipay.com/merchant-guide"
+          }
+        ],
+        "verify": "先查询支付能力开通状态；不提交支付或创建收费订单测试连接。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "wechat-pay",
       "name": "微信支付",
       "category": "finance",
-      "summary": "提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。",
+      "summary": "提供支付接入指导、工程编码与查单排障；读资料无需商户凭据，真实查单需授权。",
       "types": [
         "skill",
         "cli"
@@ -1779,7 +1896,7 @@
       "homepage": "https://pay.weixin.qq.com/",
       "appStoreId": 414478124,
       "color": "#07C160",
-      "risk": "read",
+      "risk": "write",
       "access": [],
       "status": "verified",
       "addedAt": "2026-11-04",
@@ -1789,13 +1906,13 @@
       },
       "evidence": {
         "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116",
-        "checkedAt": "2026-11-04",
-        "note": "官方接入 Skill 文档发布仓库；内置开发者 CLI 仅查询支付单和退款单。"
+        "checkedAt": "2026-11-05",
+        "note": "官网链接官方 Skill 仓库；新版含本地工程编码，CLI 查单不付款，按最高能力标为 write。"
       },
       "nameEn": "Weixin Pay",
-      "summaryEn": "Read integration guidance and examples without merchant credentials; querying payments and refunds requires authorization.",
+      "summaryEn": "Payment integration guidance, project code implementation and order-query troubleshooting; merchant credentials are needed for live queries.",
       "setup": {
-        "requirements": "面向支付接入开发与排障，不是替个人微信钱包付款。阅读 Skill 和查看 CLI 接口目录不需要商户交易凭据；实际查单需要对应商户或服务商身份、签名凭据与业务参数。CLI 要求 Node.js 20+。",
+        "requirements": "面向支付接入开发与排障；新版 Skill 可修改本地工程代码，须先确认改动范围。CLI 仅查支付单和退款单，不代替个人微信钱包付款。读资料无需商户凭据；真实查单需要商户或服务商身份、签名凭据及业务参数。CLI 要求 Node.js 20+。",
         "steps": [
           {
             "text": "把官方支付接入 Skill 按当前 Agent 的安装方式载入，再让 Agent 判断你需要接入指导、代码开发还是查单；境内与跨境 Skill 分开选择。",
@@ -1812,7 +1929,17 @@
         ],
         "verify": "版本和接口目录正常返回，只证明 CLI 可运行；接入指导需能引用对应官方文档。真实业务访问须在你授权后得到正确查单响应，不能把查看目录说成已连通商户。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116"
+        },
+        {
+          "name": "微信支付官方 Skill 更新记录",
+          "url": "https://github.com/wechatpay-apiv3/wechatpay-skills"
+        }
+      ]
     },
     {
       "id": "unionpay",
@@ -1834,9 +1961,9 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
-        "url": "https://open.unionpay.com/tjweb/solution/detail?solId=613",
-        "checkedAt": "2026-11-04",
-        "note": "中国银联官方方案页明确智能支付 MCP，并列出服务指引与安装包。"
+        "url": "https://yun.unionpay.com/solution/page/mcp",
+        "checkedAt": "2026-11-05",
+        "note": "银联云官方方案页；含签约支付与二维码支付，商户需完成相应注册及业务开通。"
       },
       "nameEn": "UnionPay",
       "summaryEn": "Connect agents to UnionPay payment services through MCP.",
@@ -1854,7 +1981,13 @@
         ],
         "verify": "先确认服务能启动并列出所需工具，再按官方测试环境与获授权的只读方式验证。不得用真实付款、签约或退款验证连接；缺少商户凭据时明确说明尚未完成。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://yun.unionpay.com/solution/page/mcp"
+        }
+      ]
     },
     {
       "id": "ifind",
@@ -2754,8 +2887,8 @@
       "status": "verified",
       "evidence": {
         "url": "https://open.tuniu.com/mcp/docs/guide/mcp-auth.html",
-        "checkedAt": "2026-11-04",
-        "note": "途牛官方开放平台文档；远程 OAuth 使用 /hybrid/mcp/，CLI 含内置 Skill。"
+        "checkedAt": "2026-11-05",
+        "note": "途牛官网文档导航链接官方组织；酒店工具可创建预订订单，远程走 OAuth、CLI 使用 API Key。"
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/tuniucorp/tuniu-cli",
@@ -2769,7 +2902,28 @@
       },
       "appStoreId": 447313708,
       "nameEn": "Tuniu",
-      "summaryEn": "Search and book hotels, flights, trains, tickets, cruises, and vacation packages."
+      "summaryEn": "Search and book hotels, flights, trains, tickets, cruises, and vacation packages.",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://open.tuniu.com/mcp/docs/guide/mcp-auth.html"
+        }
+      ],
+      "setup": {
+        "requirements": "需途牛开放平台账号。远程 MCP 用 OAuth 2.1；CLI 用 TUNIU_API_KEY。开放平台账号与手机号对应的会员绑定，预订会创建真实订单；普通会员身份不等于付费会员要求。",
+        "steps": [
+          {
+            "text": "支持 OAuth 的客户端可添加官方远程服务地址，登录后授权；不支持时按官方 DCR/CIMD 或预注册流程处理。",
+            "url": "https://open.tuniu.com/mcp/docs/guide/mcp-auth.html"
+          },
+          {
+            "text": "使用 CLI 则按官方仓库安装并在本地配置 TUNIU_API_KEY，不把 CLI 的旧端点套到远程 OAuth。",
+            "url": "https://github.com/tuniucorp/tuniu-cli"
+          }
+        ],
+        "verify": "先查询酒店或已有订单，确认账号及结果；不调用创建订单接口作首测。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "capybrowser",
@@ -3439,9 +3593,9 @@
       ],
       "status": "verified",
       "evidence": {
-        "url": "https://api.kuaidi100.com/document/how-to-use-mcp-service",
-        "checkedAt": "2026-11-04",
-        "note": "快递100官方 MCP、Skill 文档及 2026-10-21 上门取件 MCP 公告；寄件需 Key 加白。"
+        "url": "https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api",
+        "checkedAt": "2026-11-05",
+        "note": "快递100官方上门取件 MCP 公告；可真实寄件下单、线下付运费，需账号 Key 及商务加白。"
       },
       "addedAt": "2026-11-04",
       "repo": "https://github.com/kuaidi100-api/kuaidi100-MCP",
@@ -3454,7 +3608,28 @@
       },
       "appStoreId": 458270120,
       "nameEn": "Kuaidi100",
-      "summaryEn": "Track shipments, estimate shipping costs and delivery times, and place authorized pickup orders."
+      "summaryEn": "Track shipments, estimate shipping costs and delivery times, and place authorized pickup orders.",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api"
+        }
+      ],
+      "setup": {
+        "requirements": "查询需快递100账号及 Key；真实上门取件还需商务完成 Key 加白。该 MCP 可创建寄件订单，运费线下支付，不能因未在线扣款就按只读处理。",
+        "steps": [
+          {
+            "text": "登录官方 API 管理后台取得自己的授权 Key。",
+            "url": "https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api"
+          },
+          {
+            "text": "要寄件时先联系商务开通加白，按本人获授权的 SSE 配置连接；通用查询 HTTP 配置不能当作已开通寄件。",
+            "url": "https://api.kuaidi100.com/blogroll/kuaidi100-mcp-ai-agent-pickup-api"
+          }
+        ],
+        "verify": "先执行物流查询或经额度许可的价格估算；不创建或取消真实寄件单测试连接。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "pushplus",
@@ -5209,7 +5384,7 @@
       "evidence": {
         "url": "https://developer.cloud.tencent.com/mcp/server/11830",
         "checkedAt": "2026-11-05",
-        "note": "腾讯云数据库 PostgreSQL 团队发布并链接项目源码；源码含 Skill 包。"
+        "note": "腾讯云 PostgreSQL 团队当前 48 工具版，含创建实例及规格变更；与旧版 11774 的能力分开核对。"
       },
       "install": {
         "skill": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills"
@@ -5238,7 +5413,13 @@
         "checkedAt": "2026-11-05"
       },
       "addedAt": "2026-11-05",
-      "mark": "PG"
+      "mark": "PG",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://developer.cloud.tencent.com/mcp/server/11830"
+        }
+      ]
     },
     {
       "id": "tencent-vectordb",
@@ -5357,7 +5538,7 @@
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11755",
         "checkedAt": "2026-11-05",
-        "note": "腾讯云 MCP 广场署名并提供 Redis 专用服务；创建实例工具包含计费模式和购买时长参数。"
+        "note": "腾讯云官方 MCP 广场及源码；CreateInstances 创建计费实例，非只有查询与参数管理。"
       },
       "setup": {
         "requirements": "需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；创建实例可产生费用。腾讯云托管 MCP 连接后免费调用，不代表云资源免费。",
@@ -5379,7 +5560,13 @@
         "checkedAt": "2026-11-05"
       },
       "addedAt": "2026-11-05",
-      "mark": "R"
+      "mark": "R",
+      "sources": [
+        {
+          "name": "厂商官方复核来源",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11755"
+        }
+      ]
     },
     {
       "id": "aliyun-rds-copilot",

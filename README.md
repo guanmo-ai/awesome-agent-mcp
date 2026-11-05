@@ -78,7 +78,7 @@
 | [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver/base) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-map/) | 地点检索、地理编码与路线规划。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
 | [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-map/) | 地点搜索、路线规划与位置服务。 | MCP | 🟢 只读查询 | 需 API Key | ✅ 已核验 |
 | [滴滴](https://mcp.didichuxing.com/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/didi/) | 叫车、估价与行程查询。 | MCP · Skill | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
-| [美团](https://developer.meituan.com/ai-hub/mcp-list) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan/) | 商家订单、团购核销、商品与库存管理及经营数据查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需申请开通 | ✅ 已核验 |
+| [美团](https://developer.meituan.com/ai-hub/mcp-list) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan/) | 商家订单、团购核销、商品与库存管理及经营数据查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key、需申请开通 | ✅ 已核验 |
 | [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/taobao/) | 商品搜索与购物，需安装桌面客户端。 | MCP · Skill | 🔴 涉及资金 | 需桌面客户端、需授权账号 | ✅ 已核验 |
 | [麦当劳中国](https://open.mcd.cn/mcp/doc) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mcdonalds-cn/) | 点餐、门店与优惠查询。 | MCP | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
 | [瑞幸](https://open.lkcoffee.com/docs) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin/) | 咖啡点单与门店查询。 | MCP · Skill · CLI | 🔴 涉及资金 | 需授权账号、需 API Key | ✅ 已核验 |
@@ -176,7 +176,7 @@
 | 服务 | 能做什么 | 类型 | 权限 | 门槛 | 状态 |
 | :-- | :-- | :-- | :-- | :-- | :-- |
 | [支付宝](https://aipay.alipay.com/merchant-guide) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/alipay/) | 支付授权、交易支付与状态查询，辅助应用收款接入。 | Skill · CLI | 🔴 涉及资金 | 需授权账号 | ✅ 已核验 |
-| [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay/) | 提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。 | Skill · CLI | 🟢 只读查询 | 见独立页说明 | ✅ 已核验 |
+| [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay/) | 提供支付接入指导、工程编码与查单排障；读资料无需商户凭据，真实查单需授权。 | Skill · CLI | 🟡 可执行操作 | 见独立页说明 | ✅ 已核验 |
 | [银联](https://open.unionpay.com/tjweb/solution/detail?solId=613) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/unionpay/) | 让智能体通过 MCP 接入银联支付服务。 | MCP | 🔴 涉及资金 | 需授权账号、需申请开通 | ✅ 已核验 |
 | [同花顺 iFinD](https://mcp.51ifind.com/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ifind/) | 查询行情、财务、公告、宏观等金融数据。 | MCP · Skill | 🟢 只读查询 | 需授权账号、需 API Key、需会员或付费 | ✅ 已核验 |
 | [同花顺问财](https://search.10jqka.com.cn/skillhub) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai/) | 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 | Skill · CLI | 🟢 只读查询 | 需授权账号、需 API Key | ✅ 已核验 |
