@@ -132,3 +132,16 @@ test('办公权限来源必须是安全地址及布尔可读性', () => {
     rejects((_, s) => { s.setup.permissionEvidence = value; }, /setup.permissionEvidence/);
   }
 });
+
+test('费用来源和日期必须有效，费用信息安全转义', () => {
+  for (const cost of [null, {}, { text: '未知', url: 'javascript:alert(1)', checkedAt: '2026-11-05' }, { text: '未知', url: 'https://example.com', checkedAt: '2026-02-29' }, { text: '未知', url: 'https://example.com', checkedAt: '2026-11-05', quote: 'a'.repeat(81) }]) {
+    rejects((_, s) => { s.setup = { cost }; }, /setup.cost/);
+  }
+  const data = base();
+  const service = data.services[0];
+  service.setup = { cost: { text: '<script>alert(1)</script>', url: 'https://example.com/pricing', checkedAt: '2026-11-05', quote: '<img src=x>' } };
+  const html = renderDetails(service, { ...data, labels: LABELS, homepage: 'https://example.com/' }).install;
+  assert.doesNotMatch(html, /<script>|<img src=x>/);
+  assert.match(html, /&lt;script&gt;/);
+  assert.match(html, /&lt;img src=x&gt;/);
+});

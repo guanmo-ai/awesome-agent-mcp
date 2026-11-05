@@ -94,7 +94,12 @@
           }
         ],
         "verify": "先确认客户端列出高德工具，再用公开地点做一次只读查询，例如查询北京站地址。返回实际地点结果才说明可用；鉴权或配额报错时按控制台处理，安装成功不等于查询成功。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "MCP 接入文档未说明免费额度或价格；配额及费用需核对本人控制台，不能假定免费。",
+          "url": "https://developer.amap.com/api/mcp-server/gettingstarted",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "导航",
@@ -143,7 +148,14 @@
         "查坐标",
         "规划路线",
         "附近商家"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "官方说明认证开发者的基础服务有每日免费额度，高级服务需付费申请；商业使用另有授权要求，具体配额按账号和服务核对。",
+          "url": "https://lbs.baidu.com/faq/details?id=2294&title=2588",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "tencent-map",
@@ -248,7 +260,13 @@
           }
         ],
         "verify": "先列工具或查询路线、预估价格；不得用 taxi_create_order 验证连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "生产环境产生真实订单和行程费用，可先查询预估价；调试环境为模拟数据。官方接入文档未说明 MCP 调用费用。",
+          "url": "https://mcp.didichuxing.com/api",
+          "checkedAt": "2026-11-05",
+          "quote": "产生真实订单与费用"
+        }
       }
     },
     {
@@ -299,7 +317,13 @@
           }
         ],
         "verify": "由客户端列出所选工具，并查询一项你已授权的商家数据。个人消费者仅提出点外卖需求时，应先说明本条不匹配，不能宣称已能替你点单。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "官网对个人开发者写明实名认证后免费接入 MCP/Skills；这不代表商家业务、订单或其他服务免费。",
+          "url": "https://developer.meituan.com/aiLand/el",
+          "checkedAt": "2026-11-05",
+          "quote": "实名认证即开通，免费接入MCP/Skills"
+        }
       },
       "sources": [
         {
@@ -435,7 +459,12 @@
           }
         ],
         "verify": "先查询餐品营养信息或门店菜单；不创建订单、兑换积分或领取权益作连通性首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "点餐会产生商品及可能的配送费用，价格按订单计算；MCP 调用费用官方接入说明未说明。",
+          "url": "https://open.mcd.cn/mcp/doc",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "点汉堡",
@@ -499,7 +528,12 @@
           }
         ],
         "verify": "先查询公开门店或商品信息；不要调用 createOrder 验证连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "下单会创建真实咖啡订单；具体商品费用以订单为准。MCP 调用费用尚未核实，官方页面当前无法读取。",
+          "url": "https://open.lkcoffee.com/mcp",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -567,7 +601,12 @@
           }
         ],
         "verify": "运行一次酒店或机票搜索，核对价格与返回链接；不把搜索结果说成预订已完成。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "Skill 无需 Key 可开始使用；官方 README 未说明免费额度或付费单价，正式 Key 带来增强结果。预订链接对应商品费用另计。",
+          "url": "https://github.com/alibaba-flyai/flyai-skill",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "订机票",
@@ -1458,7 +1497,15 @@
         "写卡片",
         "找笔记",
         "随手记"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "MCP 包含在 Max 会员权益中，无需另付 MCP 费用；Agent 客户端本身可能需要订阅，会员价格以 App 为准。",
+          "url": "https://help.flomoapp.com/advance/mcp",
+          "checkedAt": "2026-11-05",
+          "quote": "flomo MCP 包含在 Max 会员权益中，不需要额外付费。"
+        }
+      }
     },
     {
       "id": "yinxiang",
@@ -1496,7 +1543,15 @@
         "整理资料",
         "搜索笔记",
         "保存灵感"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "生成 AuthToken 需要印象笔记会员，具体会员费用以官方套餐为准。",
+          "url": "https://guide.yinxiang.com/docs/yxai/skill.html",
+          "checkedAt": "2026-11-05",
+          "quote": "Yinxiang Skill 需要 印象笔记会员 才能生成 AuthToken。"
+        }
+      }
     },
     {
       "id": "youdao-note",
@@ -1607,7 +1662,14 @@
         "找文件",
         "整理云文件",
         "搜索资源"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "基础网盘操作与升级会员后可用的智能搜索、总结等能力不同；费用以官方会员规则为准。",
+          "url": "https://www.quark.cn/documents/help/quark-drive-skill",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "weiyun",
@@ -1829,7 +1891,15 @@
         "查老板",
         "查工商",
         "企业风险"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "注册赠送 500 积分（30 天有效）；普通用户每日赠送 100 积分，当日有效。不同工具每次消耗 1、3、5 或 20 积分，赠送不足可充值，1 元兑换 10 积分。",
+          "url": "https://agent.qcc.com/credits",
+          "checkedAt": "2026-11-05",
+          "quote": "1 元 = 10 积分"
+        }
+      }
     },
     {
       "id": "tianyancha",
@@ -2150,7 +2220,12 @@
           }
         ],
         "verify": "先运行 kling --help，再在你完成授权后运行 kling who_am_i，确认身份、可用模型与参数。生成图片或视频会消耗额度，不用付费生成来测试连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "每次提交图片或视频生成会消耗灵感值；实际消耗随工具和模型而异，提交前查看账户余额及计费口径。",
+          "url": "https://github.com/klingai-tech/skills/blob/main/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "cli": "npm i -g @klingai/cli-cn --registry=https://registry.npmjs.org",
@@ -3051,7 +3126,14 @@
         "查实时信息",
         "网络检索",
         "GLM搜索"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "此联网搜索 MCP 面向 Coding Plan 用户；套餐费用与额度以官方套餐页面为准。",
+          "url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "gitee",
@@ -3395,7 +3477,12 @@
           }
         ],
         "verify": "先让 MCP 读取已有接口文档并核对项目和接口名称；CLI 测试仅在确认环境与用例不会产生意外写入后运行。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "接入指南未说明统一价格；账号套餐与所用功能的费用需以官方方案核实。",
+          "url": "https://docs.apifox.com/6327888m0",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "mcp": {
@@ -3547,7 +3634,13 @@
           }
         ],
         "verify": "查询一趟已知航班的状态，核对航班号和日期，并确认账号调用额度。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "按积分计费，1 积分为人民币 0.01 元；各工具单价不同，协议初始化、工具列表和 getTodayDate 免费，失败调用不扣费。新用户注册赠送 50 元体验额度。",
+          "url": "https://ai.variflight.com/zh/docs/aviation",
+          "checkedAt": "2026-11-05",
+          "quote": "1 积分 = 0.01 元"
+        }
       },
       "sources": [
         {
@@ -5541,7 +5634,14 @@
         "查实时网页",
         "限定网站搜索",
         "垂直信息"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "免费额度与规则需登录腾讯云元宝搜索活动专区查看；调用规则按所开版本确认。",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11764",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "tencent-wedata",
@@ -6229,7 +6329,14 @@
         "执行SQL",
         "数据资产",
         "数据知识"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "Agent 数据网关支持按访问量或实例数量计费，另有预付费方案；按访问量每个 Agent 每天最低 9.9 元，含 200 次访问，超出每次 0.05 元。",
+          "url": "https://help.aliyun.com/zh/aidbs/product-overview/billing-items",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "baidu-search",
