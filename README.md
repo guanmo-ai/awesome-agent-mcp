@@ -4,10 +4,10 @@
 
 <h1 align="center">Awesome Agent MCP</h1>
 
-<p align="center"><b>国内官方 MCP · Skill · CLI 大全</b><br>让你的 Agent 接上高德、飞书、美团、支付宝……只收厂商官方出品，人看网页，AI 读 llms.txt。</p>
+<p align="center"><b>国内官方 MCP · Skill · CLI 大全</b><br>让 Agent 接上真实世界的服务。国内厂商官方 MCP / Skill / CLI 开源全景索引：交互式可视化检索，原生支持 Agent 读取。</p>
 
 <p align="center">
-  <a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><b>打开卡片网站 ↗</b></a> &nbsp;·&nbsp;
+  <a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><b>浏览服务索引 ↗</b></a> &nbsp;·&nbsp;
   <a href="#for-ai">给 AI 用</a> &nbsp;·&nbsp;
   <a href="https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=submit.yml">提交服务</a> &nbsp;·&nbsp;
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>

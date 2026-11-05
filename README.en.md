@@ -4,10 +4,10 @@
 
 <h1 align="center">Awesome Agent MCP</h1>
 
-<p align="center"><b>Official MCP Servers · Agent Skills · CLIs from China</b><br>Connect your agent to AMap, Feishu, Meituan, Alipay, and more. Vendor-published integrations for people and AI agents.</p>
+<p align="center"><b>Official MCP Servers · Agent Skills · CLIs from China</b><br>Connect agents to real-world services. An open-source directory of official MCP servers, skills and CLIs from Chinese vendors, with interactive visual search and native support for agent access.</p>
 
 <p align="center">
-  <a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><b>Browse the website ↗</b></a> &nbsp;·&nbsp;
+  <a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><b>Browse the directory ↗</b></a> &nbsp;·&nbsp;
   <a href="#for-ai">For AI agents</a> &nbsp;·&nbsp;
   <a href="https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=submit.yml">Submit a service</a> &nbsp;·&nbsp;
   <a href="https://x.com/guanmo_ai">Follow @guanmo_ai</a>

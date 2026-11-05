@@ -4,7 +4,7 @@
   "siteUrl": "https://guanmo-ai.github.io/awesome-agent-mcp/",
   "title": "Awesome Agent MCP",
   "tagline": "国内官方 MCP · Skill · CLI 大全",
-  "description": "让你的 Agent 接上高德、飞书、美团、支付宝……只收厂商官方出品，人看网页，AI 读 llms.txt。",
+  "description": "让 Agent 接上真实世界的服务。国内厂商官方 MCP / Skill / CLI 开源全景索引：交互式可视化检索，原生支持 Agent 读取。",
   "maintainer": {
     "name": "观默",
     "x": "guanmo_ai"
