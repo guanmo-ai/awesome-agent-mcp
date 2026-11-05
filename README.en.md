@@ -15,6 +15,14 @@
 
 <p align="center"><sub>93 services · 7 categories · 91 verified · Updated 2026-11-04</sub></p>
 
+## One Prompt for Your AI
+
+Copy this prompt into an internet-enabled agent such as Claude Code, Codex, or Cursor:
+
+```text
+Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt as an index of official MCP servers, skills, and CLIs from China. Find services for my needs, explain their requirements, and help configure them in my current agent. I will supply keys and authorize accounts myself.
+```
+
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP website preview" width="100%"></a></p>
 
 > Only MCP servers, agent skills, and CLIs **published by the service vendor** are included. Community wrappers are excluded.
@@ -22,6 +30,12 @@
 <a id="for-ai"></a>
 
 ## For AI Agents
+
+**Already know the service you want?** Send this prompt, using Feishu as an example:
+
+```text
+Read https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/ and help connect Feishu to my current agent using its official documentation. I will supply keys and authorize accounts myself.
+```
 
 Let your agent read the index directly:
 
@@ -35,6 +49,12 @@ You can also install the included skill [`agent-mcp-finder`](skills/agent-mcp-fi
 
 ```bash
 mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md -o ~/.claude/skills/agent-mcp-finder/SKILL.md
+```
+
+**Ask your AI to install the finder skill:**
+
+```text
+Read https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md and install agent-mcp-finder using my current agent's skill installation method. When I need to connect to a service from China, consult this official index first.
 ```
 
 <a id="toc"></a>
