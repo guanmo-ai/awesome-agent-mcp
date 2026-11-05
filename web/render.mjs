@@ -27,7 +27,7 @@ export function servicePrompt(home, s) {
 export function skillPrompt(url, name) {
   return `读取 ${url}\n检查内容后，按当前 Agent 的官方安装方式安装 ${name}，保留已有同名 Skill。\n如果不支持 Skill，就直接读取索引。安装后用一个查询验证能否找到官方服务，说明结果；这不代表服务已接通。`;
 }
-export const tokens = (q) => q.toLowerCase().split(/\s+/).filter(Boolean);
+export const tokens = (q) => q.toLowerCase().match(/[\p{Script=Han}]+|[a-z0-9]+(?:[._-][a-z0-9]+)*/gu) ?? [];
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 export function highlight(text, toks = []) {
   const safe = esc(text);
@@ -71,28 +71,35 @@ export function searchScore(s, toks, db) {
   if (!toks.length) return 1;
   let index = searchIndexes.get(db);
   if (!index) { index = new WeakMap(); searchIndexes.set(db, index); }
-  if (!index.has(s)) index.set(s, searchText(s, db));
-  const text = index.get(s);
-  if (s.name.toLowerCase() === toks.join(' ')) return 10000;
-  if (toks.every((t) => text.includes(t))) return 100;
+  if (!index.has(s)) {
+    const category = db.categories.find(c => c.id === s.category);
+    index.set(s, [
+      [s.name, s.nameEn], s.keywords ?? [], [s.summary, s.summaryEn],
+      [category?.name, category?.nameEn, ...s.types.map(t => db.labels.types[t]), db.labels.risk[s.risk], ...s.access.map(a => db.labels.access[a])],
+    ].map(field => field.filter(Boolean).map(text => text.toLowerCase())));
+  }
+  const fields = index.get(s);
+  if (fields[0].includes(toks.join(' '))) return 1e9;
+  const weights = [10000, 1000, 100, 1];
+  const includes = (text, term) => /^[a-z0-9]/.test(term) ? new RegExp(`(?:^|[^a-z0-9])${reEsc(term)}`).test(text) : text.includes(term);
   let score = 0;
   for (const t of toks) {
-    if (text.includes(t)) { score += 10; continue; }
-    if (!/^[\p{Script=Han}]{3,}$/u.test(t)) return 0;
-    const pairs = [...new Set(Array.from({ length: t.length - 1 }, (_, i) => t.slice(i, i + 2)))];
-    const hits = pairs.filter((p) => text.includes(p));
-    if (hits.length < Math.ceil(pairs.length / 2)) return 0;
-    score += hits.length + hits.filter((p) => s.name.includes(p)).length * 4;
+    let best = 0;
+    for (let i = 0; i < fields.length; i++) {
+      if (fields[i].some(text => includes(text, t))) best = Math.max(best, weights[i]);
+      else if (i < 3 && /^[\p{Script=Han}]{3,}$/u.test(t)) {
+        const chars = Array.from(t);
+        const pairs = [...new Set(chars.slice(1).map((char, j) => chars[j] + char))];
+        const hits = pairs.filter(pair => fields[i].some(text => text.includes(pair))).length;
+        if (hits >= Math.ceil(pairs.length / 2)) best = Math.max(best, weights[i] * hits / pairs.length / 2);
+      }
+    }
+    if (!best) return 0;
+    score += best;
   }
   return score;
 }
 export const textMatch = (s, toks, db) => searchScore(s, toks, db) > 0;
-function searchText(s, db) {
-  const c = db.categories.find((c) => c.id === s.category);
-  const l = db.labels;
-  const text = [s.name, s.nameEn, s.id, s.summary, s.summaryEn, ...(s.keywords ?? []), host(s.url), c?.name, c?.nameEn, ...s.types.map((t) => l.types[t]), l.risk[s.risk], ...s.access.map((a) => l.access[a])].join(' ').toLowerCase();
-  return text;
-}
 export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href, id, heading = href ? 'h3' : 'h4' } = {}) {
   return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"${id ? ` data-id="${esc(id)}"` : ''}` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}">
     <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><${heading}><span class="nm">${highlight(s.name, toks)}</span></${heading}><p class="domain">${esc(host(s.url))}</p></div>${s.status === 'verified' ? '' : badge(s)}</div>

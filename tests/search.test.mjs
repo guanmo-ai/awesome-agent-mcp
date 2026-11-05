@@ -15,10 +15,10 @@ test('自然语言查询找到对应服务，多个候选完整保留', () => {
 });
 
 test('原整串及空格多词命中不减少，名称完全相同仍第一', () => {
-  const queries = [...db.services.flatMap(s => [s.name, s.id]), '腾讯', '机票', 'MCP key', '地图 路线', '免费'];
+  const queries = [...db.services.map(s => s.name), '腾讯', '机票', 'MCP key', '地图 路线', '免费'];
   for (const q of queries) {
     const toks = render.tokens(q);
-    const oldText = s => [s.name, s.id, s.summary, render.host(s.url), ...Object.values(db.categories.find(c => c.id === s.category) ?? {}), ...s.types.map(t => LABELS.types[t]), LABELS.risk[s.risk], ...s.access.map(a => LABELS.access[a])].join(' ').toLowerCase();
+    const oldText = s => [s.name, s.summary, ...Object.values(db.categories.find(c => c.id === s.category) ?? {}), ...s.types.map(t => LABELS.types[t]), LABELS.risk[s.risk], ...s.access.map(a => LABELS.access[a])].join(' ').toLowerCase();
     for (const s of db.services.filter(s => toks.every(t => oldText(s).includes(t)))) assert.ok(rank(q).includes(s.id), `${q}: ${s.id}`);
   }
   for (const s of db.services) assert.equal(rank(s.name)[0], s.id);
@@ -30,4 +30,29 @@ test('keywords 限制为最多六个非空且不重复的短语', () => {
     const copy = structuredClone(data); copy.services[0].keywords = keywords;
     assert.match(validate(copy).join('\n'), /keywords/);
   }
+});
+
+test('日常能力查询、中英混写与排序不受网址和分类干扰', () => {
+  const cases = {
+    网约车: ['didi'], 高铁: ['tuniu'], 开会: ['tencent-meeting'], 画图: ['hunyuan-image'], 识别发票: ['textin'],
+    PDF转Markdown: ['mineru', 'textin'], 查公司: ['qcc', 'tianyancha'], 发通知: ['feishu', 'wecom'], 推送: ['wecom'],
+    导航: ['amap', 'baidu-map', 'tencent-map'], 听歌: ['netease-music'], 代码托管: ['gitee', 'jihulab'],
+    买东西: ['taobao'], 网购: ['taobao'], Git: ['gitee', 'jihulab'], 网盘: ['quark-drive', 'weiyun', 'baidu-netdisk'],
+    设计稿: ['modao'], 做视频: ['kling'], 日程: ['feishu', 'dingtalk'],
+    安排会议: ['tencent-meeting'], 看物流: ['kuaidi100'], 查违约风险: ['qcc'], 提取表格: ['textin'],
+  };
+  for (const [q, ids] of Object.entries(cases)) for (const id of ids) assert.ok(rank(q).slice(0, 3).includes(id), `${q}: ${id} in ${rank(q)}`);
+  assert.deepEqual(render.tokens('PDF转Markdown'), ['pdf', '转', 'markdown']);
+  for (const q of ['京东', '小红书', '拼多多', '12306', 'github.com']) assert.deepEqual(rank(q), [], q);
+  assert.ok(!rank('专利').includes('patsnap'), '不恢复已按收录范围排除的条目');
+});
+
+test('名称、关键词、摘要、分类依次排序，网址不会产生命中', () => {
+  const mock = { categories: [{ id: 'a', name: '测试' }], labels: LABELS };
+  const service = { name: '', nameEn: '', summary: '', types: [], access: [], category: 'a', url: 'https://test.example' };
+  const variants = [{ ...service, name: '测试' }, { ...service, keywords: ['测试'] }, { ...service, summary: '测试' }, service];
+  const scores = variants.map(s => render.searchScore(s, render.tokens('测试'), mock));
+  for (let i = 1; i < scores.length; i++) assert.ok(scores[i-1] > scores[i]);
+  assert.equal(render.searchScore(service, render.tokens('test.example'), mock), 0);
+  for (const s of db.services) assert.ok(s.keywords?.length > 0 && s.keywords.length <= 6, s.id);
 });
