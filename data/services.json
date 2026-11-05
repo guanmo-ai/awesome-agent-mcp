@@ -427,7 +427,22 @@
         "note": "官方公告明确开放 MCP、Skills 与 CLI；公开能力以查询、政策校验与方案推荐为主。"
       },
       "nameEn": "Tongcheng Shanglv",
-      "summaryEn": "Find business travel options, check travel policies, and recommend itineraries."
+      "summaryEn": "Find business travel options, check travel policies, and recommend itineraries.",
+      "setup": {
+        "requirements": "面向企业客户、开发者和生态伙伴；接入方案、企业账户权限及费用需向同程商旅确认，公开公告未给出通用安装配置。",
+        "steps": [
+          {
+            "text": "查看官方开放能力公告，确定需要 MCP、Skill 或 CLI 及要接入的企业系统。",
+            "url": "https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli"
+          },
+          {
+            "text": "在公告页面选择“联系我们”或填写企业咨询表，向同程商旅确认开通、授权、配置和费用，再按其提供的具体方案接入。",
+            "url": "https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli"
+          }
+        ],
+        "verify": "开通后先用企业授权范围内的差旅资源或差旅政策查询核对返回结果；具体测试方式以同程商旅提供的接口说明为准。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "feishu",
@@ -512,7 +527,26 @@
         "note": "钉钉官方能力中心列出消息、文档、表格、日志、日历等 MCP 服务。"
       },
       "nameEn": "DingTalk",
-      "summaryEn": "Query and manage messages, documents, spreadsheets, work logs, calendars, and tasks."
+      "summaryEn": "Query and manage messages, documents, spreadsheets, work logs, calendars, and tasks.",
+      "setup": {
+        "requirements": "需要钉钉账号；可见服务与数据受当前身份及组织授权约束。企业接入和费用以实际服务页面及组织权限为准。",
+        "steps": [
+          {
+            "text": "在钉钉开放平台能力中心了解所需 MCP 服务及工具范围。",
+            "url": "https://open.dingtalk.com/group"
+          },
+          {
+            "text": "参照钉钉官方 DWS 指南安装并登录；运行 dws mcp published tools，查看当前身份可用的已发布工具与输入格式。",
+            "url": "https://open.dingtalk.com/dingtalk-dev/wiki"
+          },
+          {
+            "text": "按实际发布的工具契约选择目标与参数，从只读工具开始；使用具体客户端连接时按相应服务页面说明完成授权。",
+            "url": "https://open.dingtalk.com/dingtalk-dev/wiki"
+          }
+        ],
+        "verify": "检查已发布工具列表，再查询当前账号可访问的一条文档或待办并与钉钉中内容核对。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "wecom",
@@ -573,7 +607,22 @@
         "note": "官方 MCP 与 Skill 文档明确账号授权、文档编辑和免费调用额度。"
       },
       "nameEn": "Tencent Docs",
-      "summaryEn": "Read and edit online documents and spreadsheets."
+      "summaryEn": "Read and edit online documents and spreadsheets.",
+      "setup": {
+        "requirements": "个人需以 QQ 或微信登录并授权对应腾讯文档账号。官方文档列出免费用户 2000 次/天、超级会员 20000 次/天、超级会员 Plus 40000 次/天；企业场景及实际权限以账号和产品说明为准。",
+        "steps": [
+          {
+            "text": "阅读官方 MCP 概述和服务使用须知，确认账号和调用频率限制。",
+            "url": "https://docs.qq.com/open/document/mcp/"
+          },
+          {
+            "text": "打开官方 MCP 使用指南，按所用客户端的说明添加服务，并登录 QQ 或微信授权要访问的腾讯文档账号。",
+            "url": "https://docs.qq.com/aio/p/scscyt11f44r7mn?p=zUl82NjI94qGab1NeQghFDF&nlc=1"
+          }
+        ],
+        "verify": "连接后先读取自己有权限的一份文档，核对名称或内容；未授权文件不可作为连通性依据。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "tencent-meeting",
@@ -633,7 +682,26 @@
         "note": "WPS 官方 MCP 介绍明确基于 WPS 365 API，企业需申请试用权限。"
       },
       "nameEn": "WPS",
-      "summaryEn": "Query and manage enterprise documents and collaboration data through WPS 365 APIs."
+      "summaryEn": "Query and manage enterprise documents and collaboration data through WPS 365 APIs.",
+      "setup": {
+        "requirements": "面向 WPS 365 企业；需申请 MCP 试用、创建企业自建应用，申请所需应用权限并取得用户访问凭证。公开文档未说明通用价格。",
+        "steps": [
+          {
+            "text": "在官方 MCP 简介中打开试用申请表，向 WPS 申请企业 MCP 权限。",
+            "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction"
+          },
+          {
+            "text": "按对接指南创建企业自建应用，在应用详情的权限管理申请目标工具所需权限，并按用户授权流程取得 access token；文档要求关闭接口签名。",
+            "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
+          },
+          {
+            "text": "选择支持 MCP 的客户端，按指南从工具列表选择对应端点，在请求头配置用户访问凭证。",
+            "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
+          }
+        ],
+        "verify": "先确认客户端显示服务与工具列表，再使用日历只读查询核对授权用户已有日程；不要以创建日程作为首测。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "kdocs",
@@ -937,7 +1005,26 @@
         "note": "有道云笔记官方通用 Skill 指南和导航确认 Skill/CLI，使用个人 API Key。"
       },
       "nameEn": "Youdao Note",
-      "summaryEn": "Read, write, and search notes, manage tasks, and clip web pages."
+      "summaryEn": "Read, write, and search notes, manage tasks, and clip web pages.",
+      "setup": {
+        "requirements": "适合个人有道云笔记账号；通用 Skill 依赖 YoudaoNote CLI 和个人 API Key。编程 Agent 的官方安装方式需要 Node.js；服务费用和额度以网易智能开发者平台为准。",
+        "steps": [
+          {
+            "text": "按所用 Agent 打开官方通用 Skill 安装指南：编程 Agent 下载并解压 Skill 包，再按指南用 npx skills 安装；有道龙虾最新版已内置。",
+            "url": "https://note.youdao.com/help-center/skill-guide.html"
+          },
+          {
+            "text": "按指南安装 YoudaoNote CLI，并在网易智能开发者平台获取或确认个人 API Key；按本机引导配置。",
+            "url": "https://note.youdao.com/help-center/skill-install-guide.html"
+          },
+          {
+            "text": "重启或重载相应 Agent，使新安装的 Skill 生效。",
+            "url": "https://note.youdao.com/help-center/skill-install-guide.html"
+          }
+        ],
+        "verify": "在 Agent 中输入“列出我有道云笔记中的笔记”，返回账号的笔记列表后再核对。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "quark-drive",
@@ -1247,7 +1334,26 @@
         "note": "巨量广告工具官方说明列出的 MCP 工具为授权账户和广告报表查询。"
       },
       "nameEn": "Ocean Engine",
-      "summaryEn": "Query authorized advertising accounts, campaign metrics, and reports."
+      "summaryEn": "Query authorized advertising accounts, campaign metrics, and reports.",
+      "setup": {
+        "requirements": "面向已获授权的巨量广告业务账户；需登录商业化账号、授权目标账户并申请 API Key。接口费用及账户权限以平台当前规则为准。",
+        "steps": [
+          {
+            "text": "打开巨量引擎 MCP 页面，在「使用方式」选择授权，登录商业化账号并勾选要查询的业务账户。",
+            "url": "https://open.oceanengine.com/mcp"
+          },
+          {
+            "text": "按页面提示在 API Key 管理中申请 Key，再复制系统按授权生成的客户端配置。",
+            "url": "https://open.oceanengine.com/api-key"
+          },
+          {
+            "text": "将配置添加到支持 Streamable HTTP 的 MCP 客户端；未勾选的账户不会获得对应操作权限。",
+            "url": "https://open.oceanengine.com/mcp"
+          }
+        ],
+        "verify": "先查询自己可操作的业务账户列表，核对返回账户与授权范围；再查询已有报表。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "mastergo",
@@ -1691,7 +1797,22 @@
         "note": "东方财富官方 Skill 广场前端提供 API Key、下载和使用入口，官方介绍包含自选与模拟组合管理。"
       },
       "nameEn": "East Money Miaoxiang",
-      "summaryEn": "Analyze financial news and data, screen stocks, and manage watchlists and simulated portfolios."
+      "summaryEn": "Analyze financial news and data, screen stocks, and manage watchlists and simulated portfolios.",
+      "setup": {
+        "requirements": "面向金融数据和资讯查询；需要东方财富账号及妙想 API Key。官方页面标注限时免费体验及每日领取限制，额度与后续费用以官方页面为准。",
+        "steps": [
+          {
+            "text": "在东方财富 App 打开妙想 Skills 页面并登录，领取 API Key；领取情况和额度以页面显示为准。",
+            "url": "https://marketing.dfcfs.com/views/finskillshub/index"
+          },
+          {
+            "text": "选择金融数据或资讯搜索 Skill，按详情中的下载或使用指引安装，并按其说明在本地配置 Key。",
+            "url": "https://marketing.dfcfs.com/views/finskillshub/index"
+          }
+        ],
+        "verify": "先查询一只公开股票的行情或一条资讯，核对名称与数据时间；自选或模拟组合操作前确认目标。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "aliyun",
@@ -1717,7 +1838,26 @@
         "note": "阿里云官方 OpenAPI MCP 指南明确账号、OAuth 或 AK 认证及云资源操作。"
       },
       "nameEn": "Alibaba Cloud",
-      "summaryEn": "Query and manage cloud resources."
+      "summaryEn": "Query and manage cloud resources.",
+      "setup": {
+        "requirements": "适用于阿里云账号管理已授权云资源。OAuth 需管理员安装并分配 OpenAPI MCP Server 官方应用，RAM 用户还需相应权限；云资源与 API 的计费以所用产品为准。",
+        "steps": [
+          {
+            "text": "登录 OpenAPI MCP 控制台，在 Core 标签获取账号专属 Streamable HTTP Endpoint；如需限定 API，可改用自定义版。",
+            "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide"
+          },
+          {
+            "text": "管理员在 RAM 控制台安装并分配 OpenAPI MCP Server 官方 OAuth 应用，再在控制台选择 OAuth 和对应客户端的配置模板。",
+            "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide"
+          },
+          {
+            "text": "将自己的端点与配置导入客户端，按浏览器提示完成授权；如走静态凭证，另按文档完成 RAM 策略和授权预检查。",
+            "url": "https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide"
+          }
+        ],
+        "verify": "连接后先查询当前有权限查看的云资源清单，核对账号和地域；不要以创建资源作为首次验证。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "tencent-cloud",
@@ -2145,9 +2285,7 @@
       "url": "https://docs.apifox.com/apifox-mcp-server",
       "homepage": "https://apifox.com/",
       "risk": "write",
-      "access": [
-        "key"
-      ],
+      "access": [],
       "status": "verified",
       "evidence": {
         "url": "https://docs.apifox.com/apifox-mcp-server",
@@ -2156,7 +2294,26 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Apifox",
-      "summaryEn": "Read API documentation and run API tests from the command line."
+      "summaryEn": "Read API documentation and run API tests from the command line.",
+      "setup": {
+        "requirements": "项目内文档需要有权限的 Apifox 账号及个人访问令牌；公开文档可走不使用个人令牌的路径。MCP 需 Node.js 18 或更高；CLI 所需环境和套餐以官方说明为准。",
+        "steps": [
+          {
+            "text": "读取项目文档时，在头像「账号设置 → API 访问令牌」创建令牌；进入项目基本设置可取得项目 ID。",
+            "url": "https://docs.apifox.com/6327888m0"
+          },
+          {
+            "text": "在项目接口的「AI 编程」入口复制 MCP 配置并添加到客户端。公开文档另可在已启用 MCP 的接口页面点击 MCP 按钮复制配置。",
+            "url": "https://docs.apifox.com/6327890m0"
+          },
+          {
+            "text": "需要运行测试时，按 CLI 文档安装，运行 apifox auth login 登录；在 Apifox 场景用例的 CI/CD 标签配置环境、生成令牌并复制对应命令。",
+            "url": "https://docs.apifox.com/install-and-run-cli"
+          }
+        ],
+        "verify": "先让 MCP 读取已有接口文档并核对项目和接口名称；CLI 测试仅在确认环境与用例不会产生意外写入后运行。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "caiyun-weather",
@@ -2424,7 +2581,26 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Feishu Project",
-      "summaryEn": "Query and update projects, work items, and related data within account permissions."
+      "summaryEn": "Query and update projects, work items, and related data within account permissions.",
+      "setup": {
+        "requirements": "需有飞书项目账号和目标空间访问权限；MCP 在个人权限范围内运行，可选择读写授权。版本及费用以组织实际订购为准。",
+        "steps": [
+          {
+            "text": "进入飞书项目，在左下角个人头像菜单选择“配置 MCP”，打开服务开关并选择所需的读或写授权。",
+            "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/qaq5d7ru"
+          },
+          {
+            "text": "按官方客户端指南选择 HTTP OAuth、HTTP Header 或 Stdio，配置所属域名及相应认证；OAuth 需要客户端支持动态 client_id。",
+            "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc"
+          },
+          {
+            "text": "完成客户端提示的授权并启用服务；例如 Codex CLI 保存配置后重启，首次调用按提示授权。",
+            "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc"
+          }
+        ],
+        "verify": "先查询有权限的空间基本信息或工作项列表，核对返回内容；写操作仅在确需修改时使用。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "doc2x",
@@ -2541,7 +2717,26 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Sealos",
-      "summaryEn": "Create development environments, manage databases, and query bills, monitoring data, and logs."
+      "summaryEn": "Create development environments, manage databases, and query bills, monitoring data, and logs.",
+      "setup": {
+        "requirements": "需要 Sealos 账号及目标工作空间的 KubeConfig；各地域提供的 MCP 服务不同，资源费用以工作空间和产品规则为准。",
+        "steps": [
+          {
+            "text": "登录 Sealos 控制台，在对应地域的 MCP 服务中复制需要使用的服务 URL。",
+            "url": "https://sealos.io/docs/AI/mcp/"
+          },
+          {
+            "text": "在控制台右上角头像下选择 KubeConfig，复制当前工作空间配置；按官方文档在本地进行 URL 编码。",
+            "url": "https://sealos.io/docs/AI/mcp/"
+          },
+          {
+            "text": "在支持 Streamable HTTP 的客户端添加该服务 URL，并将编码后的 KubeConfig 作为 Authorization 请求头的值。",
+            "url": "https://sealos.io/docs/AI/mcp/"
+          }
+        ],
+        "verify": "先列出服务工具并查询已有资源或监控，核对工作空间与地域；不创建开发环境或数据库作为首次测试。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "rongcloud",
@@ -3030,7 +3225,22 @@
       "addedAt": "2026-11-04",
       "appStoreId": 1190176119,
       "nameEn": "Guosen Securities Xiaoxin",
-      "summaryEn": "Query macroeconomic, market, and financial data, compare funds, and screen stocks and ETFs."
+      "summaryEn": "Query macroeconomic, market, and financial data, compare funds, and screen stocks and ETFs.",
+      "setup": {
+        "requirements": "面向金融数据查询，官方页面提供手机号验证码登录和 API Key；页面标注限时免费，具体额度及后续费用以官方为准。",
+        "steps": [
+          {
+            "text": "在小信 Skills 中心使用手机号验证码注册或登录，领取个人 API Key。",
+            "url": "https://www.guosen.com.cn/gs/xxskills/index.html"
+          },
+          {
+            "text": "选择已开放的行情或财务数据技能，点击「下载 Skill」，按使用说明在 Agent 中安装并配置 API Key；「敬请期待」项目暂不可用。",
+            "url": "https://www.guosen.com.cn/gs/xxskills/index.html"
+          }
+        ],
+        "verify": "先查询一只公开股票的行情，核对标的和行情时间；检查返回数据而非只看安装提示。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "cloudbase",
@@ -3562,7 +3772,26 @@
       "addedAt": "2026-11-04",
       "repo": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart",
       "nameEn": "Tencent Hunyuan Image",
-      "summaryEn": "Generate and edit images, expand images, and enhance clarity."
+      "summaryEn": "Generate and edit images, expand images, and enhance clarity.",
+      "setup": {
+        "requirements": "需要腾讯云账号、已开通且仍可用的混元生图服务、具备相应权限的 SecretId / SecretKey 和 Docker。接口按产品规则计费，调用前确认剩余额度及迁移状态。",
+        "steps": [
+          {
+            "text": "先在腾讯云确认混元生图服务是否可开通及计费状态，并在访问管理控制台获取具备所需权限的密钥。",
+            "url": "https://cloud.tencent.com/document/product/1668/90896"
+          },
+          {
+            "text": "按 aiart 源码 README 构建 Docker 镜像，在本地 .env 配置密钥和地域；启动时将容器的 9000 端口映射到本机，例如 docker run -it -p 127.0.0.1:9000:9000 --env-file .env mcp-server-aiart:latest。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart"
+          },
+          {
+            "text": "按源码说明在 MCP 客户端配置 http://127.0.0.1:9000/sse；如果修改了容器端口，需同步调整端口映射和地址。",
+            "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart"
+          }
+        ],
+        "verify": "先确认 MCP 已连接并列出图像工具；实际生成图片会消耗额度或产生费用，确认后再做一次最小调用并核对结果。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "yuanbao-search",
@@ -3935,7 +4164,26 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Trip.Biz",
-      "summaryEn": "Query travel policies, flights, hotels, and itineraries, and retrieve travel and compliance data."
+      "summaryEn": "Query travel policies, flights, hotels, and itineraries, and retrieve travel and compliance data.",
+      "setup": {
+        "requirements": "面向企业客户和生态伙伴；需申请开通并确认企业数据权限。平台分标准、高级、定制层，价格和实际能力以携程商旅确认结果为准。",
+        "steps": [
+          {
+            "text": "阅读携程商旅 AI 开放平台说明，了解标准、高级和定制层的差异。",
+            "url": "https://ct.ctrip.com/thinktanks/235566117077549"
+          },
+          {
+            "text": "点击公告底部“立即申请”进入 MCP 开放平台，按页面要求申请，并向携程确认企业授权、配置和费用。",
+            "url": "https://ct.ctrip.com/thinktanks/235566117077549"
+          },
+          {
+            "text": "取得开通方案后，按照携程提供的企业专属说明将 MCP 接入企业 AI。",
+            "url": "https://openapi.ctripbiz.com/#/advertise/mcp"
+          }
+        ],
+        "verify": "开通后先按携程提供的工具说明查询一条授权范围内的差旅政策，核对返回结果。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "aliyun-sls",
