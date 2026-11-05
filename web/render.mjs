@@ -62,17 +62,30 @@ export const badge = (s) => s.status === 'verified'
   ? `<span class="vbadge verified" title="已确认为厂商官方出品">${SEAL}官方已核验</span>`
   : `<span class="vbadge unverified" title="来自公开整理，尚未逐条确认官方身份">${ICON.clock}待核验</span>`;
 const searchIndexes = new WeakMap();
-export function textMatch(s, toks, db) {
-  if (!toks.length) return true;
+export function searchScore(s, toks, db) {
+  if (!toks.length) return 1;
   let index = searchIndexes.get(db);
   if (!index) { index = new WeakMap(); searchIndexes.set(db, index); }
   if (!index.has(s)) index.set(s, searchText(s, db));
-  return toks.every((t) => index.get(s).includes(t));
+  const text = index.get(s);
+  if (s.name.toLowerCase() === toks.join(' ')) return 10000;
+  if (toks.every((t) => text.includes(t))) return 100;
+  let score = 0;
+  for (const t of toks) {
+    if (text.includes(t)) { score += 10; continue; }
+    if (!/^[\p{Script=Han}]{3,}$/u.test(t)) return 0;
+    const pairs = [...new Set(Array.from({ length: t.length - 1 }, (_, i) => t.slice(i, i + 2)))];
+    const hits = pairs.filter((p) => text.includes(p));
+    if (hits.length < Math.ceil(pairs.length / 2)) return 0;
+    score += hits.length + hits.filter((p) => s.name.includes(p)).length * 4;
+  }
+  return score;
 }
+export const textMatch = (s, toks, db) => searchScore(s, toks, db) > 0;
 function searchText(s, db) {
   const c = db.categories.find((c) => c.id === s.category);
   const l = db.labels;
-  const text = [s.name, s.id, s.summary, host(s.url), c?.name, c?.nameEn, ...s.types.map((t) => l.types[t]), l.risk[s.risk], ...s.access.map((a) => l.access[a])].join(' ').toLowerCase();
+  const text = [s.name, s.nameEn, s.id, s.summary, s.summaryEn, ...(s.keywords ?? []), host(s.url), c?.name, c?.nameEn, ...s.types.map((t) => l.types[t]), l.risk[s.risk], ...s.access.map((a) => l.access[a])].join(' ').toLowerCase();
   return text;
 }
 export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href, id, heading = href ? 'h3' : 'h4' } = {}) {
