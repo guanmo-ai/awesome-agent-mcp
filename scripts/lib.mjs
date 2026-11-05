@@ -89,6 +89,7 @@ export function validate(data) {
     if (isObject(s.evidence)) {
       if (s.evidence.quote !== undefined && (typeof s.evidence.quote !== 'string' || !s.evidence.quote.trim() || Array.from(s.evidence.quote).length > 80)) err(w, 'evidence.quote 必须是80字以内的非空原文');
       if (s.evidence.agentReadable !== undefined && typeof s.evidence.agentReadable !== 'boolean') err(w, 'evidence.agentReadable 必须是布尔值');
+      if (s.evidence.quoteMissingReason !== undefined && (typeof s.evidence.quoteMissingReason !== 'string' || !s.evidence.quoteMissingReason.trim())) err(w, 'evidence.quoteMissingReason 必须是非空字符串');
     }
     if (s.status === 'verified') {
       if (!isHttps(s.evidence?.url)) err(w, '已核验条目需要 evidence.url');

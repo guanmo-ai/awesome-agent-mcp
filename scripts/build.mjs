@@ -234,8 +234,9 @@ function serviceMarkdown(s) {
     ...(!s.install ? ['配置尚未整理，请读取官方文档，不要猜测端点或参数。', ''] : []),
     ...(s.install?.mcp?.transport === 'sse' ? ['Codex 远程配置只支持 Streamable HTTP，不能直接使用此 SSE 地址。', ''] : []),
     '## 核验与来源', '',
-    ...(s.evidence ? [`${s.evidence.checkedAt} 核对官方身份：[依据](${s.evidence.url})${s.evidence.note ? `。${s.evidence.note}` : ''}`, ''] : ['待核验。', '']),
+    ...(s.evidence?.url && s.evidence?.checkedAt ? [`${s.evidence.checkedAt} 核对官方身份：[依据](${s.evidence.url})${s.evidence.note ? `。${s.evidence.note}` : ''}`, ''] : ['待核验。', '']),
     ...(s.evidence?.quote ? [`官方原文摘录（${s.evidence.checkedAt}，来自上述依据）：`, '', codeBlock(s.evidence.quote), ''] : []),
+    ...(!s.evidence?.quote && s.evidence?.quoteMissingReason ? [`无法摘录原因：${s.evidence.quoteMissingReason}`, ''] : []),
     ...(s.evidence?.agentReadable === false ? [s.evidence?.quote ? '官方页 Agent 可能读不到；上述原文摘录已覆盖的内容无需再读取官方页，未覆盖的信息仍须核实，不要猜测。' : '官方页 Agent 可能读不到，且尚无可用原文摘录；未覆盖的信息仍须核实，不要猜测。', ''] : []),
     ...(s.sources ?? []).map((source) => `- [${source.name}](${source.url})`), '',
     `[使用说明与免责声明](${config.siteUrl}#disclaimer)`, '',
@@ -268,6 +269,27 @@ function publicJson() {
     ) + '\n'
   );
 }
+
+// Agent 路径在两种构建模式下都从实际 Markdown 内容检查，不依赖 dist 已存在。
+const agentPages = new Map(live.map(s => [s.id, serviceMarkdown(s)]));
+const agentErrors = [];
+for (const s of live) {
+  const page = agentPages.get(s.id);
+  if (s.install) {
+    const code = snippets(s);
+    if ((!s.install.mcp && !s.install.cli && !s.install.skill) || (s.install.mcp && !code.some(([label]) => label === 'JSON')) || (s.install.cli && !code.some(([label, text]) => label === 'CLI' && text === s.install.cli)) || code.some(([label, text]) => !text || !page.includes(`### ${label}`) || !page.includes(text)) || (s.install.skill && !page.includes(s.install.skill))) agentErrors.push(`${s.id}: 缺少安装配置`);
+    if (!s.setup?.cost || !page.includes('## 费用') || !page.includes(s.setup.cost.text)) agentErrors.push(`${s.id}: 缺少费用说明`);
+    if ((!s.evidence?.quote && !s.evidence?.quoteMissingReason) || (s.evidence?.quote && !page.includes(s.evidence.quote)) || (!s.evidence?.quote && !page.includes(s.evidence?.quoteMissingReason ?? ''))) agentErrors.push(`${s.id}: 缺少官方摘录或无法摘录的原因`);
+  }
+  if (s.category === 'office' && (!s.setup?.requirements || !page.includes(s.setup.requirements))) agentErrors.push(`${s.id}: 缺少办公权限说明`);
+}
+if (agentErrors.length) {
+  console.error(`Agent 页面结构缺失（${agentErrors.length} 处）：\n- ${agentErrors.join('\n- ')}`);
+  process.exit(1);
+}
+const withInstall = live.filter(s => s.install);
+const knownCost = withInstall.filter(s => !/未核实|未能确认|未说明|无法直接读取|尚未核实/.test(s.setup.cost.text)).length;
+console.log(`Agent 路径覆盖：安装 ${withInstall.length}/${live.length}；费用未标未核实 ${knownCost}/${withInstall.length}；官方摘录 ${withInstall.filter(s => s.evidence?.quote).length}/${withInstall.length}；办公权限 ${live.filter(s => s.category === 'office' && s.setup?.requirements).length}/${live.filter(s => s.category === 'office').length}。`);
 
 const outputs = { 'README.md': readme(), 'README.en.md': readme(true), 'llms.txt': llms(), 'llms-full.txt': llmsFull() };
 
@@ -331,7 +353,7 @@ if (process.argv.includes('--check')) {
     const dir = join(dist, 's', service.id);
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, 'index.html'), renderServicePage(service, db, config, template, version));
-    writeFileSync(join(dist, 's', `${service.id}.md`), serviceMarkdown(service));
+    writeFileSync(join(dist, 's', `${service.id}.md`), agentPages.get(service.id));
   }
   writeFileSync(join(dist, 'sitemap.xml'), sitemap(db));
   writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${config.siteUrl}sitemap.xml\n`);

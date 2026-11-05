@@ -71,7 +71,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
 test('待核验服务的标题和描述不保证官方身份', (t) => {
   const fixture = buildFixture((data) => {
     data.services[0].status = 'unverified';
-    delete data.services[0].evidence;
+    data.services[0].evidence = { quoteMissingReason: '官方身份待核验。' };
   });
   t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
   const service = fixture.data.services[0];
@@ -108,7 +108,7 @@ test('静态详情转义恶意文字、属性、配置与 JSON-LD 的 script 结
     s.name = '"><script>alert(1)</script>';
     s.summary = '<img src=x onerror=alert(2)>';
     s.status = 'verified';
-    s.evidence = { url: 'https://example.com/evidence', checkedAt: '2026-11-04', note: '<img src=x onerror=alert(3)>' };
+    s.evidence = { url: 'https://example.com/evidence', checkedAt: '2026-11-04', note: '<img src=x onerror=alert(3)>', quoteMissingReason: '测试缺少摘录。' };
     s.sources = [{ name: '<img src=x onerror=alert(4)>', url: 'https://example.com/source' }];
     s.install = { mcp: { transport: 'stdio', command: 'node', args: ['</script><script>alert(5)</script>'] } };
   });
@@ -149,7 +149,7 @@ test('两个 README 生成相同的公开目录，英文内容完整且顶部互
 
 
 test('接入指引同步到静态详情、嵌入目录和 Agent 文本', (t) => {
-  const setup = { requirements: '先准备可访问的实例，费用按所选部署确认。', steps: [{ text: '按官方入口配置。', url: 'https://example.com/setup' }], verify: '执行只读查询，检查返回值。', checkedAt: '2026-11-05' };
+  const setup = { requirements: '先准备可访问的实例，费用按所选部署确认。', steps: [{ text: '按官方入口配置。', url: 'https://example.com/setup' }], verify: '执行只读查询，检查返回值。', checkedAt: '2026-11-05', cost: { text: '官方未说明', url: 'https://example.com/cost', checkedAt: '2026-11-05' } };
   const fixture = buildFixture((data) => { data.services[0].setup = setup; data.services[0].access = []; });
   t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
   const id = fixture.data.services[0].id;
@@ -228,7 +228,7 @@ test('办公权限说明显示对应官方原文与来源', (t) => {
 });
 
 test('官方页不可读且没有摘录时不宣称已有依据', (t) => {
-  const fixture = buildFixture(data => { data.services[0].evidence = { url: 'https://example.com/source', checkedAt: '2026-11-05', agentReadable: false }; });
+  const fixture = buildFixture(data => { data.services[0].evidence = { url: 'https://example.com/source', checkedAt: '2026-11-05', agentReadable: false, quoteMissingReason: '官方页面需要登录。' }; });
   t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
   const body = fixture.read('s/amap.md');
   assert.ok(body.includes('尚无可用原文摘录'));
