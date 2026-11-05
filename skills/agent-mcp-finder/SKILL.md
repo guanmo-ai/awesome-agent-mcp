@@ -9,11 +9,9 @@ description: 查找中国服务厂商官方出品的 MCP Server、Agent Skill �
 
 ## 数据来源
 
-按顺序尝试，拿到一个即可：
+先读 `https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt` 简明索引，再按需求读取其中链接的 `s/<id>.md`，获取该服务的完整配置、接入步骤与官方出处。
 
-1. `https://guanmo-ai.github.io/awesome-agent-mcp/services.json`
-2. `https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/data/services.json`
-3. `https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt`（纯文本版本）
+需要程序筛选或更多字段时读 `https://guanmo-ai.github.io/awesome-agent-mcp/services.json`；备用数据地址为 `https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/data/services.json`。需要一次读取全部接入指引时才读 `https://guanmo-ai.github.io/awesome-agent-mcp/llms-full.txt`。
 
 `services.json` 中每个服务的主要字段：
 

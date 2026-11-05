@@ -24,7 +24,7 @@
 **直接复制下面整段，发给你的 Agent。** 不用改链接、填写占位符或先装 Skill；需要 Agent 能读取网页。
 
 ```text
-读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt，作为查找官方 MCP、Skill 和 CLI 的参考索引。
+读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt，作为查找官方 MCP、Skill 和 CLI 的参考索引；找到服务后读取它链接的 Markdown，获取完整配置与步骤。
 根据我在末尾或后续消息中提供的服务名或需求查找；如果我还没说，先问我想找什么。
 核对厂商官方文档，告诉我能做什么、账号权限、费用，以及当前 Agent 是否支持和如何接入。未收录不代表不存在，不确定的信息不要猜。
 本索引仅供参考，已核验不等于实测或安全保证。需要安装或配置时按我的授权执行，密钥和登录由我在本地完成；下单、付款前让我确认。
@@ -42,6 +42,7 @@
 | 方式 | 地址 |
 | :-- | :-- |
 | llms.txt（适合直接读） | https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt |
+| 全文（按需） | https://guanmo-ai.github.io/awesome-agent-mcp/llms-full.txt |
 | JSON 数据（适合程序） | https://guanmo-ai.github.io/awesome-agent-mcp/services.json |
 | GitHub 原始文件 | https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/data/services.json |
 
