@@ -567,7 +567,9 @@ a.card { color: inherit; text-decoration: none; }
 
 /* ── 交互动效（web/fx.mjs）──────────────────────────────── */
 :root { --spring: cubic-bezier(.34, 1.36, .64, 1); }
+.chip-ind { display: none; }
 
+@media (prefers-reduced-motion: no-preference) {
 /* 按压反馈：所有可点击控件统一缩放 */
 .chip, .seg button, .toggle, .kbar, .btn-star, .btn-follow, .icon-btn, .pal-item, .dtab, .files a, .ct-bar button, .s-close, .step, .crumbs a { transition-property: transform, background, color, border-color, box-shadow, opacity; transition-duration: .15s; }
 .chip:active, .seg button:active, .toggle:active, .kbar:active, .btn-star:active, .btn-follow:active, .icon-btn:active, .ct-bar button:active, .s-close:active { transform: scale(.94); }
@@ -599,7 +601,7 @@ a.card { color: inherit; text-decoration: none; }
 
 /* 分类选中底色滑动 */
 .chips.has-ind { position: relative; }
-.chip-ind { position: absolute; left: 0; top: 0; z-index: 0; border-radius: 10px; background: var(--text); pointer-events: none; transition: transform .4s var(--spring), width .4s var(--spring), opacity .2s; }
+.chip-ind { display: block; position: absolute; left: 0; top: 0; z-index: 0; border-radius: 10px; background: var(--text); pointer-events: none; transition: transform .4s var(--spring), width .4s var(--spring), opacity .2s; }
 .chips.has-ind .chip { position: relative; z-index: 1; }
 .chips.has-ind .chip[aria-pressed="true"] { background: transparent; border-color: transparent; }
 
@@ -607,6 +609,7 @@ a.card { color: inherit; text-decoration: none; }
 .fx .orbit { translate: calc(var(--px, 0) * -22px) calc(var(--py, 0) * -16px); transition: translate .9s var(--ease); }
 .fx .aurora { translate: calc(var(--px, 0) * 36px) calc(var(--py, 0) * 28px); transition: translate 1.4s var(--ease); }
 .fx .hero-grid-bg { translate: calc(var(--px, 0) * 10px) calc(var(--py, 0) * 8px); transition: translate 1.2s var(--ease); }
+}
 
 /* 有弹窗时暂停背景循环动画 */
 .modal-open .aurora i, .modal-open .core-ring, .modal-open .shine, .modal-open .live { animation-play-state: paused; }

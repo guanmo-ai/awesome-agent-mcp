@@ -1,20 +1,32 @@
 // 交互动效（设计：Claude）。只负责视觉反馈，不改变任何业务状态；
 // 「减少动态效果」开启时全部跳过，脚本失败时页面照常可用。
-import { motionReduced } from './motion.mjs';
+import { motionReduced, onMotionChange } from './motion.mjs';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const EASE = 'cubic-bezier(0.1, 0.9, 0.2, 1)';
 const canVT = () => !!document.startViewTransition && !motionReduced();
+let transition;
 
 export function initFx() {
   const root = document.documentElement;
   watchModals(root);
-  if (motionReduced()) return;
-  root.classList.add('fx');
-  reveal();
-  chipIndicator();
-  parallax();
+  let started = false;
+  const sync = () => {
+    root.classList.toggle('fx', !motionReduced());
+    if (motionReduced()) {
+      transition?.skipTransition();
+      $$('.fx-reveal').forEach((el) => el.classList.add('in'));
+      return;
+    }
+    if (started) return;
+    started = true;
+    reveal();
+    chipIndicator();
+    parallax();
+  };
+  onMotionChange(sync);
+  sync();
 }
 
 // 切换深浅色：新主题从按钮位置以圆形展开。
@@ -25,12 +37,12 @@ export function themeTransition(button, apply) {
   const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
   const root = document.documentElement;
   root.classList.add('vt-theme');
-  const vt = document.startViewTransition(apply);
-  vt.ready.then(() => root.animate(
+  const vt = transition = document.startViewTransition(apply);
+  vt.ready.then(() => !motionReduced() && root.animate(
     { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
     { duration: 520, easing: EASE, pseudoElement: '::view-transition-new(root)' },
   )).catch(() => {});
-  vt.finished.finally(() => root.classList.remove('vt-theme'));
+  vt.finished.finally(() => { if (transition === vt) transition = undefined; root.classList.remove('vt-theme'); });
 }
 
 // 打开详情：卡片上的图标飞进弹窗标题位置。
@@ -38,13 +50,14 @@ export function morphFromCard(card, open) {
   const from = card?.querySelector('.logo');
   if (!canVT() || !from) { open(); return; }
   from.style.viewTransitionName = 'svc-logo';
-  const vt = document.startViewTransition(() => {
+  const vt = transition = document.startViewTransition(() => {
     from.style.viewTransitionName = '';
     open();
     const to = $('dialog[open] .s-id .logo');
     if (to) to.style.viewTransitionName = 'svc-logo';
   });
   vt.finished.finally(() => {
+    if (transition === vt) transition = undefined;
     from.style.viewTransitionName = '';
     const to = $('dialog .s-id .logo');
     if (to) to.style.viewTransitionName = '';
@@ -56,6 +69,7 @@ function watchModals(root) {
   const sync = () => root.classList.toggle('modal-open', !!$('dialog[open]'));
   const mo = new MutationObserver(sync);
   $$('dialog').forEach((d) => mo.observe(d, { attributes: true, attributeFilter: ['open'] }));
+  sync();
 }
 
 // 滚动到视口时，各板块依次浮现；分类中的卡片逐张进入。
@@ -109,6 +123,7 @@ function parallax() {
   let raf = 0, x = 0, y = 0;
   const set = () => { raf = 0; hero.style.setProperty('--px', x.toFixed(3)); hero.style.setProperty('--py', y.toFixed(3)); };
   hero.addEventListener('pointermove', (e) => {
+    if (motionReduced()) return;
     const r = hero.getBoundingClientRect();
     x = (e.clientX - r.left) / r.width - 0.5;
     y = (e.clientY - r.top) / r.height - 0.5;
