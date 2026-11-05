@@ -20,7 +20,12 @@
 复制下面这句话，发给 Claude Code、Codex、Cursor 等能联网的 Agent：
 
 ```text
-读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt，把它作为国内官方 MCP、Skill、CLI 的服务索引；根据我的需求找到合适的服务，说明接入门槛，并帮我配置到当前 Agent，Key 和账号授权由我完成。
+我的需求：[换成你想完成的事，例如：整理飞书文档]
+先读取 https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt
+根据需求筛选官方接入，核对厂商文档，说明适用对象、账号或费用门槛，以及当前 Agent 是否支持。
+已核验仅代表官方身份，未收录不代表不存在；缺少的信息请明确说明，不要编造配置。
+选定服务后，按我的授权帮助配置并验证连接；Key 和账号授权由我在本地完成，不要让我把密钥发到对话里。
+最后报告实际验证结果和剩余步骤；下单、付款前由我确认。
 ```
 
 <p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP 网站预览" width="100%"></a></p>
@@ -34,7 +39,10 @@
 **已经知道要接哪个服务？** 直接发这一句，以飞书为例：
 
 ```text
-读取 https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/，按官方文档帮我把飞书接入当前 Agent，Key 和账号授权由我完成。
+我想把飞书接入当前 Agent。
+读取 https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/
+核对官方文档，说明账号权限和接入步骤，按我的授权配置并验证。
+Key 和账号授权由我在本地完成。
 ```
 
 不用复制粘贴清单，直接让你的 Agent 来读：
@@ -45,17 +53,15 @@
 | JSON 数据（适合程序） | https://guanmo-ai.github.io/awesome-agent-mcp/services.json |
 | GitHub 原始文件 | https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/data/services.json |
 
-也可以装上仓库自带的 Skill [`agent-mcp-finder`](skills/agent-mcp-finder/SKILL.md)。装好后说「帮我点杯瑞幸」，Agent 会先查这份索引，告诉你有没有官方接入、需要什么 Key、配置怎么写。以 Claude Code 为例：
-
-```bash
-mkdir -p ~/.claude/skills/agent-mcp-finder && curl -fsSL https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md -o ~/.claude/skills/agent-mcp-finder/SKILL.md
-```
-
-**让 AI 帮你安装查找 Skill：**
+**以后也想随时查？** 可选安装 [`agent-mcp-finder`](skills/agent-mcp-finder/SKILL.md)。复制下面的提示词，让 Agent 按自己的安装方式处理；无需先学终端命令。这个 Skill 用来查找接入，不会自动接通所有服务。
 
 ```text
-读取 https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md，按当前 Agent 的 Skill 安装方式安装 agent-mcp-finder；以后我需要接入国内服务时，先查询这份官方索引。
+读取 https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/skills/agent-mcp-finder/SKILL.md
+检查内容后，按当前 Agent 的官方安装方式安装 agent-mcp-finder，保留已有同名 Skill。
+如果不支持 Skill，就直接读取索引。安装后用一个查询验证能否找到官方服务，说明结果；这不代表服务已接通。
 ```
+
+**接下来会发生什么？** Agent 先核对适用对象、账号和费用门槛，再按你的授权接入；你完成本地登录或填写 Key 后，它应报告实际连接验证结果。已核验仅代表官方身份，缺少信息不代表免费、即装即用或没有官方接入。
 
 <a id="toc"></a>
 

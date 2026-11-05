@@ -269,33 +269,22 @@ mark { background: color-mix(in srgb, var(--a2) 24%, transparent); color: inheri
 .bento-card > .btn { align-self: flex-start; margin-top: auto; }
 .b-chat { grid-row: span 2; }
 .bento-card header { display: flex; gap: 14px; align-items: flex-start; }
-.step { font: 600 12px/1 var(--mono); color: var(--a2); padding: 6px 8px; border-radius: 8px; background: color-mix(in srgb, var(--a2) 12%, transparent); }
+.step { flex: none; white-space: nowrap; font: 600 12px/1 var(--mono); color: var(--a2); padding: 6px 8px; border-radius: 8px; background: color-mix(in srgb, var(--a2) 12%, transparent); }
 .bento-card h3 { margin: 0; font-size: 19px; letter-spacing: -.02em; font-weight: 650; }
 .bento-card header p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-.chat { display: grid; gap: 14px; padding: 18px; border-radius: 16px; background: var(--bg-2); border: 1px solid var(--line); min-height: 280px; align-content: start; }
-.bubble { font-size: 14.5px; line-height: 1.7; }
-.bubble.me { justify-self: end; max-width: 88%; padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: var(--text); color: var(--bg); word-break: break-all; }
-.bubble.ai { display: flex; gap: 10px; max-width: 100%; }
+.bento-card textarea { width: 100%; box-sizing: border-box; resize: vertical; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); color: var(--text); font: inherit; }
+.handoff-prompt { margin: 0; padding: 16px; border-radius: 12px; background: var(--bg-2); color: var(--text-2); font: 14px/1.8 var(--font); white-space: pre-wrap; overflow-wrap: anywhere; }
+.bento-card .code-hint { margin: 0; color: var(--muted); }
+.b-chat > .btn { margin-top: 0; }
+.bento-card details summary { cursor: pointer; }
+.bento-card details .handoff-prompt { margin-top: 12px; }
 .ai-avatar { flex: none; width: 26px; height: 26px; border-radius: 8px; background: conic-gradient(from 200deg, var(--a1), var(--a2), var(--a3), var(--a1)); }
-#chat-ai { white-space: pre-wrap; color: var(--text-2); min-height: 8em; }
-#chat-ai b { color: var(--text); font-weight: 650; }
-.caret { display: inline-block; width: 7px; height: 1.05em; margin-left: 2px; vertical-align: -2px; background: var(--a2); animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.term { border-radius: 14px; background: var(--code-bg); border: 1px solid rgba(255, 255, 255, .06); overflow: hidden; box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .6); }
-.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, .06); }
-.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
-.term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
-.term-bar span { margin-left: 8px; font: 500 11.5px/1 var(--mono); color: #7d8494; }
-.term pre, .json { margin: 0; padding: 14px 16px; font: 12.5px/1.75 var(--mono); color: var(--code-text); white-space: pre-wrap; word-break: break-all; }
-.term .p { color: #8b7dff; } .term .k { color: #7ee2b8; }
 .files { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .files a { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--card-2); text-decoration: none; transition: border-color .2s; }
 .files a:hover { border-color: color-mix(in srgb, var(--a2) 50%, var(--line)); }
 .files b { font: 600 13px/1 var(--mono); }
 .files span { color: var(--muted); font-size: 12.5px; }
 .files em { margin-left: auto; font: 500 11.5px/1 var(--mono); color: var(--faint); font-style: normal; }
-.json { border-radius: 12px; background: var(--code-bg); color: var(--code-text); font-size: 12px; max-height: 190px; overflow: hidden; mask-image: linear-gradient(#000 70%, transparent); -webkit-mask-image: linear-gradient(#000 70%, transparent); }
-.json .k { color: #9aa8ff; } .json .s { color: #a5e3b5; } .json .n { color: #f5a44a; }
 
 /* ── CTA & footer ─────────────────────────────────────── */
 .cta-band { padding: 40px 0 100px; }
@@ -430,7 +419,6 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
   .card:hover { transform: none; }
   .for-ai { padding: 80px 0 48px; }
   .bento-card { padding: 18px; border-radius: 18px; }
-  .chat { min-height: 0; }
   .cta-in { padding: 28px 22px; }
   .sheet { width: calc(100% - 24px); max-height: calc(100dvh - 24px); border-radius: 20px; }
   .s-hero { padding: 22px 18px 18px; }
@@ -548,7 +536,7 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .aside-card .kicker { margin: 0; }
 .aside-card h2 { margin: 0; font-size: 18px; letter-spacing: -.02em; line-height: 1.35; }
 .aside-card.subtle { background: color-mix(in srgb, var(--card) 60%, transparent); box-shadow: none; }
-.aside-prompt { margin: 0; padding: 14px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); font-size: 14px; line-height: 1.7; color: var(--text-2); word-break: break-all; }
+.aside-prompt { margin: 0; padding: 14px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); font-size: 14px; line-height: 1.7; color: var(--text-2); white-space: pre-wrap; overflow-wrap: anywhere; }
 .aside-card .btn { justify-self: start; }
 .svc-related { margin-top: 72px; }
 .svc-related .group-head h2 { margin: 0; font-size: 22px; letter-spacing: -.02em; }

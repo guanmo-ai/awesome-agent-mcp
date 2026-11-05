@@ -1,4 +1,4 @@
-import { esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
+import { agentPrompt, esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
 import { $, $$, copy, initChrome, loadStars, loadCatalog } from './ui.mjs';
 import { motionReduced, onMotionChange, openDialog, closeDialog, wireDialog, revealResults } from './motion.mjs';
 import { directoryHtml, chipsHtml } from './directory.mjs';
@@ -9,7 +9,7 @@ onMotionChange(() => { reduced = motionReduced(); });
 // Hero orbit (icons without seasonal artwork), in this order.
 const ORBIT = ['amap', 'meituan', 'feishu', 'alipay', 'didi', 'zhihu', 'dingtalk', 'wechat-pay', 'wps', 'tencent-docs', 'kling', 'aliyun', 'baidu-netdisk', 'weread', 'netease-music', 'mcdonalds-cn', 'wecom', 'huawei-cloud', 'yuque', 'quark-drive'];
 const state = { q: '', cat: 'all', types: new Set(), risks: new Set(), verified: false };
-let DB, L, byId, home, PROMPT, SKILL_CMD;
+let DB, L, byId, home;
 let cards, groups, lastQuery = '';
 let renderFrame = 0;
 const scheduleRender = () => {
@@ -24,8 +24,6 @@ async function init() {
   L = DB.labels;
   home = DB.homepage;
   byId = new Map(DB.services.map((s) => [s.id, s]));
-  PROMPT = `读取 ${home}llms.txt，帮我找能点外卖的官方 MCP，告诉我需要什么 Key、配置怎么写。`;
-  SKILL_CMD = `mkdir -p ~/.claude/skills/${DB.site.skill} && curl -fsSL ${DB.site.skillUrl} -o ~/.claude/skills/${DB.site.skill}/SKILL.md`;
   // Older cached HTML has no bundled data. Reconcile it once with the live catalog.
   if (!embedded) {
     $('#groups').innerHTML = directoryHtml(DB);
@@ -113,9 +111,7 @@ function wireChrome() {
     else if (location.hash.startsWith('#s-')) history.replaceState(null, '', location.pathname + location.search);
   });
 
-  $('#copy-prompt').addEventListener('click', (e) => copy(PROMPT, e.currentTarget, '已复制，发给你的 Agent 吧'));
-  $('#copy-prompt-2').addEventListener('click', (e) => copy(PROMPT, e.currentTarget));
-  $('#copy-skill').addEventListener('click', (e) => copy(SKILL_CMD, e.currentTarget));
+  $('#copy-prompt-2').addEventListener('click', (e) => copy($('#agent-prompt').textContent, e.currentTarget, '已复制，粘贴到你自己的 Agent 对话里'));
   return restoreSearch;
 }
 
@@ -523,59 +519,10 @@ function buildDemo() {
 
 /* ── For AI section ──────────────────────────────────── */
 function renderForAi() {
-  $('#chat-me').textContent = PROMPT;
-  const food = DB.services.filter((s) => /外卖|点餐|点单/.test(s.summary)).slice(0, 3);
-  const answer = [
-    `找到 ${food.length} 个官方接入：`,
-    ...food.map((s) => `• ${s.name}（${sortedTypes(s).map((t) => L.types[t]).join(' · ')}）：${s.summary.replace(/。$/, '')}`), // 纯文本，渲染时再转义
-    '',
-    '这些服务会下单付款，每次付款前我都会先跟你确认。要我现在把配置写进 Claude Code 吗？',
-  ].join('\n');
-  const out = $('#chat-ai');
-  let i = 0, timer = 0, started = false, done = false, delay = 500, due = 0;
-  const pause = () => {
-    if (!timer) return;
-    clearTimeout(timer);
-    timer = 0;
-    delay = Math.max(0, due - performance.now());
-  };
-  const finish = () => { pause(); out.textContent = answer; done = true; };
-  const step = () => {
-    timer = 0;
-    if (document.hidden || reduced) { delay = 0; syncTyping(); return; }
-    if (i === answer.length) { finish(); return; }
-    i = Math.min(answer.length, i + 2);
-    out.innerHTML = esc(answer.slice(0, i)) + '<span class="caret"></span>';
-    delay = i < answer.length ? 28 : 1600;
-    syncTyping();
-  };
-  const syncTyping = () => {
-    if (!started || done) return;
-    if (reduced) { finish(); return; }
-    if (document.hidden) { pause(); return; }
-    if (timer) return;
-    due = performance.now() + delay;
-    timer = setTimeout(step, delay);
-  };
-  document.addEventListener('visibilitychange', syncTyping);
-  onMotionChange(syncTyping);
-  new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); started = true; syncTyping(); } }, { threshold: 0.4 }).observe($('#chat'));
-
-  const sk = DB.site.skill;
-  $('#skill-cmd').innerHTML = `<span class="p">$</span> mkdir -p ~/.claude/skills/${esc(sk)} \\\n  <span class="k">&&</span> curl -fsSL ${esc(DB.site.skillUrl)} \\\n  -o ~/.claude/skills/${esc(sk)}/SKILL.md`;
-
-  $('#files').innerHTML = [
-    ['llms.txt', '纯文本索引，适合直接读', './llms.txt'],
-    ['services.json', `${DB.count} 条结构化数据`, './services.json'],
-    ['SKILL.md', '可安装的 Agent Skill', `./skills/${sk}/SKILL.md`],
-  ].map(([n, d, h]) => `<li><a href="${esc(h)}" target="_blank" rel="noopener"><b>${esc(n)}</b><span>${esc(d)}</span><em>GET ↗</em></a></li>`).join('');
-
-  const sample = byId.get('amap') ?? DB.services[0];
-  const pick = (({ id, name, types, url, risk, access, status, install }) => ({ id, name, types, url, risk, access, status, ...(install ? { install } : {}) }))(sample);
-  $('#json-sample').innerHTML = esc(JSON.stringify(pick, null, 2))
-    .replace(/(&quot;[^&]*?&quot;)(\s*:)/g, '<span class="k">$1</span>$2')
-    .replace(/(:\s*)(&quot;.*?&quot;)/g, '$1<span class="s">$2</span>')
-    .replace(/^(\s+)(&quot;.*?&quot;)(,?)$/gm, '$1<span class="s">$2</span>$3');
+  const need = $('#agent-need');
+  const update = () => { $('#agent-prompt').textContent = agentPrompt(`${home}llms.txt`, need.value); };
+  need.addEventListener('input', update);
+  update();
 }
 
 // Bundled data makes init synchronous: start after scene/search constants exist.

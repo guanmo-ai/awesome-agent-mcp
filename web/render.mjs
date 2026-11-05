@@ -5,6 +5,19 @@ export const safeUrl = (url) => {
 };
 export const brandColor = (s) => /^#[0-9a-f]{6}$/i.test(s.color ?? '') ? s.color : '#8b7dff';
 export const serviceUrl = (home, id) => `${home}s/${encodeURIComponent(id)}/`;
+export function agentPrompt(url, need = '') {
+  return [
+    `我的需求：${need.trim() || '请先问我想完成什么任务。'}`,
+    `先读取 ${url}`,
+    '根据需求筛选官方接入，核对厂商文档，说明适用对象、账号或费用门槛，以及当前 Agent 是否支持。',
+    '已核验仅代表官方身份，未收录不代表不存在；缺少的信息请明确说明，不要编造配置。',
+    '选定服务后，按我的授权帮助配置并验证连接；Key 和账号授权由我在本地完成，不要让我把密钥发到对话里。',
+    '最后报告实际验证结果和剩余步骤；下单、付款前由我确认。',
+  ].join('\n');
+}
+export function skillPrompt(url, name) {
+  return `读取 ${url}\n检查内容后，按当前 Agent 的官方安装方式安装 ${name}，保留已有同名 Skill。\n如果不支持 Skill，就直接读取索引。安装后用一个查询验证能否找到官方服务，说明结果；这不代表服务已接通。`;
+}
 export const tokens = (q) => q.toLowerCase().split(/\s+/).filter(Boolean);
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 export function highlight(text, toks = []) {
@@ -94,7 +107,8 @@ export function renderDetails(s, db) {
   const category = db.categories.find((c) => c.id === s.category);
   const hasPlaceholder = snips.some(([, c]) => /<[^>]+>/.test(c));
   return {
-    actions: `<a class="btn btn-primary btn-sm" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">官方文档${ICON.out}</a>
+    actions: `<button class="btn btn-primary btn-sm" type="button" data-copy="${esc(agentPrompt(serviceUrl(db.homepage, s.id), `帮我接入${s.name}`))}">复制接入提示词</button>
+      <a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">官方文档${ICON.out}</a>
       ${s.repo ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.repo))}" target="_blank" rel="noopener">代码仓库${ICON.out}</a>` : ''}
       ${s.install?.skill ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.install.skill))}" target="_blank" rel="noopener">Skill 文件${ICON.out}</a>` : ''}
       <button class="btn btn-ghost btn-sm" type="button" data-copy="${esc(serviceUrl(db.homepage, s.id))}">复制链接</button>`,
@@ -108,8 +122,8 @@ export function renderDetails(s, db) {
     install: snips.length ? `<div class="code-tabs">
       <div class="ct-bar"><div class="ct-formats" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}</div><button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
       <pre role="tabpanel" aria-label="配置内容" tabindex="0"><code>${esc(snips[0][1])}</code></pre>
-    </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">一键配置还在整理中，先按官方文档接入。</p>',
-    verify: s.status === 'verified' ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p>` : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>',
+    </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">配置片段尚未整理。复制接入提示词，让 Agent 继续核对官方文档。</p>',
+    verify: s.status === 'verified' ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p><p class="code-hint">官方核验仅说明发布者身份，接入是否成功需在你的 Agent 中验证。</p>` : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>',
     sources: s.sources?.length ? `<p>${s.sources.map((x) => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join('、')}</p>` : '',
   };
 }
