@@ -145,3 +145,14 @@ test('费用来源和日期必须有效，费用信息安全转义', () => {
   assert.match(html, /&lt;script&gt;/);
   assert.match(html, /&lt;img src=x&gt;/);
 });
+
+test('其他 MCP 端点验证名称、地址及用途并转义输出', () => {
+  for (const endpoints of [null, [], [{}], [{ name: '风险', url: 'javascript:alert(1)', note: '用途' }], [{ name: '风险', url: 'https://example.com', note: '' }]]) {
+    rejects((_, s) => { s.install = { mcp: { transport: 'http', url: 'https://example.com', endpoints } }; }, /install.mcp.endpoints/);
+  }
+  const data = base(), service = data.services[0];
+  service.install.mcp.endpoints = [{ name: '<script>x</script>', url: 'https://example.com/test', note: '<img src=x>' }];
+  const html = renderDetails(service, { ...data, labels: LABELS, homepage: 'https://example.com/' }).install;
+  assert.doesNotMatch(html, /<script>|<img src=x>/);
+  assert.match(html, /&lt;script&gt;/);
+});

@@ -179,7 +179,19 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0"
+          "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0",
+          "endpoints": [
+            {
+              "name": "Streamable HTTP",
+              "url": "https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0",
+              "note": "Streamable HTTP；需要启用 WebService API 的位置服务 Key"
+            },
+            {
+              "name": "SSE",
+              "url": "https://mcp.map.qq.com/sse?key=<你的腾讯位置服务Key>",
+              "note": "SSE 传输；需要启用 WebService API 的位置服务 Key，Codex 远程配置不支持 SSE"
+            }
+          ]
         }
       },
       "evidence": {
@@ -229,7 +241,19 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>"
+          "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>",
+          "endpoints": [
+            {
+              "name": "生产",
+              "url": "https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>",
+              "note": "真实打车订单及费用；URL 填入 MCP Key"
+            },
+            {
+              "name": "调试",
+              "url": "https://mcp.didichuxing.com/mcp-servers-sandbox?key=<你的滴滴MCPKey>",
+              "note": "模拟数据，不产生真实订单；URL 填入 MCP Key"
+            }
+          ]
         },
         "skill": "https://clawhub.ai/didi/didi-ride-skill-official"
       },
@@ -1963,7 +1987,59 @@
           "url": "https://agent.qcc.com/mcp/company/stream",
           "headers": {
             "Authorization": "Bearer <你的企查查APIKey>"
-          }
+          },
+          "endpoints": [
+            {
+              "name": "企业工商",
+              "url": "https://agent.qcc.com/mcp/company/stream",
+              "note": "企业工商信息；登录获取 API Key"
+            },
+            {
+              "name": "企业风险",
+              "url": "https://agent.qcc.com/mcp/risk/stream",
+              "note": "风险信息；登录获取 API Key"
+            },
+            {
+              "name": "知识产权",
+              "url": "https://agent.qcc.com/mcp/ipr/stream",
+              "note": "商标、专利与知识产权；登录获取 API Key"
+            },
+            {
+              "name": "经营信息",
+              "url": "https://agent.qcc.com/mcp/operation/stream",
+              "note": "企业经营数据；登录获取 API Key"
+            },
+            {
+              "name": "历史存档",
+              "url": "https://agent.qcc.com/mcp/history/stream",
+              "note": "历史工商及相关记录；须企业认证后开通"
+            },
+            {
+              "name": "董监高",
+              "url": "https://agent.qcc.com/mcp/executive/stream",
+              "note": "人员及相关风险；登录获取 API Key"
+            },
+            {
+              "name": "法律法规",
+              "url": "https://agent.qcc.com/mcp/regulation/stream",
+              "note": "法律法规；登录获取 API Key"
+            },
+            {
+              "name": "司法案例",
+              "url": "https://agent.qcc.com/mcp/case/stream",
+              "note": "司法案例；登录获取 API Key"
+            },
+            {
+              "name": "招投标",
+              "url": "https://agent.qcc.com/mcp/tender/stream",
+              "note": "标讯数据；登录获取 API Key"
+            },
+            {
+              "name": "文档解析",
+              "url": "https://agent.qcc.com/mcp/document/stream",
+              "note": "远程文档解析；登录获取 API Key"
+            }
+          ]
         },
         "cli": "npm install -g qcc-agent-cli"
       },
@@ -3141,7 +3217,74 @@
           "url": "https://aip.baidubce.com/mcp/ocr_general/sse",
           "headers": {
             "Authorization": "Bearer <你的百度AIAPIKey>"
-          }
+          },
+          "endpoints": [
+            {
+              "name": "通用文字识别",
+              "url": "https://aip.baidubce.com/mcp/ocr_general/sse",
+              "note": "文字、表格及手写识别；AI 开放能力 API Key"
+            },
+            {
+              "name": "文档解析",
+              "url": "https://aip.baidubce.com/mcp/document/sse",
+              "note": "解析文档及输出 Markdown；AI 开放能力 API Key"
+            },
+            {
+              "name": "财务医疗票据识别",
+              "url": "https://aip.baidubce.com/mcp/ocr_receipt/sse",
+              "note": "票据识别与验真；AI 开放能力 API Key"
+            },
+            {
+              "name": "个人证照识别",
+              "url": "https://aip.baidubce.com/mcp/ocr_personal_card/sse",
+              "note": "个人证照识别；AI 开放能力 API Key"
+            },
+            {
+              "name": "企业证照识别",
+              "url": "https://aip.baidubce.com/mcp/ocr_company_card/sse",
+              "note": "企业证照识别；AI 开放能力 API Key"
+            },
+            {
+              "name": "车辆证照识别",
+              "url": "https://aip.baidubce.com/mcp/ocr_car_card/sse",
+              "note": "车辆证照识别；AI 开放能力 API Key"
+            },
+            {
+              "name": "教育文字识别",
+              "url": "https://aip.baidubce.com/mcp/ocr_edu/sse",
+              "note": "试卷分析识别；AI 开放能力 API Key"
+            },
+            {
+              "name": "图像识别",
+              "url": "https://aip.baidubce.com/mcp/image_recognition/sse",
+              "note": "物体与场景识别；AI 开放能力 API Key"
+            },
+            {
+              "name": "看图识万物",
+              "url": "https://aip.baidubce.com/mcp/image_understanding/sse",
+              "note": "图像问答；AI 开放能力 API Key"
+            },
+            {
+              "name": "图像增强",
+              "url": "https://aip.baidubce.com/mcp/image_enhance/sse",
+              "note": "图片修复与增强；AI 开放能力 API Key"
+            },
+            {
+              "name": "图像特效",
+              "url": "https://aip.baidubce.com/mcp/image_effects/sse",
+              "note": "上色与风格转换；官方附录另写 image_effect，具体以官方确认为准"
+            },
+            {
+              "name": "人脸识别",
+              "url": "https://aip.baidubce.com/mcp/face/sse",
+              "note": "人脸检测；AI 开放能力 API Key"
+            },
+            {
+              "name": "语音技术",
+              "url": "https://aip.baidubce.com/mcp/speech/sse",
+              "note": "短语音识别；AI 开放能力 API Key"
+            }
+          ]
         },
         "skill": "https://github.com/baidubce/skills/tree/develop/skills"
       },
@@ -4470,7 +4613,34 @@
           "url": "https://open.chineselaw.com/mcp/law/stream",
           "headers": {
             "Authorization": "Bearer <你的元典Key>"
-          }
+          },
+          "endpoints": [
+            {
+              "name": "法律法规",
+              "url": "https://open.chineselaw.com/mcp/law/stream",
+              "note": "法律法规检索；需要 API Key"
+            },
+            {
+              "name": "案例文书",
+              "url": "https://open.chineselaw.com/mcp/case/stream",
+              "note": "司法案例；需要 API Key"
+            },
+            {
+              "name": "企业信息",
+              "url": "https://open.chineselaw.com/mcp/company/stream",
+              "note": "企业信息；需要 API Key"
+            },
+            {
+              "name": "证券合规",
+              "url": "https://open.chineselaw.com/mcp/securities/stream",
+              "note": "证券合规资料；需要 API Key"
+            },
+            {
+              "name": "幻觉校验",
+              "url": "https://open.chineselaw.com/mcp/hallucination/stream",
+              "note": "法律幻觉校验；需要 API Key"
+            }
+          ]
         }
       },
       "nameEn": "Huayu Yuandian",
@@ -5017,7 +5187,19 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://tcb-api.cloud.tencent.com/mcp/v1"
+          "url": "https://tcb-api.cloud.tencent.com/mcp/v1",
+          "endpoints": [
+            {
+              "name": "国内站",
+              "url": "https://tcb-api.cloud.tencent.com/mcp/v1",
+              "note": "国内 CloudBase 账号和环境；交互客户端可通过 OAuth 授权"
+            },
+            {
+              "name": "国际站",
+              "url": "https://tcb-api.tencentcloud.com/mcp/v1",
+              "note": "国际站账号和环境，与国内站账户及凭据不互通；国际站不提供文档数据库工具"
+            }
+          ]
         },
         "skill": "https://github.com/TencentCloudBase/cloudbase-skills"
       },
@@ -5327,7 +5509,39 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.rainmaker.espressif.com/api/mcp"
+          "url": "https://mcp.rainmaker.espressif.com/api/mcp",
+          "endpoints": [
+            {
+              "name": "RainMaker",
+              "url": "https://mcp.rainmaker.espressif.com/api/mcp",
+              "note": "管理 RainMaker 设备；按官方说明完成账户授权"
+            },
+            {
+              "name": "乐鑫文档",
+              "url": "https://mcp.espressif.com/docs",
+              "note": "检索乐鑫文档；每用户每小时 40 次、每日 200 次"
+            },
+            {
+              "name": "组件注册表",
+              "url": "https://components.espressif.com/mcp",
+              "note": "搜索 ESP-IDF 组件与示例；独立服务，按官方说明接入"
+            },
+            {
+              "name": "ESP-VISION",
+              "url": "https://mcp.vision.espressif.com",
+              "note": "查询视觉开发 API；独立服务，按官方说明接入"
+            },
+            {
+              "name": "工程技术支持",
+              "url": "https://ts-mcp.espressif.com/mcp",
+              "note": "乐鑫工程技术支持；独立服务，按官方说明接入"
+            },
+            {
+              "name": "ESP Pilot",
+              "url": "https://mcp.esp-pilot.espressif.com/mcp",
+              "note": "ESP 多媒体应用开发；独立服务，按官方说明接入"
+            }
+          ]
         }
       },
       "nameEn": "Espressif ESP RainMaker",
@@ -6681,7 +6895,54 @@
           "url": "https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate",
           "headers": {
             "Authorization": "Bearer <你的AgentAccessToken>"
-          }
+          },
+          "endpoints": [
+            {
+              "name": "杭州",
+              "url": "https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "上海",
+              "url": "https://dgate-mcp-cn-shanghai.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "北京",
+              "url": "https://dgate-mcp-cn-beijing.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "深圳",
+              "url": "https://dgate-mcp-cn-shenzhen.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "张家口",
+              "url": "https://dgate-mcp-cn-zhangjiakou.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "中国香港",
+              "url": "https://dgate-mcp-cn-hongkong.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "新加坡",
+              "url": "https://dgate-mcp-ap-southeast-1.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "吉隆坡",
+              "url": "https://dgate-mcp-ap-southeast-3.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            },
+            {
+              "name": "东京",
+              "url": "https://dgate-mcp-ap-northeast-1.aliyuncs.com/mcp/dgate",
+              "note": "选择 Agent Access Token 所在地域，使用该身份的 Bearer Token"
+            }
+          ]
         }
       },
       "nameEn": "Alibaba Cloud DMS Agent Data Gateway",
