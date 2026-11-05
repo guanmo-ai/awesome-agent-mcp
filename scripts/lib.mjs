@@ -66,6 +66,7 @@ export function validate(data) {
     ids.add(s.id);
     for (const k of ['name', 'summary']) if (!s[k] || typeof s[k] !== 'string') err(w, `缺少 ${k}`);
     if (s.status !== 'rejected') for (const k of ['nameEn', 'summaryEn']) if (typeof s[k] !== 'string' || !s[k].trim()) err(w, `缺少 ${k}`);
+    if (s.keywords !== undefined && (!Array.isArray(s.keywords) || s.keywords.length > 6 || s.keywords.some((k) => typeof k !== 'string' || !k.trim()) || new Set(s.keywords).size !== s.keywords.length)) err(w, 'keywords 须为最多六个非空且不重复的短语');
     if (typeof s.summary === 'string' && s.summary.length > 60) err(w, 'summary 超过 60 字');
     if (!cats.has(s.category)) err(w, `未知分类 ${valueLabel(s.category)}`);
     if (!Array.isArray(s.types) || !s.types.length) err(w, 'types 至少一项');

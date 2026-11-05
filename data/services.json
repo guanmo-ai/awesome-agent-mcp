@@ -192,7 +192,10 @@
         "note": "官方首页发布 MCP 与 Skill；开发者文档明确 Key 和下单能力。"
       },
       "nameEn": "DiDi",
-      "summaryEn": "Request rides, get fare estimates, and look up trips."
+      "summaryEn": "Request rides, get fare estimates, and look up trips.",
+      "keywords": [
+        "打车"
+      ]
     },
     {
       "id": "meituan",
@@ -1739,7 +1742,10 @@
         "note": "iFinD 官方首页链接全文文档，明确 MCP、Skill、密钥、试用与套餐权益。"
       },
       "nameEn": "Tonghuashun iFinD",
-      "summaryEn": "Query market prices, financial statements, announcements, macroeconomic indicators, and other financial data."
+      "summaryEn": "Query market prices, financial statements, announcements, macroeconomic indicators, and other financial data.",
+      "keywords": [
+        "股票"
+      ]
     },
     {
       "id": "iwencai",
@@ -1770,7 +1776,10 @@
         "note": "问财官方 SkillHub 前端及公开目录将自有技能标为 OFFICIAL，提供 CLI 与 API Key 指引。"
       },
       "nameEn": "Tonghuashun iWencai",
-      "summaryEn": "Use official skills to query prices, announcements, research, and macro data, and screen by conditions."
+      "summaryEn": "Use official skills to query prices, announcements, research, and macro data, and screen by conditions.",
+      "keywords": [
+        "股票"
+      ]
     },
     {
       "id": "eastmoney-miaoxiang",
@@ -1812,7 +1821,10 @@
         ],
         "verify": "先查询一只公开股票的行情或一条资讯，核对名称与数据时间；自选或模拟组合操作前确认目标。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "股票"
+      ]
     },
     {
       "id": "aliyun",
@@ -3307,7 +3319,10 @@
         ],
         "verify": "先查询一只公开股票的行情，核对标的和行情时间；检查返回数据而非只看安装提示。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "股票"
+      ]
     },
     {
       "id": "cloudbase",
