@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } fr
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { root, load, grouped, LABELS, rawUrl } from './lib.mjs';
-import { agentPrompt, skillPrompt, esc, serviceUrl, disclaimerHtml } from '../web/render.mjs';
+import { agentPrompt, skillPrompt, esc, serviceUrl, disclaimerHtml, snippets } from '../web/render.mjs';
 import { renderServicePage, sitemap } from './service-pages.mjs';
 import { directoryHtml, chipsHtml } from '../web/directory.mjs';
 
@@ -69,7 +69,7 @@ function readme(english = false) {
     '',
     '```text',
     t(agentPrompt(`${config.siteUrl}llms.txt`), `Read ${config.siteUrl}llms.txt as a reference index for official MCP servers, skills and CLIs.
-Find integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
+Follow the matching service's Markdown link for complete configuration and setup instructions.\nFind integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
 Check official vendor documentation for capabilities, account permissions, costs, compatibility with this agent and setup instructions. An absent entry does not mean no integration exists; do not guess missing information.
 This index is for reference; verified does not mean tested or guaranteed safe. Install or configure only within my authorization. I will enter keys and log in locally; ask before placing orders or making payments.
 Provide official links. If you set up an integration, report actual verification results and remaining steps.`),
@@ -86,6 +86,7 @@ Provide official links. If you set up an integration, report actual verification
     t('| 方式 | 地址 |', '| Format | Address |'),
     '| :-- | :-- |',
     `| ${t('llms.txt（适合直接读）', 'llms.txt (readable index)')} | ${config.siteUrl}llms.txt |`,
+    `| ${t('全文（按需）', 'Full text (optional)')} | ${config.siteUrl}llms-full.txt |`,
     `| ${t('JSON 数据（适合程序）', 'JSON (structured data)')} | ${config.siteUrl}services.json |`,
     `| ${t('GitHub 原始文件', 'GitHub raw file')} | ${rawUrl(config, 'data/services.json')} |`,
     '',
@@ -155,7 +156,7 @@ Test one lookup and report the result; skill installation does not establish a s
   return L.join('\n');
 }
 
-function llms() {
+function llmsFull() {
   const L = [
     `# ${config.title}`,
     '',
@@ -197,6 +198,43 @@ function llms() {
   return L.join('\n');
 }
 
+function llms() {
+  return [
+    `# ${config.title}`, '',
+    `> 中国厂商官方 MCP、Skill 与 CLI 索引，${live.length} 个服务，更新于 ${data.updatedAt}。`, '',
+    `独立社区索引，仅供参考；已核验不代表实测或安全保证，使用前核对官方文档：[使用说明与免责声明](${config.siteUrl}#disclaimer)。`,
+    '先找到服务，再读取对应 Markdown 中的完整配置和接入步骤；密钥与登录由用户在本地完成，下单或付款前取得确认。', '',
+    ...groups.flatMap((g) => [`## ${g.name}`, '', ...g.services.map((s) => `- [${s.name}](${config.siteUrl}s/${s.id}.md): ${s.summary} ${types(s)}；${LABELS.risk[s.risk]}`), '']),
+    '## Optional', '',
+    `- [全文](${config.siteUrl}llms-full.txt): 全部服务与接入指引。`,
+    `- [JSON](${config.siteUrl}services.json): 完整结构化字段及核验依据。`, '',
+  ].join('\n');
+}
+
+function serviceMarkdown(s) {
+  const codeBlock = (code) => {
+    const fence = '`'.repeat(Math.max(3, ...[...code.matchAll(/`+/g)].map((m) => m[0].length + 1)));
+    return `${fence}\n${code}\n${fence}`;
+  };
+  return [
+    `# ${s.name}`, '', s.summary, '',
+    `- 类型：${types(s)}`, `- 权限：${LABELS.risk[s.risk]}`, `- 门槛：${access(s)}`,
+    `- 官方入口：${s.url}`, ...(s.repo ? [`- 官方仓库：${s.repo}`] : []),
+    `- 网页详情：${serviceUrl(config.siteUrl, s.id)}`, '',
+    '仅供参考，官方身份核验不代表接入实测；以厂商文档为准，密钥和登录在本地完成。' + (s.risk === 'payment' ? '下单、付款前须用户确认。' : s.risk === 'write' ? '修改或发送前须告知用户。' : ''), '',
+    ...(s.setup ? ['## 接入前准备', '', s.setup.requirements, '', '## 接入步骤', '', ...s.setup.steps.map((step, i) => `${i + 1}. ${step.text} [官方入口](${step.url})`), '', '## 验证方法', '', s.setup.verify, '', `指引核对于 ${s.setup.checkedAt}，不是本项目实测结果。`, ''] : []),
+    '## 安装配置', '',
+    ...snippets(s).flatMap(([name, code]) => [`### ${name}`, '', codeBlock(code), '']),
+    ...(s.install?.skill ? [`- [官方 Skill](${s.install.skill})`, ''] : []),
+    ...(!s.install ? ['配置尚未整理，请读取官方文档，不要猜测端点或参数。', ''] : []),
+    ...(s.install?.mcp?.transport === 'sse' ? ['Codex 远程配置只支持 Streamable HTTP，不能直接使用此 SSE 地址。', ''] : []),
+    '## 核验与来源', '',
+    ...(s.evidence ? [`${s.evidence.checkedAt} 核对官方身份：[依据](${s.evidence.url})${s.evidence.note ? `。${s.evidence.note}` : ''}`, ''] : ['待核验。', '']),
+    ...(s.sources ?? []).map((source) => `- [${source.name}](${source.url})`), '',
+    `[使用说明与免责声明](${config.siteUrl}#disclaimer)`, '',
+  ].join('\n');
+}
+
 const manifestPath = join(root, 'web/logos/manifest.json');
 const logos = existsSync(manifestPath)
   ? Object.fromEntries(Object.entries(JSON.parse(readFileSync(manifestPath, 'utf8'))).filter(([id]) => existsSync(join(root, `web/logos/${id}.png`))))
@@ -224,7 +262,7 @@ function publicJson() {
   );
 }
 
-const outputs = { 'README.md': readme(), 'README.en.md': readme(true), 'llms.txt': llms() };
+const outputs = { 'README.md': readme(), 'README.en.md': readme(true), 'llms.txt': llms(), 'llms-full.txt': llmsFull() };
 
 if (process.argv.includes('--check')) {
   const stale = Object.entries(outputs).filter(([f, text]) => {
@@ -286,11 +324,12 @@ if (process.argv.includes('--check')) {
     const dir = join(dist, 's', service.id);
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, 'index.html'), renderServicePage(service, db, config, template, version));
+    writeFileSync(join(dist, 's', `${service.id}.md`), serviceMarkdown(service));
   }
   writeFileSync(join(dist, 'sitemap.xml'), sitemap(db));
   writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${config.siteUrl}sitemap.xml\n`);
   writeFileSync(join(dist, 'services.json'), publicJson());
-  writeFileSync(join(dist, 'llms.txt'), outputs['llms.txt']);
+  for (const name of ['llms.txt', 'llms-full.txt']) writeFileSync(join(dist, name), outputs[name]);
   mkdirSync(join(dist, 'skills', config.skill), { recursive: true });
   cpSync(join(root, skillPath), join(dist, skillPath));
   writeFileSync(join(dist, '.nojekyll'), '');

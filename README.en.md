@@ -25,6 +25,7 @@
 
 ```text
 Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt as a reference index for official MCP servers, skills and CLIs.
+Follow the matching service's Markdown link for complete configuration and setup instructions.
 Find integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
 Check official vendor documentation for capabilities, account permissions, costs, compatibility with this agent and setup instructions. An absent entry does not mean no integration exists; do not guess missing information.
 This index is for reference; verified does not mean tested or guaranteed safe. Install or configure only within my authorization. I will enter keys and log in locally; ask before placing orders or making payments.
@@ -42,6 +43,7 @@ Let your agent read the index directly:
 | Format | Address |
 | :-- | :-- |
 | llms.txt (readable index) | https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt |
+| Full text (optional) | https://guanmo-ai.github.io/awesome-agent-mcp/llms-full.txt |
 | JSON (structured data) | https://guanmo-ai.github.io/awesome-agent-mcp/services.json |
 | GitHub raw file | https://raw.githubusercontent.com/guanmo-ai/awesome-agent-mcp/main/data/services.json |
 

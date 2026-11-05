@@ -4,7 +4,7 @@ import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } 
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { agentPrompt, esc } from '../web/render.mjs';
+import { agentPrompt, esc, snippets } from '../web/render.mjs';
 import { root, readJson } from '../scripts/lib.mjs';
 
 // Run the real build in an isolated fixture; never mutate the working catalog.
@@ -61,7 +61,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
     assert.equal(jsonLd['@type'], 'SoftwareApplication');
     assert.equal(jsonLd.name, s.name);
     assert.equal(jsonLd.publisher.name, s.name);
-    assert.ok(fixture.read('llms.txt').includes(`${config.siteUrl}s/${s.id}/`));
+    assert.ok(fixture.read('llms.txt').includes(`${config.siteUrl}s/${s.id}.md`));
   }
   assert.deepEqual(fixture.data.services.find((s) => s.id === 'meituhub').types, ['cli']);
   assert.match(fixture.read('robots.txt'), /Sitemap: https:\/\/guanmo-ai\.github\.io\/awesome-agent-mcp\/sitemap\.xml/);
@@ -159,6 +159,27 @@ test('接入指引同步到静态详情、嵌入目录和 Agent 文本', (t) => 
   assert.ok(html.includes('href="https://example.com/setup" target="_blank" rel="noopener"'));
   const db = JSON.parse(fixture.read('services.json'));
   assert.deepEqual(db.services.find((s) => s.id === id).setup, setup);
-  const llms = fixture.read('llms.txt');
+  const llms = fixture.read(`s/${id}.md`);
   for (const text of [setup.requirements, setup.steps[0].text, setup.steps[0].url, setup.verify]) assert.ok(llms.includes(text));
+});
+
+
+test('短索引小于20KB，逐服务Markdown保留完整配置并排除拒绝条目', (t) => {
+  const fixture = buildFixture();
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const index = fixture.read('llms.txt');
+  assert.ok(Buffer.byteLength(index) <= 20000, `索引 ${Buffer.byteLength(index)} bytes`);
+  assert.ok(fixture.read('llms-full.txt').includes('接入前准备'));
+  for (const s of fixture.data.services) {
+    if (s.status === 'rejected') {
+      assert.ok(!existsSync(join(fixture.dir, 'dist/s', `${s.id}.md`)));
+      continue;
+    }
+    assert.ok(index.includes(`/s/${s.id}.md`));
+    const markdown = fixture.read(`s/${s.id}.md`);
+    assert.ok(markdown.includes(s.url));
+    assert.ok(markdown.includes(s.summary));
+    for (const [, code] of snippets(s)) assert.ok(markdown.includes(code), `${s.id}: 完整参数`);
+    if (s.install?.skill) assert.ok(markdown.includes(s.install.skill));
+  }
 });

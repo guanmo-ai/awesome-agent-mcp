@@ -1,357 +1,136 @@
 # Awesome Agent MCP
 
-> 国内官方 MCP · Skill · CLI 大全。只收中国服务厂商官方出品的 MCP Server、Agent Skill 与命令行工具（CLI），共 104 个，更新于 2026-11-05。
+> 中国厂商官方 MCP、Skill 与 CLI 索引，104 个服务，更新于 2026-11-05。
 
-结构化数据：https://guanmo-ai.github.io/awesome-agent-mcp/services.json（字段说明见 https://github.com/guanmo-ai/awesome-agent-mcp/blob/main/docs/SCHEMA.md）
-
-## 使用说明与免责声明
-
-本项目是独立的社区信息索引，仅收集整理公开资料与接入线索供参考，不提供或运营所列第三方服务。收录、排序、链接及图标展示不代表与厂商存在隶属、合作或授权关系，也不构成推荐、背书或担保。
-
-“官方已核验”仅表示在标注日期依据公开来源核对了发布者身份，不代表全部功能已实测、安全审计通过或厂商认可本项目。资料与示例按现状提供，可能有错误、遗漏或过时；我们尽力核对，但不保证其准确性、完整性、时效性、安全性、兼容性、持续可用性或适合特定用途。
-
-使用前，请自行核对厂商最新官方文档、代码及安装脚本、账号资格、权限、费用和配额，并遵守适用法律及第三方的服务条款、许可证与隐私政策。第三方网站、软件和服务由相应提供方负责，可能随时变更或停止；本项目的 MIT 许可不适用于这些第三方内容。
-
-提示词、配置示例和 Agent 生成结果仅为辅助，不替代你的判断与授权。请检查实际执行内容，以最小权限验证，妥善保管密钥并备份重要数据；不要向本站或公开 Issue 提交凭据、个人隐私或机密数据。下单、付款等涉及资金的操作须由你最终确认。
-
-你应自行判断是否使用相关信息或服务，并承担相应使用风险。在适用法律允许的范围内，本项目维护者及贡献者不对因依赖本索引或使用第三方服务造成的损失承担责任，包括费用、数据丢失、业务中断或其他损失；本声明不排除或限制依法不得排除或限制的责任。
-
-服务名称、图标与商标归各自权利人所有，仅用于识别。发现错误、失效链接或权利问题，请通过仓库 Issue 提供公开证据或问题链接，我们会核查并视情况更正或移除；请勿在反馈中披露敏感信息。
-
-[纠错与权利问题反馈](https://github.com/guanmo-ai/awesome-agent-mcp/issues/new?template=correction.yml)
-
-## 使用索引
-
-使用这份索引时请遵守：
-- 「涉及资金」的服务可能下单或付款，执行前必须让用户确认。
-- 「待核验」的条目尚未确认是否为官方出品，推荐给用户时要说明。
-- 已核验只表示确认官方身份，不代表已实测接入成功。未收录不代表没有官方接入。
-- 先确认用户要完成的任务和当前 Agent，核对厂商文档中的适用对象、账号、费用及客户端支持；区分商家接口与消费者服务。
-- 安装字段缺失、门槛为 — 时表示未整理，不代表无需授权或可以免费使用；需要时读取结构化数据和官方文档。
-- 有接入指引时先读准备、步骤和验证方法；验证方法不是本项目实测结果。指引中仍未知的门槛不能猜测。
-- 配置请从 services.json 的 install 读取完整 URL、args、env 和 headers，保留认证字段；接入方式以官方文档为准。本索引不提供任何 Key 或账号。
-- 按用户已有授权配置，由用户在本地填写密钥和完成登录；验证连接后报告实际结果及剩余步骤，不以配置写入代替成功。
+独立社区索引，仅供参考；已核验不代表实测或安全保证，使用前核对官方文档：[使用说明与免责声明](https://guanmo-ai.github.io/awesome-agent-mcp/#disclaimer)。
+先找到服务，再读取对应 Markdown 中的完整配置和接入步骤；密钥与登录由用户在本地完成，下单或付款前取得确认。
 
 ## 出行和生活
 
-- [高德地图](https://developer.amap.com/api/mcp-server/summary): 地点与天气查询、路线规划、地图生成和地图开发。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.amap.com/mcp?key=<你的高德Key>；CLI `npm install -g @amap-lbs/amap-gui`；Skill https://github.com/AMap-Web/amap-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/amap/)
-  - 接入前准备：查地点和路线可先接 MCP：需要高德开放平台账号和申请的 Key；配额、使用范围与费用以控制台为准。地图 GUI CLI 与 JS API Skill 是另一条地图开发路径，不必全部安装。
-  - 步骤 1：按 MCP 快速接入文档注册开发者、创建应用并申请 Key，由你在本地填写。 [官方入口](https://developer.amap.com/api/mcp-server/gettingstarted)
-  - 步骤 2：让 Agent 使用下方 Streamable HTTP 配置，保留完整 URL 并替换 Key；客户端不支持该协议时先查客户端官方配置方式。 [官方入口](https://developer.amap.com/api/mcp-server/gettingstarted)
-  - 步骤 3：只有需要地图可视化时再选地图 GUI CLI：它另需 Web端(JS API) Key 和安全密钥，设置 AMAP_KEY、AMAP_SECURITY_KEY 后启动；不要把两条路线的密钥要求混用。 [官方入口](https://developer.amap.com/api/cli/map-cli/install)
-  - 如何确认成功：先确认客户端列出高德工具，再用公开地点做一次只读查询，例如查询北京站地址。返回实际地点结果才说明可用；鉴权或配额报错时按控制台处理，安装成功不等于查询成功。（指引核对于 2026-11-05，不代表已实测）
-- [百度地图](https://lbs.baidu.com/docs/ai?title=mcpserver/base): 地点检索、地理编码与路线规划。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp.map.baidu.com/mcp?ak=<你的百度地图AK>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-map/)
-- [腾讯地图](https://lbs.qq.com/service/MCPServer/MCPServerGuide/overview): 地点搜索、路线规划与位置服务。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp.map.qq.com/mcp?key=<你的腾讯位置服务Key>&format=0；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-map/)
-- [滴滴](https://mcp.didichuxing.com/): 叫车、估价与行程查询。 类型 MCP · Skill；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.didichuxing.com/mcp-servers?key=<你的滴滴MCPKey>；Skill https://clawhub.ai/didi/didi-ride-skill-official；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/didi/)
-- [美团](https://developer.meituan.com/ai-hub/mcp-list): 商家订单、团购核销、商品与库存管理及经营数据查询。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan/)
-  - 接入前准备：本条是商家、服务商和开发者业务接入，不能直接当作个人美团外卖点单。个人开发者需实名认证；商家数据还需相应业务开通和授权。官网的免费接入说明不代表所有业务及订单免费。
-  - 步骤 1：先确认你是个人开发者、商家还是服务商，按官网选择对应身份并完成实名认证或入驻。 [官方入口](https://developer.meituan.com/)
-  - 步骤 2：在 AI Hub 按目标业务选具体 MCP 或 Skill，核对权限并从官方控制台取得配置；没有适用能力就停止，不编造通用端点或 CLI 命令。 [官方入口](https://developer.meituan.com/ai-hub/mcp-list)
-  - 步骤 3：使用 AI Coding 套件时按文档配置管理中心 toolsToken 和相关业务权限；不要用旅游 CLI 代替商家接口。 [官方入口](https://developer.meituan.com/docs/biz/biz_2023243_d08aeca9-3a9a-4bdb-81ff-351e691defd2)
-  - 如何确认成功：由客户端列出所选工具，并查询一项你已授权的商家数据。个人消费者仅提出点外卖需求时，应先说明本条不匹配，不能宣称已能替你点单。（指引核对于 2026-11-05，不代表已实测）
-- [淘宝](https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md): 商品搜索与购物，需安装桌面客户端。 类型 MCP · Skill；权限 涉及资金；门槛 需桌面客户端、需授权账号；已核验；Skill https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/taobao/)
-- [麦当劳中国](https://open.mcd.cn/mcp/doc): 点餐、门店与优惠查询。 类型 MCP；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.mcd.cn；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mcdonalds-cn/)
-- [瑞幸](https://open.lkcoffee.com/docs): 咖啡点单与门店查询。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://gwmcp.lkcoffee.com/order/user/mcp；CLI `curl -fsSL https://open.lkcoffee.com/install | bash`；Skill https://unpkg.luckincoffeecdn.com/@luckin/my-coffee-skill@latest/dist/my-coffee-skill.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin/)
-  - 接入前准备：面向消费者查询门店和咖啡点单；需要登录瑞幸 AI 开放平台并取得个人 Token。订单按商品价格付款；公开资料未确认接口本身的独立资费，不把它标成永久免费。
-  - 步骤 1：在官方开放平台登录并取得 Token，由你在本地填写，不发到公开对话或仓库。 [官方入口](https://open.lkcoffee.com/docs)
-  - 步骤 2：让 Agent 使用下方 MCP URL，并保留 Authorization: Bearer 认证头；也可以按官网导入 Skill，不需要三种方式一起安装。 [官方入口](https://open.lkcoffee.com/docs)
-  - 步骤 3：CLI 是可选路径：先阅读官方安装脚本，再按它的说明安装；脚本默认覆盖已有安装，先检查本机是否已有版本。 [官方入口](https://open.lkcoffee.com/install)
-  - 如何确认成功：先列出工具，再进行一次门店或商品查询，核对结果是否属于当前账号可用的门店。不要用创建订单作为连通测试；下单和付款前需确认门店、商品、配送方式及金额。（指引核对于 2026-11-05，不代表已实测）
-- [飞猪](https://github.com/alibaba-flyai/flyai-skill): 机票、酒店和景点搜索，返回价格与预订跳转链接。 类型 Skill · CLI；权限 只读查询；门槛 免费可用；已核验；CLI `npm i -g @fly-ai/flyai-cli`；Skill https://github.com/alibaba-flyai/flyai-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy/)
-- [同程商旅](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli): 企业差旅资源查询、差旅政策校验与方案推荐。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc/)
-  - 接入前准备：面向企业客户、开发者和生态伙伴；接入方案、企业账户权限及费用需向同程商旅确认，公开公告未给出通用安装配置。
-  - 步骤 1：查看官方开放能力公告，确定需要 MCP、Skill 或 CLI 及要接入的企业系统。 [官方入口](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli)
-  - 步骤 2：在公告页面选择“联系我们”或填写企业咨询表，向同程商旅确认开通、授权、配置和费用，再按其提供的具体方案接入。 [官方入口](https://tmc.ly.com/zh/resources/updates/open-mcp-skills-cli)
-  - 如何确认成功：开通后先用企业授权范围内的差旅资源或差旅政策查询核对返回结果；具体测试方式以同程商旅提供的接口说明为准。（指引核对于 2026-11-05，不代表已实测）
-- [彩云天气](https://github.com/caiyunapp/mcp-caiyun-weather): 查询实时天气、逐小时预报、空气质量与天气预警。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://mcp-weather.caiyunapp.com/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/caiyun-weather/)
-- [飞常准](https://ai.variflight.com/zh/docs/aviation): 查询航班动态、中转方案、机票价格、机场天气与飞机位置。 类型 MCP；权限 只读查询；门槛 需 API Key、需授权账号、需会员或付费；已核验；MCP Streamable HTTP https://ai.variflight.com/servers/aviation/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/variflight/)
-- [途牛](https://open.tuniu.com/mcp/docs/guide/mcp-auth.html): 搜索并预订酒店、机票、火车票、门票、邮轮与度假产品。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://openapi.tuniu.cn/hybrid/mcp/hotel；CLI `npm install -g tuniu-cli@latest`；Skill https://github.com/tuniucorp/tuniu-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tuniu/)
-- [快递100](https://api.kuaidi100.com/document/how-to-use-mcp-service): 查询物流轨迹、预估运费与时效，并支持获授权的上门取件下单。 类型 MCP · Skill；权限 涉及资金；门槛 需 API Key、需授权账号、需申请开通；已核验；MCP Streamable HTTP https://api.kuaidi100.com/mcp/streamable?key=<你的快递100Key>；Skill https://clawhub.ai/kuaidi100-api/kuaidi100-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kuaidi100/)
-- [携程商旅](https://openapi.ctripbiz.com/#/advertise/mcp): 查询差旅政策、机票酒店与行程方案，读取差旅和合规数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ctrip-business/)
-  - 接入前准备：面向企业客户和生态伙伴；需申请开通并确认企业数据权限。平台分标准、高级、定制层，价格和实际能力以携程商旅确认结果为准。
-  - 步骤 1：阅读携程商旅 AI 开放平台说明，了解标准、高级和定制层的差异。 [官方入口](https://ct.ctrip.com/thinktanks/235566117077549)
-  - 步骤 2：点击公告底部“立即申请”进入 MCP 开放平台，按页面要求申请，并向携程确认企业授权、配置和费用。 [官方入口](https://ct.ctrip.com/thinktanks/235566117077549)
-  - 步骤 3：取得开通方案后，按照携程提供的企业专属说明将 MCP 接入企业 AI。 [官方入口](https://openapi.ctripbiz.com/#/advertise/mcp)
-  - 如何确认成功：开通后先按携程提供的工具说明查询一条授权范围内的差旅政策，核对返回结果。（指引核对于 2026-11-05，不代表已实测）
+- [高德地图](https://guanmo-ai.github.io/awesome-agent-mcp/s/amap.md): 地点与天气查询、路线规划、地图生成和地图开发。 MCP · Skill · CLI；只读查询
+- [百度地图](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-map.md): 地点检索、地理编码与路线规划。 MCP；只读查询
+- [腾讯地图](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-map.md): 地点搜索、路线规划与位置服务。 MCP；只读查询
+- [滴滴](https://guanmo-ai.github.io/awesome-agent-mcp/s/didi.md): 叫车、估价与行程查询。 MCP · Skill；涉及资金
+- [美团](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituan.md): 商家订单、团购核销、商品与库存管理及经营数据查询。 MCP · Skill · CLI；涉及资金
+- [淘宝](https://guanmo-ai.github.io/awesome-agent-mcp/s/taobao.md): 商品搜索与购物，需安装桌面客户端。 MCP · Skill；涉及资金
+- [麦当劳中国](https://guanmo-ai.github.io/awesome-agent-mcp/s/mcdonalds-cn.md): 点餐、门店与优惠查询。 MCP；涉及资金
+- [瑞幸](https://guanmo-ai.github.io/awesome-agent-mcp/s/luckin.md): 咖啡点单与门店查询。 MCP · Skill · CLI；涉及资金
+- [飞猪](https://guanmo-ai.github.io/awesome-agent-mcp/s/fliggy.md): 机票、酒店和景点搜索，返回价格与预订跳转链接。 Skill · CLI；只读查询
+- [同程商旅](https://guanmo-ai.github.io/awesome-agent-mcp/s/ly-tmc.md): 企业差旅资源查询、差旅政策校验与方案推荐。 MCP · Skill · CLI；只读查询
+- [彩云天气](https://guanmo-ai.github.io/awesome-agent-mcp/s/caiyun-weather.md): 查询实时天气、逐小时预报、空气质量与天气预警。 MCP；只读查询
+- [飞常准](https://guanmo-ai.github.io/awesome-agent-mcp/s/variflight.md): 查询航班动态、中转方案、机票价格、机场天气与飞机位置。 MCP；只读查询
+- [途牛](https://guanmo-ai.github.io/awesome-agent-mcp/s/tuniu.md): 搜索并预订酒店、机票、火车票、门票、邮轮与度假产品。 MCP · Skill · CLI；涉及资金
+- [快递100](https://guanmo-ai.github.io/awesome-agent-mcp/s/kuaidi100.md): 查询物流轨迹、预估运费与时效，并支持获授权的上门取件下单。 MCP · Skill；涉及资金
+- [携程商旅](https://guanmo-ai.github.io/awesome-agent-mcp/s/ctrip-business.md): 查询差旅政策、机票酒店与行程方案，读取差旅和合规数据。 MCP；只读查询
 
 ## 办公和协作
 
-- [飞书](https://github.com/larksuite/cli): 消息、文档、日历与多维表格。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npx @larksuite/cli@latest install`；Skill https://github.com/larksuite/cli/tree/main/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/)
-  - 接入前准备：消息、文档、日历等任务可优先使用官方 CLI；需要 Node.js/npm、飞书账号、应用与用户授权，组织策略及资源权限可能限制操作。远程 MCP 是另一条路线，官方个人指南仍标内测，不能默认覆盖 CLI 的所有功能。
-  - 步骤 1：按官方 CLI 安装说明安装；在当前环境运行 lark-cli config init --new，把生成的配置链接交给你在浏览器完成应用设置。 [官方入口](https://github.com/larksuite/cli#quick-start-ai-agent)
-  - 步骤 2：运行 lark-cli auth login --recommend，由你在浏览器授权。已有应用时复用现有配置，不覆盖其他账号；按实际任务选择所需权限。 [官方入口](https://github.com/larksuite/cli#authentication)
-  - 步骤 3：保存会议纪要时先使用官方 lark-doc Skill；已有完整 Markdown 可按创建指引导入，创作新文档先按其工作流整理内容，确认目标文件夹与文档权限。 [官方入口](https://github.com/larksuite/cli/blob/main/skills/lark-doc/references/lark-doc-create.md)
-  - 步骤 4：创建后使用返回的文档 URL 或 ID，按官方 fetch 指引回读并核对标题和正文；不要只凭命令退出成功就宣称已保存。 [官方入口](https://github.com/larksuite/cli/blob/main/skills/lark-doc/references/lark-doc-fetch.md)
-  - 步骤 5：如果明确要用远程 MCP，先查看个人调用指南与开放范围；具体配置以本人在官方平台取得的内容为准，不把 CLI 安装命令当成 MCP 端点。 [官方入口](https://open.feishu.cn/document/mcp_open_tools/end-user-call-remote-mcp-server?lang=zh-CN)
-  - 如何确认成功：先用 lark-cli auth status 查看登录及权限。保存文档后检查返回的 ok、document.url 和 warnings，再运行 lark-cli docs +fetch --doc "返回的文档 URL" --detail with-ids，回读核对标题和正文，并把可打开的文档链接交给你；登录成功不等于文档已保存。（指引核对于 2026-11-05，不代表已实测）
-- [钉钉](https://open.dingtalk.com/document/ai-dev/dingtalk-server-api-mcp-overview): 消息、文档、表格、日志、日历与待办的查询和操作。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk/)
-  - 接入前准备：需要钉钉账号；可见服务与数据受当前身份及组织授权约束。企业接入和费用以实际服务页面及组织权限为准。
-  - 步骤 1：在钉钉开放平台能力中心了解所需 MCP 服务及工具范围。 [官方入口](https://open.dingtalk.com/group)
-  - 步骤 2：参照钉钉官方 DWS 指南安装并登录；运行 dws mcp published tools，查看当前身份可用的已发布工具与输入格式。 [官方入口](https://open.dingtalk.com/dingtalk-dev/wiki)
-  - 步骤 3：按实际发布的工具契约选择目标与参数，从只读工具开始；使用具体客户端连接时按相应服务页面说明完成授权。 [官方入口](https://open.dingtalk.com/dingtalk-dev/wiki)
-  - 如何确认成功：检查已发布工具列表，再查询当前账号可访问的一条文档或待办并与钉钉中内容核对。（指引核对于 2026-11-05，不代表已实测）
-- [企业微信](https://work.weixin.qq.com/nl/index/aicli): 企业消息、通讯录与办公应用。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；CLI `npm install -g @wecom/cli`；Skill https://github.com/WecomTeam/wecom-unified；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wecom/)
-- [腾讯文档](https://docs.qq.com/open/document/mcp/): 在线文档与表格的读取和编辑。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、免费可用；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/)
-  - 接入前准备：个人需以 QQ 或微信登录并授权对应腾讯文档账号。官方文档列出免费用户 2000 次/天、超级会员 20000 次/天、超级会员 Plus 40000 次/天；企业场景及实际权限以账号和产品说明为准。
-  - 步骤 1：阅读官方 MCP 概述和服务使用须知，确认账号和调用频率限制。 [官方入口](https://docs.qq.com/open/document/mcp/)
-  - 步骤 2：打开官方 MCP 使用指南，按所用客户端的说明添加服务，并登录 QQ 或微信授权要访问的腾讯文档账号。 [官方入口](https://docs.qq.com/aio/p/scscyt11f44r7mn?p=zUl82NjI94qGab1NeQghFDF&nlc=1)
-  - 如何确认成功：连接后先读取自己有权限的一份文档，核对名称或内容；未授权文件不可作为连通性依据。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯会议](https://cloud.tencent.com/document/product/1095/133826): 预约和管理会议，读取参会信息、录制、转写与纪要。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencentcloud/tmeet`；Skill https://github.com/TencentCloud/tencentmeeting-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/)
-- [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction): 通过 WPS 365 API 查询和操作企业文档及协作数据。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps/)
-  - 接入前准备：面向 WPS 365 企业；需申请 MCP 试用、创建企业自建应用，申请所需应用权限并取得用户访问凭证。公开文档未说明通用价格。
-  - 步骤 1：在官方 MCP 简介中打开试用申请表，向 WPS 申请企业 MCP 权限。 [官方入口](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction)
-  - 步骤 2：按对接指南创建企业自建应用，在应用详情的权限管理申请目标工具所需权限，并按用户授权流程取得 access token；文档要求关闭接口签名。 [官方入口](https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide)
-  - 步骤 3：选择支持 MCP 的客户端，按指南从工具列表选择对应端点，在请求头配置用户访问凭证。 [官方入口](https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide)
-  - 如何确认成功：先确认客户端显示服务与工具列表，再使用日历只读查询核对授权用户已有日程；不要以创建日程作为首测。（指引核对于 2026-11-05，不代表已实测）
-- [金山文档](https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA): 搜索、读取和整理云文档，生成文档内容。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/)
-  - 接入前准备：需要登录并授权金山文档账号，按官网提供的安装指令接入。
-  - 步骤 1：登录金山文档，在右上角更多菜单中选择「龙虾专属入口」。 [官方入口](https://www.kdocs.cn/latest)
-  - 步骤 2：按官方页面的授权提示复制安装指令，交给 Agent 使用。 [官方入口](https://www.kdocs.cn/latest)
-  - 如何确认成功：接入后先让 Agent 只读查询你已获授权的文档，核对返回结果。（指引核对于 2026-11-05，不代表已实测）
-- [语雀](https://github.com/yuque/yuque-mcp-server): 知识库与文档的读写。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y yuque-mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/)
-- [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail): 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencent-qqmail/agently-cli`；Skill https://github.com/Tencent/AgentlyMail；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/)
-- [腾讯乐享](https://github.com/tencent-lexiang/lexiang-mcp-skill): 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.lexiang-app.com/mcp?company_from=<你的企业标识>；Skill https://github.com/tencent-lexiang/lexiang-mcp-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/)
-- [TextIn](https://www.textin.com/news/20250707161156842): 识别图片与文档文字，提取字段表格，并把文档转换为 Markdown。 类型 MCP；权限 只读查询；门槛 需 API Key；已核验；MCP stdio npx -y @intsig/server-textin；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/textin/)
-- [MinerU](https://github.com/opendatalab/MinerU-Ecosystem): 将 PDF、Office、图片与网页解析为 Markdown 和结构化数据。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 免费可用、需 API Key；已核验；MCP stdio uvx mineru-open-mcp；Skill https://github.com/opendatalab/MinerU-Ecosystem/tree/main/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/mineru/)
-- [滴答清单](https://help.dida365.com/articles/7438132116019216384): 查询和管理任务、清单、习惯、专注记录与纪念日。 类型 MCP · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.dida365.com；CLI `npm install -g @suibiji/dida-cli`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dida/)
-- [飞书项目](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc): 按账号权限查询和更新项目、工作项及相关项目数据。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu-project/)
-  - 接入前准备：需有飞书项目账号和目标空间访问权限；MCP 在个人权限范围内运行，可选择读写授权。版本及费用以组织实际订购为准。
-  - 步骤 1：进入飞书项目，在左下角个人头像菜单选择“配置 MCP”，打开服务开关并选择所需的读或写授权。 [官方入口](https://project.feishu.cn/b/helpcenter/1ykiuvvj/qaq5d7ru)
-  - 步骤 2：按官方客户端指南选择 HTTP OAuth、HTTP Header 或 Stdio，配置所属域名及相应认证；OAuth 需要客户端支持动态 client_id。 [官方入口](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc)
-  - 步骤 3：完成客户端提示的授权并启用服务；例如 Codex CLI 保存配置后重启，首次调用按提示授权。 [官方入口](https://project.feishu.cn/b/helpcenter/1ykiuvvj/wzb3ycsc)
-  - 如何确认成功：先查询有权限的空间基本信息或工作项列表，核对返回内容；写操作仅在确需修改时使用。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯 TAPD](https://cloud.tencent.com/developer/mcp/server/11474): 查询和管理需求、任务、缺陷、迭代及评论。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx mcp-server-tapd；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tapd/)
+- [飞书](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu.md): 消息、文档、日历与多维表格。 MCP · Skill · CLI；可执行操作
+- [钉钉](https://guanmo-ai.github.io/awesome-agent-mcp/s/dingtalk.md): 消息、文档、表格、日志、日历与待办的查询和操作。 MCP；可执行操作
+- [企业微信](https://guanmo-ai.github.io/awesome-agent-mcp/s/wecom.md): 企业消息、通讯录与办公应用。 MCP · Skill · CLI；可执行操作
+- [腾讯文档](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs.md): 在线文档与表格的读取和编辑。 MCP · Skill；可执行操作
+- [腾讯会议](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting.md): 预约和管理会议，读取参会信息、录制、转写与纪要。 MCP · Skill · CLI；可执行操作
+- [WPS](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps.md): 通过 WPS 365 API 查询和操作企业文档及协作数据。 MCP；可执行操作
+- [金山文档](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs.md): 搜索、读取和整理云文档，生成文档内容。 Skill；可执行操作
+- [语雀](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque.md): 知识库与文档的读写。 MCP；可执行操作
+- [Agently Mail（QQ 邮箱团队）](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail.md): 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 Skill · CLI；可执行操作
+- [腾讯乐享](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang.md): 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 MCP · Skill；可执行操作
+- [TextIn](https://guanmo-ai.github.io/awesome-agent-mcp/s/textin.md): 识别图片与文档文字，提取字段表格，并把文档转换为 Markdown。 MCP；只读查询
+- [MinerU](https://guanmo-ai.github.io/awesome-agent-mcp/s/mineru.md): 将 PDF、Office、图片与网页解析为 Markdown 和结构化数据。 MCP · Skill · CLI；可执行操作
+- [滴答清单](https://guanmo-ai.github.io/awesome-agent-mcp/s/dida.md): 查询和管理任务、清单、习惯、专注记录与纪念日。 MCP · CLI；可执行操作
+- [飞书项目](https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu-project.md): 按账号权限查询和更新项目、工作项及相关项目数据。 MCP；可执行操作
+- [腾讯 TAPD](https://guanmo-ai.github.io/awesome-agent-mcp/s/tapd.md): 查询和管理需求、任务、缺陷、迭代及评论。 MCP；可执行操作
 
 ## 笔记、阅读和网盘
 
-- [微信读书](https://weread.qq.com/r/weread-skills): 书架、笔记与划线。 类型 Skill；权限 只读查询；门槛 需授权账号、需 API Key；已核验；Skill https://github.com/Tencent/WeChatReading；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weread/)
-- [腾讯 ima](https://ima.qq.com/agent-interface): 个人知识库的搜索与读写。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；Skill https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ima/)
-- [flomo](https://help.flomoapp.com/advance/mcp/): 卡片笔记的记录与检索。 类型 MCP；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；MCP Streamable HTTP https://flomoapp.com/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/flomo/)
-- [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html): 笔记的创建、搜索与整理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；Skill https://cdn.yinxiang.com/ai/yinxiang-skill-v1.0.4.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang/)
-- [有道云笔记](https://note.youdao.com/help-center/skill-guide.html): 笔记读写与搜索、待办管理和网页剪藏。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note/)
-  - 接入前准备：适合个人有道云笔记账号；通用 Skill 依赖 YoudaoNote CLI 和个人 API Key。编程 Agent 的官方安装方式需要 Node.js；服务费用和额度以网易智能开发者平台为准。
-  - 步骤 1：按所用 Agent 打开官方通用 Skill 安装指南：编程 Agent 下载并解压 Skill 包，再按指南用 npx skills 安装；有道龙虾最新版已内置。 [官方入口](https://note.youdao.com/help-center/skill-guide.html)
-  - 步骤 2：按指南安装 YoudaoNote CLI，并在网易智能开发者平台获取或确认个人 API Key；按本机引导配置。 [官方入口](https://note.youdao.com/help-center/skill-install-guide.html)
-  - 步骤 3：重启或重载相应 Agent，使新安装的 Skill 生效。 [官方入口](https://note.youdao.com/help-center/skill-install-guide.html)
-  - 如何确认成功：在 Agent 中输入“列出我有道云笔记中的笔记”，返回账号的笔记列表后再核对。（指引核对于 2026-11-05，不代表已实测）
-- [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；Skill https://pdds.quark.cn/download/stfile/uu66xuuuuuvyuw8wx/quarkclouddrive-1.0.20.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive/)
-- [腾讯微云](https://www.weiyun.com/act/openclaw): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；Skill https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/)
-- [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/): 网盘文件的搜索、上传与管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP SSE https://mcp-pan.baidu.com/sse；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk/)
+- [微信读书](https://guanmo-ai.github.io/awesome-agent-mcp/s/weread.md): 书架、笔记与划线。 Skill；只读查询
+- [腾讯 ima](https://guanmo-ai.github.io/awesome-agent-mcp/s/ima.md): 个人知识库的搜索与读写。 Skill；可执行操作
+- [flomo](https://guanmo-ai.github.io/awesome-agent-mcp/s/flomo.md): 卡片笔记的记录与检索。 MCP；可执行操作
+- [印象笔记](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang.md): 笔记的创建、搜索与整理。 Skill；可执行操作
+- [有道云笔记](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note.md): 笔记读写与搜索、待办管理和网页剪藏。 Skill · CLI；可执行操作
+- [夸克网盘](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive.md): 网盘文件的搜索与管理。 Skill；可执行操作
+- [腾讯微云](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun.md): 网盘文件的搜索与管理。 Skill；可执行操作
+- [百度网盘](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk.md): 网盘文件的搜索、上传与管理。 MCP；可执行操作
 
 ## 搜索、内容和企业数据
 
-- [知乎](https://developer.zhihu.com/docs?key=zhihu_cli): 搜索知乎与全网、读取热榜和个人内容，检索与上传知识库文件。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://developer.zhihu.com/api/mcp/v1；Skill https://developer-cdn.zhihu.com/zhihu-cli/releases/stable/skill/zhihu-cli-skill.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhihu/)
-- [企查查](https://agent.qcc.com/guide): 企业工商与风险信息查询。 类型 MCP · CLI；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://agent.qcc.com/mcp/company/stream；CLI `npm install -g qcc-agent-cli`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qcc/)
-- [天眼查](https://github.com/tyc-tech/tyc-cli): 企业工商与关系信息查询。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.tianyancha.com/mcp；CLI `npm install -g tyc-cli`；Skill https://github.com/tyc-tech/mcp-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tianyancha/)
-- [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc): 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；MCP SSE https://open.douyin.com/sse?token=<你的抖音Token>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/douyin-open/)
-- [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712): 查询授权的巨量广告账户、投放指标与报表数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanengine/)
-  - 接入前准备：面向已获授权的巨量广告业务账户；需登录商业化账号、授权目标账户并申请 API Key。接口费用及账户权限以平台当前规则为准。
-  - 步骤 1：打开巨量引擎 MCP 页面，在「使用方式」选择授权，登录商业化账号并勾选要查询的业务账户。 [官方入口](https://open.oceanengine.com/mcp)
-  - 步骤 2：按页面提示在 API Key 管理中申请 Key，再复制系统按授权生成的客户端配置。 [官方入口](https://open.oceanengine.com/api-key)
-  - 步骤 3：将配置添加到支持 Streamable HTTP 的 MCP 客户端；未勾选的账户不会获得对应操作权限。 [官方入口](https://open.oceanengine.com/mcp)
-  - 如何确认成功：先查询自己可操作的业务账户列表，核对返回账户与授权范围；再查询已有报表。（指引核对于 2026-11-05，不代表已实测）
-- [华宇元典](https://open.chineselaw.com/mcp-config/): 检索法律法规、案例、企业和证券合规资料，并校验法律幻觉。 类型 MCP · Skill；权限 只读查询；门槛 需 API Key；已核验；MCP Streamable HTTP https://open.chineselaw.com/mcp/law/stream；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuandian/)
-- [腾讯元宝搜索](https://cloud.tencent.com/developer/mcp/server/11764): 检索实时网页与垂直信息，可限定站点、时效和结果数量。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://api.wsa.cloud.tencent.com/Mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuanbao-search/)
-- [百度 AI 搜索](https://cloud.baidu.com/doc/BAIDU_AI_SEARCH/index.html): 搜索实时网页、图片和视频，并按站点或结果类型筛选。 类型 MCP；权限 只读查询；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-search/)
-  - 接入前准备：获取百度 AI 搜索 MCP 配置需登录百度智能云控制台；应使用控制台提供的本人配置。公开教程涉及 API Key，但本次未确认当前独立 MCP 的具体鉴权格式、额度与价格，不套用其他产品的免费额度。
-  - 步骤 1：从官方教程进入 MCP 广场，找到百度 AI 搜索并查看 Streamable HTTP 配置；先核对当前服务的认证字段与计费提示。 [官方入口](https://ai.baidu.com/ai-doc/AppBuilder/amaxd2det)
-  - 步骤 2：让 Agent 按控制台实际给出的完整配置接入，不凭空拼接 URL 或认证头；发生费用前由你确认。 [官方入口](https://cloud.baidu.com/doc/BAIDU_AI_SEARCH/index.html)
-  - 如何确认成功：先确认工具可用；在核对计费且获授权后做一次公开网页搜索，检查返回内容与来源链接。未取得本人配置前，只能算完成了接入准备。（指引核对于 2026-11-05，不代表已实测）
-- [百度百科](https://cloud.baidu.com/product-s/qianfan_home): 查询百科词条义项、详情和秒懂百科视频。 类型 MCP；权限 只读查询；门槛 见接入前准备；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-baike/)
-  - 接入前准备：官方产品页提供百度百科 MCP 免费试用入口，但公开资料尚未确认其独立鉴权、配额和试用后资费。不能把百科 API 的 Key 要求直接套到 MCP，也不能把试用当作永久免费。
-  - 步骤 1：从百度千帆官方产品页找到百度百科 MCP 的试用入口，在控制台核实当前账号资格、认证方式与额度。 [官方入口](https://cloud.baidu.com/product-s/qianfan_home)
-  - 步骤 2：取得控制台针对当前服务的完整配置后再交给 Agent 接入；如后台未提供配置或仍未开放，明确停在此处，不使用猜测端点。 [官方入口](https://cloud.baidu.com/product-s/qianfan_home)
-  - 如何确认成功：在确认权限与费用后，以公开百科词条做一次只读查询并核对来源。没有本人配置时不能声称已接通。（指引核对于 2026-11-05，不代表已实测）
+- [知乎](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhihu.md): 搜索知乎与全网、读取热榜和个人内容，检索与上传知识库文件。 MCP · Skill · CLI；可执行操作
+- [企查查](https://guanmo-ai.github.io/awesome-agent-mcp/s/qcc.md): 企业工商与风险信息查询。 MCP · CLI；只读查询
+- [天眼查](https://guanmo-ai.github.io/awesome-agent-mcp/s/tianyancha.md): 企业工商与关系信息查询。 MCP · Skill · CLI；只读查询
+- [抖音开放平台](https://guanmo-ai.github.io/awesome-agent-mcp/s/douyin-open.md): 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 MCP；可执行操作
+- [巨量引擎](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanengine.md): 查询授权的巨量广告账户、投放指标与报表数据。 MCP；只读查询
+- [华宇元典](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuandian.md): 检索法律法规、案例、企业和证券合规资料，并校验法律幻觉。 MCP · Skill；只读查询
+- [腾讯元宝搜索](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuanbao-search.md): 检索实时网页与垂直信息，可限定站点、时效和结果数量。 MCP；只读查询
+- [百度 AI 搜索](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-search.md): 搜索实时网页、图片和视频，并按站点或结果类型筛选。 MCP；只读查询
+- [百度百科](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-baike.md): 查询百科词条义项、详情和秒懂百科视频。 MCP；只读查询
 
 ## 设计和创作
 
-- [墨刀](https://modao.cc/feature/ai-mcp.html): 生成和修改原型、PRD、应用与图片，读取并导出已有原型。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://modao.cc/agent-py/ai/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/modao/)
-- [可灵](https://github.com/klingai-tech/skills): AI 视频与图片生成。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm i -g @klingai/cli-cn --registry=https://registry.npmjs.org`；Skill https://github.com/klingai-tech/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kling/)
-  - 接入前准备：需要可灵账号和浏览器授权。国内账号使用 cli-cn，全球账号使用 cli-global，不能混装或把全球 MCP 地址当国内配置。生成按账号余额和当前规则消耗灵感值，免费额度及模型开放范围以本人账号为准。
-  - 步骤 1：从官网指南确认 Skill 来源；官网提供的全球 MCP 配置不适用于直接推断国内端点。当前条目按区域中立的官方 Skill 选择国内 CLI 路径。 [官方入口](https://kling.ai/app/mcp/guide)
-  - 步骤 2：国内账号按 Skill 安装 @klingai/cli-cn，运行 kling login 并在浏览器授权；若是全球账号改用 cli-global。同一 Agent 选择一条接入路线即可。 [官方入口](https://github.com/klingai-tech/skills/blob/main/SKILL.md)
-  - 如何确认成功：先运行 kling --help，再在你完成授权后运行 kling who_am_i，确认身份、可用模型与参数。生成图片或视频会消耗额度，不用付费生成来测试连接。（指引核对于 2026-11-05，不代表已实测）
-- [MiniMax](https://github.com/MiniMax-AI/MiniMax-MCP): 语音合成与克隆、图片和视频生成，CLI 另提供文本与搜索。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key、需会员或付费；已核验；MCP stdio uvx minimax-mcp -y；CLI `npm install -g mmx-cli`；Skill https://github.com/MiniMax-AI/cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/minimax/)
-- [网易云音乐](https://music.163.com/st/ncmcli): 音乐搜索与播放、歌单管理、网盘上传和图文笔记发布。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；CLI `npm install -g @music163/ncm-cli`；Skill https://github.com/NetEase/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/netease-music/)
-- [AntV](https://github.com/antvis/mcp-server-chart): 把结构化数据生成为图表，并按分析场景选择适合的可视化形式。 类型 MCP · Skill；权限 可执行操作；门槛 免费可用；已核验；MCP stdio npx -y @antv/mcp-server-chart；Skill https://github.com/antvis/chart-visualization-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/antv/)
-- [美图 MeituHub](https://www.meituhub.com/zh-cn/docs?id=150): 用命令行调用图片、视频和音频创作能力，支持本地批量处理。 类型 CLI；权限 可执行操作；门槛 需 API Key、需会员或付费；已核验；CLI `npm install -g meitu-cli meitu`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituhub/)
-- [腾讯混元生图](https://cloud.tencent.com/developer/mcp/server/11765): 生成图片、图生图、扩图与清晰度增强。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image/)
-  - 接入前准备：需要腾讯云账号、已开通且仍可用的混元生图服务、具备相应权限的 SecretId / SecretKey 和 Docker。接口按产品规则计费，调用前确认剩余额度及迁移状态。
-  - 步骤 1：先在腾讯云确认混元生图服务是否可开通及计费状态，并在访问管理控制台获取具备所需权限的密钥。 [官方入口](https://cloud.tencent.com/document/product/1668/90896)
-  - 步骤 2：按 aiart 源码 README 构建 Docker 镜像，在本地 .env 配置密钥和地域；启动时将容器的 9000 端口映射到本机，例如 docker run -it -p 127.0.0.1:9000:9000 --env-file .env mcp-server-aiart:latest。 [官方入口](https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart)
-  - 步骤 3：按源码说明在 MCP 客户端配置 http://127.0.0.1:9000/sse；如果修改了容器端口，需同步调整端口映射和地址。 [官方入口](https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/aiart)
-  - 如何确认成功：先确认 MCP 已连接并列出图像工具；实际生成图片会消耗额度或产生费用，确认后再做一次最小调用并核对结果。（指引核对于 2026-11-05，不代表已实测）
-- [火山引擎 veImageX](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex): 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_veimagex mcp-server-veimagex；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex/)
-- [阿里云智能媒体服务 IMS](https://skills.aliyun.com/skills/alibabacloud-video-translation): 提取视频字幕并翻译，支持语音合成和配音替换。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；Skill https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/mediaservices/ice/alibabacloud-video-translation；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims/)
-  - 接入前准备：需要阿里云账号、有效 CLI 认证、IMS 相关权限及可用的视频素材地址；本地素材需按流程上传到 OSS。字幕提取与视频翻译使用不同地址格式，媒体处理、存储和流量费用按产品规则核对。
-  - 步骤 1：从阿里云官方技能详情核对能力和源码，按页面安装方式将该技能连同配套文件加入当前 Agent。 [官方入口](https://skills.aliyun.com/skills/alibabacloud-video-translation)
-  - 步骤 2：按 Skill 说明确认字幕翻译或语音翻译模式、语言和素材地址，核对 CLI、插件与认证后再提交任务。 [官方入口](https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/mediaservices/ice/alibabacloud-video-translation)
-  - 如何确认成功：先确认技能加载和认证条件；确认费用并获授权后再提交短小的公开样例，核对任务状态和输出文件。（指引核对于 2026-11-05，不代表已实测）
+- [墨刀](https://guanmo-ai.github.io/awesome-agent-mcp/s/modao.md): 生成和修改原型、PRD、应用与图片，读取并导出已有原型。 MCP；可执行操作
+- [可灵](https://guanmo-ai.github.io/awesome-agent-mcp/s/kling.md): AI 视频与图片生成。 Skill · CLI；可执行操作
+- [MiniMax](https://guanmo-ai.github.io/awesome-agent-mcp/s/minimax.md): 语音合成与克隆、图片和视频生成，CLI 另提供文本与搜索。 MCP · Skill · CLI；可执行操作
+- [网易云音乐](https://guanmo-ai.github.io/awesome-agent-mcp/s/netease-music.md): 音乐搜索与播放、歌单管理、网盘上传和图文笔记发布。 Skill · CLI；可执行操作
+- [AntV](https://guanmo-ai.github.io/awesome-agent-mcp/s/antv.md): 把结构化数据生成为图表，并按分析场景选择适合的可视化形式。 MCP · Skill；可执行操作
+- [美图 MeituHub](https://guanmo-ai.github.io/awesome-agent-mcp/s/meituhub.md): 用命令行调用图片、视频和音频创作能力，支持本地批量处理。 CLI；可执行操作
+- [腾讯混元生图](https://guanmo-ai.github.io/awesome-agent-mcp/s/hunyuan-image.md): 生成图片、图生图、扩图与清晰度增强。 MCP；可执行操作
+- [火山引擎 veImageX](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-veimagex.md): 查询和上传图片资产，生成图片、增强画质、扩图与文字识别。 MCP；可执行操作
+- [阿里云智能媒体服务 IMS](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-ims.md): 提取视频字幕并翻译，支持语音合成和配音替换。 Skill；可执行操作
 
 ## 支付和金融
 
-- [支付宝](https://aipay.alipay.com/merchant-guide): 支付授权、交易支付与状态查询，辅助应用收款接入。 类型 Skill · CLI；权限 涉及资金；门槛 需授权账号；已核验；CLI `npx -y @alipay/agent-payment@latest install`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/alipay/)
-- [微信支付](https://pay.weixin.qq.com/doc/v3/merchant/4019638116): 提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。 类型 Skill · CLI；权限 只读查询；门槛 见接入前准备；已核验；CLI `npm install -g @tenpay/wechatpay-dev-cli`；Skill https://github.com/wechatpay-apiv3/wechatpay-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay/)
-  - 接入前准备：面向支付接入开发与排障，不是替个人微信钱包付款。阅读 Skill 和查看 CLI 接口目录不需要商户交易凭据；实际查单需要对应商户或服务商身份、签名凭据与业务参数。CLI 要求 Node.js 20+。
-  - 步骤 1：把官方支付接入 Skill 按当前 Agent 的安装方式载入，再让 Agent 判断你需要接入指导、代码开发还是查单；境内与跨境 Skill 分开选择。 [官方入口](https://github.com/wechatpay-apiv3/wechatpay-skills)
-  - 步骤 2：需要 CLI 时安装 @tenpay/wechatpay-dev-cli；运行 wechatpay-dev-cli --version 和 wechatpay-dev-cli api list --mode merchant 查看安装版本与普通商户接口目录。 [官方入口](https://github.com/wechatpay-apiv3/wechatpay-skills/blob/main/wechatpay-payment-integration/references/APIv3%E6%8E%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%8E%92%E9%9A%9C.md)
-  - 步骤 3：只有需要真实查单时才按接口契约准备自己的商户参数与签名凭据；在本地配置，不要求你在对话里发私钥。 [官方入口](https://pay.weixin.qq.com/doc/v3/merchant/4019638116)
-  - 如何确认成功：版本和接口目录正常返回，只证明 CLI 可运行；接入指导需能引用对应官方文档。真实业务访问须在你授权后得到正确查单响应，不能把查看目录说成已连通商户。（指引核对于 2026-11-05，不代表已实测）
-- [银联](https://open.unionpay.com/tjweb/solution/detail?solId=613): 让智能体通过 MCP 接入银联支付服务。 类型 MCP；权限 涉及资金；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/unionpay/)
-  - 接入前准备：面向商户、收单机构或平台支付接入，不是个人银行卡的通用操作入口。需要商户注册、业务权限开通及对应签名凭据；MCP 独立收费标准未确认，支付业务费用按实际协议核实。
-  - 步骤 1：先按银联官方方案确认接入身份、场景和业务权限，完成所需商户注册与业务开通。 [官方入口](https://yun.unionpay.com/solution/page/mcp)
-  - 步骤 2：从官方接入指引取得对应场景的 MCP 配置和商户参数，在本地保存私钥；仅运行 npx unionpay-mcp-server 而不提供所需参数不能视为接通。 [官方入口](https://open.unionpay.com/tjweb/solution/detail?solId=613)
-  - 如何确认成功：先确认服务能启动并列出所需工具，再按官方测试环境与获授权的只读方式验证。不得用真实付款、签约或退款验证连接；缺少商户凭据时明确说明尚未完成。（指引核对于 2026-11-05，不代表已实测）
-- [同花顺 iFinD](https://mcp.51ifind.com/): 查询行情、财务、公告、宏观等金融数据。 类型 MCP · Skill；权限 只读查询；门槛 需授权账号、需 API Key、需会员或付费；已核验；Skill https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/skills/ifind-finance-data-1.5.1.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ifind/)
-- [同花顺问财](https://search.10jqka.com.cn/skillhub): 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 类型 Skill · CLI；权限 只读查询；门槛 需授权账号、需 API Key；已核验；CLI `curl -fsSL https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh | bash -s`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai/)
-- [东方财富妙想](https://ai.eastmoney.com/skills): 金融资讯与数据分析、选股，以及自选和模拟组合管理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/eastmoney-miaoxiang/)
-  - 接入前准备：面向金融数据和资讯查询；需要东方财富账号及妙想 API Key。官方页面标注限时免费体验及每日领取限制，额度与后续费用以官方页面为准。
-  - 步骤 1：在东方财富 App 打开妙想 Skills 页面并登录，领取 API Key；领取情况和额度以页面显示为准。 [官方入口](https://marketing.dfcfs.com/views/finskillshub/index)
-  - 步骤 2：选择金融数据或资讯搜索 Skill，按详情中的下载或使用指引安装，并按其说明在本地配置 Key。 [官方入口](https://marketing.dfcfs.com/views/finskillshub/index)
-  - 如何确认成功：先查询一只公开股票的行情或一条资讯，核对名称与数据时间；自选或模拟组合操作前确认目标。（指引核对于 2026-11-05，不代表已实测）
-- [国信证券小信](https://www.guosen.com.cn/gs/xxskills/index.html): 查询宏观、行情与财务数据，进行基金对比、选股和 ETF 筛选。 类型 Skill；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/guosen/)
-  - 接入前准备：面向金融数据查询，官方页面提供手机号验证码登录和 API Key；页面标注限时免费，具体额度及后续费用以官方为准。
-  - 步骤 1：在小信 Skills 中心使用手机号验证码注册或登录，领取个人 API Key。 [官方入口](https://www.guosen.com.cn/gs/xxskills/index.html)
-  - 步骤 2：选择已开放的行情或财务数据技能，点击「下载 Skill」，按使用说明在 Agent 中安装并配置 API Key；「敬请期待」项目暂不可用。 [官方入口](https://www.guosen.com.cn/gs/xxskills/index.html)
-  - 如何确认成功：先查询一只公开股票的行情，核对标的和行情时间；检查返回数据而非只看安装提示。（指引核对于 2026-11-05，不代表已实测）
+- [支付宝](https://guanmo-ai.github.io/awesome-agent-mcp/s/alipay.md): 支付授权、交易支付与状态查询，辅助应用收款接入。 Skill · CLI；涉及资金
+- [微信支付](https://guanmo-ai.github.io/awesome-agent-mcp/s/wechat-pay.md): 提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。 Skill · CLI；只读查询
+- [银联](https://guanmo-ai.github.io/awesome-agent-mcp/s/unionpay.md): 让智能体通过 MCP 接入银联支付服务。 MCP；涉及资金
+- [同花顺 iFinD](https://guanmo-ai.github.io/awesome-agent-mcp/s/ifind.md): 查询行情、财务、公告、宏观等金融数据。 MCP · Skill；只读查询
+- [同花顺问财](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai.md): 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 Skill · CLI；只读查询
+- [东方财富妙想](https://guanmo-ai.github.io/awesome-agent-mcp/s/eastmoney-miaoxiang.md): 金融资讯与数据分析、选股，以及自选和模拟组合管理。 Skill；可执行操作
+- [国信证券小信](https://guanmo-ai.github.io/awesome-agent-mcp/s/guosen.md): 查询宏观、行情与财务数据，进行基金对比、选股和 ETF 筛选。 Skill；只读查询
 
 ## 云和开发
 
-- [阿里云](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide): 通过 MCP 与官方 Skill 查询、诊断和管理云资源。 类型 MCP · Skill；权限 涉及资金；门槛 需授权账号；已核验；Skill https://github.com/aliyun/alibabacloud-aiops-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun/)
-  - 接入前准备：适用于阿里云账号管理已授权云资源。OAuth 需管理员安装并分配 OpenAPI MCP Server 官方应用，RAM 用户还需相应权限；云资源与 API 的计费以所用产品为准。如需 Skill，可从官方门户按任务选装；创建、部署或购买云资源可能产生费用。
-  - 步骤 1：登录 OpenAPI MCP 控制台，在 Core 标签获取账号专属 Streamable HTTP Endpoint；如需限定 API，可改用自定义版。 [官方入口](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide)
-  - 步骤 2：管理员在 RAM 控制台安装并分配 OpenAPI MCP Server 官方 OAuth 应用，再在控制台选择 OAuth 和对应客户端的配置模板。 [官方入口](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide)
-  - 步骤 3：将自己的端点与配置导入客户端，按浏览器提示完成授权；如走静态凭证，另按文档完成 RAM 策略和授权预检查。 [官方入口](https://help.aliyun.com/zh/openapi/user-guide/openapi-mcp-server-guide)
-  - 步骤 4：如需 Skill，在官方门户按产品筛选并打开技能详情，只安装任务所需技能；不必将整个集合全部安装。 [官方入口](https://skills.aliyun.com/skills)
-  - 如何确认成功：连接后先查询当前有权限查看的云资源清单，核对账号和地域；不要以创建资源作为首次验证。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云](https://cloud.tencent.com/document/product/1278/131433): 云资源查询与管理。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `pip install tccli`；Skill https://clawhub.ai/tencent-adm/tencentcloud-api-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cloud/)
-- [华为云](https://github.com/huaweicloud/huaweicloud-mcp): 云资源查询与管理。 类型 MCP · Skill；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/huaweicloud/huaweicloud-mcp#subdirectory=server/mcp_server_rfs mcp-huaweicloud-rfs；Skill https://github.com/huaweicloud/huaweicloud-devkit；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud/)
-  - 接入前准备：MCP、DevKit 和产品 Skills 集合是可选的不同路径；云产品操作需华为云账号及对应权限，认证按所选技能说明配置。创建或扩容云资源可能产生费用。
-  - 步骤 1：如需产品 Skill，先读官方云原生 Skill 使用说明，从官方集合选择相应产品和任务。 [官方入口](https://support.huaweicloud.com/skill-cce/cce_skill_0001.html)
-  - 步骤 2：按仓库说明安装所选 Skill 及其配套文件，并按目标云服务完成认证；避免为单项任务安装整个集合。 [官方入口](https://github.com/huaweicloud/huaweicloud-skills)
-  - 步骤 3：如需 DevKit 的统一发现、CLI 或 MCP 工具，另按 DevKit 仓库说明接入。 [官方入口](https://github.com/huaweicloud/huaweicloud-devkit)
-  - 如何确认成功：先确认 Agent 识别所选技能；需要云上操作时先列举已有资源并核对账号与地域，不以创建资源作为首次验证。（指引核对于 2026-11-05，不代表已实测）
-- [火山引擎](https://github.com/volcengine/mcp-server): 通过 MCP、ve CLI 与产品 Skill 查询、诊断、部署和管理云资源。 类型 MCP · Skill · CLI；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from mcp-server-ecs>=0.2.0 mcp-server-ecs；CLI `npm install -g @volcengine/cli`；Skill https://github.com/volcengine/volcengine-agent-toolkit；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine/)
-  - 接入前准备：可按任务选择 MCP 或 CLI / Skill 路径。云资源操作需要账号和相应权限；ve 的 Skill 管理要求 1.1.3 以上，具体技能可能要求更高版本。创建、部署或购买资源可能产生费用。
-  - 步骤 1：如选择 CLI，按官方仓库安装 ve 并检查版本；npm 安装可能同时安装核心 Skill，额外产品工具按需下载。 [官方入口](https://github.com/volcengine/volcengine-cli)
-  - 步骤 2：从 Agent Toolkit 的分类清单选择所需 Skill；先用核心发现能力查找，按说明安装专项技能，Ark 等能力可能指向独立产品仓库。 [官方入口](https://github.com/volcengine/volcengine-agent-toolkit)
-  - 步骤 3：需要云上操作时，按所选工具说明在本地配置对应账号、凭证和地域；保留下方 MCP 作为另一种接入选项。 [官方入口](https://github.com/volcengine/mcp-server)
-  - 如何确认成功：先查看 ve version 或 Agent 的技能清单，再查询已有授权资源；安装成功不等于已完成云服务鉴权。（指引核对于 2026-11-05，不代表已实测）
-- [百度智能云](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0): 通过 MCP 与 Skill 使用文字识别、文档解析、搜索、图像和语音能力。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP SSE https://aip.baidubce.com/mcp/ocr_general/sse；Skill https://github.com/baidubce/skills/tree/develop/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud/)
-  - 接入前准备：MCP 与 Skill 为不同接入路径。MCP 需要对应 AI 开放能力的 API Key；Skill 可能需要 Python 及各自产品的凭证，文档解析、搜索等额度和费用分别按产品规则核对。
-  - 步骤 1：如需 MCP，按官方 AI 开放能力指南选择对应服务并配置自己的 API Key；下方示例仅对应通用文字识别。 [官方入口](https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0)
-  - 步骤 2：如需 Skill，从 develop 分支的 skills 目录选择实际技能，连同对应脚本和参考文件按仓库说明放入 Agent 可发现的目录；不要只取模板或只复制 SKILL.md。 [官方入口](https://github.com/baidubce/skills/tree/develop/skills)
-  - 如何确认成功：先确认所选技能出现在 Agent 清单，并核对其说明和凭证要求；经费用确认后再用公开样例验证所选能力。（指引核对于 2026-11-05，不代表已实测）
-- [七牛云](https://github.com/qiniu/qiniu-mcp-server): 对象存储读写、图片处理、CDN 刷新预取与直播管理。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx qiniu-mcp-server；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qiniu/)
-- [智谱](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server): 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 类型 MCP；权限 只读查询；门槛 需授权账号、需会员或付费、需 API Key；已核验；MCP Streamable HTTP https://open.bigmodel.cn/api/mcp/web_search_prime/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu/)
-- [Gitee](https://gitee.com/oschina/mcp-gitee): 代码仓库、Issue 与 PR 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio mcp-gitee；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee/)
-- [极狐 GitLab](https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/): 代码仓库与 DevOps 管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://jihulab.com/api/v4/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab/)
-- [腾讯 EdgeOne Makers](https://edgeone.cloud.tencent.com/pages/document/173172415568367616): 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP stdio npx edgeone-pages-mcp-fullstack --region china；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers/)
-- [Apifox](https://docs.apifox.com/apifox-mcp-server): 读取接口文档，并通过命令行运行接口测试。 类型 MCP · CLI；权限 可执行操作；门槛 见接入前准备；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apifox/)
-  - 接入前准备：项目内文档需要有权限的 Apifox 账号及个人访问令牌；公开文档可走不使用个人令牌的路径。MCP 需 Node.js 18 或更高；CLI 所需环境和套餐以官方说明为准。
-  - 步骤 1：读取项目文档时，在头像「账号设置 → API 访问令牌」创建令牌；进入项目基本设置可取得项目 ID。 [官方入口](https://docs.apifox.com/6327888m0)
-  - 步骤 2：在项目接口的「AI 编程」入口复制 MCP 配置并添加到客户端。公开文档另可在已启用 MCP 的接口页面点击 MCP 按钮复制配置。 [官方入口](https://docs.apifox.com/6327890m0)
-  - 步骤 3：需要运行测试时，按 CLI 文档安装，运行 apifox auth login 登录；在 Apifox 场景用例的 CI/CD 标签配置环境、生成令牌并复制对应命令。 [官方入口](https://docs.apifox.com/install-and-run-cli)
-  - 如何确认成功：先让 MCP 读取已有接口文档并核对项目和接口名称；CLI 测试仅在确认环境与用例不会产生意外写入后运行。（指引核对于 2026-11-05，不代表已实测）
-- [Sealos](https://sealos.io/docs/AI/mcp/): 创建开发环境，管理数据库，查询账单、性能监控与日志。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/sealos/)
-  - 接入前准备：需要 Sealos 账号及目标工作空间的 KubeConfig；各地域提供的 MCP 服务不同，资源费用以工作空间和产品规则为准。
-  - 步骤 1：登录 Sealos 控制台，在对应地域的 MCP 服务中复制需要使用的服务 URL。 [官方入口](https://sealos.io/docs/AI/mcp/)
-  - 步骤 2：在控制台右上角头像下选择 KubeConfig，复制当前工作空间配置；按官方文档在本地进行 URL 编码。 [官方入口](https://sealos.io/docs/AI/mcp/)
-  - 步骤 3：在支持 Streamable HTTP 的客户端添加该服务 URL，并将编码后的 KubeConfig 作为 Authorization 请求头的值。 [官方入口](https://sealos.io/docs/AI/mcp/)
-  - 如何确认成功：先列出服务工具并查询已有资源或监控，核对工作空间与地域；不创建开发环境或数据库作为首次测试。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云开发 CloudBase](https://docs.cloudbase.net/ai/cloudbase-ai-toolkit/): 管理云数据库、云函数、存储和应用部署，并提供开发工作流。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://tcb-api.cloud.tencent.com/mcp/v1；Skill https://github.com/TencentCloudBase/cloudbase-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/cloudbase/)
-- [Milvus／Zilliz](https://milvus.io/docs/milvus_and_mcp.md): 检索向量数据，查询数据库结构，并管理集合和数据。 类型 MCP；权限 可执行操作；门槛 见接入前准备；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/milvus/)
-  - 接入前准备：需要已经运行、可访问的本地或远程 Milvus 实例，以及 Python 3.10+、uv；不是安装 MCP 就会自动得到数据库。认证 Token 取决于实例配置，托管和自建成本分别确认，因此不统一标成免费或必须 API Key。
-  - 步骤 1：按官方仓库克隆服务代码并安装所需运行环境，准备自己的实例 URI；需要认证时在本地填写 Token。 [官方入口](https://github.com/zilliztech/mcp-server-milvus)
-  - 步骤 2：按 README 的客户端配置启动本地 MCP，把示例仓库绝对路径和 Milvus 连接参数换成实际值，不直接照抄别人的路径。 [官方入口](https://github.com/zilliztech/mcp-server-milvus)
-  - 如何确认成功：客户端能列出工具后，先查询实例的集合列表。连接失败先查实例地址、网络和认证；尚无实例时不能宣称接入完成。（指引核对于 2026-11-05，不代表已实测）
-- [API7 APISIX](https://docs.api7.ai/apisix/reference/apisix-mcp): 查询和管理 API 网关路由、上游、插件、消费者与证书配置。 类型 MCP；权限 可执行操作；门槛 需 API Key；已核验；MCP stdio npx -y apisix-mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/apisix/)
-- [Higress](https://github.com/higress-group/higress-ops-mcp-server): 通过 MCP 查询和管理 Higress 网关的路由、服务与配置。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/higress/)
-  - 接入前准备：需要可访问的 Higress Console、对应控制台账号和自行运行的 MCP 服务。这里的账号是网关控制台凭据，不一定是云账号；网关和模型费用取决于所选部署。
-  - 步骤 1：先准备 Higress Console 的地址和访问权限，按官方仓库部署 MCP 服务。 [官方入口](https://github.com/higress-group/higress-ops-mcp-server)
-  - 步骤 2：依仓库示例在本地配置 HIGRESS_URL、HIGRESS_USERNAME、HIGRESS_PASSWORD；示例客户端的模型密钥是另一个要求，不等于网关登录凭据。 [官方入口](https://github.com/higress-group/higress-ops-mcp-server/blob/main/.env.example)
-  - 如何确认成功：先列出 MCP 工具，再读取已有路由或服务列表，核对是否来自你的网关；不要以修改路由或删除配置测试连通。（指引核对于 2026-11-05，不代表已实测）
-- [乐鑫 ESP RainMaker](https://mcp.espressif.com/): 查询和控制物联网设备，设置设备参数并管理自动化日程。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.rainmaker.espressif.com/api/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/esp-rainmaker/)
-- [TiDB](https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/): 用自然语言查询和修改数据库，管理表结构与数据库用户。 类型 MCP；权限 可执行操作；门槛 见接入前准备；已核验；MCP stdio uvx --from pytidb[mcp] tidb-mcp-server；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tidb/)
-  - 接入前准备：需要可访问的 TiDB 实例、连接参数和数据库权限，以及 Python 3.10+、uv。官方示例可用 TiDB Cloud Starter 免费层，该路径需云账号；自建实例的登录和成本另行确认，不能把所有部署标成免费。
-  - 步骤 1：按官方指引准备 TiDB 实例和最小所需数据库权限；使用 Cloud Starter 时先确认当前免费层限额。 [官方入口](https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/)
-  - 步骤 2：按指引安装并配置 MCP，在本地填写数据库地址、端口、用户名与密码；不要把示例值当成可用账号。 [官方入口](https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/)
-  - 如何确认成功：先列工具，再查看数据库或表结构，确认连到预期实例。DDL、写入和用户管理应按任务授权执行，不作为连通测试。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云代码分析 TCA](https://cloud.tencent.com/developer/mcp/server/11709): 发起代码分析，查询代码质量、安全缺陷与分析报告。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key、需申请开通；已核验；MCP stdio npx -y -p tca-mcp-server@latest tca-mcp-stdio；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-tca/)
-- [腾讯 TDesign](https://cloud.tencent.com/developer/mcp/server/11721): 检索组件列表、文档、DOM 结构和版本变更，辅助界面开发。 类型 MCP；权限 只读查询；门槛 免费可用；已核验；MCP stdio npx -y tdesign-mcp-server@latest；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tdesign/)
-- [腾讯 CODING DevOps](https://cloud.tencent.com/developer/mcp/server/11722): 管理研发项目、工作项、代码仓库与合并请求。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y coding-devops-mcp-server；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/coding/)
-- [腾讯 DNSPod](https://cloud.tencent.com/developer/mcp/server/11743): 查询与管理 DNS 域名，读取解析记录和解析用量。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/dnspod/)
-  - 接入前准备：需要腾讯云账号及 SecretId/SecretKey，并有目标 DNSPod 域名的操作权限；本地需要 Python 环境与官方包。MCP 安装不会授予域名权限，也不能据此认定域名及云资源免费。
-  - 步骤 1：在腾讯云账号中准备最小所需访问权限，并在本地保存密钥；优先使用受限子账号。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11743)
-  - 步骤 2：按官方说明安装 mcp-server-dnspod，再配置 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY；示例使用 uv run，先确认包在该运行环境可找到。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11743)
-  - 如何确认成功：列出工具后查询你已授权的域名或解析记录，核对域名是否正确；不要改解析记录来测试连接。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯 WeData 指标语义层](https://cloud.tencent.com/developer/mcp/server/11763): 通过企业元数据与语义层检索数据资产和查询业务数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-wedata/)
-  - 接入前准备：面向已有 WeData 业务数据和指标的账号；需要 SecretId/SecretKey、实际开通地域、WeData 权限及目标指标调用权限。MCP 的免费调用说明不等于底层 WeData 产品免费。
-  - 步骤 1：确认密钥所属 UIN 已开通 WeData，并获准查询目标范围的指标；UIN 是账号要求，不要凭空增加 UIN 请求头。 [官方入口](https://cloud.tencent.com/document/product/1267/126220)
-  - 步骤 2：从指标语义层文档选实际地域的服务 URL，保留 TENCENTCLOUD_SECRET_ID、TENCENTCLOUD_SECRET_KEY、TENCENTCLOUD_REGION 三个请求头；不要混用另一种 WeData Server 的端点及连字符请求头。 [官方入口](https://cloud.tencent.com/document/product/1267/126220)
-  - 如何确认成功：先列工具，再查询一个已授权的指标。地域、底层产品或指标权限缺失时会失败，不能把拿到密钥当作开通成功。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云对象存储 COS](https://github.com/Tencent/cos-mcp): 上传、下载和检索云端文件，处理图片、视频与文档。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx cos-mcp --Region=<你的地域> --Bucket=<你的存储桶> --SecretId=<你的SecretId> --SecretKey=<你的SecretKey>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cos/)
-- [腾讯云日志服务 CLS](https://cloud.tencent.com/document/product/614/118699): 搜索和分析日志、查询监控指标与告警记录。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y cls-mcp-server@latest；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cls/)
-- [火山引擎 ByteHouse](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse): 查询数据库与表结构，执行数据查询及 DML、DDL 语句。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server@main#subdirectory=server/mcp_server_bytehouse mcp_bytehouse；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-bytehouse/)
-- [火山引擎 veFaaS Browser-Use](https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use): 发起云端浏览器操作任务，查询任务状态和结果。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP stdio uvx --from git+https://github.com/volcengine/mcp-server#subdirectory=server/mcp_server_vefaas_browser_use mcp-server-vefaas-browser-use；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-browser-use/)
-- [讯飞云](https://www.xfyun.cn/xfyun-cli/doc): 管理讯飞应用与用量，调用语音、OCR、翻译、图片和数字人等能力。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @xfyun/cli && xfyun skill install --auto`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/xfyun/)
-- [阿里云百炼](https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation): 调用图像、视频等模型能力，管理百炼应用、任务和平台资源。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g bailian-cli`；Skill https://github.com/modelstudioai/cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-bailian/)
-- [阿里云日志服务 SLS](https://help.aliyun.com/en/sls/sls-mcp-server): 检索日志项目与 LogStore，查询分析日志并诊断告警。 类型 MCP；权限 只读查询；门槛 需授权账号；已核验；MCP stdio uvx alibabacloud-sls-mcp-proxy@latest --profile default；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-sls/)
-- [阿里云 DMS Agent 数据网关](https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp): 发现数据库资产、查询权限与知识，按授权执行 SQL。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP Streamable HTTP https://dgate-mcp-cn-hangzhou.aliyuncs.com/mcp/dgate；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dms/)
-- [阿里云对象存储 OSS](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha): 通过 MCP 查询 OSS 存储空间列表、属性、容量与文件数量。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y alibabacloud-oss-mcp-server@alpha；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-oss/)
-  - 接入前准备：需要可访问 OSS 的阿里云账号与授权凭证，Node.js 不低于 18.20.5。MCP 目前为 Alpha，只提供存储空间信息查询；OSS 资源和请求费用以产品规则为准。
-  - 步骤 1：按官方文档准备具备目标 OSS 查询权限的 AccessKey，在本地填写下方 stdio 配置。 [官方入口](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha)
-  - 步骤 2：使用临时身份凭证时，按文档额外添加 OSS_SECURITY_TOKEN；需要限定地域或端点时再配置 OSS_REGION、OSS_ENDPOINT。 [官方入口](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha)
-  - 步骤 3：将配置加入支持本地 stdio 的 MCP 客户端并启用，服务由 npx 启动；无需把本机 HTTP 示例当成公网端点。 [官方入口](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha)
-  - 如何确认成功：先查看工具列表，再列举授权范围内的存储空间并核对名称；空列表可能表示没有资源，鉴权错误需检查凭证和权限。（指引核对于 2026-11-05，不代表已实测）
-- [OceanBase](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server): 执行数据库 SQL，查询租户与诊断信息，并支持全文、向量检索及可选记忆管理。 类型 MCP；权限 可执行操作；门槛 见接入前准备；已核验；MCP stdio uvx --from oceanbase-mcp oceanbase_mcp_server；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanbase/)
-  - 接入前准备：需已有可连接的 OceanBase 实例及数据库凭证，准备 uv 和 Python 3.10 至 3.12；本地部署与云实例条件不同，云资源费用另按产品规则计算。实验性记忆功能默认关闭，不是基础 SQL 接入的必选项。
-  - 步骤 1：从实例或租户获取地址、端口和数据库凭证；首次验证使用已有只读账号或只读权限，确认客户端能访问数据库网络。 [官方入口](https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000005282562)
-  - 步骤 2：按官方 PyPI 路径，将下方 uvx 配置添加到客户端，逐项替换 OB_HOST、OB_PORT、OB_USER、OB_PASSWORD 和 OB_DATABASE；使用受支持的 Python 环境。 [官方入口](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server)
-  - 步骤 3：如改用源码部署，进入仓库的 src/oceanbase_mcp_server 子目录并按其 README 安装，不要将仓库根目录下的其他 MCP 组件当成同一启动入口。 [官方入口](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server)
-  - 如何确认成功：先确认客户端列出 OceanBase 工具，再对已授权数据库执行 SHOW TABLES 并核对结果；写 SQL 和记忆写入需按实际权限与任务授权执行。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云数据库 PostgreSQL](https://developer.cloud.tencent.com/mcp/server/11830): 查询与管理 PostgreSQL 云实例、数据库、备份及监控，并提供运维诊断 Skill。 类型 MCP · Skill；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；Skill https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-postgresql/)
-  - 接入前准备：本地 stdio 需要 Go 1.25 以上、外网连接，以及具有 PostgreSQL API 权限的腾讯云账号 SecretId、SecretKey 和实例地域代码。实例及云托管资源可能产生费用。
-  - 步骤 1：按官方页面的本地 stdio 步骤克隆仓库并切换到 src/postgres，复制 .env.example 为 .env。 [官方入口](https://developer.cloud.tencent.com/mcp/server/11830)
-  - 步骤 2：按官方示例在 .env 中设置 MCP_TRANSPORT=stdio、MCP_AUTH_MODE=request-credential、MCP_REQUEST_VALIDATE_IDENTITY=true、MCP_REQUEST_CREDENTIAL_SCOPES=pg.read、READ_ONLY=true，以及 MCP_REQUEST_SECRET_ID 和 MCP_REQUEST_SECRET_KEY。 [官方入口](https://developer.cloud.tencent.com/mcp/server/11830)
-  - 步骤 3：将客户端配置的 command 指向本机 src/postgres/scripts/run_stdio.sh 的绝对路径，并按官方 JSON 示例填入凭证环境变量；按工具参数提供实例所在地域代码。 [官方入口](https://developer.cloud.tencent.com/mcp/server/11830)
-  - 步骤 4：如需 Skill，按仓库说明选用巡检、慢查询诊断或运维排障技能包。 [官方入口](https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills)
-  - 如何确认成功：客户端连接后，使用实例所在地域调用 DescribeDBInstances 查询实例列表。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云向量数据库 VectorDB](https://cloud.tencent.com/developer/mcp/server/11771): 查询向量数据库实例列表、安全组和维护时间窗。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb/)
-  - 接入前准备：需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；VectorDB 实例按产品规则计费。腾讯云托管 MCP 连接后免费调用，不代表实例免费。
-  - 步骤 1：在腾讯云控制台取得有对应产品 API 权限的 SecretId 和 SecretKey。 [官方入口](https://console.cloud.tencent.com/cam/capi)
-  - 步骤 2：登录该服务页面，在 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY 中填写凭证，点击「连接Server」，复制生成的个人 SSE 地址。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11771)
-  - 步骤 3：在 MCP 客户端按 SSE 方式配置该个人地址并保存；调用工具时按要求提供实例所在的 region，例如广州为 ap-guangzhou。 [官方入口](https://cloud.tencent.com/document/product/1212/123193)
-  - 如何确认成功：在客户端查看工具列表，使用所在地域调用 DescribeInstances 查询实例。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云消息队列 CKafka](https://cloud.tencent.com/developer/mcp/server/11776): 查询 CKafka 主题、消息、消费分组及实例信息。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka/)
-  - 接入前准备：需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；CKafka 云资源按产品规则计费。腾讯云托管 MCP 连接后免费调用，不代表实例免费。
-  - 步骤 1：在腾讯云控制台取得有对应产品 API 权限的 SecretId 和 SecretKey。 [官方入口](https://console.cloud.tencent.com/cam/capi)
-  - 步骤 2：登录该服务页面，在 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY 中填写凭证，点击「连接Server」，复制生成的个人 SSE 地址。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11776)
-  - 步骤 3：在 MCP 客户端按 SSE 方式配置该个人地址并保存；调用工具时按要求提供实例所在的 region，例如广州为 ap-guangzhou。 [官方入口](https://cloud.tencent.com/document/product/1212/123193)
-  - 如何确认成功：在客户端查看工具列表，使用所在地域调用 DescribeInstances 查询实例。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯云数据库 Redis](https://cloud.tencent.com/developer/mcp/server/11755): 查询 Redis 实例、备份和慢日志，创建实例及管理参数与安全组。 类型 MCP；权限 涉及资金；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis/)
-  - 接入前准备：需要腾讯云账号、SecretId 和 SecretKey 及相应 API 权限；创建实例可产生费用。腾讯云托管 MCP 连接后免费调用，不代表云资源免费。
-  - 步骤 1：在腾讯云控制台取得有对应产品 API 权限的 SecretId 和 SecretKey。 [官方入口](https://console.cloud.tencent.com/cam/capi)
-  - 步骤 2：登录该服务页面，在 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY 中填写凭证，点击「连接Server」，复制生成的个人 SSE 地址。 [官方入口](https://cloud.tencent.com/developer/mcp/server/11755)
-  - 步骤 3：在 MCP 客户端按 SSE 方式配置该个人地址并保存；调用工具时按要求提供实例所在的 region，例如广州为 ap-guangzhou。 [官方入口](https://cloud.tencent.com/document/product/1212/123193)
-  - 如何确认成功：在客户端查看工具列表，使用所在地域调用 DescribeInstances 查询已有实例。（指引核对于 2026-11-05，不代表已实测）
-- [阿里云 RDS Copilot](https://skills.aliyun.com/skills/alibabacloud-rds-copilot): 查询 RDS 运维知识、SQL 优化建议和故障诊断结果。 类型 Skill；权限 只读查询；门槛 需授权账号；已核验；Skill https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/database/rds/alibabacloud-rds-copilot；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-rds-copilot/)
-  - 接入前准备：需要阿里云账号、有效 CLI 凭证和 RdsAi 调用权限；阿里云 CLI 不低于 3.3.3，并启用 rdsai 插件。当前 Skill 仅调用问答和模型查询接口，不直接创建云资源；服务可用范围和费用以产品规则为准。
-  - 步骤 1：从阿里云官方技能详情核对能力和源码，按页面安装方式将该技能连同配套文件加入当前 Agent。 [官方入口](https://skills.aliyun.com/skills/alibabacloud-rds-copilot)
-  - 步骤 2：按 Skill 说明检查 CLI 版本、插件和认证状态，再进行 RDS Copilot 问答。 [官方入口](https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/database/rds/alibabacloud-rds-copilot)
-  - 如何确认成功：先确认技能已加载，取得授权后用不含敏感数据的 RDS 常见问题查询，核对返回建议；不将回答当作已经执行运维。（指引核对于 2026-11-05，不代表已实测）
-- [阿里云 PAI-DLC](https://skills.aliyun.com/skills/alibabacloud-pai-dlc-job): 创建、查询、更新和停止分布式训练任务，查看日志、事件与计算健康检查。 类型 Skill；权限 涉及资金；门槛 需授权账号；已核验；Skill https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/aiml/learn/alibabacloud-pai-dlc-job；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-pai-dlc/)
-  - 接入前准备：需要 PAI 工作空间、相应权限和有效 CLI 认证；阿里云 CLI 不低于 3.3.1。创建训练任务会使用公共按量计算资源或已有配额，费用按实际资源规则计算。
-  - 步骤 1：从阿里云官方技能详情核对能力和源码，按页面安装方式将该技能连同配套文件加入当前 Agent。 [官方入口](https://skills.aliyun.com/skills/alibabacloud-pai-dlc-job)
-  - 步骤 2：按 Skill 说明配置地域和工作空间，核对 CLI、插件、权限与计算配额后选择任务操作。 [官方入口](https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/aiml/learn/alibabacloud-pai-dlc-job)
-  - 如何确认成功：先列举已有工作空间内的训练任务并核对状态；不要为验证接入而新建计费任务。（指引核对于 2026-11-05，不代表已实测）
-- [阿里云 DataWorks](https://skills.aliyun.com/skills/alibabacloud-dataworks-datastudio-develop): 创建、配置和发布数据开发节点与工作流，管理资源和 UDF。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；Skill https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/analyticscomputing/dide/alibabacloud-dataworks-datastudio-develop；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dataworks/)
-  - 接入前准备：需要阿里云账号、有效 CLI 或 SDK 凭证、DataWorks 工作空间及对应权限。按官方说明安装 dataworks-public 插件；工作空间版本和计算资源费用另按产品规则核对。
-  - 步骤 1：从阿里云官方技能详情核对能力和源码，按页面安装方式将该技能连同配套文件加入当前 Agent。 [官方入口](https://skills.aliyun.com/skills/alibabacloud-dataworks-datastudio-develop)
-  - 步骤 2：按 Skill 说明核对工作空间与权限，并安装 dataworks-public 插件；执行发布前确认目标环境与工作流变更。 [官方入口](https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/analyticscomputing/dide/alibabacloud-dataworks-datastudio-develop)
-  - 如何确认成功：先读取已有工作流或节点并核对内容；创建、更新和发布按任务授权执行。（指引核对于 2026-11-05，不代表已实测）
-- [阿里云 Lindorm](https://skills.aliyun.com/skills/alibabacloud-lindorm-agent-skill): 管理多模数据库实例，分析监控、性能和连接问题，辅助 SQL 与检索开发。 类型 Skill；权限 涉及资金；门槛 需授权账号；已核验；Skill https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/database/hitsdb/alibabacloud-lindorm-agent-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-lindorm/)
-  - 接入前准备：需要阿里云账号、有效 CLI 凭证及 Lindorm 和监控等目标操作权限；数据库连接和 SQL 操作另需相应网络与数据库权限。创建、扩容及变更付费类型可能产生费用。
-  - 步骤 1：从阿里云官方技能详情核对能力和源码，按页面安装方式将该技能连同配套文件加入当前 Agent。 [官方入口](https://skills.aliyun.com/skills/alibabacloud-lindorm-agent-skill)
-  - 步骤 2：按 Skill 说明准备 aliyun CLI 和 lindorm 插件，核对实例地域、认证及目标操作权限。 [官方入口](https://github.com/aliyun/alibabacloud-aiops-skills/tree/master/skills/database/hitsdb/alibabacloud-lindorm-agent-skill)
-  - 如何确认成功：先查询已有实例或监控信息并核对账号与地域；不以创建、扩容或释放实例验证接入。（指引核对于 2026-11-05，不代表已实测）
+- [阿里云](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun.md): 通过 MCP 与官方 Skill 查询、诊断和管理云资源。 MCP · Skill；涉及资金
+- [腾讯云](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cloud.md): 云资源查询与管理。 Skill · CLI；可执行操作
+- [华为云](https://guanmo-ai.github.io/awesome-agent-mcp/s/huawei-cloud.md): 云资源查询与管理。 MCP · Skill；涉及资金
+- [火山引擎](https://guanmo-ai.github.io/awesome-agent-mcp/s/volcengine.md): 通过 MCP、ve CLI 与产品 Skill 查询、诊断、部署和管理云资源。 MCP · Skill · CLI；涉及资金
+- [百度智能云](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-cloud.md): 通过 MCP 与 Skill 使用文字识别、文档解析、搜索、图像和语音能力。 MCP · Skill；可执行操作
+- [七牛云](https://guanmo-ai.github.io/awesome-agent-mcp/s/qiniu.md): 对象存储读写、图片处理、CDN 刷新预取与直播管理。 MCP；可执行操作
+- [智谱](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhipu.md): 联网搜索与实时信息检索，面向 GLM Coding Plan 用户。 MCP；只读查询
+- [Gitee](https://guanmo-ai.github.io/awesome-agent-mcp/s/gitee.md): 代码仓库、Issue 与 PR 管理。 MCP；可执行操作
+- [极狐 GitLab](https://guanmo-ai.github.io/awesome-agent-mcp/s/jihulab.md): 代码仓库与 DevOps 管理。 MCP；可执行操作
+- [腾讯 EdgeOne Makers](https://guanmo-ai.github.io/awesome-agent-mcp/s/edgeone-makers.md): 部署静态网站、全栈应用与 Agent 项目，并生成公开访问链接。 MCP · Skill · CLI；可执行操作
+- [Apifox](https://guanmo-ai.github.io/awesome-agent-mcp/s/apifox.md): 读取接口文档，并通过命令行运行接口测试。 MCP · CLI；可执行操作
+- [Sealos](https://guanmo-ai.github.io/awesome-agent-mcp/s/sealos.md): 创建开发环境，管理数据库，查询账单、性能监控与日志。 MCP；可执行操作
+- [腾讯云开发 CloudBase](https://guanmo-ai.github.io/awesome-agent-mcp/s/cloudbase.md): 管理云数据库、云函数、存储和应用部署，并提供开发工作流。 MCP · Skill · CLI；可执行操作
+- [Milvus／Zilliz](https://guanmo-ai.github.io/awesome-agent-mcp/s/milvus.md): 检索向量数据，查询数据库结构，并管理集合和数据。 MCP；可执行操作
+- [API7 APISIX](https://guanmo-ai.github.io/awesome-agent-mcp/s/apisix.md): 查询和管理 API 网关路由、上游、插件、消费者与证书配置。 MCP；可执行操作
+- [Higress](https://guanmo-ai.github.io/awesome-agent-mcp/s/higress.md): 通过 MCP 查询和管理 Higress 网关的路由、服务与配置。 MCP；可执行操作
+- [乐鑫 ESP RainMaker](https://guanmo-ai.github.io/awesome-agent-mcp/s/esp-rainmaker.md): 查询和控制物联网设备，设置设备参数并管理自动化日程。 MCP；可执行操作
+- [TiDB](https://guanmo-ai.github.io/awesome-agent-mcp/s/tidb.md): 用自然语言查询和修改数据库，管理表结构与数据库用户。 MCP；可执行操作
+- [腾讯云代码分析 TCA](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-tca.md): 发起代码分析，查询代码质量、安全缺陷与分析报告。 MCP；可执行操作
+- [腾讯 TDesign](https://guanmo-ai.github.io/awesome-agent-mcp/s/tdesign.md): 检索组件列表、文档、DOM 结构和版本变更，辅助界面开发。 MCP；只读查询
+- [腾讯 CODING DevOps](https://guanmo-ai.github.io/awesome-agent-mcp/s/coding.md): 管理研发项目、工作项、代码仓库与合并请求。 MCP；可执行操作
+- [腾讯 DNSPod](https://guanmo-ai.github.io/awesome-agent-mcp/s/dnspod.md): 查询与管理 DNS 域名，读取解析记录和解析用量。 MCP；可执行操作
+- [腾讯 WeData 指标语义层](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-wedata.md): 通过企业元数据与语义层检索数据资产和查询业务数据。 MCP；只读查询
+- [腾讯云对象存储 COS](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cos.md): 上传、下载和检索云端文件，处理图片、视频与文档。 MCP；可执行操作
+- [腾讯云日志服务 CLS](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-cls.md): 搜索和分析日志、查询监控指标与告警记录。 MCP；只读查询
+- [火山引擎 ByteHouse](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-bytehouse.md): 查询数据库与表结构，执行数据查询及 DML、DDL 语句。 MCP；可执行操作
+- [火山引擎 veFaaS Browser-Use](https://guanmo-ai.github.io/awesome-agent-mcp/s/volc-browser-use.md): 发起云端浏览器操作任务，查询任务状态和结果。 MCP；可执行操作
+- [讯飞云](https://guanmo-ai.github.io/awesome-agent-mcp/s/xfyun.md): 管理讯飞应用与用量，调用语音、OCR、翻译、图片和数字人等能力。 Skill · CLI；可执行操作
+- [阿里云百炼](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-bailian.md): 调用图像、视频等模型能力，管理百炼应用、任务和平台资源。 Skill · CLI；可执行操作
+- [阿里云日志服务 SLS](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-sls.md): 检索日志项目与 LogStore，查询分析日志并诊断告警。 MCP；只读查询
+- [阿里云 DMS Agent 数据网关](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dms.md): 发现数据库资产、查询权限与知识，按授权执行 SQL。 MCP；可执行操作
+- [阿里云对象存储 OSS](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-oss.md): 通过 MCP 查询 OSS 存储空间列表、属性、容量与文件数量。 MCP；只读查询
+- [OceanBase](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanbase.md): 执行数据库 SQL，查询租户与诊断信息，并支持全文、向量检索及可选记忆管理。 MCP；可执行操作
+- [腾讯云数据库 PostgreSQL](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-postgresql.md): 查询与管理 PostgreSQL 云实例、数据库、备份及监控，并提供运维诊断 Skill。 MCP · Skill；涉及资金
+- [腾讯云向量数据库 VectorDB](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb.md): 查询向量数据库实例列表、安全组和维护时间窗。 MCP；只读查询
+- [腾讯云消息队列 CKafka](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka.md): 查询 CKafka 主题、消息、消费分组及实例信息。 MCP；只读查询
+- [腾讯云数据库 Redis](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis.md): 查询 Redis 实例、备份和慢日志，创建实例及管理参数与安全组。 MCP；涉及资金
+- [阿里云 RDS Copilot](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-rds-copilot.md): 查询 RDS 运维知识、SQL 优化建议和故障诊断结果。 Skill；只读查询
+- [阿里云 PAI-DLC](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-pai-dlc.md): 创建、查询、更新和停止分布式训练任务，查看日志、事件与计算健康检查。 Skill；涉及资金
+- [阿里云 DataWorks](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dataworks.md): 创建、配置和发布数据开发节点与工作流，管理资源和 UDF。 Skill；可执行操作
+- [阿里云 Lindorm](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-lindorm.md): 管理多模数据库实例，分析监控、性能和连接问题，辅助 SQL 与检索开发。 Skill；涉及资金
+
+## Optional
+
+- [全文](https://guanmo-ai.github.io/awesome-agent-mcp/llms-full.txt): 全部服务与接入指引。
+- [JSON](https://guanmo-ai.github.io/awesome-agent-mcp/services.json): 完整结构化字段及核验依据。
