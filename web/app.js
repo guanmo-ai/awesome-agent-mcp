@@ -156,7 +156,7 @@ function render() {
       shown.add(s.id);
       if (el.hidden || groups.get(s.category)?.hidden) entering.push(el);
       if (el.dataset.query !== state.q) {
-        el.querySelector('.card-title h4').innerHTML = highlight(s.name, toks);
+        el.querySelector('.card-title .nm').innerHTML = highlight(s.name, toks);
         el.querySelector('.card-sum').innerHTML = highlight(s.summary, toks);
         el.dataset.query = state.q;
       }
@@ -274,8 +274,8 @@ function buildOrbit() {
     label.innerHTML = `<b>${esc(it.s.name)}</b><span> · ${esc(verb(it.s))}</span>${auto ? '<i>✓ 调用成功</i>' : ''}`;
     const above = it.y > size + 40;
     const half = label.offsetWidth / 2 + 4;
-    label.style.left = `${Math.min(W - half, Math.max(half, it.x))}px`;
-    label.style.top = `${above ? it.y - size / 2 - 40 : it.y + size / 2 + 8}px`;
+    label.style.setProperty('--label-x', `${Math.min(W - half, Math.max(half, it.x))}px`);
+    label.style.setProperty('--label-y', `${above ? it.y - size / 2 - 40 : it.y + size / 2 + 8}px`);
     label.classList.add('show');
     if (auto) labelTimer = setTimeout(() => { if (!hovered) label.classList.remove('show'); }, 1500);
   };

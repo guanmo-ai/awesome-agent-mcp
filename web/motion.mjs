@@ -12,11 +12,10 @@ export function openDialog(dialog) {
   if (dialog.open) return;
   dialog.showModal(); // The action takes effect immediately, before any animation.
   if (motionReduced() || !dialog.animate) return;
-  const sheet = dialog.classList.contains('sheet');
   const a = dialog.animate([
-    { opacity: 0, transform: sheet ? 'translateX(32px)' : 'translateY(-8px) scale(.985)' },
+    { opacity: 0, transform: 'translateY(-8px) scale(.985)' },
     { opacity: 1, transform: 'none' },
-  ], { duration: sheet ? 250 : 200, easing });
+  ], { duration: 200, easing });
   animations.set(dialog, a);
   a.finished.then(() => { if (animations.get(dialog) === a) animations.delete(dialog); }, () => {});
 }
@@ -25,10 +24,9 @@ export function closeDialog(dialog) {
   if (!dialog.open) return;
   animations.get(dialog)?.cancel();
   if (motionReduced() || document.hidden || !dialog.animate) { dialog.close(); return; }
-  const sheet = dialog.classList.contains('sheet');
   const a = dialog.animate([
     { opacity: 1, transform: 'none' },
-    { opacity: 0, transform: sheet ? 'translateX(24px)' : 'translateY(-6px) scale(.99)' },
+    { opacity: 0, transform: 'translateY(-6px) scale(.99)' },
   ], { duration: 150, easing: 'cubic-bezier(0.33, 0, 0.67, 1)', fill: 'forwards' });
   animations.set(dialog, a);
   a.finished.then(() => {

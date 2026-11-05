@@ -165,7 +165,7 @@ h1 span { display: block; }
 .onode.ping::after { animation: ping 1s var(--ease); }
 .onode:hover, .onode.ping { box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand, var(--a2)) 70%, transparent), 0 12px 36px -8px color-mix(in srgb, var(--brand, var(--a2)) 70%, transparent); }
 @keyframes ping { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.55); } }
-.orbit-label { position: absolute; left: 0; top: 0; z-index: 4; padding: 7px 11px; border-radius: 10px; background: color-mix(in srgb, var(--card) 88%, transparent); border: 1px solid var(--line-2); box-shadow: var(--shadow-lg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 12.5px; white-space: nowrap; pointer-events: none; opacity: 0; transform: translate(-50%, 6px); transition: opacity .3s, transform .3s var(--ease); }
+.orbit-label { position: absolute; left: 0; top: 0; translate: var(--label-x, 0px) var(--label-y, 0px); z-index: 4; padding: 7px 11px; border-radius: 10px; background: color-mix(in srgb, var(--card) 88%, transparent); border: 1px solid var(--line-2); box-shadow: var(--shadow-lg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 12.5px; white-space: nowrap; pointer-events: none; opacity: 0; transform: translate(-50%, 6px); transition: opacity .3s, transform .3s var(--ease); }
 .orbit-label.show { opacity: 1; transform: translate(-50%, 0); }
 .orbit-label b { font-weight: 650; }
 .orbit-label span { color: var(--muted); }
@@ -316,8 +316,8 @@ mark { background: color-mix(in srgb, var(--a2) 24%, transparent); color: inheri
 /* ── Sheet (detail) ───────────────────────────────────── */
 dialog { color: var(--text); }
 dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.sheet { position: fixed; inset: 0 0 0 auto; width: min(540px, 100%); height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; border-left: 1px solid var(--line-2); background: var(--bg); box-shadow: var(--shadow-lg); overflow: hidden; }
-.sheet-in { --brand: var(--a2); height: 100%; overflow-y: auto; overscroll-behavior: contain; outline: none; }
+.sheet { position: fixed; inset: 0; width: min(680px, 100% - 32px); max-width: none; max-height: min(860px, 100dvh - 48px); margin: auto; padding: 0; border: 1px solid var(--line-2); border-radius: 24px; background: var(--bg); box-shadow: var(--shadow-lg); overflow: hidden; }
+.sheet-in { --brand: var(--a2); max-height: inherit; overflow-y: auto; overscroll-behavior: contain; outline: none; }
 .s-hero { position: relative; padding: 28px 28px 22px; background: radial-gradient(420px 220px at 15% 0%, color-mix(in srgb, var(--brand) 22%, transparent), transparent); }
 .s-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--line-2); background: var(--card); }
 .s-close svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
@@ -430,9 +430,7 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
   .bento-card { padding: 18px; border-radius: 18px; }
   .chat { min-height: 0; }
   .cta-in { padding: 28px 22px; }
-  .sheet { inset: auto 0 0 0; width: 100%; height: 92vh; border-left: 0; border-top: 1px solid var(--line-2); border-radius: 22px 22px 0 0; }
-  .sheet[open] { animation: sheet-up .38s var(--ease); }
-  @keyframes sheet-up { from { transform: translateY(40px); opacity: 0; } }
+  .sheet { width: calc(100% - 24px); max-height: calc(100dvh - 24px); border-radius: 20px; }
   .s-hero { padding: 22px 18px 18px; }
   .s-body { padding: 4px 18px 28px; }
   .facts { grid-template-columns: 1fr 1fr; }
