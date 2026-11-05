@@ -53,7 +53,7 @@ gh repo edit guanmo-ai/awesome-agent-mcp \
 1. 远程 MCP（install.mcp 的 http / sse）：不带 Key 发一次 MCP initialize 请求。只有完整且协议版本受支持的成功响应才算握手通过；401 / 403、其他协商版本保留待核验；DNS 失败、404、5xx、超时算失败。
 2. 本地 MCP 与 CLI：确认 npm / PyPI 上的包存在、没有被标记为废弃，再从厂商官方文档或仓库反向核对包名。包自填的仓库地址不能单独证明厂商归属。
 3. Skill：install.skill 能打开；是 SKILL.md 的，开头有 name 和 description。
-结果只输出到命令行和 Actions 的 Job Summary，不写进 data/。待核验和失败项由 Codex 按 docs/VERIFYING.md 继续复核；需要 Opus 5.5 审核的具体问题与证据留在 PR，按 AGENTS.md 异步交接。确认失效后再更新地址或处理数据。维护者介入条件按 AGENTS.md「分工」。
+结果只输出到命令行和 Actions 的 Job Summary，不写进 data/。待核验和失败项由 Codex 按 docs/VERIFYING.md 继续复核；需要 Opus 5.5 审核的具体问题与证据写入 docs/REVIEW.md「AI 留言」。确认失效后再更新地址或处理数据。维护者介入条件按 AGENTS.md「分工」。
 开 PR，附一次完整运行结果，CI 通过后自己合并。
 ```
 
@@ -87,13 +87,6 @@ gh repo edit guanmo-ai/awesome-agent-mcp \
 6. 开 PR，标题「维护：YYYY-MM-DD」，CI 通过后自己合并。
 ```
 
-## 交给 Opus 5.5：审美与辅助审核
+## 双方留言入口
 
-由维护者转交以下提示词；本轮具体问题和证据以相关 PR 描述为准。
-
-```
-更新 main，先读 AGENTS.md 和 docs/REVIEW.md。你主导审美设计并辅助审核，Codex 负责程序、最终验证和交付。
-重点复核桌面与 320px / 390px 手机视口下的居中详情弹窗、搜索面板：文字层次与对比度、关闭入口、长配置和长内容的阅读是否清楚，深浅色是否一致。居中弹窗是维护者明确要求。
-只报告有证据的问题，给出文件与位置、影响、明确推荐方案，区分上线阻塞和可选润色；没有阻塞就直说。审美取舍由你给出方案，不把普通问题变成维护者的选择题。
-需要改设计时提交 PR，由 Codex 按 docs/REVIEW.md 审核、验证和合并。不要把建议写成已经通过的程序验证。
-```
+Codex 与 Opus 5.5 开始任务或更新代码后，按 AGENTS.md 先读 docs/REVIEW.md「AI 留言」，处理发给自己的待处理项及自己发出且已回复的项。具体问题、截图、回复与处理状态都保存在仓库，按该节约定提交推送，供对方更新读取。
