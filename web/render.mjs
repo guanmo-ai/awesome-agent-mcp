@@ -188,10 +188,10 @@ export function snippetNotes(s) {
 
 export function renderDetails(s, db, { detailPage = false } = {}) {
   const snips = snippets(s);
-  const access = s.access.length ? s.access.map((a) => esc(db.labels.access[a])).join('、') : s.setup ? '见下方接入前准备' : '<span style="color:var(--faint)">待整理</span>';
+  const access = s.access.length ? s.access.map((a) => esc(db.labels.access[a])).join('、') : s.setup?.requirements ? '见下方接入前准备' : '<span style="color:var(--faint)">待整理</span>';
   const category = db.categories.find((c) => c.id === s.category);
   const hasPlaceholder = snips.some(([, c]) => /<[^>]+>/.test(c));
-  const setup = s.setup ? `<div class="setup-guide"><h4>接入前准备</h4><p>${esc(s.setup.requirements)}</p>
+  const setup = s.setup?.requirements ? `<div class="setup-guide"><h4>接入前准备</h4><p>${esc(s.setup.requirements)}</p>
     ${s.setup.permissionEvidence ? `<p>权限依据：<a href="${esc(safeUrl(s.setup.permissionEvidence.url))}" target="_blank" rel="noopener">官方页面 ↗</a>${s.setup.permissionEvidence.agentReadable ? "" : "（官方页面 Agent 可能读不到）"}</p>${s.setup.permissionEvidence.quote ? `<blockquote>${esc(s.setup.permissionEvidence.quote)}</blockquote>` : ""}` : ""}
     <h4>按这几步接入</h4><ol>${s.setup.steps.map((step) => `<li>${esc(step.text)} <a href="${esc(safeUrl(step.url))}" target="_blank" rel="noopener">官方入口 ↗</a></li>`).join('')}</ol>
     <h4>如何确认成功</h4><p>${esc(s.setup.verify)}</p><p class="code-hint">接入指引核对日期：${esc(s.setup.checkedAt)}</p></div>` : '';
@@ -208,7 +208,7 @@ export function renderDetails(s, db, { detailPage = false } = {}) {
       <div><dt>分类</dt><dd>${esc(category?.name ?? '')}</dd></div>
     </dl>`,
     warn: `<p class="code-hint">本站仅作信息索引，收录不构成背书；使用前请自行核实。<a href="${esc(safeUrl(`${db.homepage}#disclaimer`))}" target="_blank" rel="noopener">使用说明与免责声明</a></p>` + (s.risk === 'payment' ? '<p class="note warn">这个服务可能下单或付款。让 Agent 执行前，请确保付款这一步由你亲自确认。</p>' : ''),
-    install: setup + (snips.length ? `<div class="code-tabs">
+    install: setup + (s.setup?.cost ? `<div class="setup-guide"><h4>费用</h4><p>${esc(s.setup.cost.text)} <a href="${esc(safeUrl(s.setup.cost.url))}" target="_blank" rel="noopener">官方来源 ↗</a>（${esc(s.setup.cost.checkedAt)}）</p>${s.setup.cost.quote ? `<blockquote>${esc(s.setup.cost.quote)}</blockquote>` : ""}</div>` : "") + (snips.length ? `<div class="code-tabs">
       <div class="ct-bar"><div class="ct-formats" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}</div><button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
       <pre role="tabpanel" aria-label="配置内容" tabindex="0"><code>${esc(snips[0][1])}</code></pre>
     </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">尖括号是本地待填项；优先使用环境变量示例。</p>' : ''}${snippetNotes(s).map(note => `<p class="code-hint">${esc(note)}</p>`).join('')}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">配置片段尚未整理。复制接入提示词，让 Agent 继续核对官方文档。</p>'),

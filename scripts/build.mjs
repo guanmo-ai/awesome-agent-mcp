@@ -23,7 +23,7 @@ const skillPath = `skills/${config.skill}/SKILL.md`;
 const md = (s) => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
 const ORDER = Object.keys(LABELS.types);
 const types = (s) => [...s.types].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b)).map((t) => LABELS.types[t]).join(' · ');
-const access = (s) => (s.access.length ? s.access.map((a) => LABELS.access[a]).join('、') : s.setup ? '见接入前准备' : '—');
+const access = (s) => (s.access.length ? s.access.map((a) => LABELS.access[a]).join('、') : s.setup?.requirements ? '见接入前准备' : '—');
 // Shared by the repository, website and machine-readable index.
 const disclaimer = (english = false) => [
   ['本项目是独立的社区信息索引，仅收集整理公开资料与接入线索供参考，不提供或运营所列第三方服务。收录、排序、链接及图标展示不代表与厂商存在隶属、合作或授权关系，也不构成推荐、背书或担保。', 'This independent community index collects public information and integration references. It does not provide or operate the listed third-party services. Inclusion, ordering, links and logos do not imply affiliation, partnership, authorization, recommendation, endorsement or a guarantee.'],
@@ -38,7 +38,7 @@ function readme(english = false) {
   const t = (zh, en) => english ? en : zh;
   const risks = english ? { read: 'Read only', write: 'Write access', payment: 'Financial actions' } : LABELS.risk;
   const gates = english ? { free: 'Free', key: 'API key', account: 'Account authorization', membership: 'Membership or payment', 'desktop-app': 'Desktop client', apply: 'Application required' } : LABELS.access;
-  const readmeAccess = (s) => s.access.length ? s.access.map((a) => gates[a]).join(t('、', ', ')) : s.setup ? t('见独立页说明', 'See details') : '—';
+  const readmeAccess = (s) => s.access.length ? s.access.map((a) => gates[a]).join(t('、', ', ')) : s.setup?.requirements ? t('见独立页说明', 'See details') : '—';
   const readmeStatus = (s) => s.status === 'verified' ? t('✅ 已核验', '✅ Verified') : t('⏳ 待核验', '⏳ Unverified');
   const L = [];
   L.push(
@@ -192,7 +192,7 @@ function llmsFull() {
       if (s.install?.cli) parts.push(`CLI \`${s.install.cli}\``);
       if (s.install?.skill) parts.push(`Skill ${s.install.skill}`);
       L.push(`- [${s.name}](${s.url}): ${s.summary} ${parts.join('；')}；[独立页](${serviceUrl(config.siteUrl, s.id)})`);
-      if (s.setup) L.push(`  - 接入前准备：${s.setup.requirements}`, ...s.setup.steps.map((step, i) => `  - 步骤 ${i + 1}：${step.text} [官方入口](${step.url})`), `  - 如何确认成功：${s.setup.verify}（指引核对于 ${s.setup.checkedAt}，不代表已实测）`);
+      if (s.setup?.requirements) L.push(`  - 接入前准备：${s.setup.requirements}`, ...s.setup.steps.map((step, i) => `  - 步骤 ${i + 1}：${step.text} [官方入口](${step.url})`), `  - 如何确认成功：${s.setup.verify}（指引核对于 ${s.setup.checkedAt}，不代表已实测）`);
     }
     L.push('');
   }
@@ -223,8 +223,9 @@ function serviceMarkdown(s) {
     `- 官方入口：${s.url}`, ...(s.repo ? [`- 官方仓库：${s.repo}`] : []),
     `- 网页详情：${serviceUrl(config.siteUrl, s.id)}`, '',
     '仅供参考，官方身份核验不代表接入实测；以厂商文档为准，密钥和登录在本地完成。' + (s.risk === 'payment' ? '下单、付款前须用户确认。' : s.risk === 'write' ? '修改或发送前须告知用户。' : ''), '',
-    ...(s.setup ? ['## 接入前准备', '', s.setup.requirements, '', '## 接入步骤', '', ...s.setup.steps.map((step, i) => `${i + 1}. ${step.text} [官方入口](${step.url})`), '', '## 验证方法', '', s.setup.verify, '', `指引核对于 ${s.setup.checkedAt}，不是本项目实测结果。`, ''] : []),
+    ...(s.setup?.requirements ? ['## 接入前准备', '', s.setup.requirements, '', '## 接入步骤', '', ...s.setup.steps.map((step, i) => `${i + 1}. ${step.text} [官方入口](${step.url})`), '', '## 验证方法', '', s.setup.verify, '', `指引核对于 ${s.setup.checkedAt}，不是本项目实测结果。`, ''] : []),
     ...(s.setup?.permissionEvidence ? [`权限依据：[官方页面](${s.setup.permissionEvidence.url})${s.setup.permissionEvidence.agentReadable ? '' : '（官方页面 Agent 可能读不到）'}`, '', ...(s.setup.permissionEvidence.quote ? [`官方原文：${s.setup.permissionEvidence.quote}`, ''] : [])] : []),
+    ...(s.setup?.cost ? ['## 费用', '', `${s.setup.cost.text} [官方来源](${s.setup.cost.url})（核对日期：${s.setup.cost.checkedAt}）`, '', ...(s.setup.cost.quote ? [`官方原文：${s.setup.cost.quote}`, ''] : [])] : []),
     '## 安装配置', '',
     ...snippets(s).flatMap(([name, code]) => [`### ${name}`, '', codeBlock(code), '']),
     ...snippetNotes(s).flatMap(note => [note, '']),

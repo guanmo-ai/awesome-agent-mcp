@@ -234,3 +234,15 @@ test('官方页不可读且没有摘录时不宣称已有依据', (t) => {
   assert.ok(body.includes('尚无可用原文摘录'));
   assert.ok(!body.includes('无需再读取官方页'));
 });
+test('仅有费用信息时也在 Markdown 和网页显示来源与日期', (t) => {
+  const fixture = buildFixture(data => {
+    data.services[0].setup = { cost: { text: '注册赠送 500 积分', url: 'https://example.com/pricing', checkedAt: '2026-11-05', quote: '新用户注册成功即领' } };
+  });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  for (const content of [fixture.read('s/amap.md'), fixture.read('s/amap/index.html')]) {
+    assert.ok(content.includes('注册赠送 500 积分'));
+    assert.ok(content.includes('https://example.com/pricing'));
+    assert.ok(content.includes('2026-11-05'));
+    assert.ok(content.includes('新用户注册成功即领'));
+  }
+});
