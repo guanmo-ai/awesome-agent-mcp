@@ -54,7 +54,7 @@ function wireChrome() {
     beforeOpen: () => { if ($('#sheet').open) $('#sheet').close(); }, focusSearch: () => $('#q').focus() });
   const q = $('#q');
   q.addEventListener('input', () => { state.q = q.value.trim(); scheduleRender(); });
-  q.addEventListener('keydown', (e) => { if (e.key === 'Escape') { q.value = ''; state.q = ''; scheduleRender(); } });
+  q.addEventListener('keydown', (e) => { if (e.isComposing || e.keyCode === 229) return; if (e.key === 'Escape') { q.value = ''; state.q = ''; scheduleRender(); } });
   const toggleIn = (set, key) => (e) => {
     const b = e.target.closest('button'); if (!b) return;
     const v = b.dataset[key];
@@ -530,18 +530,34 @@ function renderForAi() {
     '这些服务会下单付款，每次付款前我都会先跟你确认。要我现在把配置写进 Claude Code 吗？',
   ].join('\n');
   const out = $('#chat-ai');
-  const type = () => {
-    if (reduced) { out.textContent = answer; return; }
-    let i = 0;
-    const caret = '<span class="caret"></span>';
-    const step = () => {
-      i = Math.min(answer.length, i + 2);
-      out.innerHTML = esc(answer.slice(0, i)) + caret;
-      if (i < answer.length) setTimeout(step, 28); else setTimeout(() => { out.innerHTML = esc(answer); }, 1600);
-    };
-    step();
+  let i = 0, timer = 0, started = false, done = false, delay = 500, due = 0;
+  const pause = () => {
+    if (!timer) return;
+    clearTimeout(timer);
+    timer = 0;
+    delay = Math.max(0, due - performance.now());
   };
-  new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); setTimeout(type, 500); } }, { threshold: 0.4 }).observe($('#chat'));
+  const finish = () => { pause(); out.textContent = answer; done = true; };
+  const step = () => {
+    timer = 0;
+    if (document.hidden || reduced) { delay = 0; syncTyping(); return; }
+    if (i === answer.length) { finish(); return; }
+    i = Math.min(answer.length, i + 2);
+    out.innerHTML = esc(answer.slice(0, i)) + '<span class="caret"></span>';
+    delay = i < answer.length ? 28 : 1600;
+    syncTyping();
+  };
+  const syncTyping = () => {
+    if (!started || done) return;
+    if (reduced) { finish(); return; }
+    if (document.hidden) { pause(); return; }
+    if (timer) return;
+    due = performance.now() + delay;
+    timer = setTimeout(step, delay);
+  };
+  document.addEventListener('visibilitychange', syncTyping);
+  onMotionChange(syncTyping);
+  new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); started = true; syncTyping(); } }, { threshold: 0.4 }).observe($('#chat'));
 
   const sk = DB.site.skill;
   $('#skill-cmd').innerHTML = `<span class="p">$</span> mkdir -p ~/.claude/skills/${esc(sk)} \\\n  <span class="k">&&</span> curl -fsSL ${esc(DB.site.skillUrl)} \\\n  -o ~/.claude/skills/${esc(sk)}/SKILL.md`;

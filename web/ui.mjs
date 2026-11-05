@@ -10,7 +10,7 @@ export function loadCatalog() {
     catalog = fetch(url).then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
-    });
+    }).catch((error) => { catalog = undefined; throw error; });
   }
   return catalog;
 }
@@ -81,7 +81,7 @@ export function toast(msg) {
 }
 
 // Same nav, theme, copy, code tabs and palette behavior on the home and static pages.
-export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = './', focusSearch }) {
+export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = './', focusSearch, loadData }) {
   const nav = $('#nav');
   const onScroll = () => nav?.classList.toggle('scrolled', scrollY > 8);
   addEventListener('scroll', onScroll, { passive: true });
@@ -151,8 +151,17 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     pal.close();
     onChoose(id);
   };
-  const toggle = () => {
+  let loading = false;
+  const toggle = async () => {
     if (pal.open) { closeDialog(pal); return; }
+    if (!getData() && loadData) {
+      if (loading) return;
+      loading = true;
+      try { await loadData(); }
+      catch { toast('搜索载入失败，请检查网络后重试。'); return; }
+      finally { loading = false; }
+      if (pal.open) return;
+    }
     if (!getData()) { toast('服务索引正在载入，请稍后重试。'); return; }
     const hash = location.hash.startsWith('#s-') ? '' : location.hash;
     history.pushState({ overlay: 'search', query: input.value, active, top: list.scrollTop }, '', location.pathname + location.search + hash);
@@ -167,6 +176,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   addEventListener('pageshow', restoreSearch);
   input.addEventListener('input', render);
   input.addEventListener('keydown', (e) => {
+    if (e.isComposing || e.keyCode === 229) return;
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       if (!items.length) return;
@@ -187,6 +197,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   });
   $('#open-palette').addEventListener('click', toggle);
   addEventListener('keydown', (e) => {
+    if (e.isComposing || e.keyCode === 229) return;
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); toggle(); return; }
     const el = document.activeElement;
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(el?.tagName) || el?.isContentEditable;

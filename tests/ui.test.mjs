@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 const originalMatchMedia = globalThis.matchMedia;
 globalThis.matchMedia = () => ({ matches: false, addEventListener() {} });
-const { copy } = await import('../web/ui.mjs');
+const { copy, loadCatalog } = await import('../web/ui.mjs');
 globalThis.matchMedia = originalMatchMedia;
 
 function setup(t, { clipboardFails = false, fallback = false } = {}) {
@@ -61,4 +61,19 @@ test('快速连续复制后，按钮仍恢复原始文字', async (t) => {
   await new Promise((resolve) => setTimeout(resolve, 1500));
   assert.equal(ui.button.innerHTML, '复制');
   assert.equal(ui.classes.has('done'), false);
+});
+
+test('目录请求失败后可以重试，成功请求仍复用结果', async (t) => {
+  const originalFetch = globalThis.fetch;
+  t.after(() => { globalThis.fetch = originalFetch; });
+  let requests = 0;
+  globalThis.fetch = async () => {
+    if (++requests === 1) throw new Error('网络中断');
+    return new Response('{"count":93}', { headers: { 'Content-Type': 'application/json' } });
+  };
+  await assert.rejects(loadCatalog(), /网络中断/);
+  const retry = loadCatalog();
+  assert.equal(loadCatalog(), retry);
+  assert.deepEqual(await retry, { count: 93 });
+  assert.equal(requests, 2);
 });
