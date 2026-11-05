@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } fr
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { root, load, grouped, LABELS, rawUrl } from './lib.mjs';
-import { agentPrompt, skillPrompt, esc, serviceUrl, disclaimerHtml, snippets } from '../web/render.mjs';
+import { agentPrompt, skillPrompt, esc, serviceUrl, disclaimerHtml, snippets, snippetNotes } from '../web/render.mjs';
 import { renderServicePage, sitemap } from './service-pages.mjs';
 import { directoryHtml, chipsHtml } from '../web/directory.mjs';
 
@@ -226,6 +226,7 @@ function serviceMarkdown(s) {
     ...(s.setup ? ['## 接入前准备', '', s.setup.requirements, '', '## 接入步骤', '', ...s.setup.steps.map((step, i) => `${i + 1}. ${step.text} [官方入口](${step.url})`), '', '## 验证方法', '', s.setup.verify, '', `指引核对于 ${s.setup.checkedAt}，不是本项目实测结果。`, ''] : []),
     '## 安装配置', '',
     ...snippets(s).flatMap(([name, code]) => [`### ${name}`, '', codeBlock(code), '']),
+    ...snippetNotes(s).flatMap(note => [note, '']),
     ...(s.install?.skill ? [`- [官方 Skill](${s.install.skill})`, ''] : []),
     ...(!s.install ? ['配置尚未整理，请读取官方文档，不要猜测端点或参数。', ''] : []),
     ...(s.install?.mcp?.transport === 'sse' ? ['Codex 远程配置只支持 Streamable HTTP，不能直接使用此 SSE 地址。', ''] : []),

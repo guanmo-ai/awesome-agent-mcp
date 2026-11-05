@@ -134,25 +134,53 @@ export function orbitLabelPosition({ x, y, size, width, labelWidth, labelHeight 
 export function snippets(s) {
   const out = [];
   const shell = (value) => `'${String(value).replaceAll("'", "'\\''")}'`;
+  const variable = (key) => `${s.id}_${key}`.replace(/[^a-z0-9_]/gi, '_').toUpperCase();
+  const ref = (value, key) => value.replace(/<[^>]+>/g, () => '${' + key + '}');
   const mcp = s.install?.mcp;
   if (mcp) {
     if (mcp.transport === 'stdio') {
       const env = Object.entries(mcp.env ?? {});
-      const cmd = [mcp.command, ...(mcp.args ?? [])].map(shell).join(' ');
-      out.push(['Claude Code', `claude mcp add${env.map(([k, v]) => ` --env ${shell(`${k}=${v}`)}`).join('')} --transport stdio ${shell(s.id)} -- ${cmd}`]);
-      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { command: mcp.command, args: mcp.args ?? [], ...(env.length ? { env: mcp.env } : {}) } } }, null, 2)]);
-      out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\ncommand = ${JSON.stringify(mcp.command)}\nargs = ${JSON.stringify(mcp.args ?? [])}` + (env.length ? `\n\n[mcp_servers.${s.id}.env]\n${env.map(([k, v]) => `${k} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
+      const jsonEnv = Object.fromEntries(env.map(([k, v]) => [k, ref(v, k)]));
+      const args = (mcp.args ?? []).map((v, i) => ref(v, variable(`ARG_${i}`)));
+      const command = ref(mcp.command, variable('COMMAND'));
+      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { command, args, ...(env.length ? { env: jsonEnv } : {}) } } }, null, 2)]);
+      out.push(['Claude Code', `claude mcp add${Object.entries(jsonEnv).map(([k, v]) => ` --env ${shell(`${k}=${v}`)}`).join('')} --transport stdio ${shell(s.id)} -- ${[command, ...args].map(shell).join(' ')}`]);
+      const inherited = env.filter(([, v]) => /<[^>]+>/.test(v));
+      const constants = env.filter(([, v]) => !/<[^>]+>/.test(v));
+      out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\ncommand = ${JSON.stringify(mcp.command)}\nargs = ${JSON.stringify(mcp.args ?? [])}`
+        + (inherited.length ? `\nenv_vars = ${JSON.stringify(inherited.map(([k]) => k))}` : '')
+        + (constants.length ? `\n\n[mcp_servers.${s.id}.env]\n${constants.map(([k, v]) => `${k} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
     } else {
       const headers = Object.entries(mcp.headers ?? {});
-      out.push(['Claude Code', `claude mcp add${headers.map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} --transport ${mcp.transport} ${shell(s.id)} ${shell(mcp.url)}`]);
-      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url: mcp.url, ...(headers.length ? { headers: mcp.headers } : {}) } } }, null, 2)]);
-      if (mcp.transport === 'http') out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}` + (headers.length ? `\n\n[mcp_servers.${s.id}.http_headers]\n${headers.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
+      const headerVar = (k, v) => variable(k.toLowerCase() === 'authorization' && /^Bearer <[^>]+>$/.test(v) ? 'TOKEN' : k);
+      const jsonHeaders = Object.fromEntries(headers.map(([k, v]) => [k, ref(v, headerVar(k, v))]));
+      const url = mcp.url.replace(/<[^>]+>/g, (_, offset) => '${' + variable(mcp.url.slice(0, offset).match(/[?&]([^=&]+)=$/)?.[1] ?? 'URL_VALUE') + '}');
+      out.push(['JSON', JSON.stringify({ mcpServers: { [s.id]: { type: mcp.transport, url, ...(headers.length ? { headers: jsonHeaders } : {}) } } }, null, 2)]);
+      out.push(['Claude Code', `claude mcp add${Object.entries(jsonHeaders).map(([k, v]) => ` --header ${shell(`${k}: ${v}`)}`).join('')} --transport ${mcp.transport} ${shell(s.id)} ${shell(url)}`]);
+      if (mcp.transport === 'http') {
+        const bearer = headers.find(([k, v]) => k.toLowerCase() === 'authorization' && /^Bearer <[^>]+>$/.test(v));
+        const dynamic = headers.filter(([k, v]) => /<[^>]+>/.test(v) && k !== bearer?.[0]);
+        const constants = headers.filter(([, v]) => !/<[^>]+>/.test(v));
+        out.push(['Codex', `# ~/.codex/config.toml\n[mcp_servers.${s.id}]\nurl = ${JSON.stringify(mcp.url)}`
+          + (bearer ? `\nbearer_token_env_var = ${JSON.stringify(headerVar(...bearer))}` : '')
+          + (dynamic.length ? `\n\n[mcp_servers.${s.id}.env_http_headers]\n${dynamic.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(headerVar(k, v))}`).join('\n')}` : '')
+          + (constants.length ? `\n\n[mcp_servers.${s.id}.http_headers]\n${constants.map(([k, v]) => `${JSON.stringify(k)} = ${JSON.stringify(v)}`).join('\n')}` : '')]);
+      }
     }
   }
   if (s.install?.cli) out.push(['CLI', s.install.cli]);
   return out;
 }
 
+export function snippetNotes(s) {
+  const mcp = s.install?.mcp;
+  if (!mcp) return [];
+  return [
+    'JSON 示例用于 Claude Code 的 .mcp.json；${VAR} 从启动客户端的环境读取。Codex 的环境变量也须在启动进程中可用，不能将变量名替换成密钥值。',
+    ...(mcp.transport === 'http' && mcp.headers ? ['Codex 的 bearer_token_env_var 对应变量只填 Token，不带 Bearer；env_http_headers 对应变量提供完整请求头值。'] : []),
+    ...(/<[^>]+>/.test(JSON.stringify(mcp)) ? ['命令会进入 shell 历史，请在本地执行，不要分享。保留命令中的 ${VAR} 引用；Codex 不支持在 URL 或命令参数中展开这些引用，此处保留待本地处理的占位符。'] : []),
+  ];
+}
 
 export function renderDetails(s, db, { detailPage = false } = {}) {
   const snips = snippets(s);
@@ -178,7 +206,7 @@ export function renderDetails(s, db, { detailPage = false } = {}) {
     install: setup + (snips.length ? `<div class="code-tabs">
       <div class="ct-bar"><div class="ct-formats" role="tablist" aria-label="配置格式">${snips.map(([label, c], i) => `<button type="button" role="tab" data-tab data-code="${esc(c)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${esc(label)}</button>`).join('')}</div><button type="button" class="ct-copy" data-copy="${esc(snips[0][1])}">复制</button></div>
       <pre role="tabpanel" aria-label="配置内容" tabindex="0"><code>${esc(snips[0][1])}</code></pre>
-    </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">把尖括号里的内容换成你自己的 Key。</p>' : ''}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">配置片段尚未整理。复制接入提示词，让 Agent 继续核对官方文档。</p>'),
+    </div><noscript>${snips.slice(1).map(([label, code]) => `<h4>${esc(label)}</h4><div class="code-tabs"><pre><code>${esc(code)}</code></pre></div>`).join('')}</noscript>${hasPlaceholder ? '<p class="code-hint">尖括号是本地待填项；优先使用环境变量示例。</p>' : ''}${snippetNotes(s).map(note => `<p class="code-hint">${esc(note)}</p>`).join('')}${s.install?.mcp?.transport === 'sse' ? '<p class="code-hint">Codex 的远程配置仅支持 Streamable HTTP；SSE 请使用上方客户端或查阅官方 HTTP 接入方式。</p>' : ''}` : '<p class="note">配置片段尚未整理。复制接入提示词，让 Agent 继续核对官方文档。</p>'),
     verify: s.status === 'verified' ? `<p>${esc(s.evidence.checkedAt)} 确认为官方出品，<a href="${esc(safeUrl(s.evidence.url))}" target="_blank" rel="noopener">查看依据</a>${s.evidence.note ? `。${esc(s.evidence.note)}` : ''}</p>${s.evidence.quote ? `<p>官方原文摘录（${esc(s.evidence.checkedAt)}）</p><blockquote>${esc(s.evidence.quote)}</blockquote>` : ''}${s.evidence.agentReadable === false ? '<p class="code-hint">官方页需浏览器打开，Agent 可能读不到。</p>' : ''}<p class="code-hint">官方核验仅说明发布者身份，接入是否成功需在你的 Agent 中验证。</p>` : '<p>还没逐条确认是否为官方出品，接入前请以官方文档为准。</p>',
     sources: s.sources?.length ? `<p>${s.sources.map((x) => `<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join('、')}</p>` : '',
   };
