@@ -4,7 +4,7 @@ import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } 
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { agentPrompt, esc, snippets } from '../web/render.mjs';
+import { agentPrompt, servicePrompt, renderDetails, esc, snippets } from '../web/render.mjs';
 import { root, readJson } from '../scripts/lib.mjs';
 
 // Run the real build in an isolated fixture; never mutate the working catalog.
@@ -56,7 +56,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
     if (s.status !== 'verified') assert.ok(!html.match(/<meta name="description" content="(.*?)">/)[1].includes('查看官方接入方式'));
 
     assert.ok(html.includes(`<link rel="canonical" href="${config.siteUrl}s/${s.id}/">`));
-    assert.ok(html.includes(esc(agentPrompt(`${config.siteUrl}llms.txt`, `帮我查${s.name}的官方接入方式`))));
+    assert.ok(html.includes(esc(servicePrompt(config.siteUrl, s))));
     assert.ok(sitemap.includes(`<loc>${config.siteUrl}s/${s.id}/</loc>`));
     const jsonLd = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     assert.equal(jsonLd['@type'], 'SoftwareApplication');
@@ -182,5 +182,21 @@ test('短索引小于20KB，逐服务Markdown保留完整配置并排除拒绝�
     assert.ok(markdown.includes(s.summary));
     for (const [, code] of snippets(s)) assert.ok(markdown.includes(code), `${s.id}: 完整参数`);
     if (s.install?.skill) assert.ok(markdown.includes(s.install.skill));
+  }
+});
+
+
+test('服务提示词三行直达Markdown，并按权限提醒；详情与独立页内容相同', () => {
+  const { siteUrl } = readJson('site.config.json');
+  const labels = { types: { mcp: 'MCP' }, access: {}, risk: { read: '只读', write: '写入', payment: '资金' } };
+  for (const risk of ['read', 'write', 'payment']) {
+    const s = { id: 'example', name: '示例', summary: '测试', types: ['mcp'], url: 'https://example.com', access: [], risk, status: 'unverified' };
+    const prompt = servicePrompt(siteUrl, s);
+    assert.equal(prompt.split('\n').length, 3);
+    assert.ok(prompt.includes(`${siteUrl}s/example.md`));
+    assert.ok(!prompt.includes('llms.txt'));
+    assert.equal(prompt.includes('下单、付款前先问我'), risk === 'payment');
+    assert.equal(prompt.includes('修改或发送前先告诉我'), risk === 'write');
+    assert.ok(renderDetails(s, { homepage: siteUrl, categories: [], labels }).actions.includes(`data-copy="${esc(prompt)}"`));
   }
 });

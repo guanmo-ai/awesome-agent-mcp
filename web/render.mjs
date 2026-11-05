@@ -19,6 +19,11 @@ export function agentPrompt(url, need = '') {
     ...(need.trim() ? ['', `我的需求：${need.trim()}`] : []),
   ].join('\n');
 }
+export function servicePrompt(home, s) {
+  const types = sortedTypes(s).map((t) => ({ mcp: 'MCP', skill: 'Skill', cli: 'CLI' })[t]).join(' / ');
+  const reminder = s.risk === 'payment' ? '下单、付款前先问我。' : s.risk === 'write' ? '修改或发送前先告诉我。' : '';
+  return `帮我接入${s.name}的官方 ${types}。\n参考 ${home}s/${encodeURIComponent(s.id)}.md，以官方文档为准。\nKey 和登录由我在本地完成；接好后用一次只读查询验证，告诉我结果。${reminder}`;
+}
 export function skillPrompt(url, name) {
   return `读取 ${url}\n检查内容后，按当前 Agent 的官方安装方式安装 ${name}，保留已有同名 Skill。\n如果不支持 Skill，就直接读取索引。安装后用一个查询验证能否找到官方服务，说明结果；这不代表服务已接通。`;
 }
@@ -150,7 +155,7 @@ export function renderDetails(s, db, { detailPage = false } = {}) {
     <h4>按这几步接入</h4><ol>${s.setup.steps.map((step) => `<li>${esc(step.text)} <a href="${esc(safeUrl(step.url))}" target="_blank" rel="noopener">官方入口 ↗</a></li>`).join('')}</ol>
     <h4>如何确认成功</h4><p>${esc(s.setup.verify)}</p><p class="code-hint">接入指引核对日期：${esc(s.setup.checkedAt)}</p></div>` : '';
   return {
-    actions: `<button class="btn btn-primary btn-sm" type="button" data-copy="${esc(agentPrompt(`${db.homepage}llms.txt`, `帮我查${s.name}的官方接入方式`))}">复制接入提示词</button>
+    actions: `<button class="btn btn-primary btn-sm" type="button" data-copy="${esc(servicePrompt(db.homepage, s))}">复制接入提示词</button>
       <a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">官方文档${ICON.out}</a>
       ${s.repo ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.repo))}" target="_blank" rel="noopener">代码仓库${ICON.out}</a>` : ''}
       ${s.install?.skill ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.install.skill))}" target="_blank" rel="noopener">Skill 文件${ICON.out}</a>` : ''}
