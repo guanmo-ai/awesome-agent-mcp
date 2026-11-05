@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">关注 @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>93 个服务 · 7 个分类 · 92 个已核验 · 更新于 2026-11-05</sub></p>
+<p align="center"><sub>93 个服务 · 7 个分类 · 93 个已核验 · 更新于 2026-11-05</sub></p>
 
 > **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)
 
@@ -103,7 +103,7 @@
 | [腾讯文档](https://docs.qq.com/open/document/mcp/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/) | 在线文档与表格的读取和编辑。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、免费可用 | ✅ 已核验 |
 | [腾讯会议](https://cloud.tencent.com/document/product/1095/133826) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/) | 预约和管理会议，读取参会信息、录制、转写与纪要。 | MCP · Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps/) | 通过 WPS 365 API 查询和操作企业文档及协作数据。 | MCP | 🟡 可执行操作 | 需授权账号、需申请开通 | ✅ 已核验 |
-| [金山文档](https://github.com/kdocs-app/kdocs-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/) | 在线文档的读取与协作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ⏳ 待核验 |
+| [金山文档](https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/) | 搜索、读取和整理云文档，生成文档内容。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [语雀](https://github.com/yuque/yuque-mcp-server) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/) | 知识库与文档的读写。 | MCP | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/) | 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 | Skill · CLI | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 | [腾讯乐享](https://github.com/tencent-lexiang/lexiang-mcp-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/) | 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |

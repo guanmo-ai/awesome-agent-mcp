@@ -80,7 +80,11 @@
 - [腾讯文档](https://docs.qq.com/open/document/mcp/): 在线文档与表格的读取和编辑。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、免费可用；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-docs/)
 - [腾讯会议](https://cloud.tencent.com/document/product/1095/133826): 预约和管理会议，读取参会信息、录制、转写与纪要。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencentcloud/tmeet`；Skill https://github.com/TencentCloud/tencentmeeting-cli；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-meeting/)
 - [WPS](https://open.wps.cn/documents/app-integration-dev/mcp-server/introduction): 通过 WPS 365 API 查询和操作企业文档及协作数据。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/wps/)
-- [金山文档](https://github.com/kdocs-app/kdocs-skill): 在线文档的读取与协作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；待核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/)
+- [金山文档](https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA): 搜索、读取和整理云文档，生成文档内容。 类型 Skill；权限 可执行操作；门槛 需授权账号；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/kdocs/)
+  - 接入前准备：需要登录并授权金山文档账号，按官网提供的安装指令接入。
+  - 步骤 1：登录金山文档，在右上角更多菜单中选择「龙虾专属入口」。 [官方入口](https://www.kdocs.cn/latest)
+  - 步骤 2：按官方页面的授权提示复制安装指令，交给 Agent 使用。 [官方入口](https://www.kdocs.cn/latest)
+  - 如何确认成功：接入后先让 Agent 只读查询你已获授权的文档，核对返回结果。（指引核对于 2026-11-05，不代表已实测）
 - [语雀](https://github.com/yuque/yuque-mcp-server): 知识库与文档的读写。 类型 MCP；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP stdio npx -y yuque-mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yuque/)
 - [Agently Mail（QQ 邮箱团队）](https://github.com/Tencent/AgentlyMail): 专供 Agent 的邮箱，支持邮件收发、搜索、整理和附件操作。 类型 Skill · CLI；权限 可执行操作；门槛 需授权账号；已核验；CLI `npm install -g @tencent-qqmail/agently-cli`；Skill https://github.com/Tencent/AgentlyMail；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qq-mail/)
 - [腾讯乐享](https://github.com/tencent-lexiang/lexiang-mcp-skill): 搜索和编辑知识库文档、智能表格，管理文件并导入会议资料。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://mcp.lexiang-app.com/mcp?company_from=<你的企业标识>；Skill https://github.com/tencent-lexiang/lexiang-mcp-skill；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/lexiang/)
