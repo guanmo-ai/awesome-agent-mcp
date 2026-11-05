@@ -56,3 +56,15 @@ test('名称、关键词、摘要、分类依次排序，网址不会产生命�
   assert.equal(render.searchScore(service, render.tokens('test.example'), mock), 0);
   for (const s of db.services) assert.ok(s.keywords?.length > 0 && s.keywords.length <= 6, s.id);
 });
+
+test('口语填充词和单字母前缀不妨碍搜索', () => {
+  const cases = { 叫个车: 'didi', 寄个快递: 'kuaidi100', 物流到哪了: 'kuaidi100', 老板是谁: 'qcc', 查企业: 'qcc', 收钱: 'alipay', 炒股: 'iwencai', 拿铁: 'luckin' };
+  for (const [q, id] of Object.entries(cases)) assert.ok(rank(q).slice(0, 3).includes(id), `${q}: ${id} in ${rank(q)}`);
+  assert.ok(rank('慢查询').length <= 10);
+  for (const q of ['京东', '小红书', '拼多多', '12306', 'B站', '饿了么', '微博']) assert.deepEqual(rank(q), [], q);
+});
+
+test('口语查询覆盖已证实的服务能力', () => {
+  const cases = { 坐地铁怎么走:'amap', 写周报:'dingtalk', 存照片:'baidu-netdisk', 备份文件:'quark-drive', 搜新闻:'baidu-search', 做海报:'hunyuan-image', 画流程图:'antv', 上线网站:'edgeone-makers', 写SQL:'tidb', 慢查询:'tencent-postgresql', 退款:'meituan', MySQL:'aliyun-dms' };
+  for (const [q,id] of Object.entries(cases)) assert.ok(rank(q).slice(0,3).includes(id), `${q}: ${id} in ${rank(q)}`);
+});
