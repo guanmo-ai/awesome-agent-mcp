@@ -38,7 +38,7 @@ description: 查找中国服务厂商官方出品的 MCP Server、Agent Skill �
    - 接入门槛（`access` 和 `setup.requirements`）；access 为空但有准备说明时引用说明，两者均缺失才说「门槛未整理，请看官方文档」
    - 官方链接 `url`
    - 有 `install.mcp` 时，给出用户所用客户端的配置。远程服务（http / sse）示例：Claude Code 用 `claude mcp add --transport <transport> <id> "<url>"`；JSON 用 `{"mcpServers": {"<id>": {"type": "<transport>", "url": "<url>"}}}`
-   - 有 `install.mcp.headers` 时保留认证请求头：Claude Code 用 `--header '名称: 值'`，JSON 用 `headers`，Codex 的 HTTP 配置用 `[mcp_servers.<id>.http_headers]`。本地命令的参数、环境变量值和远程 URL 要做 shell 引用，防止空格和尖括号被误解析。Codex 支持 stdio 和 Streamable HTTP，不能把 SSE 地址直接当成 HTTP 配置。
+   - 有 `install.mcp.headers` 时保留认证请求头：优先使用 Claude Code `.mcp.json` 的 `${VAR}` 展开，命令中保留单引号内的变量引用。Codex 的 HTTP Bearer 认证用 `bearer_token_env_var`，其他动态头用 `env_http_headers`（值是变量名），固定头才用 `http_headers`；stdio 凭据通过 `env_vars` 继承。URL 或参数里的占位符不能冒充 Codex 支持的变量展开，按其官方文档在本地处理；命令会进入 shell 历史，不要分享。本地命令的参数、环境变量值和远程 URL 要做 shell 引用，防止空格和尖括号被误解析。Codex 支持 stdio 和 Streamable HTTP，不能把 SSE 地址直接当成 HTTP 配置。
 4. 按用户已有授权帮助配置；先检查当前 Agent 的官方支持方式，保留已有配置。由用户在本地填写 Key 和完成账号授权，不要求在对话中发送密钥；未整理的安装字段不能猜测。
 5. 配置后验证连接。优先列出工具或执行不产生费用的只读查询，报告实际结果、错误和剩余步骤；写入配置、安装成功与服务可用是不同状态。不能联网或不能修改配置时，明确能力限制并给出下一步。
 
