@@ -59,7 +59,7 @@ function searchText(s, db) {
   return text;
 }
 export function cardHtml(s, labels, { toks = [], index = 0, prefix = './', href, id, heading = href ? 'h3' : 'h4' } = {}) {
-  return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"${id ? ` data-id="${esc(id)}"` : ''}` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}" aria-label="${esc(s.name)}：${esc(s.summary)}">
+  return `<${href ? 'a' : 'button'} class="card" ${href ? `href="${esc(href)}"${id ? ` data-id="${esc(id)}"` : ''}` : `type="button" data-id="${esc(s.id)}"`} style="--brand:${brandColor(s)};--i:${index}">
     <div class="card-top">${logoHtml(s, '', prefix)}<div class="card-title"><${heading}><span class="nm">${highlight(s.name, toks)}</span>${s.status === 'verified' ? `<span class="vseal" title="官方已核验">${SEAL}</span>` : ''}</${heading}><p class="domain">${esc(host(s.url))}</p></div>${s.status === 'verified' ? '' : badge(s)}</div>
     <p class="card-sum">${highlight(s.summary, toks)}</p>
     <div class="card-foot">${typeTags(s, labels)}${riskLabel(s, labels)}</div>
