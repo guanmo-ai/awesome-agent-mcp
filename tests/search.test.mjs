@@ -68,3 +68,8 @@ test('口语查询覆盖已证实的服务能力', () => {
   const cases = { 坐地铁怎么走:'amap', 写周报:'dingtalk', 存照片:'baidu-netdisk', 备份文件:'quark-drive', 搜新闻:'baidu-search', 做海报:'hunyuan-image', 画流程图:'antv', 上线网站:'edgeone-makers', 写SQL:'tidb', 慢查询:'tencent-postgresql', 退款:'meituan', MySQL:'aliyun-dms' };
   for (const [q,id] of Object.entries(cases)) assert.ok(rank(q).slice(0,3).includes(id), `${q}: ${id} in ${rank(q)}`);
 });
+
+test('不能只因视频等通用词把不相关服务排进剪视频结果', () => {
+  assert.ok(!rank('剪视频').includes('douyin-open'));
+  assert.ok(!rank('慢查询').includes('alipay'));
+});

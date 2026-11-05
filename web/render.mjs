@@ -104,7 +104,7 @@ export function searchScore(s, toks, db) {
         cache.frequencies.set(pair, corpus.filter(item => fieldsFor(item).slice(0, 3).some(field => field.some(text => text.includes(pair)))).length);
       }
       const freq = cache.frequencies.get(pair), total = db.services?.length ?? 1;
-      if (freq > total * 0.2) continue;
+      if (freq > total * 0.08) continue;
       const idf = Math.log(1 + total / (1 + freq));
       fields.slice(0, 3).forEach((field, i) => { if (field.some(text => text.includes(pair))) partial += weights[i] * idf; });
     }
