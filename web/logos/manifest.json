@@ -170,9 +170,9 @@
     "size": 360
   },
   "fliggy": {
-    "pad": false,
-    "source": "appstore",
-    "size": 256
+    "pad": true,
+    "source": "https://img.alicdn.com/imgextra/i1/O1CN01XslwqW1rp2BOz0lt4_!!6000000005679-73-tps-64-64.ico",
+    "size": 64
   },
   "flomo": {
     "pad": false,
@@ -276,8 +276,9 @@
   },
   "luckin": {
     "pad": false,
-    "source": "appstore",
-    "size": 256
+    "source": "https://web.luckincdn.com/default/assets/logo2-9d412147.svg",
+    "size": 140,
+    "note": "官网标志左侧鹿形，裁去字标并置于品牌蓝底"
   },
   "ly-tmc": {
     "pad": false,
@@ -351,8 +352,9 @@
   },
   "oceanengine": {
     "pad": false,
-    "source": "appstore",
-    "size": 256
+    "source": "https://lf-ad-growth.byteadverts.com/obj/ad-growth-fe-cdn/cg_growth/oceanengine/client/img/logo.0711eb0.svg",
+    "size": 103,
+    "note": "官网标志左侧图形，裁去字标并置于品牌蓝底"
   },
   "patsnap": {
     "pad": false,
@@ -401,8 +403,8 @@
   },
   "taobao": {
     "pad": false,
-    "source": "appstore",
-    "size": 256
+    "source": "https://img.alicdn.com/tps/i3/T1OjaVFl4dXXa.JOZB-114-114.png",
+    "size": 114
   },
   "tapd": {
     "pad": false,
@@ -455,9 +457,9 @@
     "size": 256
   },
   "tianyancha": {
-    "pad": false,
-    "source": "appstore",
-    "size": 256
+    "pad": true,
+    "source": "https://avatars.githubusercontent.com/u/277989261?v=4",
+    "size": 260
   },
   "tidb": {
     "pad": true,
