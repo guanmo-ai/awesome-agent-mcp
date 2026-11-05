@@ -102,12 +102,20 @@ test('搜索显示全部匹配项，关闭按钮通过历史记录返回', async
   }
   const { initChrome } = await import('../web/ui.mjs');
   const db = {
+    site: { repo: 'guanmo-ai/awesome-agent-mcp' },
     services: Array.from({ length: 60 }, (_, i) => ({ id: `service-${i}`, name: `服务 ${i}`, summary: '示例', url: 'https://example.com', types: ['mcp'], access: [], risk: 'low' })),
     categories: [], labels: { types: { mcp: 'MCP' }, access: {}, risk: { low: '低' } },
   };
   initChrome({ getData: () => db, onChoose() {} })();
   assert.match(elements['#pal-list'].innerHTML, /60 个结果/);
   assert.match(elements['#pal-list'].innerHTML, /id="pal-service-59"/);
+  const query = '不存在 & <中文> # ?';
+  elements['#pal-q'].value = query;
+  elements['#pal-q'].dispatchEvent(new Event('input'));
+  const href = elements['#pal-list'].innerHTML.match(/href="([^"]+)"/)[1].replaceAll('&amp;', '&');
+  assert.equal(new URL(href).searchParams.get('title'), '[收录] ' + query);
+  assert.equal(new URL(href).searchParams.get('template'), 'submit.yml');
+  assert.ok(elements['#pal-list'].innerHTML.includes('&lt;中文&gt;'));
   const click = new Event('click');
   Object.defineProperty(click, 'target', { value: { closest: (selector) => selector === '[data-close-palette]' ? {} : null } });
   elements['#palette'].dispatchEvent(click);
