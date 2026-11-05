@@ -29,7 +29,7 @@
 | `color` |  | 品牌主色 `#RRGGBB`，用作卡片图标底色 |
 | `mark` |  | 卡片图标上的字，默认取名称的第一个字 |
 | `risk` | ✓ | `read` 只读查询；`write` 可执行操作（创建或修改数据）；`payment` 涉及资金（可能下单或付款）。能力跨多级时取最高一级 |
-| `access` | ✓ | 接入门槛，可多选：`free` 免费可用、`key` 需 API Key、`account` 需授权账号、`membership` 需会员或付费、`desktop-app` 需桌面客户端、`apply` 需申请开通。没整理时填 `[]` |
+| `access` | ✓ | 接入门槛，可多选：`free` 免费可用、`key` 需 API Key、`account` 需授权账号、`membership` 需会员或付费、`desktop-app` 需桌面客户端、`apply` 需申请开通。尚未整理时填 `[]`；门槛因场景或部署方式不同、无法统一标注时也填 `[]`，并在 `setup.requirements` 写明具体条件 |
 | `status` | ✓ | `unverified` 待核验；`verified` 已核验；`rejected` 不收录（不展示，留着是为了防止被重复提交） |
 | `evidence` | 已核验时必填 | `{ "url": "证明官方身份的页面", "checkedAt": "YYYY-MM-DD", "note": "可选，一句话说明" }` |
 | `rejectedReason` | 不收录时必填 | 为什么不收录 |
