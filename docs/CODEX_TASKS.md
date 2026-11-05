@@ -78,14 +78,18 @@ gh repo edit guanmo-ai/awesome-agent-mcp \
 ## 维护（上线后每周一次）
 
 ```
-先读 AGENTS.md 和 docs/VERIFYING.md。
+先读 AGENTS.md、docs/VERIFYING.md 和 docs/REVIEW.md「AI 留言」。
 1. 运行可用性检查，由 Codex 复核待核验和失败项：被拦截的不算失效，真正失效的要找到新地址或按规则处理；维护者介入条件按 AGENTS.md「分工」。
-2. evidence.checkedAt 超过 180 天的条目重新核验。
-3. 处理 GitHub 上新开的「提交服务」和「报告问题」issue。
-4. 活动图案过期的 App 图标，用 node scripts/fetch-logos.mjs <id> 重新抓取。
-5. 服务数量有变化时，先运行 npm run serve，再运行 node scripts/og-image.mjs 更新首页分享图；新增服务用 node scripts/og-services.mjs 补分享图。
-6. 开 PR，标题「维护：YYYY-MM-DD」，CI 通过后自己合并。
+2. 重新核验 evidence.checkedAt 超过 180 天的条目，以及 setup.cost.checkedAt 超过 90 天的费用；只写官方明确的信息，无法核实的如实记录。
+3. 处理 GitHub 上新开的「提交服务」「报告问题」和含搜索词的「[收录]」issue：按官方来源和收录规则核验，能收录的收录；如果搜索词是现有服务确有的另一种说法，补入 keywords，不为凑搜索结果虚构能力。
+4. 跟进 [awesome-mcp-devtools #438](https://github.com/punkpeye/awesome-mcp-devtools/pull/438) 的审核结果；根据实际状态记录，不把待审核当作已收录。
+5. 运行 npm run check，包含三轮搜索词、50 条盲测和 Agent 阅读路径回归；检查失败先定位原因，不能为了通过而降低预期。
+6. 活动图案过期的 App 图标，用 node scripts/fetch-logos.mjs <id> 重新抓取。
+7. 服务数量有变化时，先运行 npm run serve，再运行 node scripts/og-image.mjs 更新首页分享图；新增服务用 node scripts/og-services.mjs 补分享图。
+8. 开 PR，标题「维护：YYYY-MM-DD」，CI 通过后自己合并，并确认「发布网站」成功。
 ```
+
+以后每周只需对 Codex 说：「按 docs/CODEX_TASKS.md 做每周维护」。
 
 ## 双方留言入口
 
