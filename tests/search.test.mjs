@@ -70,6 +70,7 @@ test('口语查询覆盖已证实的服务能力', () => {
 });
 
 test('不能只因视频等通用词把不相关服务排进剪视频结果', () => {
+  assert.ok(rank('剪视频').slice(0, 3).includes('volcengine-vod'));
   assert.ok(!rank('剪视频').includes('douyin-open'));
   assert.ok(!rank('慢查询').includes('alipay'));
 });
