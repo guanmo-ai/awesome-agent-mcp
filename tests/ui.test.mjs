@@ -77,3 +77,40 @@ test('目录请求失败后可以重试，成功请求仍复用结果', async (t
   assert.deepEqual(await retry, { count: 93 });
   assert.equal(requests, 2);
 });
+
+test('搜索显示全部匹配项，关闭按钮通过历史记录返回', async (t) => {
+  class Element extends EventTarget {
+    open = false; value = ''; scrollTop = 0; innerHTML = ''; dataset = {};
+    classList = { toggle() {}, add() {}, remove() {} };
+    querySelectorAll() { return []; }
+    setAttribute() {} removeAttribute() {} focus() {}
+    showModal() { this.open = true; }
+    close() { this.open = false; this.dispatchEvent(new Event('close')); }
+  }
+  const elements = Object.fromEntries(['#nav', '#kbar-key', '#theme', '#palette', '#pal-q', '#pal-list', '#open-palette'].map((s) => [s, new Element()]));
+  let backCalls = 0;
+  const globals = {
+    matchMedia: () => ({ matches: true, addEventListener() {} }), scrollY: 0, addEventListener() {},
+    location: { pathname: '/', search: '', hash: '' }, navigator: { platform: 'MacIntel' },
+    history: { state: { overlay: 'search', query: '服务', active: 0, top: 0 }, replaceState(state) { this.state = state; }, back() { backCalls++; } },
+    document: { hidden: false, body: new Element(), documentElement: new Element(), querySelector: (s) => elements[s] ?? null, getElementById: () => null, addEventListener() {} },
+  };
+  for (const [key, value] of Object.entries(globals)) {
+    const old = Object.getOwnPropertyDescriptor(globalThis, key);
+    Object.defineProperty(globalThis, key, { value, configurable: true, writable: true });
+    t.after(() => { if (old) Object.defineProperty(globalThis, key, old); else delete globalThis[key]; });
+  }
+  const { initChrome } = await import('../web/ui.mjs');
+  const db = {
+    services: Array.from({ length: 60 }, (_, i) => ({ id: `service-${i}`, name: `服务 ${i}`, summary: '示例', url: 'https://example.com', types: ['mcp'], access: [], risk: 'low' })),
+    categories: [], labels: { types: { mcp: 'MCP' }, access: {}, risk: { low: '低' } },
+  };
+  initChrome({ getData: () => db, onChoose() {} })();
+  assert.match(elements['#pal-list'].innerHTML, /60 个结果/);
+  assert.match(elements['#pal-list'].innerHTML, /id="pal-service-59"/);
+  const click = new Event('click');
+  Object.defineProperty(click, 'target', { value: { closest: (selector) => selector === '[data-close-palette]' ? {} : null } });
+  elements['#palette'].dispatchEvent(click);
+  assert.equal(elements['#palette'].open, false);
+  assert.equal(backCalls, 1);
+});

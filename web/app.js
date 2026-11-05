@@ -24,6 +24,7 @@ async function init() {
   L = DB.labels;
   home = DB.homepage;
   byId = new Map(DB.services.map((s) => [s.id, s]));
+  $('#verified-only').hidden = DB.services.every((s) => s.status === 'verified');
   // Older cached HTML has no bundled data. Reconcile it once with the live catalog.
   if (!embedded) {
     $('#groups').innerHTML = directoryHtml(DB);
@@ -175,8 +176,9 @@ function render() {
   }
   $('#empty').hidden = shown.size > 0;
   const filtered = state.q || state.cat !== 'all' || state.types.size || state.risks.size || state.verified;
+  $('#reset').hidden = !filtered;
   $('#result').textContent = filtered ? `${shown.size} / ${DB.count}` : `${DB.count} 个服务`;
-  if (state.q) $('#suggest-link').href = `https://github.com/${DB.site.repo}/issues/new?template=submit.yml&title=${encodeURIComponent('[收录] ' + state.q)}`;
+  $('#suggest-link').href = `https://github.com/${DB.site.repo}/issues/new?template=submit.yml${state.q ? `&title=${encodeURIComponent('[收录] ' + state.q)}` : ''}`;
   if (lastQuery === state.q) revealResults(entering);
   lastQuery = state.q;
 }
@@ -268,7 +270,7 @@ function buildOrbit() {
 
   const showLabel = (it, auto) => {
     clearTimeout(labelTimer);
-    label.innerHTML = `<b>${esc(it.s.name)}</b><span> · ${esc(verb(it.s))}</span>${auto ? '<i>✓ 调用成功</i>' : ''}`;
+    label.innerHTML = `<b>${esc(it.s.name)}</b><span> · ${esc(verb(it.s))}</span>${auto ? '<i>连接示意</i>' : ''}`;
     const above = it.y > size + 40;
     const half = label.offsetWidth / 2 + 4;
     label.style.setProperty('--label-x', `${Math.min(W - half, Math.max(half, it.x))}px`);

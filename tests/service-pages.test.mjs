@@ -48,6 +48,12 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
     assert.ok(existsSync(join(fixture.dir, 'dist/og', `${s.id}.jpg`)), `${s.id} 缺少服务分享图`);
     assert.doesNotMatch(html, /\{\{[a-zA-Z]+\}\}/, `${s.id} 有残留占位符`);
     assert.match(html, /<h1>[^<]+<\/h1>/);
+    const types = s.types.map((type) => ({ mcp: 'MCP', skill: 'Skill', cli: 'CLI' })[type]).join(' / ');
+    const expectedTitle = esc(`${s.name} ${s.status === 'verified' ? '官方 ' : ''}${types} ${s.status === 'verified' ? '接入' : '接入线索'} · ${config.title}`);
+    assert.equal(html.match(/<title>(.*?)<\/title>/)[1], expectedTitle, `${s.id} 标题应符合类型和核验状态`);
+    assert.equal(html.match(/<meta property="og:title" content="(.*?)">/)[1], expectedTitle, `${s.id} 分享标题应与标题一致`);
+    if (s.status !== 'verified') assert.ok(!html.match(/<meta name="description" content="(.*?)">/)[1].includes('查看官方接入方式'));
+
     assert.ok(html.includes(`<link rel="canonical" href="${config.siteUrl}s/${s.id}/">`));
     assert.ok(html.includes(esc(agentPrompt(`${config.siteUrl}llms.txt`, `帮我查${s.name}的官方接入方式`))));
     assert.ok(sitemap.includes(`<loc>${config.siteUrl}s/${s.id}/</loc>`));
@@ -57,7 +63,23 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
     assert.equal(jsonLd.publisher.name, s.name);
     assert.ok(fixture.read('llms.txt').includes(`${config.siteUrl}s/${s.id}/`));
   }
+  assert.deepEqual(fixture.data.services.find((s) => s.id === 'meituhub').types, ['cli']);
   assert.match(fixture.read('robots.txt'), /Sitemap: https:\/\/guanmo-ai\.github\.io\/awesome-agent-mcp\/sitemap\.xml/);
+});
+
+test('待核验服务的标题和描述不保证官方身份', (t) => {
+  const fixture = buildFixture((data) => {
+    data.services[0].status = 'unverified';
+    delete data.services[0].evidence;
+  });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const service = fixture.data.services[0];
+  const html = fixture.read(`s/${service.id}/index.html`);
+  const title = html.match(/<title>(.*?)<\/title>/)[1];
+  assert.match(title, /接入线索/);
+  assert.doesNotMatch(title, /官方/);
+  assert.equal(html.match(/<meta property="og:title" content="(.*?)">/)[1], title);
+  assert.doesNotMatch(html.match(/<meta name="description" content="(.*?)">/)[1], /查看官方接入方式/);
 });
 
 test('rejected 服务不会生成页面、同类推荐或 sitemap 地址', (t) => {

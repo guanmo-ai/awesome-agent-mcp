@@ -118,7 +118,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     if (!db) return;
     const toks = tokens(input.value.trim());
     const byId = new Map(db.services.map((s) => [s.id, s]));
-    items = toks.length ? db.services.filter((s) => textMatch(s, toks, db)).slice(0, 50) : FEATURED.map((id) => byId.get(id)).filter(Boolean).slice(0, 8);
+    items = toks.length ? db.services.filter((s) => textMatch(s, toks, db)) : FEATURED.map((id) => byId.get(id)).filter(Boolean).slice(0, 8);
     active = 0;
     if (!items.length) {
       list.innerHTML = `<div class="pal-empty">没有找到「${esc(input.value)}」。<a href="https://github.com/${esc(db.site.repo)}/issues/new?template=submit.yml" target="_blank" rel="noopener">提交给我们</a></div>`;
@@ -188,7 +188,7 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
     } else if (e.key === 'Enter' && items[active]) { e.preventDefault(); choose(items[active].id); }
   });
   pal.addEventListener('click', (e) => {
-    if (e.target === pal) { closeDialog(pal); return; }
+    if (e.target === pal || e.target.closest('[data-close-palette]')) { closeDialog(pal); return; }
     const it = e.target.closest('.pal-item');
     if (it) choose(it.dataset.id);
   });
@@ -229,11 +229,11 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
 
 const PALETTE_HTML = `<dialog class="palette" id="palette" aria-label="搜索服务">
     <div class="pal-in">
-      <label class="pal-search">
+      <div class="pal-search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
-        <input id="pal-q" type="text" aria-label="搜索服务或能力" placeholder="搜索服务或能力，比如：外卖、文档、股票" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list">
-        <kbd>esc</kbd>
-      </label>
+        <input id="pal-q" type="text" aria-label="搜索服务或能力" placeholder="搜索服务或能力，比如：地图、文档、支付" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list">
+        <button class="icon-btn" type="button" data-close-palette aria-label="关闭搜索">×</button>
+      </div>
       <div class="pal-list" id="pal-list" role="listbox" aria-label="搜索结果"></div>
       <div class="pal-foot" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> 选择</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span></div>
     </div>
