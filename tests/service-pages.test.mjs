@@ -49,7 +49,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
     assert.doesNotMatch(html, /\{\{[a-zA-Z]+\}\}/, `${s.id} 有残留占位符`);
     assert.match(html, /<h1>[^<]+<\/h1>/);
     assert.ok(html.includes(`<link rel="canonical" href="${config.siteUrl}s/${s.id}/">`));
-    assert.ok(html.includes(esc(agentPrompt(`${config.siteUrl}s/${s.id}/`, `帮我接入${s.name}`))));
+    assert.ok(html.includes(esc(agentPrompt(`${config.siteUrl}llms.txt`, `帮我查${s.name}的官方接入方式`))));
     assert.ok(sitemap.includes(`<loc>${config.siteUrl}s/${s.id}/</loc>`));
     const jsonLd = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     assert.equal(jsonLd['@type'], 'SoftwareApplication');

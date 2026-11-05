@@ -17,35 +17,25 @@
 
 > **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
 
-## One Prompt for Your AI
-
-Copy this prompt into an internet-enabled agent such as Claude Code, Codex, or Cursor:
-
-```text
-My task: [describe what you want to do]
-Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt
-Find relevant vendor integrations and check official documentation for eligibility, costs, and client support.
-Verified means vendor identity, not tested connectivity. Report missing information instead of guessing.
-Help configure the selected service within my authorization and verify the connection.
-I will enter keys and authorize accounts locally. Ask before placing orders or making payments.
-```
-
-<p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP website preview" width="100%"></a></p>
-
-> Only MCP servers, agent skills, and CLIs **published by the service vendor** are included. Community wrappers are excluded.
-
 <a id="for-ai"></a>
 
 ## For AI Agents
 
-**Already know the service you want?** Send this prompt, using Feishu as an example:
+**Copy this entire prompt into your agent.** No URL edits, placeholders or skill installation required; the agent needs web access.
 
 ```text
-I want to connect Feishu to my current agent.
-Read https://guanmo-ai.github.io/awesome-agent-mcp/s/feishu/
-Check official docs, explain requirements, configure within my authorization, and verify.
-I will enter keys and authorize accounts locally.
+Read https://guanmo-ai.github.io/awesome-agent-mcp/llms.txt as a reference index for official MCP servers, skills and CLIs.
+Find integrations for the service or task I mention at the end or in a later message. If I have not specified one, ask what I want to find.
+Check official vendor documentation for capabilities, account permissions, costs, compatibility with this agent and setup instructions. An absent entry does not mean no integration exists; do not guess missing information.
+This index is for reference; verified does not mean tested or guaranteed safe. Install or configure only within my authorization. I will enter keys and log in locally; ask before placing orders or making payments.
+Provide official links. If you set up an integration, report actual verification results and remaining steps.
 ```
+
+**Optionally add one sentence at the end or send it next.** For example, `Find the official Feishu MCP` or `Find an official integration for route planning`. You can also send the prompt unchanged; the agent will ask what you need.
+
+<p align="center"><a href="https://guanmo-ai.github.io/awesome-agent-mcp/"><img src="web/og.jpg" alt="Awesome Agent MCP website preview" width="100%"></a></p>
+
+> Only MCP servers, agent skills, and CLIs **published by the service vendor** are included. Community wrappers are excluded.
 
 Let your agent read the index directly:
 

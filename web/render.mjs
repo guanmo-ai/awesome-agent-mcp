@@ -11,12 +11,12 @@ export function disclaimerHtml(db) {
 }
 export function agentPrompt(url, need = '') {
   return [
-    `我的需求：${need.trim() || '请先问我想完成什么任务。'}`,
-    `先读取 ${url}`,
-    '根据需求筛选官方接入，核对厂商文档，说明适用对象、账号或费用门槛，以及当前 Agent 是否支持。',
-    '已核验仅代表官方身份，未收录不代表不存在；缺少的信息请明确说明，不要编造配置。',
-    '选定服务后，按我的授权帮助配置并验证连接；Key 和账号授权由我在本地完成，不要让我把密钥发到对话里。',
-    '最后报告实际验证结果和剩余步骤；下单、付款前由我确认。',
+    `读取 ${url}，作为查找官方 MCP、Skill 和 CLI 的参考索引。`,
+    '根据我在末尾或后续消息中提供的服务名或需求查找；如果我还没说，先问我想找什么。',
+    '核对厂商官方文档，告诉我能做什么、账号权限、费用，以及当前 Agent 是否支持和如何接入。未收录不代表不存在，不确定的信息不要猜。',
+    '本索引仅供参考，已核验不等于实测或安全保证。需要安装或配置时按我的授权执行，密钥和登录由我在本地完成；下单、付款前让我确认。',
+    '给出官方链接；如进行了接入，报告实际验证结果和剩余步骤。',
+    ...(need.trim() ? ['', `我的需求：${need.trim()}`] : []),
   ].join('\n');
 }
 export function skillPrompt(url, name) {
@@ -105,7 +105,7 @@ export function snippets(s) {
 }
 
 
-export function renderDetails(s, db) {
+export function renderDetails(s, db, { detailPage = false } = {}) {
   const snips = snippets(s);
   const access = s.access.length ? s.access.map((a) => esc(db.labels.access[a])).join('、') : s.setup ? '见下方接入前准备' : '<span style="color:var(--faint)">待整理</span>';
   const category = db.categories.find((c) => c.id === s.category);
@@ -114,11 +114,11 @@ export function renderDetails(s, db) {
     <h4>按这几步接入</h4><ol>${s.setup.steps.map((step) => `<li>${esc(step.text)} <a href="${esc(safeUrl(step.url))}" target="_blank" rel="noopener">官方入口 ↗</a></li>`).join('')}</ol>
     <h4>如何确认成功</h4><p>${esc(s.setup.verify)}</p><p class="code-hint">接入指引核对日期：${esc(s.setup.checkedAt)}</p></div>` : '';
   return {
-    actions: `<button class="btn btn-primary btn-sm" type="button" data-copy="${esc(agentPrompt(serviceUrl(db.homepage, s.id), `帮我接入${s.name}`))}">复制接入提示词</button>
+    actions: `<button class="btn btn-primary btn-sm" type="button" data-copy="${esc(agentPrompt(`${db.homepage}llms.txt`, `帮我查${s.name}的官方接入方式`))}">复制接入提示词</button>
       <a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">官方文档${ICON.out}</a>
       ${s.repo ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.repo))}" target="_blank" rel="noopener">代码仓库${ICON.out}</a>` : ''}
       ${s.install?.skill ? `<a class="btn btn-ghost btn-sm" href="${esc(safeUrl(s.install.skill))}" target="_blank" rel="noopener">Skill 文件${ICON.out}</a>` : ''}
-      <button class="btn btn-ghost btn-sm" type="button" data-copy="${esc(serviceUrl(db.homepage, s.id))}">复制链接</button>`,
+      ${detailPage ? '' : `<a class="btn btn-ghost btn-sm" href="${esc(serviceUrl(db.homepage, s.id))}" target="_blank" rel="noopener">查看完整详情${ICON.out}</a>`}`,
     facts: `<dl class="facts">
       <div><dt>类型</dt><dd>${typeTags(s, db.labels)}</dd></div>
       <div><dt>权限</dt><dd><i class="dot ${esc(s.risk)}"></i>${esc(db.labels.risk[s.risk])}</dd></div>
