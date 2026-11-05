@@ -123,3 +123,20 @@ test('两个 README 生成相同的公开目录，英文内容完整且顶部互
   }
   assert.doesNotMatch(en, /undefined|\{\{\w+\}\}/);
 });
+
+
+test('接入指引同步到静态详情、嵌入目录和 Agent 文本', (t) => {
+  const setup = { requirements: '先准备可访问的实例，费用按所选部署确认。', steps: [{ text: '按官方入口配置。', url: 'https://example.com/setup' }], verify: '执行只读查询，检查返回值。', checkedAt: '2026-11-05' };
+  const fixture = buildFixture((data) => { data.services[0].setup = setup; data.services[0].access = []; });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const id = fixture.data.services[0].id;
+  const html = fixture.read(`s/${id}/index.html`);
+  assert.ok(html.includes(setup.requirements));
+  assert.ok(html.includes(setup.verify));
+  assert.ok(html.includes('见下方接入前准备'));
+  assert.ok(html.includes('href="https://example.com/setup" target="_blank" rel="noopener"'));
+  const db = JSON.parse(fixture.read('services.json'));
+  assert.deepEqual(db.services.find((s) => s.id === id).setup, setup);
+  const llms = fixture.read('llms.txt');
+  for (const text of [setup.requirements, setup.steps[0].text, setup.steps[0].url, setup.verify]) assert.ok(llms.includes(text));
+});

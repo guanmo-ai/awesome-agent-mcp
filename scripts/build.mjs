@@ -23,13 +23,13 @@ const skillPath = `skills/${config.skill}/SKILL.md`;
 const md = (s) => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
 const ORDER = Object.keys(LABELS.types);
 const types = (s) => [...s.types].sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b)).map((t) => LABELS.types[t]).join(' · ');
-const access = (s) => (s.access.length ? s.access.map((a) => LABELS.access[a]).join('、') : '—');
+const access = (s) => (s.access.length ? s.access.map((a) => LABELS.access[a]).join('、') : s.setup ? '见接入前准备' : '—');
 
 function readme(english = false) {
   const t = (zh, en) => english ? en : zh;
   const risks = english ? { read: 'Read only', write: 'Write access', payment: 'Financial actions' } : LABELS.risk;
   const gates = english ? { free: 'Free', key: 'API key', account: 'Account authorization', membership: 'Membership or payment', 'desktop-app': 'Desktop client', apply: 'Application required' } : LABELS.access;
-  const readmeAccess = (s) => s.access.length ? s.access.map((a) => gates[a]).join(t('、', ', ')) : '—';
+  const readmeAccess = (s) => s.access.length ? s.access.map((a) => gates[a]).join(t('、', ', ')) : s.setup ? t('见独立页说明', 'See details') : '—';
   const readmeStatus = (s) => s.status === 'verified' ? t('✅ 已核验', '✅ Verified') : t('⏳ 待核验', '⏳ Unverified');
   const L = [];
   L.push(
@@ -164,7 +164,8 @@ function llms() {
     '- 已核验只表示确认官方身份，不代表已实测接入成功。未收录不代表没有官方接入。',
     '- 先确认用户要完成的任务和当前 Agent，核对厂商文档中的适用对象、账号、费用及客户端支持；区分商家接口与消费者服务。',
     '- 安装字段缺失、门槛为 — 时表示未整理，不代表无需授权或可以免费使用；需要时读取结构化数据和官方文档。',
-    '- 接入方式以每条的官方链接为准；保留认证请求头和参数，不编造端点。本索引不提供任何 Key 或账号。',
+    '- 有接入指引时先读准备、步骤和验证方法；验证方法不是本项目实测结果。指引中仍未知的门槛不能猜测。',
+    '- 配置请从 services.json 的 install 读取完整 URL、args、env 和 headers，保留认证字段；接入方式以官方文档为准。本索引不提供任何 Key 或账号。',
     '- 按用户已有授权配置，由用户在本地填写密钥和完成登录；验证连接后报告实际结果及剩余步骤，不以配置写入代替成功。',
     '',
   ];
@@ -177,6 +178,7 @@ function llms() {
       if (s.install?.cli) parts.push(`CLI \`${s.install.cli}\``);
       if (s.install?.skill) parts.push(`Skill ${s.install.skill}`);
       L.push(`- [${s.name}](${s.url}): ${s.summary} ${parts.join('；')}；[独立页](${serviceUrl(config.siteUrl, s.id)})`);
+      if (s.setup) L.push(`  - 接入前准备：${s.setup.requirements}`, ...s.setup.steps.map((step, i) => `  - 步骤 ${i + 1}：${step.text} [官方入口](${step.url})`), `  - 如何确认成功：${s.setup.verify}（指引核对于 ${s.setup.checkedAt}，不代表已实测）`);
     }
     L.push('');
   }

@@ -95,6 +95,15 @@ export function validate(data) {
     if (s.appStoreId !== undefined && !(Number.isInteger(s.appStoreId) && s.appStoreId > 0)) err(w, 'appStoreId 必须是正整数');
     if (s.sources !== undefined && !Array.isArray(s.sources)) err(w, 'sources 必须是数组');
     if (Array.isArray(s.sources)) for (const src of s.sources) if (!isObject(src) || typeof src.name !== 'string' || !src.name.trim() || !isHttps(src.url)) err(w, 'sources 每项需要对象、name 和 https url');
+    if (s.setup !== undefined) {
+      if (!isObject(s.setup)) err(w, 'setup 必须是对象');
+      else {
+        for (const field of ['requirements', 'verify']) if (typeof s.setup[field] !== 'string' || !s.setup[field].trim()) err(w, `setup.${field} 必须是非空字符串`);
+        if (!Array.isArray(s.setup.steps) || !s.setup.steps.length) err(w, 'setup.steps 必须是非空数组');
+        else for (const step of s.setup.steps) if (!isObject(step) || typeof step.text !== 'string' || !step.text.trim() || !isHttps(step.url)) err(w, 'setup.steps 每项需要非空 text 和 https url');
+        if (!isDate(s.setup.checkedAt)) err(w, 'setup.checkedAt 必须是有效的 YYYY-MM-DD');
+      }
+    }
     if (s.install !== undefined && !isObject(s.install)) err(w, 'install 必须是对象');
     const install = isObject(s.install) ? s.install : {};
     const mcp = install.mcp;

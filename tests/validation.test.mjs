@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readJson, validate } from '../scripts/lib.mjs';
+import { LABELS, readJson, validate } from '../scripts/lib.mjs';
+import { renderDetails } from '../web/render.mjs';
 
 const base = () => structuredClone(readJson('data/services.json'));
 function rejects(edit, message) {
@@ -94,4 +95,27 @@ test('现有数据和官方文档中的字符串占位配置仍然有效', () =>
   assert.deepEqual(validate(data), []);
   service.install.mcp = { transport: 'stdio', command: 'node', args: ['a file.mjs', '<你的Key>'], env: { _TOKEN_2: '<你的Key>' } };
   assert.deepEqual(validate(data), []);
+});
+
+test('接入指引验证容器、文本、链接和日期', () => {
+  const setup = () => ({ requirements: '需要账号', steps: [{ text: '登录', url: 'https://example.com/' }], verify: '查看结果', checkedAt: '2026-11-05' });
+  for (const value of [null, [], 'setup']) rejects((_, s) => { s.setup = value; }, /setup/);
+  for (const [field, values] of Object.entries({ requirements: ['', '  ', null], verify: ['', 1], steps: [[], null, {}, [null], [{ text: '', url: 'https://example.com' }], [{ text: '登录', url: 'javascript:alert(1)' }], [{ text: '登录', url: 'https://user:pass@example.com' }]], checkedAt: ['2026-02-29', null] })) {
+    for (const value of values) rejects((_, s) => { s.setup = setup(); s.setup[field] = value; }, new RegExp(`setup\\.${field}`));
+  }
+  const data = base();
+  data.services[0].setup = setup();
+  assert.deepEqual(validate(data), []);
+});
+
+test('接入指引渲染时转义文本并限制链接协议', () => {
+  const data = base();
+  const service = data.services[0];
+  service.setup = { requirements: '<img src=x onerror=alert(1)>', steps: [{ text: '<script>alert(1)</script>', url: 'javascript:alert(1)' }], verify: '<b>完成</b>', checkedAt: '2026-11-05' };
+  const html = renderDetails(service, { ...data, labels: LABELS, homepage: 'https://example.com/' }).install;
+  assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+  assert.match(html, /&lt;img src=x onerror=alert\(1\)&gt;/);
+  assert.match(html, /href="#" target="_blank" rel="noopener"/);
+  assert.doesNotMatch(html, /<script>|href="javascript:/);
+  assert.match(html, /&lt;b&gt;完成&lt;\/b&gt;/);
 });
