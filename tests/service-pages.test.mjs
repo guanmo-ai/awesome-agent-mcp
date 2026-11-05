@@ -33,6 +33,7 @@ test('真实构建为所有公开服务生成可直接阅读的页面和完整 s
   }
   assert.doesNotMatch(home, /\{\{[a-zA-Z]+\}\}/, '首页不能残留构建占位符');
 
+  assert.ok(home.includes(`<dt>附安装配置</dt><dd id="st-install">${published.services.filter(s => s.install).length}</dd>`));
   assert.deepEqual(embedded, published, '首页的交互数据应与同次构建的公开目录一致');
   for (const file of ['app.js', 'ui.mjs', 'service.js']) {
     const imports = [...fixture.read(file).matchAll(/from\s+['"]\.\/([^'"]+)['"]/g)].map((m) => m[1]);
