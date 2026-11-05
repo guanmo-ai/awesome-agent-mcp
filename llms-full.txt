@@ -201,6 +201,10 @@
   - 步骤 1：按官方仓库安装 Skill，在微信读书官方入口取得 Key 并在本地设置 WEREAD_API_KEY。 [官方入口](https://github.com/Tencent/WeChatReading)
   - 如何确认成功：只读查看本人书架或搜索一本公开书籍并核对结果。（指引核对于 2026-11-05，不代表已实测）
 - [腾讯 ima](https://ima.qq.com/agent-interface): 个人知识库的搜索与读写。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；Skill https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/ima/)
+  - 接入前准备：需要 ima 账号、Client ID、API Key 和 Node.js 18 或以上；凭证从 ima 官方 Agent 接口页获取。
+  - 步骤 1：下载官方 Skill 压缩包并按所用客户端的 Skill 安装方式解压；保留 notes 和 knowledge-base 子目录。 [官方入口](https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip)
+  - 步骤 2：在官方 Agent 接口页获取 Client ID 与 API Key，按包内说明设置 IMA_OPENAPI_CLIENTID 和 IMA_OPENAPI_APIKEY；不要公开凭据。 [官方入口](https://ima.qq.com/agent-interface)
+  - 如何确认成功：在已安装的 Skill 目录按官方说明列出自己的文档，确认认证及读取正常；无需创建或修改笔记。（指引核对于 2026-11-05，不代表已实测）
 - [flomo](https://help.flomoapp.com/advance/mcp/): 卡片笔记的记录与检索。 类型 MCP；权限 可执行操作；门槛 需授权账号、需会员或付费；已核验；MCP Streamable HTTP https://flomoapp.com/mcp；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/flomo/)
   - 接入前准备：MCP 属于 Max 会员权益，需要本人 flomo 账号及 Token；客户端自身费用另计。
   - 步骤 1：在 flomo 的 MCP 指南中按客户端创建 Token 并填写配置，保留 Token 在本地。 [官方入口](https://help.flomoapp.com/advance/mcp/connect-cursor.html)
@@ -219,7 +223,11 @@
   - 接入前准备：需要夸克网盘账号和本人授权；实际功能与会员权益、Agent 支持情况有关。
   - 步骤 1：按官网 Skill 页面安装对应技能并完成账号授权；授权码仅在本地使用。 [官方入口](https://www.quark.cn/documents/help/quark-drive-skill)
   - 如何确认成功：先搜索一条本人有权限访问的文件并核对名称。（指引核对于 2026-11-05，不代表已实测）
-- [腾讯微云](https://www.weiyun.com/act/openclaw): 网盘文件的搜索与管理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；Skill https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/)
+- [腾讯微云](https://www.weiyun.com/act/openclaw): 网盘文件的搜索与管理。 类型 MCP · Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://www.weiyun.com/api/v3/mcpserver；Skill https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/)
+  - 接入前准备：需要微云账号、个人授权及 Token；官方 Skill 使用 Node.js 和 mcporter。
+  - 步骤 1：下载官方 Skill 包并按客户端要求安装，保留 references 和脚本；先阅读包内 setup 脚本。 [官方入口](https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip)
+  - 步骤 2：按包内 references/auth.md 完成个人授权；配置 WyHeader 时，完整请求头值须为 mcp_token=你的Token，并通过环境变量安全提供。 [官方入口](https://www.weiyun.com/act/openclaw)
+  - 如何确认成功：授权后先列出自己有权访问的文件，确认连接；不要以删除或上传作为首测。（指引核对于 2026-11-05，不代表已实测）
 - [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/): 网盘文件的搜索、上传与管理。 类型 MCP；权限 可执行操作；门槛 需授权账号；已核验；MCP SSE https://mcp-pan.baidu.com/sse；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk/)
   - 接入前准备：需要百度网盘账号及本人授权的 Access Token；此配置使用 SSE，客户端须支持该传输方式。
   - 步骤 1：依照百度网盘指南完成 OAuth 授权，在本地将 Access Token 用于 SSE 配置。 [官方入口](https://pan.baidu.com/union/doc/mcp-server/操作指南/在-agent-中自定义使用/)
@@ -344,6 +352,10 @@
   - 步骤 1：按官方文档安装 iFinD Skill，在个人中心取得 MCP 密钥并在本地配置，不将密钥发到对话。 [官方入口](https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/llms-full.txt)
   - 如何确认成功：先查询一只公开股票的行情并核对标的与数据时间。（指引核对于 2026-11-05，不代表已实测）
 - [同花顺问财](https://search.10jqka.com.cn/skillhub): 通过官方技能查询行情、公告、研报和宏观数据，进行条件筛选。 类型 Skill · CLI；权限 只读查询；门槛 需授权账号、需 API Key；已核验；CLI `curl -fsSL https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh | bash -s`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/iwencai/)
+  - 接入前准备：需要 Python 3；部分技能需要问财账户及对应 API Key，具体权限以官方技能说明为准。
+  - 步骤 1：先阅读官方远程安装脚本及其下载的安装器，再按需要运行安装命令；安装器可能修改用户 shell 配置。 [官方入口](https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh)
+  - 步骤 2：安装后使用 iwencai-skillhub-cli 查看帮助并按技能名称安装；所需账号和密钥在官方 SkillHub 获取。 [官方入口](https://search.10jqka.com.cn/skillhub)
+  - 如何确认成功：运行 iwencai-skillhub-cli --help 查看命令；实际数据权限和结果需使用自己的账户核验。（指引核对于 2026-11-05，不代表已实测）
 - [东方财富妙想](https://ai.eastmoney.com/skills): 金融资讯与数据分析、选股，以及自选和模拟组合管理。 类型 Skill；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/eastmoney-miaoxiang/)
   - 接入前准备：面向金融数据和资讯查询；需要东方财富账号及妙想 API Key。官方页面标注限时免费体验及每日领取限制，额度与后续费用以官方页面为准。
   - 步骤 1：在东方财富 App 打开妙想 Skills 页面并登录，领取 API Key；领取情况和额度以页面显示为准。 [官方入口](https://marketing.dfcfs.com/views/finskillshub/index)

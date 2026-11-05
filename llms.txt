@@ -49,7 +49,7 @@
 - [印象笔记](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang.md): 笔记的创建、搜索与整理。 Skill；可执行操作
 - [有道云笔记](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note.md): 笔记读写与搜索、待办管理和网页剪藏。 Skill · CLI；可执行操作
 - [夸克网盘](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive.md): 网盘文件的搜索与管理。 Skill；可执行操作
-- [腾讯微云](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun.md): 网盘文件的搜索与管理。 Skill；可执行操作
+- [腾讯微云](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun.md): 网盘文件的搜索与管理。 MCP · Skill；可执行操作
 - [百度网盘](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk.md): 网盘文件的搜索、上传与管理。 MCP；可执行操作
 
 ## 搜索、内容和企业数据

@@ -1529,7 +1529,20 @@
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://ima.qq.com/agent-interface",
           "checkedAt": "2026-11-05"
-        }
+        },
+        "requirements": "需要 ima 账号、Client ID、API Key 和 Node.js 18 或以上；凭证从 ima 官方 Agent 接口页获取。",
+        "steps": [
+          {
+            "text": "下载官方 Skill 压缩包并按所用客户端的 Skill 安装方式解压；保留 notes 和 knowledge-base 子目录。",
+            "url": "https://app-dl.ima.qq.com/skills/ima-skills-1.1.10.zip"
+          },
+          {
+            "text": "在官方 Agent 接口页获取 Client ID 与 API Key，按包内说明设置 IMA_OPENAPI_CLIENTID 和 IMA_OPENAPI_APIKEY；不要公开凭据。",
+            "url": "https://ima.qq.com/agent-interface"
+          }
+        ],
+        "verify": "在已安装的 Skill 目录按官方说明列出自己的文档，确认认证及读取正常；无需创建或修改笔记。",
+        "checkedAt": "2026-11-05"
       }
     },
     {
@@ -1826,6 +1839,7 @@
       "category": "notes",
       "summary": "网盘文件的搜索与管理。",
       "types": [
+        "mcp",
         "skill"
       ],
       "url": "https://www.weiyun.com/act/openclaw",
@@ -1840,12 +1854,20 @@
       "status": "verified",
       "addedAt": "2026-11-04",
       "install": {
-        "skill": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip"
+        "skill": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip",
+        "mcp": {
+          "transport": "http",
+          "url": "https://www.weiyun.com/api/v3/mcpserver",
+          "headers": {
+            "WyHeader": "<你的完整WyHeader值>"
+          }
+        }
       },
       "evidence": {
-        "url": "https://www.weiyun.com/act/openclaw",
-        "checkedAt": "2026-11-04",
-        "note": "微云官方接入页前端发布 Skill 安装包、API Key，列出上传、下载、删除与分享。",
+        "url": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip",
+        "checkedAt": "2026-11-05",
+        "note": "官方微云接入页提供的 Skill 压缩包中 references/auth.md 给出 MCP 地址、WyHeader 格式与授权流程。",
+        "quote": "https://www.weiyun.com/api/v3/mcpserver",
         "agentReadable": false
       },
       "nameEn": "Tencent Weiyun",
@@ -1861,7 +1883,20 @@
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://www.weiyun.com/act/openclaw",
           "checkedAt": "2026-11-05"
-        }
+        },
+        "requirements": "需要微云账号、个人授权及 Token；官方 Skill 使用 Node.js 和 mcporter。",
+        "steps": [
+          {
+            "text": "下载官方 Skill 包并按客户端要求安装，保留 references 和脚本；先阅读包内 setup 脚本。",
+            "url": "https://cdn.addon.tencentsuite.com/static/tencent-weiyun.zip"
+          },
+          {
+            "text": "按包内 references/auth.md 完成个人授权；配置 WyHeader 时，完整请求头值须为 mcp_token=你的Token，并通过环境变量安全提供。",
+            "url": "https://www.weiyun.com/act/openclaw"
+          }
+        ],
+        "verify": "授权后先列出自己有权访问的文件，确认连接；不要以删除或上传作为首测。",
+        "checkedAt": "2026-11-05"
       }
     },
     {
@@ -2953,10 +2988,11 @@
         "cli": "curl -fsSL https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh | bash -s"
       },
       "evidence": {
-        "url": "https://search.10jqka.com.cn/skillhub",
-        "checkedAt": "2026-11-04",
-        "note": "问财官方 SkillHub 前端及公开目录将自有技能标为 OFFICIAL，提供 CLI 与 API Key 指引。",
-        "agentReadable": false
+        "url": "https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh",
+        "checkedAt": "2026-11-05",
+        "note": "官方安装脚本下载并执行其压缩包内安装器；原接入页提供 CLI 和 API Key 指引。",
+        "quote": "# 脚本功能：下载远端的 zip 文件，解压后执行 iwencai-install.sh 命令",
+        "agentReadable": true
       },
       "nameEn": "Tonghuashun iWencai",
       "summaryEn": "Use official skills to query prices, announcements, research, and macro data, and screen by conditions.",
@@ -2973,7 +3009,20 @@
           "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
           "url": "https://search.10jqka.com.cn/skillhub",
           "checkedAt": "2026-11-05"
-        }
+        },
+        "requirements": "需要 Python 3；部分技能需要问财账户及对应 API Key，具体权限以官方技能说明为准。",
+        "steps": [
+          {
+            "text": "先阅读官方远程安装脚本及其下载的安装器，再按需要运行安装命令；安装器可能修改用户 shell 配置。",
+            "url": "https://www.iwencai.com/skillhub/static/0.0.4/download_and_install.sh"
+          },
+          {
+            "text": "安装后使用 iwencai-skillhub-cli 查看帮助并按技能名称安装；所需账号和密钥在官方 SkillHub 获取。",
+            "url": "https://search.10jqka.com.cn/skillhub"
+          }
+        ],
+        "verify": "运行 iwencai-skillhub-cli --help 查看命令；实际数据权限和结果需使用自己的账户核验。",
+        "checkedAt": "2026-11-05"
       }
     },
     {

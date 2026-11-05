@@ -131,7 +131,7 @@ Test one lookup and report the result; skill installation does not establish a s
 | [Yinxiang Biji](https://guide.yinxiang.com/docs/yxai/skill.html) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang/) | Create, search, and organize notes. | Skill | 🟡 Write access | Account authorization, Membership or payment | ✅ Verified |
 | [Youdao Note](https://note.youdao.com/help-center/skill-guide.html) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note/) | Read, write, and search notes, manage tasks, and clip web pages. | Skill · CLI | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Quark Drive](https://www.quark.cn/documents/help/quark-drive-skill) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive/) | Search and manage cloud drive files. | Skill | 🟡 Write access | Account authorization | ✅ Verified |
-| [Tencent Weiyun](https://www.weiyun.com/act/openclaw) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/) | Search and manage cloud drive files. | Skill | 🟡 Write access | Account authorization, API key | ✅ Verified |
+| [Tencent Weiyun](https://www.weiyun.com/act/openclaw) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/) | Search and manage cloud drive files. | MCP · Skill | 🟡 Write access | Account authorization, API key | ✅ Verified |
 | [Baidu Netdisk](https://pan.baidu.com/union/doc/mcp-server/使用概述/) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk/) | Search, upload, and manage cloud drive files. | MCP | 🟡 Write access | Account authorization | ✅ Verified |
 
 <sub>[↑ Back to contents](#toc)</sub>

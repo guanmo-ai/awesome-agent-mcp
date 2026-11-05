@@ -129,7 +129,7 @@
 | [印象笔记](https://guide.yinxiang.com/docs/yxai/skill.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/yinxiang/) | 笔记的创建、搜索与整理。 | Skill | 🟡 可执行操作 | 需授权账号、需会员或付费 | ✅ 已核验 |
 | [有道云笔记](https://note.youdao.com/help-center/skill-guide.html) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/youdao-note/) | 笔记读写与搜索、待办管理和网页剪藏。 | Skill · CLI | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [夸克网盘](https://www.quark.cn/documents/help/quark-drive-skill) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/quark-drive/) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
-| [腾讯微云](https://www.weiyun.com/act/openclaw) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/) | 网盘文件的搜索与管理。 | Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
+| [腾讯微云](https://www.weiyun.com/act/openclaw) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/weiyun/) | 网盘文件的搜索与管理。 | MCP · Skill | 🟡 可执行操作 | 需授权账号、需 API Key | ✅ 已核验 |
 | [百度网盘](https://pan.baidu.com/union/doc/mcp-server/使用概述/) · [独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/baidu-netdisk/) | 网盘文件的搜索、上传与管理。 | MCP | 🟡 可执行操作 | 需授权账号 | ✅ 已核验 |
 
 <sub>[↑ 回到目录](#toc)</sub>
