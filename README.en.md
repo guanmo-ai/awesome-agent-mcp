@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">Follow @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>93 services · 7 categories · 93 verified · Updated 2026-11-05</sub></p>
+<p align="center"><sub>99 services · 7 categories · 99 verified · Updated 2026-11-05</sub></p>
 
 > **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
 
@@ -66,7 +66,7 @@ Test one lookup and report the result; skill installation does not establish a s
 - [Search & Data](#cat-search) (9)
 - [Design & Creation](#cat-design) (8)
 - [Payment & Finance](#cat-finance) (7)
-- [Cloud & Dev](#cat-cloud) (31)
+- [Cloud & Dev](#cat-cloud) (37)
 
 <a id="cat-life"></a>
 
@@ -221,6 +221,12 @@ Test one lookup and report the result; skill installation does not establish a s
 | [Alibaba Cloud Model Studio](https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-bailian/) | Use image and video models, and manage applications, tasks, and platform resources. | Skill · CLI | 🟡 Write access | Account authorization | ✅ Verified |
 | [Alibaba Cloud Simple Log Service (SLS)](https://help.aliyun.com/en/sls/sls-mcp-server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-sls/) | Find projects and LogStores, query and analyze logs, and diagnose alerts. | MCP | 🟢 Read only | Account authorization | ✅ Verified |
 | [Alibaba Cloud DMS Agent Data Gateway](https://help.aliyun.com/zh/dms/use-cases/migrate-from-dms-mcp-to-agent-data-gateway-mcp) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-dms/) | Discover database assets, query permissions and knowledge, and execute authorized SQL. | MCP | 🟡 Write access | Account authorization | ✅ Verified |
+| [Alibaba Cloud Object Storage Service](https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/aliyun-oss/) | Query OSS buckets, bucket information, storage usage, and object counts through MCP. | MCP | 🟢 Read only | Account authorization, API key | ✅ Verified |
+| [OceanBase](https://github.com/oceanbase/awesome-oceanbase-mcp/tree/main/src/oceanbase_mcp_server) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanbase/) | Execute SQL, inspect tenants and diagnostics, and use full-text, vector search, and optional memory tools. | MCP | 🟡 Write access | See details | ✅ Verified |
+| [TencentDB for PostgreSQL](https://developer.cloud.tencent.com/mcp/server/11830) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-postgresql/) | Query and manage PostgreSQL cloud instances, databases, backups and monitoring, with operations skills. | MCP · Skill | 🔴 Financial actions | Account authorization, API key | ✅ Verified |
+| [Tencent Cloud VectorDB](https://cloud.tencent.com/developer/mcp/server/11771) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-vectordb/) | Query VectorDB instances, security groups, and maintenance windows. | MCP | 🟢 Read only | Account authorization, API key | ✅ Verified |
+| [Tencent Cloud TDMQ for CKafka](https://cloud.tencent.com/developer/mcp/server/11776) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-ckafka/) | Query CKafka topics, messages, consumer groups, and instances. | MCP | 🟢 Read only | Account authorization, API key | ✅ Verified |
+| [TencentDB for Redis](https://cloud.tencent.com/developer/mcp/server/11755) · [Details](https://guanmo-ai.github.io/awesome-agent-mcp/s/tencent-redis/) | Query Redis instances, backups and slow logs, create instances, and manage parameters and security groups. | MCP | 🔴 Financial actions | Account authorization, API key | ✅ Verified |
 
 <sub>[↑ Back to contents](#toc)</sub>
 
