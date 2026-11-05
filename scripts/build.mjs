@@ -221,6 +221,7 @@ if (process.argv.includes('--check')) {
     .update(readFileSync(join(root, 'web/ui.mjs')))
     .update(readFileSync(join(root, 'web/service.js')))
     .update(readFileSync(join(root, 'web/motion.mjs')))
+    .update(readFileSync(join(root, 'web/fx.mjs')))
     .update(readFileSync(join(root, 'web/directory.mjs')))
     .update(publicJson())
     .digest('hex')
@@ -245,7 +246,7 @@ if (process.argv.includes('--check')) {
   });
   writeFileSync(join(dist, 'index.html'), fill(readFileSync(join(root, 'web/index.html'), 'utf8')));
   // Version transitive module imports too; otherwise browsers can reuse old shared code.
-  for (const file of ['app.js', 'ui.mjs', 'render.mjs', 'motion.mjs', 'directory.mjs', 'service.js']) {
+  for (const file of ['app.js', 'ui.mjs', 'render.mjs', 'motion.mjs', 'fx.mjs', 'directory.mjs', 'service.js']) {
     const source = readFileSync(join(dist, file), 'utf8');
     writeFileSync(join(dist, file), source.replace(/(from\s+['"]\.\/[^'"]+\.(?:mjs|js))(['"])/g, `$1?v=${version}$2`));
   }

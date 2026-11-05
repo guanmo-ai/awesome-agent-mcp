@@ -1,5 +1,6 @@
 import { esc, tokens, textMatch, highlight, logoHtml, typeTags } from './render.mjs';
 import { openDialog, closeDialog, wireDialog } from './motion.mjs';
+import { themeTransition } from './fx.mjs';
 export const $ = (s, el = document) => el.querySelector(s);
 export const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 let catalog;
@@ -87,11 +88,13 @@ export function initChrome({ getData, onChoose, beforeOpen = () => {}, prefix = 
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
   $('#kbar-key').textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl K';
-  $('#theme').addEventListener('click', () => {
+  $('#theme').addEventListener('click', (e) => {
     const root = document.documentElement;
     const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
-    try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+    themeTransition(e.currentTarget, () => {
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+    });
   });
   if (!$('#palette')) document.body.insertAdjacentHTML('beforeend', PALETTE_HTML);
   const pal = $('#palette');
