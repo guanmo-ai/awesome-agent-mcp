@@ -93,7 +93,15 @@
         ],
         "verify": "先确认客户端列出高德工具，再用公开地点做一次只读查询，例如查询北京站地址。返回实际地点结果才说明可用；鉴权或配额报错时按控制台处理，安装成功不等于查询成功。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "导航",
+        "找附近",
+        "怎么走",
+        "查天气",
+        "地点标记",
+        "地图开发"
+      ]
     },
     {
       "id": "baidu-map",
@@ -125,7 +133,14 @@
         "note": "官方概览与快速开始明确 MCP、服务端 AK 和 HTTP 端点。"
       },
       "nameEn": "Baidu Maps",
-      "summaryEn": "Search places, geocode addresses, and plan routes."
+      "summaryEn": "Search places, geocode addresses, and plan routes.",
+      "keywords": [
+        "导航",
+        "查地址",
+        "查坐标",
+        "规划路线",
+        "附近商家"
+      ]
     },
     {
       "id": "tencent-map",
@@ -157,7 +172,14 @@
         "note": "官方接入说明明确 WebServiceAPI Key 和 Streamable HTTP 端点。"
       },
       "nameEn": "Tencent Maps",
-      "summaryEn": "Search places, plan routes, and use location services."
+      "summaryEn": "Search places, plan routes, and use location services.",
+      "keywords": [
+        "导航",
+        "公交路线",
+        "驾车路线",
+        "找地点",
+        "坐标转换"
+      ]
     },
     {
       "id": "didi",
@@ -194,7 +216,11 @@
       "nameEn": "DiDi",
       "summaryEn": "Request rides, get fare estimates, and look up trips.",
       "keywords": [
-        "打车"
+        "打车",
+        "网约车",
+        "叫出租车",
+        "预估车费",
+        "查行程"
       ],
       "sources": [
         {
@@ -274,7 +300,14 @@
       ],
       "install": {
         "cli": "npm install -g mt-tech"
-      }
+      },
+      "keywords": [
+        "团购核销",
+        "商家订单",
+        "管库存",
+        "查营业额",
+        "商品上架"
+      ]
     },
     {
       "id": "taobao",
@@ -326,7 +359,14 @@
         ],
         "verify": "只搜索商品或读取页面，核对客户端身份；不加购、下单或发消息作首测。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "买东西",
+        "网购",
+        "找商品",
+        "比价格",
+        "购物"
+      ]
     },
     {
       "id": "mcdonalds-cn",
@@ -383,7 +423,14 @@
         ],
         "verify": "先查询餐品营养信息或门店菜单；不创建订单、兑换积分或领取权益作连通性首测。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "点汉堡",
+        "点餐",
+        "附近餐厅",
+        "领优惠",
+        "麦门"
+      ]
     },
     {
       "id": "luckin",
@@ -444,6 +491,13 @@
           "name": "厂商官方复核来源",
           "url": "https://open.lkcoffee.com/docs"
         }
+      ],
+      "keywords": [
+        "点咖啡",
+        "买咖啡",
+        "找咖啡店",
+        "咖啡外送",
+        "查门店"
       ]
     },
     {
@@ -497,7 +551,14 @@
         ],
         "verify": "运行一次酒店或机票搜索，核对价格与返回链接；不把搜索结果说成预订已完成。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "订机票",
+        "查酒店",
+        "景点门票",
+        "旅行比价",
+        "航班价格"
+      ]
     },
     {
       "id": "ly-tmc",
@@ -541,7 +602,13 @@
         ],
         "verify": "开通后先用企业授权范围内的差旅资源或差旅政策查询核对返回结果；具体测试方式以同程商旅提供的接口说明为准。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "出差",
+        "企业差旅",
+        "差旅报销政策",
+        "行程推荐"
+      ]
     },
     {
       "id": "feishu",
@@ -600,7 +667,15 @@
         ],
         "verify": "先用 lark-cli auth status 查看登录及权限。保存文档后检查返回的 ok、document.url 和 warnings，再运行 lark-cli docs +fetch --doc \"返回的文档 URL\" --detail with-ids，回读核对标题和正文，并把可打开的文档链接交给你；登录成功不等于文档已保存。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "日程",
+        "发群消息",
+        "飞书文档",
+        "建多维表格",
+        "查日历",
+        "发通知"
+      ]
     },
     {
       "id": "dingtalk",
@@ -655,6 +730,14 @@
           "name": "厂商官方接入文档",
           "url": "https://open.dingtalk.com/dingtalk-dev/wiki"
         }
+      ],
+      "keywords": [
+        "日程",
+        "写会议纪要",
+        "发工作消息",
+        "查待办",
+        "填日志",
+        "日历安排"
       ]
     },
     {
@@ -688,7 +771,15 @@
         "note": "企业微信官方 AI 开放能力页列出 CLI、MCP、Skill 及机器人创建和业务操作。"
       },
       "nameEn": "WeCom",
-      "summaryEn": "Use enterprise messaging, contacts, and workplace applications."
+      "summaryEn": "Use enterprise messaging, contacts, and workplace applications.",
+      "keywords": [
+        "企业群消息",
+        "查同事",
+        "企业通讯录",
+        "办公应用",
+        "发通知",
+        "推送"
+      ]
     },
     {
       "id": "tencent-docs",
@@ -731,7 +822,14 @@
         ],
         "verify": "连接后先读取自己有权限的一份文档，核对名称或内容；未授权文件不可作为连通性依据。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "在线表格",
+        "共享文档",
+        "协同编辑",
+        "读表格",
+        "写文档"
+      ]
     },
     {
       "id": "tencent-meeting",
@@ -785,6 +883,14 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloud/tencentmeeting-cli"
         }
+      ],
+      "keywords": [
+        "开会",
+        "安排会议",
+        "视频会议",
+        "查参会人",
+        "会议录音",
+        "整理纪要"
       ]
     },
     {
@@ -846,6 +952,13 @@
           "name": "厂商官方接入文档",
           "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide"
         }
+      ],
+      "keywords": [
+        "企业文档",
+        "办公协作",
+        "企业日历",
+        "建日程",
+        "查文件"
       ]
     },
     {
@@ -887,7 +1000,13 @@
         ],
         "verify": "接入后先让 Agent 只读查询你已获授权的文档，核对返回结果。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "找云文档",
+        "整理文档",
+        "生成文稿",
+        "读共享文件"
+      ]
     },
     {
       "id": "yuque",
@@ -948,6 +1067,12 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/yuque/yuque-mcp-server"
         }
+      ],
+      "keywords": [
+        "知识库",
+        "写文章",
+        "找文档",
+        "整理团队资料"
       ]
     },
     {
@@ -999,6 +1124,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/Tencent/AgentlyMail"
         }
+      ],
+      "keywords": [
+        "发邮件",
+        "收邮件",
+        "查附件",
+        "邮件搜索",
+        "邮箱整理"
       ]
     },
     {
@@ -1029,7 +1161,13 @@
         "note": "微信读书官方 Skill 页面直接发布 Tencent/WeChatReading 安装和 API Key 获取方式。"
       },
       "nameEn": "WeRead",
-      "summaryEn": "Access bookshelves, notes, and highlights."
+      "summaryEn": "Access bookshelves, notes, and highlights.",
+      "keywords": [
+        "读书笔记",
+        "阅读划线",
+        "找书",
+        "我的书架"
+      ]
     },
     {
       "id": "ima",
@@ -1059,7 +1197,13 @@
         "note": "ima 官方接入页前端给出 Skill 下载、API Key 获取与知识库及笔记读写场景。"
       },
       "nameEn": "Tencent ima",
-      "summaryEn": "Search, read, and update personal knowledge bases."
+      "summaryEn": "Search, read, and update personal knowledge bases.",
+      "keywords": [
+        "问知识库",
+        "保存资料",
+        "查个人资料",
+        "整理知识"
+      ]
     },
     {
       "id": "get-biji",
@@ -1134,7 +1278,13 @@
         "note": "官方 Cursor 连接指南明确 HTTP 端点、个人 Token、MAX 会员及笔记读写。"
       },
       "nameEn": "flomo",
-      "summaryEn": "Capture and retrieve short notes."
+      "summaryEn": "Capture and retrieve short notes.",
+      "keywords": [
+        "记灵感",
+        "写卡片",
+        "找笔记",
+        "随手记"
+      ]
     },
     {
       "id": "yinxiang",
@@ -1164,7 +1314,13 @@
         "note": "印象笔记官方说明文档发布 Skill 下载，明确会员 AuthToken 与笔记管理能力。"
       },
       "nameEn": "Yinxiang Biji",
-      "summaryEn": "Create, search, and organize notes."
+      "summaryEn": "Create, search, and organize notes.",
+      "keywords": [
+        "记笔记",
+        "整理资料",
+        "搜索笔记",
+        "保存灵感"
+      ]
     },
     {
       "id": "youdao-note",
@@ -1225,6 +1381,13 @@
           "name": "厂商官方接入文档",
           "url": "https://note.youdao.com/help-center/skill-install-guide.html"
         }
+      ],
+      "keywords": [
+        "网页收藏",
+        "记笔记",
+        "查待办",
+        "整理笔记",
+        "剪藏"
       ]
     },
     {
@@ -1254,7 +1417,13 @@
         "note": "夸克官方帮助页发布 Skill 安装包，支持账号授权、文件搜索、存储、下载和整理。"
       },
       "nameEn": "Quark Drive",
-      "summaryEn": "Search and manage cloud drive files."
+      "summaryEn": "Search and manage cloud drive files.",
+      "keywords": [
+        "网盘",
+        "找文件",
+        "整理云文件",
+        "搜索资源"
+      ]
     },
     {
       "id": "weiyun",
@@ -1284,7 +1453,13 @@
         "note": "微云官方接入页前端发布 Skill 安装包、API Key，列出上传、下载、删除与分享。"
       },
       "nameEn": "Tencent Weiyun",
-      "summaryEn": "Search and manage cloud drive files."
+      "summaryEn": "Search and manage cloud drive files.",
+      "keywords": [
+        "网盘",
+        "找文件",
+        "整理云文件",
+        "云端资料"
+      ]
     },
     {
       "id": "baidu-netdisk",
@@ -1319,7 +1494,14 @@
         "note": "百度网盘官方 MCP 使用概述与自定义接入指南明确文件写操作及带鉴权的 SSE。"
       },
       "nameEn": "Baidu Netdisk",
-      "summaryEn": "Search, upload, and manage cloud drive files."
+      "summaryEn": "Search, upload, and manage cloud drive files.",
+      "keywords": [
+        "网盘",
+        "传文件",
+        "找资源",
+        "管理云文件",
+        "上传资料"
+      ]
     },
     {
       "id": "zhihu",
@@ -1358,7 +1540,14 @@
         "note": "知乎官方文档接口提供 CLI、Skill 与 MCP 指南；CLI 还支持上传知识库文件。"
       },
       "nameEn": "Zhihu",
-      "summaryEn": "Search Zhihu and the web, read trends and personal content, and retrieve or upload knowledge base files."
+      "summaryEn": "Search Zhihu and the web, read trends and personal content, and retrieve or upload knowledge base files.",
+      "keywords": [
+        "找知乎回答",
+        "热榜",
+        "搜知识",
+        "查个人内容",
+        "知识库上传"
+      ]
     },
     {
       "id": "bocha",
@@ -1436,7 +1625,14 @@
         "note": "企查查官方指南明确企业数据 MCP 端点、API Key 与 qcc-agent-cli。"
       },
       "nameEn": "Qichacha",
-      "summaryEn": "Look up company registration and risk information."
+      "summaryEn": "Look up company registration and risk information.",
+      "keywords": [
+        "查公司",
+        "查违约风险",
+        "查老板",
+        "查工商",
+        "企业风险"
+      ]
     },
     {
       "id": "tianyancha",
@@ -1496,6 +1692,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/tyc-tech/tyc-cli"
         }
+      ],
+      "keywords": [
+        "查公司",
+        "查老板",
+        "企业关系",
+        "查工商",
+        "公司背景"
       ]
     },
     {
@@ -1529,7 +1732,13 @@
         "note": "抖音官方文档区分官方能力与第三方工具，明确服务申请和带 token 的 SSE。"
       },
       "nameEn": "Douyin Open Platform",
-      "summaryEn": "Use official video and image-text search, deep links, and business tasks."
+      "summaryEn": "Use official video and image-text search, deep links, and business tasks.",
+      "keywords": [
+        "找短视频",
+        "搜抖音",
+        "图文搜索",
+        "经营任务"
+      ]
     },
     {
       "id": "oceanengine",
@@ -1575,7 +1784,13 @@
         ],
         "verify": "先查询自己可操作的业务账户列表，核对返回账户与授权范围；再查询已有报表。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "查广告报表",
+        "广告投放数据",
+        "广告账户",
+        "投放效果"
+      ]
     },
     {
       "id": "mastergo",
@@ -1650,7 +1865,14 @@
         "note": "墨刀官方 MCP 页面明确生成与迭代内容、原型读取导出及 HTTP Token 接入。"
       },
       "nameEn": "Modao",
-      "summaryEn": "Generate and edit prototypes, PRDs, apps, and images, and read or export existing prototypes."
+      "summaryEn": "Generate and edit prototypes, PRDs, apps, and images, and read or export existing prototypes.",
+      "keywords": [
+        "设计稿",
+        "画原型",
+        "写产品需求",
+        "生成页面",
+        "修改原型"
+      ]
     },
     {
       "id": "pixso",
@@ -1730,7 +1952,14 @@
         "url": "https://kling.ai/app/mcp/guide",
         "checkedAt": "2026-11-05",
         "note": "官方接入指南明确引用 klingai-tech/skills；其区域中立 Skill 区分国内 cli-cn 与全球 cli-global，并使用浏览器授权。"
-      }
+      },
+      "keywords": [
+        "做视频",
+        "文生视频",
+        "图生视频",
+        "生成短片",
+        "AI生图"
+      ]
     },
     {
       "id": "minimax",
@@ -1798,6 +2027,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/MiniMax-AI/MiniMax-MCP"
         }
+      ],
+      "keywords": [
+        "配音",
+        "声音克隆",
+        "做视频",
+        "生成图片",
+        "文本生成"
       ]
     },
     {
@@ -1830,7 +2066,14 @@
         "note": "网易云音乐官方 ncm-cli 页面发布 CLI 与 NetEase/skills，支持歌单、上传及笔记发布。"
       },
       "nameEn": "NetEase Cloud Music",
-      "summaryEn": "Search and play music, manage playlists, upload cloud files, and publish image-text posts."
+      "summaryEn": "Search and play music, manage playlists, upload cloud files, and publish image-text posts.",
+      "keywords": [
+        "听歌",
+        "找歌",
+        "建歌单",
+        "上传音乐",
+        "播放音乐"
+      ]
     },
     {
       "id": "alipay",
@@ -1881,7 +2124,13 @@
         ],
         "verify": "先查询支付能力开通状态；不提交支付或创建收费订单测试连接。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "支付收款",
+        "交易查询",
+        "收银接入",
+        "付款授权"
+      ]
     },
     {
       "id": "wechat-pay",
@@ -1939,6 +2188,12 @@
           "name": "微信支付官方 Skill 更新记录",
           "url": "https://github.com/wechatpay-apiv3/wechatpay-skills"
         }
+      ],
+      "keywords": [
+        "接微信收款",
+        "支付开发",
+        "查交易单",
+        "支付排障"
       ]
     },
     {
@@ -1987,6 +2242,11 @@
           "name": "厂商官方复核来源",
           "url": "https://yun.unionpay.com/solution/page/mcp"
         }
+      ],
+      "keywords": [
+        "银联收款",
+        "支付接口",
+        "智能体支付"
       ]
     },
     {
@@ -2021,7 +2281,11 @@
       "nameEn": "Tonghuashun iFinD",
       "summaryEn": "Query market prices, financial statements, announcements, macroeconomic indicators, and other financial data.",
       "keywords": [
-        "股票"
+        "股票",
+        "查股价",
+        "财务数据",
+        "宏观数据",
+        "查公告"
       ]
     },
     {
@@ -2055,7 +2319,11 @@
       "nameEn": "Tonghuashun iWencai",
       "summaryEn": "Use official skills to query prices, announcements, research, and macro data, and screen by conditions.",
       "keywords": [
-        "股票"
+        "股票",
+        "条件选股",
+        "研报查询",
+        "查行情",
+        "财经公告"
       ]
     },
     {
@@ -2100,7 +2368,11 @@
         "checkedAt": "2026-11-05"
       },
       "keywords": [
-        "股票"
+        "股票",
+        "选股",
+        "自选股",
+        "模拟组合",
+        "金融资讯"
       ]
     },
     {
@@ -2154,7 +2426,13 @@
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills"
-      }
+      },
+      "keywords": [
+        "管服务器",
+        "云资源诊断",
+        "云运维",
+        "阿里云资源"
+      ]
     },
     {
       "id": "tencent-cloud",
@@ -2184,7 +2462,13 @@
         "note": "腾讯云官方云 API Skill 文档发布 ClawHub 技能，并要求通过 TCCLI 执行资源操作。"
       },
       "nameEn": "Tencent Cloud",
-      "summaryEn": "Query and manage cloud resources."
+      "summaryEn": "Query and manage cloud resources.",
+      "keywords": [
+        "管服务器",
+        "查云资源",
+        "云运维",
+        "腾讯云接口"
+      ]
     },
     {
       "id": "huawei-cloud",
@@ -2248,7 +2532,13 @@
         ],
         "verify": "先确认 Agent 识别所选技能；需要云上操作时先列举已有资源并核对账号与地域，不以创建资源作为首次验证。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "管服务器",
+        "云资源编排",
+        "云运维",
+        "华为云资源"
+      ]
     },
     {
       "id": "volcengine",
@@ -2313,7 +2603,13 @@
         ],
         "verify": "先查看 ve version 或 Agent 的技能清单，再查询已有授权资源；安装成功不等于已完成云服务鉴权。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "管服务器",
+        "云部署",
+        "查云资源",
+        "云运维"
+      ]
     },
     {
       "id": "baidu-cloud",
@@ -2366,7 +2662,14 @@
         ],
         "verify": "先确认所选技能出现在 Agent 清单，并核对其说明和凭证要求；经费用确认后再用公开样例验证所选能力。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "识字",
+        "解析文档",
+        "语音识别",
+        "图像处理",
+        "联网检索"
+      ]
     },
     {
       "id": "qiniu",
@@ -2429,6 +2732,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/qiniu/qiniu-mcp-server"
         }
+      ],
+      "keywords": [
+        "存文件",
+        "图片处理",
+        "刷新CDN",
+        "直播管理",
+        "对象存储"
       ]
     },
     {
@@ -2466,7 +2776,13 @@
         "note": "智谱官方联网搜索 MCP 文档明确 Coding Plan 权益、API Key 与 HTTP 鉴权配置。"
       },
       "nameEn": "Zhipu",
-      "summaryEn": "Search the web and retrieve current information for GLM Coding Plan users."
+      "summaryEn": "Search the web and retrieve current information for GLM Coding Plan users.",
+      "keywords": [
+        "联网搜索",
+        "查实时信息",
+        "网络检索",
+        "GLM搜索"
+      ]
     },
     {
       "id": "gitee",
@@ -2503,7 +2819,14 @@
         "note": "Gitee 官方博客直接发布 MCP 仓库，列出代码协作写操作和 stdio 配置。"
       },
       "nameEn": "Gitee",
-      "summaryEn": "Manage code repositories, issues, and pull requests."
+      "summaryEn": "Manage code repositories, issues, and pull requests.",
+      "keywords": [
+        "代码托管",
+        "查仓库",
+        "提PR",
+        "管理Issue",
+        "代码协作"
+      ]
     },
     {
       "id": "jihulab",
@@ -2535,7 +2858,14 @@
         "note": "极狐官方 MCP 文档明确正式发布、OAuth、HTTP 端点及项目协作操作。"
       },
       "nameEn": "JiHu GitLab",
-      "summaryEn": "Manage code repositories and DevOps workflows."
+      "summaryEn": "Manage code repositories and DevOps workflows.",
+      "keywords": [
+        "代码托管",
+        "合并请求",
+        "研发管理",
+        "DevOps",
+        "Git"
+      ]
     },
     {
       "id": "lexiang",
@@ -2592,6 +2922,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill"
         }
+      ],
+      "keywords": [
+        "团队知识库",
+        "编辑文档",
+        "智能表格",
+        "导入会议资料",
+        "文件管理"
       ]
     },
     {
@@ -2653,6 +2990,14 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/intsig-textin/textin-mcp"
         }
+      ],
+      "keywords": [
+        "识别发票",
+        "PDF转Markdown",
+        "提取表格",
+        "图片识字",
+        "文档转文字",
+        "字段提取"
       ]
     },
     {
@@ -2690,7 +3035,13 @@
         }
       },
       "nameEn": "Tencent EdgeOne Makers",
-      "summaryEn": "Deploy static sites, full-stack apps, and agent projects, and generate public access links."
+      "summaryEn": "Deploy static sites, full-stack apps, and agent projects, and generate public access links.",
+      "keywords": [
+        "发布网站",
+        "部署网页",
+        "全栈部署",
+        "生成网站链接"
+      ]
     },
     {
       "id": "apifox",
@@ -2752,6 +3103,12 @@
           "name": "厂商官方接入文档",
           "url": "https://docs.apifox.com/6327888m0"
         }
+      ],
+      "keywords": [
+        "读接口文档",
+        "接口测试",
+        "API调试",
+        "查接口定义"
       ]
     },
     {
@@ -2807,6 +3164,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/caiyunapp/mcp-caiyun-weather"
         }
+      ],
+      "keywords": [
+        "查天气",
+        "会下雨吗",
+        "空气质量",
+        "天气预警",
+        "小时预报"
       ]
     },
     {
@@ -2865,6 +3229,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/variflight/variflight-mcp"
         }
+      ],
+      "keywords": [
+        "订机票",
+        "航班延误",
+        "查航班",
+        "飞机在哪",
+        "机场天气"
       ]
     },
     {
@@ -2923,7 +3294,15 @@
         ],
         "verify": "先查询酒店或已有订单，确认账号及结果；不调用创建订单接口作首测。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "订机票",
+        "高铁",
+        "订酒店",
+        "火车票",
+        "景区门票",
+        "度假预订"
+      ]
     },
     {
       "id": "capybrowser",
@@ -3047,6 +3426,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/opendatalab/MinerU-Ecosystem"
         }
+      ],
+      "keywords": [
+        "PDF转Markdown",
+        "扫描件解析",
+        "提取表格",
+        "论文转文字",
+        "Office转Markdown"
       ]
     },
     {
@@ -3080,7 +3466,14 @@
       },
       "appStoreId": 626144601,
       "nameEn": "Dida365",
-      "summaryEn": "Query and manage tasks, lists, habits, focus records, and anniversaries."
+      "summaryEn": "Query and manage tasks, lists, habits, focus records, and anniversaries.",
+      "keywords": [
+        "管理待办",
+        "任务清单",
+        "习惯打卡",
+        "番茄钟",
+        "纪念日"
+      ]
     },
     {
       "id": "feishu-project",
@@ -3123,7 +3516,13 @@
         ],
         "verify": "先查询有权限的空间基本信息或工作项列表，核对返回内容；写操作仅在确需修改时使用。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "项目进度",
+        "改工作项",
+        "项目管理",
+        "查任务状态"
+      ]
     },
     {
       "id": "doc2x",
@@ -3259,7 +3658,14 @@
         ],
         "verify": "先列出服务工具并查询已有资源或监控，核对工作空间与地域；不创建开发环境或数据库作为首次测试。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "开发环境",
+        "管理数据库",
+        "查云账单",
+        "性能监控",
+        "查日志"
+      ]
     },
     {
       "id": "rongcloud",
@@ -3364,7 +3770,14 @@
         }
       },
       "nameEn": "Huayu Yuandian",
-      "summaryEn": "Search laws, cases, corporate and securities compliance materials, and check legal hallucinations."
+      "summaryEn": "Search laws, cases, corporate and securities compliance materials, and check legal hallucinations.",
+      "keywords": [
+        "查法律",
+        "查案例",
+        "法规检索",
+        "证券合规",
+        "核对法律依据"
+      ]
     },
     {
       "id": "patsnap",
@@ -3540,6 +3953,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/antvis/mcp-server-chart"
         }
+      ],
+      "keywords": [
+        "画图表",
+        "数据可视化",
+        "统计图",
+        "选图表",
+        "数据分析展示"
       ]
     },
     {
@@ -3629,7 +4049,14 @@
         ],
         "verify": "先执行物流查询或经额度许可的价格估算；不创建或取消真实寄件单测试连接。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "看物流",
+        "查快递",
+        "上门取件",
+        "寄快递",
+        "查运费"
+      ]
     },
     {
       "id": "pushplus",
@@ -3764,7 +4191,14 @@
         "cli": "npm install -g meitu-cli meitu"
       },
       "nameEn": "MeituHub",
-      "summaryEn": "Use a CLI for image, video, and audio creation, including local batch processing."
+      "summaryEn": "Use a CLI for image, video, and audio creation, including local batch processing.",
+      "keywords": [
+        "批量修图",
+        "生成图片",
+        "做视频",
+        "处理音频",
+        "本地媒体处理"
+      ]
     },
     {
       "id": "guosen",
@@ -3807,7 +4241,11 @@
         "checkedAt": "2026-11-05"
       },
       "keywords": [
-        "股票"
+        "股票",
+        "选股",
+        "基金对比",
+        "ETF筛选",
+        "宏观行情"
       ]
     },
     {
@@ -3863,6 +4301,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit"
         }
+      ],
+      "keywords": [
+        "部署小程序",
+        "云函数",
+        "云数据库",
+        "应用部署",
+        "开发后端"
       ]
     },
     {
@@ -3962,6 +4407,12 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/zilliztech/mcp-server-milvus"
         }
+      ],
+      "keywords": [
+        "向量检索",
+        "查集合",
+        "管理向量数据",
+        "查数据库结构"
       ]
     },
     {
@@ -4025,6 +4476,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/api7/apisix-mcp"
         }
+      ],
+      "keywords": [
+        "API网关",
+        "配置路由",
+        "管理插件",
+        "上游服务",
+        "管理证书"
       ]
     },
     {
@@ -4064,7 +4522,13 @@
         ],
         "verify": "先列出 MCP 工具，再读取已有路由或服务列表，核对是否来自你的网关；不要以修改路由或删除配置测试连通。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "API网关",
+        "配置路由",
+        "管理服务",
+        "网关运维"
+      ]
     },
     {
       "id": "esp-rainmaker",
@@ -4116,6 +4580,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/espressif/esp-rainmaker-mcp"
         }
+      ],
+      "keywords": [
+        "智能家居",
+        "控制设备",
+        "物联网",
+        "设备参数",
+        "自动化日程"
       ]
     },
     {
@@ -4171,7 +4642,14 @@
         ],
         "verify": "先列工具，再查看数据库或表结构，确认连到预期实例。DDL、写入和用户管理应按任务授权执行，不作为连通测试。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "查数据库",
+        "执行SQL",
+        "改表结构",
+        "数据库用户",
+        "数据查询"
+      ]
     },
     {
       "id": "dolphindb",
@@ -4256,6 +4734,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd"
         }
+      ],
+      "keywords": [
+        "需求管理",
+        "缺陷跟踪",
+        "项目迭代",
+        "查任务",
+        "写评论"
       ]
     },
     {
@@ -4321,6 +4806,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tca-mcp-server"
         }
+      ],
+      "keywords": [
+        "代码审查",
+        "质量检查",
+        "安全缺陷",
+        "分析代码",
+        "查扫描报告"
       ]
     },
     {
@@ -4378,6 +4870,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server"
         }
+      ],
+      "keywords": [
+        "查组件",
+        "组件文档",
+        "前端开发",
+        "DOM结构",
+        "组件更新"
       ]
     },
     {
@@ -4439,6 +4938,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/coding_devops_mcp_server"
         }
+      ],
+      "keywords": [
+        "研发管理",
+        "代码托管",
+        "项目工作项",
+        "合并请求",
+        "DevOps"
       ]
     },
     {
@@ -4505,6 +5011,12 @@
           "name": "厂商官方接入文档",
           "url": "https://cloud.tencent.com/developer/mcp/server/11743"
         }
+      ],
+      "keywords": [
+        "域名解析",
+        "DNS记录",
+        "域名管理",
+        "解析用量"
       ]
     },
     {
@@ -4551,7 +5063,14 @@
         ],
         "verify": "先确认 MCP 已连接并列出图像工具；实际生成图片会消耗额度或产生费用，确认后再做一次最小调用并核对结果。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "画图",
+        "生成图片",
+        "以图生图",
+        "图片扩边",
+        "图片变清晰"
+      ]
     },
     {
       "id": "yuanbao-search",
@@ -4586,7 +5105,13 @@
         }
       },
       "nameEn": "Tencent Yuanbao Search",
-      "summaryEn": "Search current web and vertical sources, with site, freshness, and result-count filters."
+      "summaryEn": "Search current web and vertical sources, with site, freshness, and result-count filters.",
+      "keywords": [
+        "联网搜索",
+        "查实时网页",
+        "限定网站搜索",
+        "垂直信息"
+      ]
     },
     {
       "id": "tencent-wedata",
@@ -4649,6 +5174,13 @@
           "name": "厂商官方接入文档",
           "url": "https://cloud.tencent.com/document/product/1267/126220"
         }
+      ],
+      "keywords": [
+        "找数据资产",
+        "查询指标",
+        "业务数据",
+        "企业元数据",
+        "语义查询"
       ]
     },
     {
@@ -4709,6 +5241,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/Tencent/cos-mcp"
         }
+      ],
+      "keywords": [
+        "上传文件",
+        "下载文件",
+        "图片处理",
+        "文档处理",
+        "云端存储"
       ]
     },
     {
@@ -4774,6 +5313,12 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/Tencent/cls-mcp-server"
         }
+      ],
+      "keywords": [
+        "查日志",
+        "排查告警",
+        "监控指标",
+        "日志分析"
       ]
     },
     {
@@ -4840,6 +5385,12 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse"
         }
+      ],
+      "keywords": [
+        "执行SQL",
+        "查询数据",
+        "改表结构",
+        "数据库管理"
       ]
     },
     {
@@ -4904,6 +5455,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex"
         }
+      ],
+      "keywords": [
+        "生成图片",
+        "提升画质",
+        "图片扩边",
+        "图片识字",
+        "上传图片"
       ]
     },
     {
@@ -4964,6 +5522,12 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use"
         }
+      ],
+      "keywords": [
+        "浏览器自动化",
+        "云端操作网页",
+        "查浏览器任务",
+        "网页任务"
       ]
     },
     {
@@ -4993,7 +5557,15 @@
         "cli": "npm install -g @xfyun/cli && xfyun skill install --auto"
       },
       "nameEn": "iFLYTEK Cloud",
-      "summaryEn": "Manage applications and usage, and use speech, OCR, translation, image, and digital human capabilities."
+      "summaryEn": "Manage applications and usage, and use speech, OCR, translation, image, and digital human capabilities.",
+      "keywords": [
+        "语音识别",
+        "文字识别",
+        "翻译",
+        "数字人",
+        "应用用量",
+        "语音合成"
+      ]
     },
     {
       "id": "aliyun-bailian",
@@ -5045,6 +5617,13 @@
           "name": "厂商官方接入文档",
           "url": "https://github.com/modelstudioai/cli"
         }
+      ],
+      "keywords": [
+        "调用大模型",
+        "生成图像",
+        "生成视频",
+        "管理模型任务",
+        "百炼应用"
       ]
     },
     {
@@ -5090,7 +5669,14 @@
         ],
         "verify": "开通后先按携程提供的工具说明查询一条授权范围内的差旅政策，核对返回结果。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "订机票",
+        "企业差旅",
+        "差旅政策",
+        "查行程",
+        "合规查询"
+      ]
     },
     {
       "id": "aliyun-sls",
@@ -5126,7 +5712,13 @@
         }
       },
       "nameEn": "Alibaba Cloud Simple Log Service (SLS)",
-      "summaryEn": "Find projects and LogStores, query and analyze logs, and diagnose alerts."
+      "summaryEn": "Find projects and LogStores, query and analyze logs, and diagnose alerts.",
+      "keywords": [
+        "查日志",
+        "日志分析",
+        "诊断告警",
+        "查LogStore"
+      ]
     },
     {
       "id": "aliyun-dms",
@@ -5160,7 +5752,14 @@
         }
       },
       "nameEn": "Alibaba Cloud DMS Agent Data Gateway",
-      "summaryEn": "Discover database assets, query permissions and knowledge, and execute authorized SQL."
+      "summaryEn": "Discover database assets, query permissions and knowledge, and execute authorized SQL.",
+      "keywords": [
+        "找数据库",
+        "数据权限",
+        "执行SQL",
+        "数据资产",
+        "数据知识"
+      ]
     },
     {
       "id": "baidu-search",
@@ -5200,7 +5799,14 @@
         ],
         "verify": "先确认工具可用；在核对计费且获授权后做一次公开网页搜索，检查返回内容与来源链接。未取得本人配置前，只能算完成了接入准备。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "联网搜索",
+        "找网页",
+        "搜图片",
+        "搜视频",
+        "限定站点"
+      ]
     },
     {
       "id": "baidu-baike",
@@ -5238,7 +5844,13 @@
         ],
         "verify": "在确认权限与费用后，以公开百科词条做一次只读查询并核对来源。没有本人配置时不能声称已接通。",
         "checkedAt": "2026-11-05"
-      }
+      },
+      "keywords": [
+        "查百科",
+        "词条释义",
+        "百科详情",
+        "秒懂视频"
+      ]
     },
     {
       "id": "aliyun-oss",
@@ -5298,7 +5910,13 @@
         "checkedAt": "2026-11-05"
       },
       "addedAt": "2026-11-05",
-      "mark": "存"
+      "mark": "存",
+      "keywords": [
+        "查存储空间",
+        "存储容量",
+        "文件数量",
+        "OSS属性"
+      ]
     },
     {
       "id": "oceanbase",
@@ -5358,7 +5976,14 @@
         "verify": "先确认客户端列出 OceanBase 工具，再对已授权数据库执行 SHOW TABLES 并核对结果；写 SQL 和记忆写入需按实际权限与任务授权执行。",
         "checkedAt": "2026-11-05"
       },
-      "addedAt": "2026-11-05"
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "执行SQL",
+        "全文检索",
+        "向量检索",
+        "租户诊断",
+        "数据库管理"
+      ]
     },
     {
       "id": "tencent-postgresql",
@@ -5419,6 +6044,13 @@
           "name": "厂商官方复核来源",
           "url": "https://developer.cloud.tencent.com/mcp/server/11830"
         }
+      ],
+      "keywords": [
+        "数据库备份",
+        "查实例",
+        "监控数据库",
+        "数据库运维",
+        "PostgreSQL诊断"
       ]
     },
     {
@@ -5466,7 +6098,12 @@
         "checkedAt": "2026-11-05"
       },
       "addedAt": "2026-11-05",
-      "mark": "向"
+      "mark": "向",
+      "keywords": [
+        "向量数据库实例",
+        "查安全组",
+        "维护时间窗"
+      ]
     },
     {
       "id": "tencent-ckafka",
@@ -5513,7 +6150,13 @@
         "checkedAt": "2026-11-05"
       },
       "addedAt": "2026-11-05",
-      "mark": "K"
+      "mark": "K",
+      "keywords": [
+        "查消息队列",
+        "Kafka主题",
+        "消费组",
+        "队列实例"
+      ]
     },
     {
       "id": "tencent-redis",
@@ -5566,6 +6209,13 @@
           "name": "厂商官方复核来源",
           "url": "https://cloud.tencent.com/developer/mcp/server/11755"
         }
+      ],
+      "keywords": [
+        "缓存实例",
+        "查慢日志",
+        "数据库备份",
+        "创建缓存",
+        "改缓存参数"
       ]
     },
     {
@@ -5610,7 +6260,13 @@
         "verify": "先确认技能已加载，取得授权后用不含敏感数据的 RDS 常见问题查询，核对返回建议；不将回答当作已经执行运维。",
         "checkedAt": "2026-11-05"
       },
-      "addedAt": "2026-11-05"
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "SQL优化",
+        "数据库排障",
+        "RDS运维",
+        "运维知识"
+      ]
     },
     {
       "id": "aliyun-pai-dlc",
@@ -5654,7 +6310,14 @@
         "verify": "先列举已有工作空间内的训练任务并核对状态；不要为验证接入而新建计费任务。",
         "checkedAt": "2026-11-05"
       },
-      "addedAt": "2026-11-05"
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "训练大模型",
+        "分布式训练",
+        "训练日志",
+        "停止训练",
+        "计算健康检查"
+      ]
     },
     {
       "id": "aliyun-dataworks",
@@ -5698,7 +6361,14 @@
         "verify": "先读取已有工作流或节点并核对内容；创建、更新和发布按任务授权执行。",
         "checkedAt": "2026-11-05"
       },
-      "addedAt": "2026-11-05"
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "开发数据流",
+        "发布工作流",
+        "数据开发节点",
+        "管理UDF",
+        "数据集成"
+      ]
     },
     {
       "id": "aliyun-lindorm",
@@ -5742,7 +6412,14 @@
         "verify": "先查询已有实例或监控信息并核对账号与地域；不以创建、扩容或释放实例验证接入。",
         "checkedAt": "2026-11-05"
       },
-      "addedAt": "2026-11-05"
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "多模数据库",
+        "数据库监控",
+        "连接排障",
+        "性能分析",
+        "检索开发"
+      ]
     },
     {
       "id": "aliyun-ims",
@@ -5786,7 +6463,14 @@
         "verify": "先确认技能加载和认证条件；确认费用并获授权后再提交短小的公开样例，核对任务状态和输出文件。",
         "checkedAt": "2026-11-05"
       },
-      "addedAt": "2026-11-05"
+      "addedAt": "2026-11-05",
+      "keywords": [
+        "翻译视频",
+        "提取字幕",
+        "视频配音",
+        "替换配音",
+        "语音合成"
+      ]
     }
   ]
 }
