@@ -15,7 +15,7 @@
 ## 上线 0：审核合并 Claude 的设计改动
 
 ```
-按 docs/REVIEW.md 审核 Claude 开的 PR（分支 claude/prelaunch-design）。代码有问题的直接在该分支修；纯视觉取舍只在 PR 里留言，不要改。CI 通过后合并。
+按 docs/REVIEW.md 审核 Claude 开的 PR（分支 claude/prelaunch-design）。代码有问题的直接在该分支修；审美问题带上截图和约束交给 Opus 5.5，由它给出方案，Codex 实施并验证。CI 通过后合并。
 ```
 
 ## 上线 1：收录范围调整（维护者要求）
@@ -50,10 +50,10 @@ gh repo edit guanmo-ai/awesome-agent-mcp \
 ```
 我们不测试各厂商服务本身的功能，只检查我们发布的内容是否可用。在现有的 scripts/check-links.mjs 上扩展，不要新建框架，代码改动控制在 150 行以内。
 对每个展示中的服务：
-1. 远程 MCP（install.mcp 的 http / sse）：不带 Key 发一次 MCP initialize 请求。服务器返回 MCP 响应，或者返回 401 / 403（说明需要鉴权，端点在线），都算通过；DNS 失败、404、5xx、超时算失败。
-2. 本地 MCP 与 CLI：确认 npm / PyPI 上的包存在、没有被标记为废弃，发布者与厂商一致。
+1. 远程 MCP（install.mcp 的 http / sse）：不带 Key 发一次 MCP initialize 请求。只有完整且协议版本受支持的成功响应才算握手通过；401 / 403、其他协商版本保留待核验；DNS 失败、404、5xx、超时算失败。
+2. 本地 MCP 与 CLI：确认 npm / PyPI 上的包存在、没有被标记为废弃，再从厂商官方文档或仓库反向核对包名。包自填的仓库地址不能单独证明厂商归属。
 3. Skill：install.skill 能打开；是 SKILL.md 的，开头有 name 和 description。
-结果只输出到命令行和 Actions 的 Job Summary，不写进 data/。失败项人工确认后再改数据：确实失效的，找到新地址或按 docs/VERIFYING.md 处理。
+结果只输出到命令行和 Actions 的 Job Summary，不写进 data/。待核验和失败项由 Codex 按 docs/VERIFYING.md 继续复核；需要 Opus 5.5 审核的具体问题与证据留在 PR，按 AGENTS.md 异步交接。确认失效后再更新地址或处理数据。维护者介入条件按 AGENTS.md「分工」。
 开 PR，附一次完整运行结果，CI 通过后自己合并。
 ```
 
@@ -62,7 +62,7 @@ gh repo edit guanmo-ai/awesome-agent-mcp \
 ```
 用 Lighthouse（npx lighthouse，移动端与桌面端各跑一次）检测首页和任意一个服务独立页，四项都要达到 95 分以上。
 - 只做程序层面的优化：图片尺寸与格式、字体加载、懒加载、缓存、语义与 aria。
-- 对比度、字号、颜色、布局等视觉问题不要自己改，列在 PR 描述里交给 Claude。
+- 对比度、字号、颜色、布局等审美问题，带截图和约束交给 Opus 5.5，由它给出方案，Codex 实施并验证。
 - PR 描述贴优化前后的分数，CI 通过后自己合并。
 ```
 
@@ -79,10 +79,21 @@ gh repo edit guanmo-ai/awesome-agent-mcp \
 
 ```
 先读 AGENTS.md 和 docs/VERIFYING.md。
-1. 运行可用性检查，人工确认失败项：被拦截的不算失效，真正失效的要找到新地址或按规则处理。
+1. 运行可用性检查，由 Codex 复核待核验和失败项：被拦截的不算失效，真正失效的要找到新地址或按规则处理；维护者介入条件按 AGENTS.md「分工」。
 2. evidence.checkedAt 超过 180 天的条目重新核验。
 3. 处理 GitHub 上新开的「提交服务」和「报告问题」issue。
 4. 活动图案过期的 App 图标，用 node scripts/fetch-logos.mjs <id> 重新抓取。
 5. 服务数量有变化时，先运行 npm run serve，再运行 node scripts/og-image.mjs 更新首页分享图；新增服务用 node scripts/og-services.mjs 补分享图。
 6. 开 PR，标题「维护：YYYY-MM-DD」，CI 通过后自己合并。
+```
+
+## 交给 Opus 5.5：审美与辅助审核
+
+由维护者转交以下提示词；本轮具体问题和证据以相关 PR 描述为准。
+
+```
+更新 main，先读 AGENTS.md 和 docs/REVIEW.md。你主导审美设计并辅助审核，Codex 负责程序、最终验证和交付。
+重点复核桌面与 320px / 390px 手机视口下的居中详情弹窗、搜索面板：文字层次与对比度、关闭入口、长配置和长内容的阅读是否清楚，深浅色是否一致。居中弹窗是维护者明确要求。
+只报告有证据的问题，给出文件与位置、影响、明确推荐方案，区分上线阻塞和可选润色；没有阻塞就直说。审美取舍由你给出方案，不把普通问题变成维护者的选择题。
+需要改设计时提交 PR，由 Codex 按 docs/REVIEW.md 审核、验证和合并。不要把建议写成已经通过的程序验证。
 ```

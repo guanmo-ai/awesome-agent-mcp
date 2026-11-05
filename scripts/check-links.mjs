@@ -21,7 +21,7 @@ for (const s of grouped(data).flatMap((g) => g.services)) {
     const py = /^(?:uvx|uv tool run|pip3? install)\s+(.+)/.exec(cmd);
     const args = (npm?.[1] ?? py?.[1] ?? '').split(/\s+/).filter((a) => a && !a.startsWith('-'));
     const names = npm ? (/^npm /.test(cmd) ? args : args.slice(0, 1)) : py ? args.slice(0, 1) : [];
-    if (!names.length) targets.push([s.id, 'manual', s.url, s, `安装命令需人工核对：${cmd}`]);
+    if (!names.length) targets.push([s.id, 'manual', s.url, s, `安装命令需查官方说明：${cmd}`]);
     for (const spec of names) {
       if (spec.startsWith('git+')) { targets.push([s.id, 'source', spec.slice(4).split('#')[0].replace(/@[^/]+$/, ''), s]); continue; }
       const name = spec.replace(/\[.*?\]/, '').replace(/(?!^)@.*$|[<>=!~].*$/, '');
@@ -114,7 +114,7 @@ export async function inspect(field, url, s, note) {
     const links = [repo, v.homepage, ...Object.values(v.project_urls ?? {})].filter(Boolean).map((x) => x.replace(/^git\+/, '').replace(/\.git$/, '').toLowerCase());
     const official = [s.url, s.repo, s.evidence?.url].filter(Boolean).filter((x) => /^https:\/\/github.com\/[^/]+/i.test(x)).map((x) => x.toLowerCase().split('/').slice(0, 4).join('/') + '/');
     const matched = links.some((x) => official.some((o) => x.startsWith(o)));
-    return `待确认：包存在且未废弃；发布者 ${publisher || '未提供'}；${matched ? '包声明关联官方组织，归属仍需官方反向确认' : '厂商归属需人工核对'}；${links.join(', ')}`;
+    return `待确认：包存在且未废弃；发布者 ${publisher || '未提供'}；${matched ? '包声明关联官方组织，归属仍需官方反向确认' : '厂商归属待官方证据核验'}；${links.join(', ')}`;
   }
   if (field === 'skill' && /\/SKILL\.md(?:[?#]|$)/i.test(url)) {
     const text = await r.text();
@@ -140,7 +140,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
 
   const bad = results.filter((r) => !/^[23]|^通过/.test(r.status)).sort((a, b) => a.id.localeCompare(b.id));
   const clean = (v) => String(v).replaceAll('|', '&#124;').replace(/[\r\n]+/g, ' ');
-  const lines = [`## 可用性检查`, '', `共 ${results.length} 项：${results.length - bad.length} 项通过，${bad.length} 项需人工确认（包括失败、拦截和安装信息缺失）。不使用 Key，不安装包或执行厂商功能。`, '', '| 条目 | 字段 | 结果 | 地址 |', '| :-- | :-- | :-- | :-- |', ...results.sort((a, b) => a.id.localeCompare(b.id)).map((r) => `| ${r.id} | ${r.field} | ${clean(r.status)} | ${r.url} |`)];
+  const lines = [`## 可用性检查`, '', `共 ${results.length} 项：${results.length - bad.length} 项通过，${bad.length} 项需进一步核验（包括失败、拦截和安装信息缺失）。由 Codex 跟进；不使用 Key，不安装包或执行厂商功能。`, '', '| 条目 | 字段 | 结果 | 地址 |', '| :-- | :-- | :-- | :-- |', ...results.sort((a, b) => a.id.localeCompare(b.id)).map((r) => `| ${r.id} | ${r.field} | ${clean(r.status)} | ${r.url} |`)];
   const report = lines.join('\n');
   console.log(report);
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, report + '\n');
