@@ -1,4 +1,4 @@
-import { agentPrompt, orbitLabelPosition, esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, textMatch as renderTextMatch, renderDetails } from './render.mjs';
+import { agentPrompt, orbitLabelPosition, esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, badge, tokens, highlight, searchScore, textMatch as renderTextMatch, renderDetails } from './render.mjs';
 import { $, $$, copy, initChrome, loadStars, loadCatalog } from './ui.mjs';
 import { motionReduced, onMotionChange, openDialog, closeDialog, wireDialog, revealResults } from './motion.mjs';
 import { directoryHtml, chipsHtml } from './directory.mjs';
@@ -10,7 +10,7 @@ onMotionChange(() => { reduced = motionReduced(); });
 const ORBIT = ['amap', 'meituan', 'feishu', 'alipay', 'didi', 'zhihu', 'dingtalk', 'wechat-pay', 'wps', 'tencent-docs', 'kling', 'aliyun', 'baidu-netdisk', 'weread', 'netease-music', 'mcdonalds-cn', 'wecom', 'huawei-cloud', 'yuque', 'quark-drive'];
 const state = { q: '', cat: 'all', types: new Set(), risks: new Set(), verified: false };
 let DB, L, byId, home;
-let cards, groups, lastQuery = '';
+let cards, groups, searchGroup, searchGrid, searchActive = false, lastQuery = '';
 let renderFrame = 0;
 const scheduleRender = () => {
   cancelAnimationFrame(renderFrame);
@@ -36,6 +36,10 @@ async function init() {
   }
   cards = new Map($$('#groups .card').map((el) => { el.dataset.query = ''; return [el.dataset.id, el]; }));
   groups = new Map(DB.categories.map((c) => [c.id, document.getElementById(`cat-${c.id}`)]));
+  searchGroup = document.createElement('section'); searchGroup.className = 'group';
+  const heading = document.createElement('h3'); heading.textContent = '搜索结果';
+  searchGrid = document.createElement('div'); searchGrid.className = 'grid';
+  searchGroup.append(heading, searchGrid); searchGroup.hidden = true; $('#groups').prepend(searchGroup);
   render();
   buildOrbit();
   buildDemo();
@@ -144,6 +148,7 @@ function render() {
   const counts = Object.fromEntries(DB.categories.map((c) => [c.id, 0]));
   const shown = new Set();
   const entering = [];
+  const ranked = [];
   let total = 0;
   for (const s of DB.services) {
     if (matches(s, toks, true)) { counts[s.category]++; total++; }
@@ -152,6 +157,7 @@ function render() {
     const visible = matches(s, toks);
     if (visible) {
       shown.add(s.id);
+      if (toks.length) ranked.push({ el, score: searchScore(s, toks, DB) });
       if (el.hidden || groups.get(s.category)?.hidden) entering.push(el);
       if (el.dataset.query !== state.q) {
         el.querySelector('.card-title .nm').innerHTML = highlight(s.name, toks);
@@ -165,10 +171,18 @@ function render() {
     const group = groups.get(c.id);
     if (!group) continue;
     const count = (state.cat === 'all' || state.cat === c.id) ? counts[c.id] : 0;
-    group.hidden = !count;
+    group.hidden = toks.length > 0 || !count;
     const label = group.querySelector('.n');
     if (label.textContent !== String(count)) label.textContent = count;
   }
+  if (toks.length) {
+    searchGrid.append(...ranked.sort((a, b) => b.score - a.score).map(x => x.el));
+    searchActive = true;
+  } else if (searchActive) {
+    for (const s of DB.services) { const grid = groups.get(s.category)?.querySelector('.grid'); if (grid && cards.has(s.id)) grid.append(cards.get(s.id)); }
+    searchActive = false;
+  }
+  searchGroup.hidden = !toks.length || !shown.size;
   for (const b of $$('#chips .chip')) {
     b.setAttribute('aria-pressed', state.cat === b.dataset.cat);
     const count = b.dataset.cat === 'all' ? total : counts[b.dataset.cat];

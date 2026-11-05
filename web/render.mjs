@@ -70,33 +70,46 @@ export const badge = (s) => s.status === 'verified'
 const searchIndexes = new WeakMap();
 export function searchScore(s, toks, db) {
   if (!toks.length) return 1;
-  let index = searchIndexes.get(db);
-  if (!index) { index = new WeakMap(); searchIndexes.set(db, index); }
-  if (!index.has(s)) {
-    const category = db.categories.find(c => c.id === s.category);
-    index.set(s, [
-      [s.name, s.nameEn], s.keywords ?? [], [s.summary, s.summaryEn],
-      [category?.name, category?.nameEn, ...s.types.map(t => db.labels.types[t]), db.labels.risk[s.risk], ...s.access.map(a => db.labels.access[a])],
-    ].map(field => field.filter(Boolean).map(text => text.toLowerCase())));
-  }
-  const fields = index.get(s);
-  if (fields[0].includes(toks.join(' '))) return 1e9;
-  const weights = [10000, 1000, 100, 1];
-  const includes = (text, term) => /^[a-z0-9]/.test(term) ? new RegExp(`(?:^|[^a-z0-9])${reEsc(term)}`).test(text) : text.includes(term);
-  let score = 0;
-  for (const t of toks) {
-    let best = 0;
-    for (let i = 0; i < fields.length; i++) {
-      if (fields[i].some(text => includes(text, t))) best = Math.max(best, weights[i]);
-      else if (i < 3 && /^[\p{Script=Han}]{3,}$/u.test(t)) {
-        const chars = Array.from(t);
-        const pairs = [...new Set(chars.slice(1).map((char, j) => chars[j] + char))];
-        const hits = pairs.filter(pair => fields[i].some(text => text.includes(pair))).length;
-        if (hits >= Math.ceil(pairs.length / 2)) best = Math.max(best, weights[i] * hits / pairs.length / 2);
-      }
+  let cache = searchIndexes.get(db);
+  if (!cache) { cache = { fields: new WeakMap(), frequencies: new Map() }; searchIndexes.set(db, cache); }
+  const fieldsFor = (item) => {
+    if (!cache.fields.has(item)) {
+      const category = db.categories.find(c => c.id === item.category);
+      cache.fields.set(item, [[item.name, item.nameEn], item.keywords ?? [], [item.summary, item.summaryEn],
+        [category?.name, category?.nameEn, ...item.types.map(t => db.labels.types[t]), db.labels.risk[item.risk], ...item.access.map(a => db.labels.access[a])]
+      ].map(field => field.filter(Boolean).map(text => text.toLowerCase())));
     }
-    if (!best) return 0;
-    score += best;
+    return cache.fields.get(item);
+  };
+  const fields = fieldsFor(s);
+  if (fields[0].includes(toks.join(' '))) return 1e9;
+  const clean = toks.map(t => t.replace(/一下|帮我|我要|怎么|是谁|个|哪|了|吗|呢|的/g, '')).filter(Boolean);
+  const terms = clean.filter(t => t !== '转' && !(clean.length > 1 && /^[\p{Script=Han}]$/u.test(t)));
+  if (terms.some(t => /^[a-z]$/.test(t))) return 0;
+  if (!terms.length) return 0;
+  const contains = (text, term) => /^[a-z0-9]/.test(term)
+    ? term.length >= 2 && new RegExp(`(?:^|[^a-z0-9])${reEsc(term)}`).test(text) : text.includes(term);
+  const weights = [10000, 1000, 100, 1];
+  let score = 0;
+  for (const term of terms) {
+    let whole = 0;
+    fields.forEach((field, i) => { if (field.some(text => contains(text, term))) whole = Math.max(whole, weights[i]); });
+    if (whole) { score += whole * 100; continue; }
+    if (!/^[\p{Script=Han}]{3,}$/u.test(term)) return 0;
+    const chars = Array.from(term), pairs = [...new Set(chars.slice(1).map((ch, i) => chars[i] + ch))];
+    let partial = 0;
+    for (const pair of pairs) {
+      if (!cache.frequencies.has(pair)) {
+        const corpus = db.services ?? [s];
+        cache.frequencies.set(pair, corpus.filter(item => fieldsFor(item).slice(0, 3).some(field => field.some(text => text.includes(pair)))).length);
+      }
+      const freq = cache.frequencies.get(pair), total = db.services?.length ?? 1;
+      if (freq > total * 0.08) continue;
+      const idf = Math.log(1 + total / (1 + freq));
+      fields.slice(0, 3).forEach((field, i) => { if (field.some(text => text.includes(pair))) partial += weights[i] * idf; });
+    }
+    if (partial < 250) return 0;
+    score += partial;
   }
   return score;
 }
