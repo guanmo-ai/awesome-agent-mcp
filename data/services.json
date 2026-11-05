@@ -196,7 +196,14 @@
         "驾车路线",
         "找地点",
         "坐标转换"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://lbs.qq.com/service/MCPServer/MCPServerGuide/userGuide",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "didi",
@@ -393,7 +400,12 @@
           }
         ],
         "verify": "只搜索商品或读取页面，核对客户端身份；不加购、下单或发消息作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://tblifecdn.taobao.com/taobaopc/skills/taobao-native/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "买东西",
@@ -729,6 +741,11 @@
           "url": "https://github.com/larksuite/cli/blob/main/skills/lark-shared/references/lark-shared-identity-and-permissions.md",
           "agentReadable": true,
           "quote": "User 权限：后台开通 scope + 用户通过 `auth login` 授权，两层都要满足"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/larksuite/cli",
+          "checkedAt": "2026-11-05"
         }
       },
       "keywords": [
@@ -805,6 +822,11 @@
           "url": "https://opensource.dingtalk.com/developerpedia/docs/develop/permission/high_grade_scope/",
           "agentReadable": true,
           "quote": "可以操作该权限点的角色为【全组织通讯录管理员】"
+        },
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://open.dingtalk.com/document/ai-dev/second-level-node-1",
+          "checkedAt": "2026-11-05"
         }
       },
       "install": {
@@ -902,6 +924,11 @@
           "url": "https://github.com/WecomTeam/wecom-unified/blob/main/skills/wecom-unified/SKILL.md",
           "agentReadable": true,
           "quote": "该命令会输出一个授权链接和二维码，并阻塞等待用户扫码完成验证。"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://work.weixin.qq.com/nl/index/aicli",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -1024,6 +1051,11 @@
           "url": "https://github.com/TencentCloud/tencentmeeting-cli",
           "agentReadable": true,
           "quote": "OAuth2 授权登录"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/TencentCloud/tencentmeeting-cli",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -1099,6 +1131,11 @@
           "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide",
           "agentReadable": true,
           "quote": "完成对相关应用能力权限的申请"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide",
+          "checkedAt": "2026-11-05"
         }
       },
       "install": {
@@ -1248,6 +1285,11 @@
           "url": "https://github.com/yuque/yuque-mcp-server",
           "agentReadable": true,
           "quote": "Personal or team Yuque API token"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/yuque",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -1316,6 +1358,11 @@
           "url": "https://github.com/Tencent/AgentlyMail",
           "agentReadable": true,
           "quote": "使用前需要安装 CLI 并完成授权"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/Tencent/AgentlyMail",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -1376,7 +1423,14 @@
         "阅读划线",
         "找书",
         "我的书架"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://weread.qq.com/r/weread-skills",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "ima",
@@ -1414,7 +1468,14 @@
         "保存资料",
         "查个人资料",
         "整理知识"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://ima.qq.com/agent-interface",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "get-biji",
@@ -1599,7 +1660,12 @@
           }
         ],
         "verify": "在 Agent 中输入“列出我有道云笔记中的笔记”，返回账号的笔记列表后再核对。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://note.youdao.com/help-center/cli-install-guide.html",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "skill": "https://artifact.lx.netease.com/download/youdaonote-cli/youdaonote-skill-latest.zip",
@@ -1706,7 +1772,14 @@
         "找文件",
         "整理云文件",
         "云端资料"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://www.weiyun.com/act/openclaw",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "baidu-netdisk",
@@ -1756,7 +1829,14 @@
           "name": "厂商官方发布依据",
           "url": "https://pan.baidu.com/union/doc/mcp-server/操作指南/在-agent-中自定义使用/"
         }
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://pan.baidu.com/union/doc/mcp-server/%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/%E5%9C%A8-agent-%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BD%BF%E7%94%A8/",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "zhihu",
@@ -1804,7 +1884,14 @@
         "搜知识",
         "查个人内容",
         "知识库上传"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://developer.zhihu.com/docs?key=zhihu_cli",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "bocha",
@@ -1955,7 +2042,12 @@
           }
         ],
         "verify": "用一个公开企业名称做只读查询，核对企业名称及返回来源。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "官方协议说明部分天眼数据 API 和天眼 AI 服务需购买或充值，具体资费、额度和套餐以账号及产品页面为准。",
+          "url": "https://static.tianyancha.com/webview/useragreement_v1.html",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -2014,7 +2106,14 @@
         "搜抖音",
         "图文搜索",
         "经营任务"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "oceanengine",
@@ -2150,7 +2249,14 @@
         "写产品需求",
         "生成页面",
         "修改原型"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://modao.cc/feature/ai-mcp.html",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "pixso",
@@ -2313,7 +2419,12 @@
           }
         ],
         "verify": "先列出工具确认连接；生成语音或图片前确认模型费用，不以实际生成作为免费只读首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/MiniMax-AI/MiniMax-MCP",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -2372,7 +2483,14 @@
         "建歌单",
         "上传音乐",
         "播放音乐"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://music.163.com/st/ncmcli",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "alipay",
@@ -2424,7 +2542,12 @@
           }
         ],
         "verify": "先查询支付能力开通状态；不提交支付或创建收费订单测试连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://aipay.alipay.com/merchant-guide",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "支付收款",
@@ -2480,7 +2603,12 @@
           }
         ],
         "verify": "版本和接口目录正常返回，只证明 CLI 可运行；接入指导需能引用对应官方文档。真实业务访问须在你授权后得到正确查单响应，不能把查看目录说成已连通商户。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/wechatpay-apiv3/wechatpay-skills/blob/main/wechatpay-payment-integration/references/APIv3%E6%8E%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%8E%92%E9%9A%9C.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -2591,7 +2719,14 @@
         "财务数据",
         "宏观数据",
         "查公告"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "免费试用版共有 2,000 次永久调用额度，不按月刷新；个人基础、专业、旗舰版分别为每月 3,000、8,000、20,000 次，部分工具另有限额，大数据量请求可能额外扣次。",
+          "url": "https://s.thsi.cn/cd/ifind-java-ds-bff-web-container/ifind-mcp-web/llms-full.txt",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "iwencai",
@@ -2630,7 +2765,14 @@
         "研报查询",
         "查行情",
         "财经公告"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://search.10jqka.com.cn/skillhub",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "eastmoney-miaoxiang",
@@ -2730,7 +2872,12 @@
           }
         ],
         "verify": "连接后先查询当前有权限查看的云资源清单，核对账号和地域；不要以创建资源作为首次验证。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/aliyun/alibabacloud-aiops-skills",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "skill": "https://github.com/aliyun/alibabacloud-aiops-skills"
@@ -2784,7 +2931,14 @@
         "查云资源",
         "云运维",
         "腾讯云接口"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://cloud.tencent.com/document/product/1278/131433",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "huawei-cloud",
@@ -2849,7 +3003,12 @@
           }
         ],
         "verify": "先确认 Agent 识别所选技能；需要云上操作时先列举已有资源并核对账号与地域，不以创建资源作为首次验证。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/huaweicloud/huaweicloud-mcp/tree/main/server/mcp_server_rfs",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "管服务器",
@@ -2928,7 +3087,12 @@
           }
         ],
         "verify": "先查看 ve version 或 Agent 的技能清单，再查询已有授权资源；安装成功不等于已完成云服务鉴权。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/volcengine/volcengine-cli",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "管服务器",
@@ -2995,7 +3159,12 @@
           }
         ],
         "verify": "先确认所选技能出现在 Agent 清单，并核对其说明和凭证要求；经费用确认后再用公开样例验证所选能力。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "官方称大多数 AI 开放能力为已实名认证客户提供免费测试额度；耗尽后可购买资源，各能力的具体额度与价格不同。",
+          "url": "https://ai.baidu.com/ai-doc/REFERENCE/mm9tjwod0",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "识字",
@@ -3067,7 +3236,12 @@
           }
         ],
         "verify": "只读列出获授权存储桶或文件，核对资源所属账号与地域。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://developer.qiniu.com/kodo/12914/mcp-aimodel-kodo",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -3185,7 +3359,14 @@
           "name": "厂商官方发布依据",
           "url": "https://blog.gitee.com/2026/01/22/gitee-official-mcp-server-ai-code-repo/"
         }
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://gitee.com/oschina/mcp-gitee",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "jihulab",
@@ -3226,7 +3407,14 @@
         "研发管理",
         "DevOps",
         "Git"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "基础版、专业版与旗舰版均列在官方 MCP 支持范围；部分 AI Agent 工具需专业版或旗舰版及对应席位，或使用 Credits，具体费用按账户核实。",
+          "url": "https://docs.gitlab.cn/docs/jh/user/model_context_protocol/mcp_server/",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "lexiang",
@@ -3283,6 +3471,11 @@
           "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill",
           "agentReadable": true,
           "quote": "点击「授权」完成 OAuth"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -3366,6 +3559,11 @@
           "url": "https://github.com/intsig-textin/textin-mcp",
           "agentReadable": true,
           "quote": "Get Textin APP_ID and APP_SECRET by following the instructions here"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/intsig-textin/textin-mcp",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -3434,7 +3632,14 @@
         "部署网页",
         "全栈部署",
         "生成网站链接"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://edgeone.cloud.tencent.com/pages/document/173172415568367616",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "apifox",
@@ -3563,7 +3768,12 @@
           }
         ],
         "verify": "查询一个公开地点的天气，核对位置和时间；调用前确认剩余额度。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/caiyunapp/mcp-caiyun-weather",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -3713,7 +3923,12 @@
           }
         ],
         "verify": "先查询酒店或已有订单，确认账号及结果；不调用创建订单接口作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/tuniucorp/tuniu-cli",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "订机票",
@@ -3846,6 +4061,12 @@
           "url": "https://github.com/opendatalab/MinerU-Ecosystem",
           "agentReadable": true,
           "quote": "Default is mode=\"flash\" (no API token required)."
+        },
+        "cost": {
+          "text": "官方 Flash 路径无需 API Key、免费，单文件最多 20 页和 10 MB；标准解析的额度和费用按平台规则确认。",
+          "url": "https://github.com/opendatalab/MinerU-Ecosystem",
+          "checkedAt": "2026-11-05",
+          "quote": "Flash mode works out of the box, free, up to 20 pages / 10 MB per file."
         }
       },
       "sources": [
@@ -3924,6 +4145,11 @@
         "permissionEvidence": {
           "url": "https://help.dida365.com/articles/7438132116019216384",
           "agentReadable": false
+        },
+        "cost": {
+          "text": "官方接入页面当前无法直接读取，调用费用和免费额度尚未核实；请以官方实际规则为准。",
+          "url": "https://help.dida365.com/articles/7438132116019216384",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -4247,7 +4473,14 @@
         "法规检索",
         "证券合规",
         "核对法律依据"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://open.chineselaw.com/mcp-config/",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "patsnap",
@@ -4418,7 +4651,13 @@
           }
         ],
         "verify": "先列出图表工具，再用简单示例数据生成图表并核对类型与数值。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "官方默认图表生成服务免费；自行部署及其他资源成本按所用环境确认。",
+          "url": "https://github.com/antvis/mcp-server-chart",
+          "checkedAt": "2026-11-05",
+          "quote": "MCP Server Chart provides a free chart generation service by default."
+        }
       },
       "sources": [
         {
@@ -4526,7 +4765,12 @@
           }
         ],
         "verify": "先执行物流查询或经额度许可的价格估算；不创建或取消真实寄件单测试连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://api.kuaidi100.com/document/how-to-use-mcp-service",
+          "checkedAt": "2026-11-05"
+        }
       },
       "keywords": [
         "看物流",
@@ -4678,7 +4922,14 @@
         "做视频",
         "处理音频",
         "本地媒体处理"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://www.meituhub.com/zh-cn/docs?id=150",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "guosen",
@@ -4776,7 +5027,13 @@
           }
         ],
         "verify": "先读取 initialize 给出的首个只读调用指引，查询已有环境，核对环境 ID。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "CloudBase 有免费额度，超出额度按产品规则计费；MCP 工具开源不等于所有云资源免费。",
+          "url": "https://github.com/TencentCloudBase/CloudBase-AI-ToolKit",
+          "checkedAt": "2026-11-05",
+          "quote": "CloudBase has free quotas; usage beyond that is billed"
+        }
       },
       "sources": [
         {
@@ -4874,7 +5131,12 @@
           }
         ],
         "verify": "客户端能列出工具后，先查询实例的集合列表。连接失败先查实例地址、网络和认证；尚无实例时不能宣称接入完成。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/zilliztech/mcp-server-milvus",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "mcp": {
@@ -4963,7 +5225,12 @@
           }
         ],
         "verify": "只读列出已有路由或上游配置，核对网关；不创建或删除路由作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://docs.api7.ai/apisix/reference/apisix-mcp",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -5069,7 +5336,12 @@
           }
         ],
         "verify": "查询账号的设备列表并核对名称，不切换电源或修改设备参数。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://mcp.espressif.com/",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -5139,7 +5411,13 @@
           }
         ],
         "verify": "先列工具，再查看数据库或表结构，确认连到预期实例。DDL、写入和用户管理应按任务授权执行，不作为连通测试。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "官方接入示例可使用免费的 TiDB Cloud Starter 实例；自建或其他云部署的费用另按实际环境核对。",
+          "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/",
+          "checkedAt": "2026-11-05",
+          "quote": "你可以在 TiDB Cloud 上创建一个免费的 TiDB Cloud Starter 实例。"
+        }
       },
       "keywords": [
         "查数据库",
@@ -5232,6 +5510,11 @@
           "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd",
           "agentReadable": true,
           "quote": "TAPD_ACCESS_TOKEN 为 TAPD 个人令牌"
+        },
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11474",
+          "checkedAt": "2026-11-05"
         }
       },
       "sources": [
@@ -5310,7 +5593,13 @@
           }
         ],
         "verify": "先查询已有代码分析报告或项目，不启动新的扫描作连通性首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "腾讯云页面称托管 MCP 连接后可免费调用和在线测试；相关产品及资源费用另按实际规则确认。",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11709",
+          "checkedAt": "2026-11-05",
+          "quote": "Server已在腾讯云托管，可在连接后免费调用和在线进行工具测试"
+        }
       },
       "sources": [
         {
@@ -5376,7 +5665,12 @@
           }
         ],
         "verify": "调用 get-component-list 或读取已知组件文档，核对框架和组件名。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/tdesign-mcp-server",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -5450,7 +5744,12 @@
           }
         ],
         "verify": "查询已有项目、工作项或合并请求，核对所属团队；不提交代码或修改状态作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11722",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -5510,7 +5809,12 @@
           }
         ],
         "verify": "列出工具后查询你已授权的域名或解析记录，核对域名是否正确；不要改解析记录来测试连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11743",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "mcp": {
@@ -5688,7 +5992,12 @@
           }
         ],
         "verify": "先列工具，再查询一个已授权的指标。地域、底层产品或指标权限缺失时会失败，不能把拿到密钥当作开通成功。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://cloud.tencent.com/document/product/1267/126220",
+          "checkedAt": "2026-11-05"
+        }
       },
       "install": {
         "mcp": {
@@ -5772,7 +6081,12 @@
           }
         ],
         "verify": "查询目标桶中的已有文件或元数据，不上传、覆盖或删除文件作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://cloud.tencent.com/developer/mcp/server/11472",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -5846,7 +6160,12 @@
           }
         ],
         "verify": "查询已有日志主题或一小段日志，核对地域、主题和时间范围。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/Tencent/cls-mcp-server",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -5924,7 +6243,12 @@
           }
         ],
         "verify": "只读查询数据库或表结构，核对实例；不执行 DDL、DML 验证连接。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_bytehouse",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -6000,7 +6324,12 @@
           }
         ],
         "verify": "先查询已有图片资产或服务信息；生成、处理、上传前确认费用与操作范围。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_veimagex",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -6073,7 +6402,12 @@
           }
         ],
         "verify": "先列出工具，再按已授权服务查询任务状态；不登录第三方账号或提交表单作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://github.com/volcengine/mcp-server/tree/main/server/mcp_server_vefaas_browser_use",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -6129,7 +6463,14 @@
         "数字人",
         "应用用量",
         "语音合成"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "CLI 不承诺免费额度；需查看目标能力是否有免费试用或套餐，以及是否需要购买服务量。",
+          "url": "https://www.xfyun.cn/xfyun-cli/doc",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "aliyun-bailian",
@@ -6176,7 +6517,12 @@
           }
         ],
         "verify": "先查询已有应用或任务，核对账号区域；不发起训练或模型生成作首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "标准 API Key 模型调用按量计费并含新用户免费额度；Token Plan 按订阅额度扣除，具体模型与价格以官方为准。",
+          "url": "https://docs.agent.bailian.aliyun.com/en/bailian-cli/getting-started/installation",
+          "checkedAt": "2026-11-05"
+        }
       },
       "sources": [
         {
@@ -6286,7 +6632,14 @@
         "日志分析",
         "诊断告警",
         "查LogStore"
-      ]
+      ],
+      "setup": {
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://help.aliyun.com/en/sls/sls-mcp-server",
+          "checkedAt": "2026-11-05"
+        }
+      }
     },
     {
       "id": "aliyun-dms",
@@ -6486,7 +6839,12 @@
           }
         ],
         "verify": "先查看工具列表，再列举授权范围内的存储空间并核对名称；空列表可能表示没有资源，鉴权错误需检查凭证和权限。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://help.aliyun.com/zh/oss/developer-reference/oss-mcp-server-alpha",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "mark": "存",
@@ -6555,7 +6913,12 @@
           }
         ],
         "verify": "先确认客户端列出 OceanBase 工具，再对已授权数据库执行 SHOW TABLES 并核对结果；写 SQL 和记忆写入需按实际权限与任务授权执行。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://www.oceanbase.com/docs/common-oceanbase-database-cn-1000000005282562",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "keywords": [
@@ -6618,7 +6981,12 @@
           }
         ],
         "verify": "客户端连接后，使用实例所在地域调用 DescribeDBInstances 查询实例列表。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "实例创建、规格变更等操作可能产生资源或计费变化；具体云资源价格以腾讯云为准。",
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/postgres/skills",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "mark": "PG",
@@ -6843,7 +7211,12 @@
           }
         ],
         "verify": "先确认技能已加载，取得授权后用不含敏感数据的 RDS 常见问题查询，核对返回建议；不将回答当作已经执行运维。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/database/rds/alibabacloud-rds-copilot/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "keywords": [
@@ -6901,7 +7274,12 @@
           }
         ],
         "verify": "先列举已有工作空间内的训练任务并核对状态；不要为验证接入而新建计费任务。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/aiml/learn/alibabacloud-pai-dlc-job/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "keywords": [
@@ -6960,7 +7338,12 @@
           }
         ],
         "verify": "先读取已有工作流或节点并核对内容；创建、更新和发布按任务授权执行。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/analyticscomputing/dide/alibabacloud-dataworks-datastudio-develop/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "keywords": [
@@ -7019,7 +7402,12 @@
           }
         ],
         "verify": "先查询已有实例或监控信息并核对账号与地域；不以创建、扩容或释放实例验证接入。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/database/hitsdb/alibabacloud-lindorm-agent-skill/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "keywords": [
@@ -7078,7 +7466,12 @@
           }
         ],
         "verify": "先确认技能加载和认证条件；确认费用并获授权后再提交短小的公开样例，核对任务状态和输出文件。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "cost": {
+          "text": "所查官方接入资料未能确认该工具的具体调用费用和免费额度；实际费用按官方产品规则核实。",
+          "url": "https://raw.githubusercontent.com/aliyun/alibabacloud-aiops-skills/master/skills/mediaservices/ice/alibabacloud-video-translation/SKILL.md",
+          "checkedAt": "2026-11-05"
+        }
       },
       "addedAt": "2026-11-05",
       "keywords": [
