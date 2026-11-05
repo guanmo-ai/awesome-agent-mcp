@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-04",
+  "updatedAt": "2026-11-05",
   "categories": [
     {
       "id": "life",
@@ -55,6 +55,7 @@
       "color": "#1677FF",
       "risk": "read",
       "access": [
+        "account",
         "key"
       ],
       "status": "verified",
@@ -63,7 +64,9 @@
         "mcp": {
           "transport": "http",
           "url": "https://mcp.amap.com/mcp?key=<你的高德Key>"
-        }
+        },
+        "cli": "npm install -g @amap-lbs/amap-gui",
+        "skill": "https://github.com/AMap-Web/amap-skills"
       },
       "evidence": {
         "url": "https://developer.amap.com/api/mcp-server/gettingstarted",
@@ -71,7 +74,26 @@
         "note": "官方 MCP 快速接入文档，并由官方导航确认 Skill 与 CLI。"
       },
       "nameEn": "AMap",
-      "summaryEn": "Look up places and weather, plan routes, generate maps, and build map applications."
+      "summaryEn": "Look up places and weather, plan routes, generate maps, and build map applications.",
+      "setup": {
+        "requirements": "查地点和路线可先接 MCP：需要高德开放平台账号和申请的 Key；配额、使用范围与费用以控制台为准。地图 GUI CLI 与 JS API Skill 是另一条地图开发路径，不必全部安装。",
+        "steps": [
+          {
+            "text": "按 MCP 快速接入文档注册开发者、创建应用并申请 Key，由你在本地填写。",
+            "url": "https://developer.amap.com/api/mcp-server/gettingstarted"
+          },
+          {
+            "text": "让 Agent 使用下方 Streamable HTTP 配置，保留完整 URL 并替换 Key；客户端不支持该协议时先查客户端官方配置方式。",
+            "url": "https://developer.amap.com/api/mcp-server/gettingstarted"
+          },
+          {
+            "text": "只有需要地图可视化时再选地图 GUI CLI：它另需 Web端(JS API) Key 和安全密钥，设置 AMAP_KEY、AMAP_SECURITY_KEY 后启动；不要把两条路线的密钥要求混用。",
+            "url": "https://developer.amap.com/api/cli/map-cli/install"
+          }
+        ],
+        "verify": "先确认客户端列出高德工具，再用公开地点做一次只读查询，例如查询北京站地址。返回实际地点结果才说明可用；鉴权或配额报错时按控制台处理，安装成功不等于查询成功。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "baidu-map",
@@ -199,7 +221,26 @@
         "note": "官方 AI Hub 服务目录列出 MCP、Skill 及 mt-tech CLI；含预约预支付与退款操作。"
       },
       "nameEn": "Meituan",
-      "summaryEn": "Manage merchant orders, vouchers, products, and inventory, and query business data."
+      "summaryEn": "Manage merchant orders, vouchers, products, and inventory, and query business data.",
+      "setup": {
+        "requirements": "本条是商家、服务商和开发者业务接入，不能直接当作个人美团外卖点单。个人开发者需实名认证；商家数据还需相应业务开通和授权。官网的免费接入说明不代表所有业务及订单免费。",
+        "steps": [
+          {
+            "text": "先确认你是个人开发者、商家还是服务商，按官网选择对应身份并完成实名认证或入驻。",
+            "url": "https://developer.meituan.com/"
+          },
+          {
+            "text": "在 AI Hub 按目标业务选具体 MCP 或 Skill，核对权限并从官方控制台取得配置；没有适用能力就停止，不编造通用端点或 CLI 命令。",
+            "url": "https://developer.meituan.com/ai-hub/mcp-list"
+          },
+          {
+            "text": "使用 AI Coding 套件时按文档配置管理中心 toolsToken 和相关业务权限；不要用旅游 CLI 代替商家接口。",
+            "url": "https://developer.meituan.com/docs/biz/biz_2023243_d08aeca9-3a9a-4bdb-81ff-351e691defd2"
+          }
+        ],
+        "verify": "由客户端列出所选工具，并查询一项你已授权的商家数据。个人消费者仅提出点外卖需求时，应先说明本条不匹配，不能宣称已能替你点单。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "taobao",
@@ -297,7 +338,8 @@
             "Authorization": "Bearer <你的瑞幸Token>"
           }
         },
-        "skill": "https://unpkg.luckincoffeecdn.com/@luckin/my-coffee-skill@latest/dist/my-coffee-skill.zip"
+        "skill": "https://unpkg.luckincoffeecdn.com/@luckin/my-coffee-skill@latest/dist/my-coffee-skill.zip",
+        "cli": "curl -fsSL https://open.lkcoffee.com/install | bash"
       },
       "evidence": {
         "url": "https://open.lkcoffee.com/docs",
@@ -305,7 +347,26 @@
         "note": "官方文档前端列出 MCP、CLI、Skill、Token 与门店商品和创建订单工具。"
       },
       "nameEn": "Luckin Coffee",
-      "summaryEn": "Order coffee and find stores."
+      "summaryEn": "Order coffee and find stores.",
+      "setup": {
+        "requirements": "面向消费者查询门店和咖啡点单；需要登录瑞幸 AI 开放平台并取得个人 Token。订单按商品价格付款；公开资料未确认接口本身的独立资费，不把它标成永久免费。",
+        "steps": [
+          {
+            "text": "在官方开放平台登录并取得 Token，由你在本地填写，不发到公开对话或仓库。",
+            "url": "https://open.lkcoffee.com/docs"
+          },
+          {
+            "text": "让 Agent 使用下方 MCP URL，并保留 Authorization: Bearer 认证头；也可以按官网导入 Skill，不需要三种方式一起安装。",
+            "url": "https://open.lkcoffee.com/docs"
+          },
+          {
+            "text": "CLI 是可选路径：先阅读官方安装脚本，再按它的说明安装；脚本默认覆盖已有安装，先检查本机是否已有版本。",
+            "url": "https://open.lkcoffee.com/install"
+          }
+        ],
+        "verify": "先列出工具，再进行一次门店或商品查询，核对结果是否属于当前账号可用的门店。不要用创建订单作为连通测试；下单和付款前需确认门店、商品、配送方式及金额。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "fliggy",
@@ -398,7 +459,34 @@
         "note": "官方更新日志分别发布 OpenAPI MCP 与 CLI，CLI 仓库包含 Skills。"
       },
       "nameEn": "Feishu",
-      "summaryEn": "Work with messages, documents, calendars, and multidimensional tables."
+      "summaryEn": "Work with messages, documents, calendars, and multidimensional tables.",
+      "setup": {
+        "requirements": "消息、文档、日历等任务可优先使用官方 CLI；需要 Node.js/npm、飞书账号、应用与用户授权，组织策略及资源权限可能限制操作。远程 MCP 是另一条路线，官方个人指南仍标内测，不能默认覆盖 CLI 的所有功能。",
+        "steps": [
+          {
+            "text": "按官方 CLI 安装说明安装；在当前环境运行 lark-cli config init --new，把生成的配置链接交给你在浏览器完成应用设置。",
+            "url": "https://github.com/larksuite/cli#quick-start-ai-agent"
+          },
+          {
+            "text": "运行 lark-cli auth login --recommend，由你在浏览器授权。已有应用时复用现有配置，不覆盖其他账号；按实际任务选择所需权限。",
+            "url": "https://github.com/larksuite/cli#authentication"
+          },
+          {
+            "text": "保存会议纪要时先使用官方 lark-doc Skill；已有完整 Markdown 可按创建指引导入，创作新文档先按其工作流整理内容，确认目标文件夹与文档权限。",
+            "url": "https://github.com/larksuite/cli/blob/main/skills/lark-doc/references/lark-doc-create.md"
+          },
+          {
+            "text": "创建后使用返回的文档 URL 或 ID，按官方 fetch 指引回读并核对标题和正文；不要只凭命令退出成功就宣称已保存。",
+            "url": "https://github.com/larksuite/cli/blob/main/skills/lark-doc/references/lark-doc-fetch.md"
+          },
+          {
+            "text": "如果明确要用远程 MCP，先查看个人调用指南与开放范围；具体配置以本人在官方平台取得的内容为准，不把 CLI 安装命令当成 MCP 端点。",
+            "url": "https://open.feishu.cn/document/mcp_open_tools/end-user-call-remote-mcp-server?lang=zh-CN"
+          }
+        ],
+        "verify": "先用 lark-cli auth status 查看登录及权限。保存文档后检查返回的 ok、document.url 和 warnings，再运行 lark-cli docs +fetch --doc \"返回的文档 URL\" --detail with-ids，回读核对标题和正文，并把可打开的文档链接交给你；登录成功不等于文档已保存。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "dingtalk",
@@ -1265,11 +1353,37 @@
       "appStoreId": 6670396916,
       "color": "#16B98A",
       "risk": "write",
-      "access": [],
-      "status": "unverified",
+      "access": [
+        "account"
+      ],
+      "status": "verified",
       "addedAt": "2026-11-04",
       "nameEn": "Kling AI",
-      "summaryEn": "Generate videos and images with AI."
+      "summaryEn": "Generate videos and images with AI.",
+      "setup": {
+        "requirements": "需要可灵账号和浏览器授权。国内账号使用 cli-cn，全球账号使用 cli-global，不能混装或把全球 MCP 地址当国内配置。生成按账号余额和当前规则消耗灵感值，免费额度及模型开放范围以本人账号为准。",
+        "steps": [
+          {
+            "text": "从官网指南确认 Skill 来源；官网提供的全球 MCP 配置不适用于直接推断国内端点。当前条目按区域中立的官方 Skill 选择国内 CLI 路径。",
+            "url": "https://kling.ai/app/mcp/guide"
+          },
+          {
+            "text": "国内账号按 Skill 安装 @klingai/cli-cn，运行 kling login 并在浏览器授权；若是全球账号改用 cli-global。同一 Agent 选择一条接入路线即可。",
+            "url": "https://github.com/klingai-tech/skills/blob/main/SKILL.md"
+          }
+        ],
+        "verify": "先运行 kling --help，再在你完成授权后运行 kling who_am_i，确认身份、可用模型与参数。生成图片或视频会消耗额度，不用付费生成来测试连接。",
+        "checkedAt": "2026-11-05"
+      },
+      "install": {
+        "cli": "npm i -g @klingai/cli-cn --registry=https://registry.npmjs.org",
+        "skill": "https://github.com/klingai-tech/skills"
+      },
+      "evidence": {
+        "url": "https://kling.ai/app/mcp/guide",
+        "checkedAt": "2026-11-05",
+        "note": "官方接入指南明确引用 klingai-tech/skills；其区域中立 Skill 区分国内 cli-cn 与全球 cli-global，并使用浏览器授权。"
+      }
     },
     {
       "id": "minimax",
@@ -1384,7 +1498,7 @@
       "id": "wechat-pay",
       "name": "微信支付",
       "category": "finance",
-      "summary": "支付接入开发指导、示例代码检索、接入评估与支付退款查单。",
+      "summary": "提供支付接入指导、示例及查单工具；读资料无需商户凭据，实际查单需授权。",
       "types": [
         "skill",
         "cli"
@@ -1394,13 +1508,12 @@
       "appStoreId": 414478124,
       "color": "#07C160",
       "risk": "read",
-      "access": [
-        "account"
-      ],
+      "access": [],
       "status": "verified",
       "addedAt": "2026-11-04",
       "install": {
-        "skill": "https://github.com/wechatpay-apiv3/wechatpay-skills"
+        "skill": "https://github.com/wechatpay-apiv3/wechatpay-skills",
+        "cli": "npm install -g @tenpay/wechatpay-dev-cli"
       },
       "evidence": {
         "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116",
@@ -1408,7 +1521,26 @@
         "note": "官方接入 Skill 文档发布仓库；内置开发者 CLI 仅查询支付单和退款单。"
       },
       "nameEn": "Weixin Pay",
-      "summaryEn": "Get payment integration guidance and examples, assess integrations, and query payments and refunds."
+      "summaryEn": "Read integration guidance and examples without merchant credentials; querying payments and refunds requires authorization.",
+      "setup": {
+        "requirements": "面向支付接入开发与排障，不是替个人微信钱包付款。阅读 Skill 和查看 CLI 接口目录不需要商户交易凭据；实际查单需要对应商户或服务商身份、签名凭据与业务参数。CLI 要求 Node.js 20+。",
+        "steps": [
+          {
+            "text": "把官方支付接入 Skill 按当前 Agent 的安装方式载入，再让 Agent 判断你需要接入指导、代码开发还是查单；境内与跨境 Skill 分开选择。",
+            "url": "https://github.com/wechatpay-apiv3/wechatpay-skills"
+          },
+          {
+            "text": "需要 CLI 时安装 @tenpay/wechatpay-dev-cli；运行 wechatpay-dev-cli --version 和 wechatpay-dev-cli api list --mode merchant 查看安装版本与普通商户接口目录。",
+            "url": "https://github.com/wechatpay-apiv3/wechatpay-skills/blob/main/wechatpay-payment-integration/references/APIv3%E6%8E%A5%E5%8F%A3%E5%8A%A8%E6%80%81%E6%8E%92%E9%9A%9C.md"
+          },
+          {
+            "text": "只有需要真实查单时才按接口契约准备自己的商户参数与签名凭据；在本地配置，不要求你在对话里发私钥。",
+            "url": "https://pay.weixin.qq.com/doc/v3/merchant/4019638116"
+          }
+        ],
+        "verify": "版本和接口目录正常返回，只证明 CLI 可运行；接入指导需能引用对应官方文档。真实业务访问须在你授权后得到正确查单响应，不能把查看目录说成已连通商户。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "unionpay",
@@ -1423,7 +1555,10 @@
       "appStoreId": 600273928,
       "color": "#E21836",
       "risk": "payment",
-      "access": [],
+      "access": [
+        "account",
+        "apply"
+      ],
       "status": "verified",
       "addedAt": "2026-11-04",
       "evidence": {
@@ -1432,7 +1567,22 @@
         "note": "中国银联官方方案页明确智能支付 MCP，并列出服务指引与安装包。"
       },
       "nameEn": "UnionPay",
-      "summaryEn": "Connect agents to UnionPay payment services through MCP."
+      "summaryEn": "Connect agents to UnionPay payment services through MCP.",
+      "setup": {
+        "requirements": "面向商户、收单机构或平台支付接入，不是个人银行卡的通用操作入口。需要商户注册、业务权限开通及对应签名凭据；MCP 独立收费标准未确认，支付业务费用按实际协议核实。",
+        "steps": [
+          {
+            "text": "先按银联官方方案确认接入身份、场景和业务权限，完成所需商户注册与业务开通。",
+            "url": "https://yun.unionpay.com/solution/page/mcp"
+          },
+          {
+            "text": "从官方接入指引取得对应场景的 MCP 配置和商户参数，在本地保存私钥；仅运行 npx unionpay-mcp-server 而不提供所需参数不能视为接通。",
+            "url": "https://open.unionpay.com/tjweb/solution/detail?solId=613"
+          }
+        ],
+        "verify": "先确认服务能启动并列出所需工具，再按官方测试环境与获授权的只读方式验证。不得用真实付款、签约或退款验证连接；缺少商户凭据时明确说明尚未完成。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "ifind",
@@ -2959,7 +3109,22 @@
       "addedAt": "2026-11-04",
       "repo": "https://github.com/zilliztech/mcp-server-milvus",
       "nameEn": "Milvus / Zilliz",
-      "summaryEn": "Search vector data, inspect database schemas, and manage collections and records."
+      "summaryEn": "Search vector data, inspect database schemas, and manage collections and records.",
+      "setup": {
+        "requirements": "需要已经运行、可访问的本地或远程 Milvus 实例，以及 Python 3.10+、uv；不是安装 MCP 就会自动得到数据库。认证 Token 取决于实例配置，托管和自建成本分别确认，因此不统一标成免费或必须 API Key。",
+        "steps": [
+          {
+            "text": "按官方仓库克隆服务代码并安装所需运行环境，准备自己的实例 URI；需要认证时在本地填写 Token。",
+            "url": "https://github.com/zilliztech/mcp-server-milvus"
+          },
+          {
+            "text": "按 README 的客户端配置启动本地 MCP，把示例仓库绝对路径和 Milvus 连接参数换成实际值，不直接照抄别人的路径。",
+            "url": "https://github.com/zilliztech/mcp-server-milvus"
+          }
+        ],
+        "verify": "客户端能列出工具后，先查询实例的集合列表。连接失败先查实例地址、网络和认证；尚无实例时不能宣称接入完成。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "apisix",
@@ -3014,7 +3179,9 @@
       "url": "https://github.com/higress-group/higress-ops-mcp-server",
       "homepage": "https://higress.cn/",
       "risk": "write",
-      "access": [],
+      "access": [
+        "account"
+      ],
       "status": "verified",
       "evidence": {
         "url": "https://github.com/higress-group",
@@ -3023,7 +3190,22 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Higress",
-      "summaryEn": "Query and manage gateway routes, services, and configuration through MCP."
+      "summaryEn": "Query and manage gateway routes, services, and configuration through MCP.",
+      "setup": {
+        "requirements": "需要可访问的 Higress Console、对应控制台账号和自行运行的 MCP 服务。这里的账号是网关控制台凭据，不一定是云账号；网关和模型费用取决于所选部署。",
+        "steps": [
+          {
+            "text": "先准备 Higress Console 的地址和访问权限，按官方仓库部署 MCP 服务。",
+            "url": "https://github.com/higress-group/higress-ops-mcp-server"
+          },
+          {
+            "text": "依仓库示例在本地配置 HIGRESS_URL、HIGRESS_USERNAME、HIGRESS_PASSWORD；示例客户端的模型密钥是另一个要求，不等于网关登录凭据。",
+            "url": "https://github.com/higress-group/higress-ops-mcp-server/blob/main/.env.example"
+          }
+        ],
+        "verify": "先列出 MCP 工具，再读取已有路由或服务列表，核对是否来自你的网关；不要以修改路由或删除配置测试连通。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "esp-rainmaker",
@@ -3094,7 +3276,22 @@
         }
       },
       "nameEn": "TiDB",
-      "summaryEn": "Query and modify databases in natural language, and manage table schemas and database users."
+      "summaryEn": "Query and modify databases in natural language, and manage table schemas and database users.",
+      "setup": {
+        "requirements": "需要可访问的 TiDB 实例、连接参数和数据库权限，以及 Python 3.10+、uv。官方示例可用 TiDB Cloud Starter 免费层，该路径需云账号；自建实例的登录和成本另行确认，不能把所有部署标成免费。",
+        "steps": [
+          {
+            "text": "按官方指引准备 TiDB 实例和最小所需数据库权限；使用 Cloud Starter 时先确认当前免费层限额。",
+            "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/"
+          },
+          {
+            "text": "按指引安装并配置 MCP，在本地填写数据库地址、端口、用户名与密码；不要把示例值当成可用账号。",
+            "url": "https://docs.pingcap.com/zh/ai/tidb-mcp-claude-desktop/"
+          }
+        ],
+        "verify": "先列工具，再查看数据库或表结构，确认连到预期实例。DDL、写入和用户管理应按任务授权执行，不作为连通测试。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "dolphindb",
@@ -3292,7 +3489,10 @@
       "homepage": "https://www.dnspod.cn/",
       "color": "#2864F0",
       "risk": "write",
-      "access": [],
+      "access": [
+        "account",
+        "key"
+      ],
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11743",
@@ -3301,7 +3501,22 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Tencent DNSPod",
-      "summaryEn": "Query and manage DNS domains, and retrieve DNS records and usage."
+      "summaryEn": "Query and manage DNS domains, and retrieve DNS records and usage.",
+      "setup": {
+        "requirements": "需要腾讯云账号及 SecretId/SecretKey，并有目标 DNSPod 域名的操作权限；本地需要 Python 环境与官方包。MCP 安装不会授予域名权限，也不能据此认定域名及云资源免费。",
+        "steps": [
+          {
+            "text": "在腾讯云账号中准备最小所需访问权限，并在本地保存密钥；优先使用受限子账号。",
+            "url": "https://cloud.tencent.com/developer/mcp/server/11743"
+          },
+          {
+            "text": "按官方说明安装 mcp-server-dnspod，再配置 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY；示例使用 uv run，先确认包在该运行环境可找到。",
+            "url": "https://cloud.tencent.com/developer/mcp/server/11743"
+          }
+        ],
+        "verify": "列出工具后查询你已授权的域名或解析记录，核对域名是否正确；不要改解析记录来测试连接。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "hunyuan-image",
@@ -3377,7 +3592,11 @@
       "homepage": "https://cloud.tencent.com/product/wedata",
       "color": "#2864F0",
       "risk": "read",
-      "access": [],
+      "access": [
+        "account",
+        "key",
+        "apply"
+      ],
       "status": "verified",
       "evidence": {
         "url": "https://cloud.tencent.com/developer/mcp/server/11763",
@@ -3386,7 +3605,22 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Tencent WeData Semantic Layer",
-      "summaryEn": "Discover data assets and query business data through enterprise metadata and semantic models."
+      "summaryEn": "Discover data assets and query business data through enterprise metadata and semantic models.",
+      "setup": {
+        "requirements": "面向已有 WeData 业务数据和指标的账号；需要 SecretId/SecretKey、实际开通地域、WeData 权限及目标指标调用权限。MCP 的免费调用说明不等于底层 WeData 产品免费。",
+        "steps": [
+          {
+            "text": "确认密钥所属 UIN 已开通 WeData，并获准查询目标范围的指标；UIN 是账号要求，不要凭空增加 UIN 请求头。",
+            "url": "https://cloud.tencent.com/document/product/1267/126220"
+          },
+          {
+            "text": "从指标语义层文档选实际地域的服务 URL，保留 TENCENTCLOUD_SECRET_ID、TENCENTCLOUD_SECRET_KEY、TENCENTCLOUD_REGION 三个请求头；不要混用另一种 WeData Server 的端点及连字符请求头。",
+            "url": "https://cloud.tencent.com/document/product/1267/126220"
+          }
+        ],
+        "verify": "先列工具，再查询一个已授权的指标。地域、底层产品或指标权限缺失时会失败，不能把拿到密钥当作开通成功。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "tencent-cos",
@@ -3766,7 +4000,9 @@
       "homepage": "https://www.baidu.com/",
       "color": "#2932E1",
       "risk": "read",
-      "access": [],
+      "access": [
+        "account"
+      ],
       "status": "verified",
       "evidence": {
         "url": "https://cloud.baidu.com/doc/qianfan/s/tmh4stryt",
@@ -3775,7 +4011,22 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Baidu AI Search",
-      "summaryEn": "Search current web pages, images, and videos, with site and result-type filters."
+      "summaryEn": "Search current web pages, images, and videos, with site and result-type filters.",
+      "setup": {
+        "requirements": "获取百度 AI 搜索 MCP 配置需登录百度智能云控制台；应使用控制台提供的本人配置。公开教程涉及 API Key，但本次未确认当前独立 MCP 的具体鉴权格式、额度与价格，不套用其他产品的免费额度。",
+        "steps": [
+          {
+            "text": "从官方教程进入 MCP 广场，找到百度 AI 搜索并查看 Streamable HTTP 配置；先核对当前服务的认证字段与计费提示。",
+            "url": "https://ai.baidu.com/ai-doc/AppBuilder/amaxd2det"
+          },
+          {
+            "text": "让 Agent 按控制台实际给出的完整配置接入，不凭空拼接 URL 或认证头；发生费用前由你确认。",
+            "url": "https://cloud.baidu.com/doc/BAIDU_AI_SEARCH/index.html"
+          }
+        ],
+        "verify": "先确认工具可用；在核对计费且获授权后做一次公开网页搜索，检查返回内容与来源链接。未取得本人配置前，只能算完成了接入准备。",
+        "checkedAt": "2026-11-05"
+      }
     },
     {
       "id": "baidu-baike",
@@ -3785,7 +4036,7 @@
       "types": [
         "mcp"
       ],
-      "url": "https://cloud.baidu.com/doc/qianfan/s/tmh4stryt",
+      "url": "https://cloud.baidu.com/product-s/qianfan_home",
       "homepage": "https://baike.baidu.com/",
       "color": "#2864F0",
       "risk": "read",
@@ -3798,7 +4049,22 @@
       },
       "addedAt": "2026-11-04",
       "nameEn": "Baidu Baike",
-      "summaryEn": "Query encyclopedia senses, entry details, and short explainer videos."
+      "summaryEn": "Query encyclopedia senses, entry details, and short explainer videos.",
+      "setup": {
+        "requirements": "官方产品页提供百度百科 MCP 免费试用入口，但公开资料尚未确认其独立鉴权、配额和试用后资费。不能把百科 API 的 Key 要求直接套到 MCP，也不能把试用当作永久免费。",
+        "steps": [
+          {
+            "text": "从百度千帆官方产品页找到百度百科 MCP 的试用入口，在控制台核实当前账号资格、认证方式与额度。",
+            "url": "https://cloud.baidu.com/product-s/qianfan_home"
+          },
+          {
+            "text": "取得控制台针对当前服务的完整配置后再交给 Agent 接入；如后台未提供配置或仍未开放，明确停在此处，不使用猜测端点。",
+            "url": "https://cloud.baidu.com/product-s/qianfan_home"
+          }
+        ],
+        "verify": "在确认权限与费用后，以公开百科词条做一次只读查询并核对来源。没有本人配置时不能声称已接通。",
+        "checkedAt": "2026-11-05"
+      }
     }
   ]
 }
