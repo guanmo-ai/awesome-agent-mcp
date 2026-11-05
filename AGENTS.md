@@ -5,7 +5,7 @@
 ## 结构
 
 - `data/services.json` 是唯一数据源，字段说明见 `docs/SCHEMA.md`。
-- `README.md`、`llms.txt` 和 `dist/` 都由 `scripts/build.mjs` 生成。**不要手改 README.md 和 llms.txt。**
+- `README.md`、`README.en.md`、`llms.txt` 和 `dist/` 都由 `scripts/build.mjs` 生成。**不要手改 README.md、README.en.md 和 llms.txt。**
 - `web/` 是网站源码，用原生 HTML、CSS、JS 写成，没有第三方依赖。
 - `skills/agent-mcp-finder/SKILL.md` 是给 Agent 用的 Skill。
 - `site.config.json` 存放仓库名、网址和维护者。
@@ -15,7 +15,7 @@
 
 | 命令 | 作用 |
 | :-- | :-- |
-| `npm run build` | 校验数据，生成 README.md、llms.txt 和 dist/ |
+| `npm run build` | 校验数据，生成 README.md、README.en.md、llms.txt 和 dist/ |
 | `npm run check` | 校验数据、检查生成文件是否最新、运行测试（CI 同款） |
 | `npm run serve` | 构建并在 http://127.0.0.1:4179 预览 |
 | `npm run links` | 检查所有链接能否打开 |
@@ -24,7 +24,7 @@
 
 ## 规则
 
-1. 改完数据运行 `npm run build`，把生成的 README.md、llms.txt 一起提交。`npm run check` 必须通过。
+1. 改完数据运行 `npm run build`，把生成的 README.md、README.en.md、llms.txt 一起提交。`npm run check` 必须通过。
 2. 只收厂商官方出品，判定标准见 `docs/VERIFYING.md`。拿不准就保持 `unverified`，不要猜。
 3. 第三方清单（GitHub 上的 awesome 列表、WorkBuddy 等客户端的连接器市场）只当**线索**。每条都要回到厂商官方页面确认，`url` 指向官方页面；不复制别人的描述文字，也不复制别人的 Skill 文件。
 4. `summary` 用自己的话写，不超过 60 字，说清能做什么，不用营销词。
