@@ -342,16 +342,16 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .ct-formats { display: contents; }
 .ct-bar button { flex: none; height: 28px; padding: 0 10px; border: 0; border-radius: 8px; background: transparent; color: #8a91a0; font-size: 12.5px; }
 .ct-bar button[aria-selected="true"] { background: rgba(255, 255, 255, .1); color: #fff; }
-.ct-copy { margin-left: auto !important; color: #c9ced8 !important; border: 1px solid rgba(255, 255, 255, .12) !important; }
+.ct-copy { position: sticky; right: 0; margin-left: auto !important; color: #c9ced8 !important; border: 1px solid rgba(255, 255, 255, .12) !important; background: var(--code-bg) !important; box-shadow: -16px 0 12px -4px var(--code-bg); }
 .ct-copy.done { color: #3dd6a3 !important; }
-.code-tabs pre { margin: 0; padding: 14px 16px; font: 12.5px/1.75 var(--mono); color: var(--code-text); white-space: pre-wrap; word-break: break-all; }
+.code-tabs pre { margin: 0; padding: 14px 16px; font: 12.5px/1.75 var(--mono); color: var(--code-text); white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
 .code-hint { margin: 8px 0 0 !important; font-size: 12.5px !important; color: var(--faint) !important; }
 .s-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; }
 .s-foot a, .s-foot button { color: var(--muted); background: none; border: 0; padding: 0; text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
 .s-foot a:hover, .s-foot button:hover { color: var(--text); }
 
 /* ── Palette ──────────────────────────────────────────── */
-.palette { width: min(640px, 100% - 24px); max-height: min(560px, 80vh); margin: 12vh auto auto; padding: 0; border: 1px solid var(--line-2); border-radius: 18px; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(24px) saturate(1.6); -webkit-backdrop-filter: blur(24px) saturate(1.6); box-shadow: var(--shadow-lg); overflow: hidden; }
+.palette { width: min(640px, 100% - 24px); max-height: min(560px, 80vh); margin: 12vh auto auto; padding: 0; border: 1px solid var(--line-2); border-radius: 18px; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(16px) saturate(1.5); -webkit-backdrop-filter: blur(16px) saturate(1.5); box-shadow: var(--shadow-lg); overflow: hidden; }
 .palette::backdrop { background: rgba(5, 6, 8, .35); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
 .pal-in { display: flex; flex-direction: column; max-height: inherit; }
 .pal-search { display: flex; align-items: center; gap: 12px; padding: 0 16px; height: 58px; border-bottom: 1px solid var(--line); }
@@ -366,7 +366,9 @@ dialog::backdrop { background: rgba(5, 6, 8, .5); backdrop-filter: blur(6px); -w
 .pal-text { min-width: 0; }
 .pal-item .domain { margin: 0; font-family: var(--font); font-size: 12.5px; }
 .pal-item .pal-meta { margin-left: auto; display: flex; gap: 4px; }
-.pal-item[aria-selected="true"] { background: var(--card-2); box-shadow: inset 0 0 0 1px var(--line); }
+.pal-item { transition: background .15s, box-shadow .15s; }
+.pal-item[aria-selected="true"] { background: color-mix(in srgb, var(--a2) 11%, var(--card)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--a2) 38%, transparent); }
+.pal-item[aria-selected="true"] .pal-meta::after { content: "↵"; display: grid; place-items: center; width: 22px; height: 22px; margin-left: 2px; border-radius: 6px; font: 600 12px/1 var(--mono); color: var(--a2); background: color-mix(in srgb, var(--a2) 14%, transparent); }
 .pal-empty { padding: 28px; text-align: center; color: var(--muted); font-size: 14px; }
 .pal-foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--faint); }
 .pal-foot span { display: inline-flex; align-items: center; gap: 4px; }
@@ -562,3 +564,60 @@ a.card { color: inherit; text-decoration: none; }
   .svc-head .logo.lg { width: 64px; height: 64px; font-size: 26px; }
   .svc-related { margin-top: 48px; }
 }
+
+/* ── 交互动效（web/fx.mjs）──────────────────────────────── */
+:root { --spring: cubic-bezier(.34, 1.36, .64, 1); }
+
+/* 按压反馈：所有可点击控件统一缩放 */
+.chip, .seg button, .toggle, .kbar, .btn-star, .btn-follow, .icon-btn, .pal-item, .dtab, .files a, .ct-bar button, .s-close, .step, .crumbs a { transition-property: transform, background, color, border-color, box-shadow, opacity; transition-duration: .15s; }
+.chip:active, .seg button:active, .toggle:active, .kbar:active, .btn-star:active, .btn-follow:active, .icon-btn:active, .ct-bar button:active, .s-close:active { transform: scale(.94); }
+.pal-item:active, .dtab:active, .files a:active { transform: scale(.985); }
+.onode { transition: box-shadow .3s, scale .15s; }
+.onode:active { scale: .9; }
+.icon-btn svg { transition: transform .5s var(--spring); }
+.icon-btn:hover svg { transform: rotate(-20deg); }
+.btn-star:hover svg { transform: rotate(-10deg) scale(1.08); }
+.btn-star svg, .btn-follow svg { transition: transform .3s var(--spring); }
+.btn-follow:hover svg { transform: scale(1.12); }
+.btn svg { transition: transform .25s var(--spring); }
+.cta .btn-primary:hover svg { transform: translateY(2px); }
+.s-actions .btn:hover svg, .svc-main .s-actions .btn:hover svg { transform: translate(2px, -2px); }
+
+/* 复制成功：轻弹一下 */
+.btn.done, .ct-copy.done { animation: fx-pop .38s var(--spring); }
+@keyframes fx-pop { 0% { transform: scale(.9); } 60% { transform: scale(1.06); } 100% { transform: none; } }
+.toast.show { animation: fx-toast .4s var(--spring); }
+@keyframes fx-toast { from { transform: translate(-50%, 14px) scale(.96); } }
+
+/* 滚动浮现 */
+.fx .fx-reveal:not(.group):not(.in) { opacity: 0; transform: translateY(28px); }
+.fx .fx-reveal:not(.group) { transition: opacity .8s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
+.fx .group.fx-reveal:not(.in) .group-head, .fx .group.fx-reveal:not(.in) .card { opacity: 0; }
+.fx .group.fx-reveal.in .group-head { animation: fx-up .6s var(--ease) backwards; }
+.fx .group.fx-reveal.in .card { animation: fx-up .7s var(--ease) backwards; animation-delay: calc(var(--d, 0) * 45ms); }
+@keyframes fx-up { from { opacity: 0; transform: translateY(16px); } }
+
+/* 分类选中底色滑动 */
+.chips.has-ind { position: relative; }
+.chip-ind { position: absolute; left: 0; top: 0; z-index: 0; border-radius: 10px; background: var(--text); pointer-events: none; transition: transform .4s var(--spring), width .4s var(--spring), opacity .2s; }
+.chips.has-ind .chip { position: relative; z-index: 1; }
+.chips.has-ind .chip[aria-pressed="true"] { background: transparent; border-color: transparent; }
+
+/* 首页景深 */
+.fx .orbit { translate: calc(var(--px, 0) * -22px) calc(var(--py, 0) * -16px); transition: translate .9s var(--ease); }
+.fx .aurora { translate: calc(var(--px, 0) * 36px) calc(var(--py, 0) * 28px); transition: translate 1.4s var(--ease); }
+.fx .hero-grid-bg { translate: calc(var(--px, 0) * 10px) calc(var(--py, 0) * 8px); transition: translate 1.2s var(--ease); }
+
+/* 有弹窗时暂停背景循环动画 */
+.modal-open .aurora i, .modal-open .core-ring, .modal-open .shine, .modal-open .live { animation-play-state: paused; }
+
+/* 深浅色切换：圆形展开，关闭默认交叉淡化 */
+.vt-theme::view-transition-old(root), .vt-theme::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.vt-theme::view-transition-old(root) { z-index: 1; }
+.vt-theme::view-transition-new(root) { z-index: 2; }
+
+/* 卡片图标飞入详情弹窗 */
+::view-transition-group(svc-logo) { animation-duration: .5s; animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1); }
+html:not(.vt-theme)::view-transition-old(root), html:not(.vt-theme)::view-transition-new(root) { animation-duration: .25s; }
+/* 切换主题时由圆形展开统一过渡，元素自身的颜色过渡全部跳过 */
+.vt-theme *, .vt-theme *::before, .vt-theme *::after { transition: none !important; }

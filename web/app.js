@@ -2,6 +2,7 @@ import { esc, ICON, host, logoHtml, sortedTypes, typeTags as renderTypeTags, bad
 import { $, $$, copy, initChrome, loadStars, loadCatalog } from './ui.mjs';
 import { motionReduced, onMotionChange, openDialog, closeDialog, wireDialog, revealResults } from './motion.mjs';
 import { directoryHtml, chipsHtml } from './directory.mjs';
+import { initFx, morphFromCard } from './fx.mjs';
 let reduced = motionReduced();
 onMotionChange(() => { reduced = motionReduced(); });
 
@@ -46,6 +47,7 @@ async function init() {
   addEventListener('popstate', openFromHash);
   addEventListener('hashchange', openFromHash);
   loadStars(DB);
+  initFx();
 }
 
 /* ── Chrome: nav, theme, keyboard, filters ───────────── */
@@ -83,7 +85,7 @@ function wireChrome() {
     const c = e.target.closest('.card');
     if (!c || !byId?.has(c.dataset.id) || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
-    openSheet(c.dataset.id);
+    morphFromCard(c, () => openSheet(c.dataset.id));
   });
   let raf = 0, pointer;
   const hover = matchMedia('(hover: hover) and (pointer: fine)');
