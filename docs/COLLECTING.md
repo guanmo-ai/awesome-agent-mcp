@@ -6,7 +6,7 @@
 
 下面都只是**线索**。确认要以厂商官方页面为准，规则见 `docs/VERIFYING.md`。
 
-先查厂商维护的集中目录，可以一次得到多条线索，再按上市集团与少数头部品牌的范围筛选：
+先查厂商维护的集中目录，可以一次得到多条线索，再按 `docs/VERIFYING.md` 的官方身份与知名度范围筛选：
 
 - [腾讯云 MCP 广场](https://cloud.tencent.com/developer/mcp)及[腾讯云产品 MCP 源码目录](https://github.com/TencentCloudCommunity/mcp-server/blob/main/README-ZH.md)。广场混有第三方；源码目录的详情链接也可能串项，需核对产品、发布者和对应子目录。
 - [火山引擎 MCP 服务目录](https://github.com/volcengine/mcp-server)及[生态广场](https://www.volcengine.com/mcp-marketplace)。只把官方云产品与厂商自己维护的实现作为待核验对象，不能把收录的社区工具当成官方实现。

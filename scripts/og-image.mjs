@@ -6,7 +6,7 @@ import { root } from './lib.mjs';
 
 const { chromium } = createRequire(import.meta.url)('playwright');
 const url = process.env.URL || 'http://127.0.0.1:4179/';
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH });
 const page = await browser.newPage({ viewport: { width: 1600, height: 840 }, deviceScaleFactor: 0.75, colorScheme: 'dark' });
 await page.goto(url, { waitUntil: 'networkidle' });
 await page.addStyleTag({ content: '.nav-links,.kbar{visibility:hidden}' });
