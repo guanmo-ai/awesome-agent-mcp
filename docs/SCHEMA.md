@@ -37,6 +37,7 @@
 | `install.cli` |  | 命令行工具的安装命令 |
 | `install.mcp.headers` |  | 远程 MCP 官方要求的请求头，字符串键值对象；认证值只写 `<你的Token>` 等占位符 |
 | `install.skill` |  | Skill 文件或 Skill 仓库的地址 |
+| `setup` |  | 可选接入指引对象：`requirements` 为适用对象、前提及费用限制；`steps` 为非空数组，每项含非空 `text` 和官方 HTTPS `url`；`verify` 说明用户如何检查接入成功，并非本项目实测状态；`checkedAt` 为核对日期（有效的 YYYY-MM-DD）。所有文本均为非空字符串 |
 | `addedAt` | ✓ | 收录日期 |
 | `sources` |  | 由社区提交时，记录提交者：`[{ "name": "...", "url": "..." }]` |
 
