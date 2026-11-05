@@ -192,6 +192,7 @@ export function renderDetails(s, db, { detailPage = false } = {}) {
   const category = db.categories.find((c) => c.id === s.category);
   const hasPlaceholder = snips.some(([, c]) => /<[^>]+>/.test(c));
   const setup = s.setup ? `<div class="setup-guide"><h4>接入前准备</h4><p>${esc(s.setup.requirements)}</p>
+    ${s.setup.permissionEvidence ? `<p>权限依据：<a href="${esc(safeUrl(s.setup.permissionEvidence.url))}" target="_blank" rel="noopener">官方页面 ↗</a>${s.setup.permissionEvidence.agentReadable ? "" : "（官方页面 Agent 可能读不到）"}</p>${s.setup.permissionEvidence.quote ? `<blockquote>${esc(s.setup.permissionEvidence.quote)}</blockquote>` : ""}` : ""}
     <h4>按这几步接入</h4><ol>${s.setup.steps.map((step) => `<li>${esc(step.text)} <a href="${esc(safeUrl(step.url))}" target="_blank" rel="noopener">官方入口 ↗</a></li>`).join('')}</ol>
     <h4>如何确认成功</h4><p>${esc(s.setup.verify)}</p><p class="code-hint">接入指引核对日期：${esc(s.setup.checkedAt)}</p></div>` : '';
   return {

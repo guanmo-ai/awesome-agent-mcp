@@ -685,7 +685,12 @@
           }
         ],
         "verify": "先用 lark-cli auth status 查看登录及权限。保存文档后检查返回的 ok、document.url 和 warnings，再运行 lark-cli docs +fetch --doc \"返回的文档 URL\" --detail with-ids，回读核对标题和正文，并把可打开的文档链接交给你；登录成功不等于文档已保存。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/larksuite/cli/blob/main/skills/lark-shared/references/lark-shared-identity-and-permissions.md",
+          "agentReadable": true,
+          "quote": "User 权限：后台开通 scope + 用户通过 `auth login` 授权，两层都要满足"
+        }
       },
       "keywords": [
         "日程",
@@ -736,7 +741,7 @@
       "nameEn": "DingTalk",
       "summaryEn": "Query and manage messages, documents, spreadsheets, work logs, calendars, and tasks.",
       "setup": {
-        "requirements": "官方企业应用 MCP 需要钉钉企业管理员或子管理员申请接口权限，普通成员需管理员协助准备企业内部应用、AppKey、AppSecret 和对应权限后使用；不能只凭个人登录接入。需 Node.js >= 16。CLI 的普通成员独立开通条件及企业版、费用要求，所引官方说明未说明。",
+        "requirements": "官方企业应用 MCP 需要钉钉企业管理员或子管理员申请接口权限，普通成员需管理员协助准备企业内部应用、AppKey、AppSecret 和对应权限后使用；不能只凭个人登录接入。需 Node.js >= 16。CLI 的普通成员独立开通条件及企业版、费用要求，所引官方说明未说明。 下方摘录仅证明通讯录敏感权限的角色限制，其他接口以各自权限说明为准。",
         "steps": [
           {
             "text": "使用企业应用 MCP 时，请管理员创建企业内部应用、取得 AppKey/AppSecret 并开通所需接口权限；按官方 npx 配置接入。示例 ACTIVE_PROFILES=ALL 覆盖全部模块，实际接入按高级配置缩小为任务所需模块。",
@@ -756,7 +761,12 @@
           }
         ],
         "verify": "MCP 路线先检查工具列表，再按官方只读示例搜索本人基本信息；CLI 路线先查看已发布工具。权限不足时记录缺少的接口权限，不以创建文档或发消息验证。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://opensource.dingtalk.com/developerpedia/docs/develop/permission/high_grade_scope/",
+          "agentReadable": true,
+          "quote": "可以操作该权限点的角色为【全组织通讯录管理员】"
+        }
       },
       "install": {
         "cli": "curl -fsSL https://gitee.com/DingTalk-Real-AI/dingtalk-workspace-cli/raw/main/scripts/install.sh | DWS_GITEE_REPO=DingTalk-Real-AI/dingtalk-workspace-cli sh",
@@ -848,7 +858,12 @@
         ],
         "verify": "先列出已授权的能力，再只读查询本人有权访问的一条通讯录或文档，核对身份与企业。",
         "requirements": "需企业微信账号及 Node.js >= 18；官方 Skill 会检查 CLI 并引导凭证配置。普通成员能否自行启用、哪些能力需管理员开通及企业版要求，所引官方安装说明中官方未说明，接入前须按所在企业策略核实。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/WecomTeam/wecom-unified/blob/main/skills/wecom-unified/SKILL.md",
+          "agentReadable": true,
+          "quote": "该命令会输出一个授权链接和二维码，并阻塞等待用户扫码完成验证。"
+        }
       },
       "sources": [
         {
@@ -897,7 +912,12 @@
           }
         ],
         "verify": "连接后先读取自己有权限的一份文档，核对名称或内容；未授权文件不可作为连通性依据。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://docs.qq.com/open/document/mcp/",
+          "agentReadable": true,
+          "quote": "需要登录QQ/微信后方可操作对应账号的数据"
+        }
       },
       "keywords": [
         "在线表格",
@@ -960,7 +980,12 @@
           }
         ],
         "verify": "执行 tmeet meeting list，只查询已有会议并核对结果。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/TencentCloud/tencentmeeting-cli",
+          "agentReadable": true,
+          "quote": "OAuth2 授权登录"
+        }
       },
       "sources": [
         {
@@ -1030,7 +1055,12 @@
           }
         ],
         "verify": "先确认客户端显示服务与工具列表，再使用日历只读查询核对授权用户已有日程；不要以创建日程作为首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://open.wps.cn/documents/app-integration-dev/mcp-server/use-guide",
+          "agentReadable": true,
+          "quote": "完成对相关应用能力权限的申请"
+        }
       },
       "install": {
         "mcp": {
@@ -1101,7 +1131,11 @@
           }
         ],
         "verify": "接入后先让 Agent 只读查询你已获授权的文档，核对返回结果。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://mp.weixin.qq.com/s/7-u1JnWMiChmjiSFu-zlaA",
+          "agentReadable": false
+        }
       },
       "keywords": [
         "找云文档",
@@ -1170,7 +1204,12 @@
           }
         ],
         "verify": "列出自己可访问的知识库，核对返回名称；先不写入文档。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/yuque/yuque-mcp-server",
+          "agentReadable": true,
+          "quote": "Personal or team Yuque API token"
+        }
       },
       "sources": [
         {
@@ -1233,7 +1272,12 @@
           }
         ],
         "verify": "运行 agently-cli +me 核对当前身份，再查询已有邮件列表。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/Tencent/AgentlyMail",
+          "agentReadable": true,
+          "quote": "使用前需要安装 CLI 并完成授权"
+        }
       },
       "sources": [
         {
@@ -3152,7 +3196,12 @@
           }
         ],
         "verify": "先执行 whoami 核对身份，再搜索一份有权限的已有文档。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/tencent-lexiang/lexiang-mcp-skill",
+          "agentReadable": true,
+          "quote": "点击「授权」完成 OAuth"
+        }
       },
       "sources": [
         {
@@ -3230,7 +3279,12 @@
           }
         ],
         "verify": "先列出工具；确认额度后用一份无敏感信息的小文档核对识别结果，不把付费处理称为免费首测。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/intsig-textin/textin-mcp",
+          "agentReadable": true,
+          "quote": "Get Textin APP_ID and APP_SECRET by following the instructions here"
+        }
       },
       "sources": [
         {
@@ -3694,7 +3748,12 @@
           }
         ],
         "verify": "先列出工具，再按额度许可用公开的小 PDF 验证输出 Markdown；不上传私人文档。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/opendatalab/MinerU-Ecosystem",
+          "agentReadable": true,
+          "quote": "Default is mode=\"flash\" (no API token required)."
+        }
       },
       "sources": [
         {
@@ -3768,7 +3827,11 @@
         ],
         "verify": "只读列出本人已有任务或清单，核对返回内容，不创建任务验证。",
         "requirements": "官方提供本人滴答清单账号的 OAuth 或 Bearer Token 授权方式。普通成员在组织环境能否独立启用、管理员开通范围及企业版要求，所引官方 MCP 指南未说明；操作限已授权账号的数据。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://help.dida365.com/articles/7438132116019216384",
+          "agentReadable": false
+        }
       },
       "sources": [
         {
@@ -3817,7 +3880,11 @@
           }
         ],
         "verify": "先查询有权限的空间基本信息或工作项列表，核对返回内容；写操作仅在确需修改时使用。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://project.feishu.cn/b/helpcenter/1ykiuvvj/qaq5d7ru",
+          "agentReadable": false
+        }
       },
       "keywords": [
         "项目进度",
@@ -5067,7 +5134,12 @@
           }
         ],
         "verify": "只读查询已有项目或需求列表，核对项目身份及返回内容。",
-        "checkedAt": "2026-11-05"
+        "checkedAt": "2026-11-05",
+        "permissionEvidence": {
+          "url": "https://github.com/TencentCloudCommunity/mcp-server/tree/main/src/mcp-server-tapd",
+          "agentReadable": true,
+          "quote": "TAPD_ACCESS_TOKEN 为 TAPD 个人令牌"
+        }
       },
       "sources": [
         {

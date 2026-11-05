@@ -47,3 +47,5 @@
 图标不写在数据里：`scripts/fetch-logos.mjs` 会把图标存到 `web/logos/<id>.png`，构建时自动带上。
 
 `scripts/lib.mjs` 中的 `validate()` 会检查以上规则，`npm run check` 不通过时不能合并。
+
+`setup.permissionEvidence` 可选记录办公权限依据，包含官方 HTTPS `url`、布尔 `agentReadable` 和可选的 80 字内逐字 `quote`。原文未覆盖的权限条件不可推断。

@@ -210,8 +210,27 @@ test('官方原文与摘录日期同步到Markdown和网页，并说明不可直
     const body = fixture.read(path);
     assert.ok(body.includes('官方原文摘录'));
     assert.ok(body.includes('2026-11-05'));
-    assert.ok(body.includes('官方页需浏览器打开，Agent 可能读不到'));
+    assert.ok(body.includes(path.endsWith('.md') ? '无需再读取官方页' : '官方页需浏览器打开，Agent 可能读不到'));
     assert.ok(body.includes(path.endsWith('.md') ? quote : esc(quote)));
   }
   for (const path of ['index.html', 'skills/agent-mcp-finder/SKILL.md']) assert.ok(fixture.read(path).includes('官方页面读不到时，以索引中的官方原文摘录为依据，并告诉我这一点。'));
+});
+
+test('办公权限说明显示对应官方原文与来源', (t) => {
+  const fixture = buildFixture(data => {
+    data.services[0].setup.permissionEvidence = { url: 'https://example.com/access', quote: '管理员申请权限', agentReadable: true };
+  });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  for (const content of [fixture.read('s/amap.md'), fixture.read('s/amap/index.html')]) {
+    assert.ok(content.includes('管理员申请权限'));
+    assert.ok(content.includes('https://example.com/access'));
+  }
+});
+
+test('官方页不可读且没有摘录时不宣称已有依据', (t) => {
+  const fixture = buildFixture(data => { data.services[0].evidence = { url: 'https://example.com/source', checkedAt: '2026-11-05', agentReadable: false }; });
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const body = fixture.read('s/amap.md');
+  assert.ok(body.includes('尚无可用原文摘录'));
+  assert.ok(!body.includes('无需再读取官方页'));
 });

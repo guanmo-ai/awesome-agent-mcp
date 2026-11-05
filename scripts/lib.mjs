@@ -103,6 +103,10 @@ export function validate(data) {
     if (s.setup !== undefined) {
       if (!isObject(s.setup)) err(w, 'setup 必须是对象');
       else {
+        if (s.setup.permissionEvidence !== undefined) {
+          const e = s.setup.permissionEvidence;
+          if (!isObject(e) || !isHttps(e.url) || typeof e.agentReadable !== 'boolean' || (e.quote !== undefined && (typeof e.quote !== 'string' || !e.quote.trim() || Array.from(e.quote).length > 80))) err(w, 'setup.permissionEvidence 需要 HTTPS url、可读性与可选的 80 字内原文');
+        }
         for (const field of ['requirements', 'verify']) if (typeof s.setup[field] !== 'string' || !s.setup[field].trim()) err(w, `setup.${field} 必须是非空字符串`);
         if (!Array.isArray(s.setup.steps) || !s.setup.steps.length) err(w, 'setup.steps 必须是非空数组');
         else for (const step of s.setup.steps) if (!isObject(step) || typeof step.text !== 'string' || !step.text.trim() || !isHttps(step.url)) err(w, 'setup.steps 每项需要非空 text 和 https url');
