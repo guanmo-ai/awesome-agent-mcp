@@ -18,6 +18,8 @@
 | `id` | ✓ | 小写字母、数字和连字符，全局唯一，例如 `amap`、`tencent-docs`。网页用它做卡片链接 `#s-<id>`，定下后不要改 |
 | `name` | ✓ | 服务的中文常用名 |
 | `category` | ✓ | 分类 id，对应 `categories` |
+| `nameEn` | 展示时必填 | 官方英文名优先；无官方英文名时使用拼音名，rejected 条目可不填 |
+| `summaryEn` | 展示时必填 | 与 summary 能力范围一致的英文简介，rejected 条目可不填 |
 | `summary` | ✓ | 一句话能力说明，不超过 60 字，用自己的话写 |
 | `types` | ✓ | `mcp`、`skill`、`cli` 中的一个或多个 |
 | `url` | ✓ | 官方入口（文档页或官方仓库），必须是 https |

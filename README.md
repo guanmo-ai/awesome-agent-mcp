@@ -1,5 +1,7 @@
 <!-- 本文件由 scripts/build.mjs 根据 data/services.json 自动生成，请改数据后运行 npm run build，不要手改。 -->
 
+[English](README.en.md) · **简体中文**
+
 <h1 align="center">Awesome Agent MCP</h1>
 
 <p align="center"><b>国内官方 MCP · Skill · CLI 大全</b><br>让你的 Agent 接上高德、飞书、美团、支付宝……只收厂商官方出品，人看网页，AI 读 llms.txt。</p>

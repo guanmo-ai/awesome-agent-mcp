@@ -98,3 +98,21 @@ test('静态详情转义恶意文字、属性、配置与 JSON-LD 的 script 结
   assert.equal(embedded.services[0].name, s.name, 'JSON 转义后应能完整还原原始数据');
   assert.equal(JSON.parse(raw).name, '"><script>alert(1)</script>');
 });
+
+
+test('两个 README 生成相同的公开目录，英文内容完整且顶部互链', (t) => {
+  const fixture = buildFixture();
+  t.after(() => rmSync(fixture.dir, { recursive: true, force: true }));
+  const zh = readFileSync(join(fixture.dir, 'README.md'), 'utf8');
+  const en = readFileSync(join(fixture.dir, 'README.en.md'), 'utf8');
+  assert.ok(zh.slice(0, 300).includes('[English](README.en.md)'));
+  assert.ok(en.slice(0, 300).includes('[简体中文](README.md)'));
+  const rows = (text) => text.split('\n').filter((l) => l.startsWith('| [')).map((l) => l.match(/\/s\/([a-z0-9-]+)\//)[1]);
+  assert.deepEqual(rows(en), rows(zh));
+  assert.equal(rows(en).length, fixture.data.services.filter((s) => s.status !== 'rejected').length);
+  for (const s of fixture.data.services.filter((s) => s.status !== 'rejected')) {
+    assert.ok(en.includes(`[${s.nameEn}](${s.url})`), `${s.id} 缺少英文名`);
+    assert.ok(en.includes(s.summaryEn), `${s.id} 缺少英文简介`);
+  }
+  assert.doesNotMatch(en, /undefined|\{\{\w+\}\}/);
+});

@@ -37,6 +37,7 @@ export function validate(data) {
     if (!ID.test(c.id ?? '')) err(`category ${c.id}`, 'id 格式不对');
     if (cats.has(c.id)) err(`category ${c.id}`, 'id 重复');
     if (!c.name) err(`category ${c.id}`, '缺少 name');
+    if (!c.nameEn || typeof c.nameEn !== 'string' || !c.nameEn.trim()) err(`category ${c.id}`, '缺少 nameEn');
     cats.add(c.id);
   }
   const ids = new Set();
@@ -47,6 +48,7 @@ export function validate(data) {
     if (ids.has(s.id)) err(w, 'id 重复');
     ids.add(s.id);
     for (const k of ['name', 'summary']) if (!s[k] || typeof s[k] !== 'string') err(w, `缺少 ${k}`);
+    if (s.status !== 'rejected') for (const k of ['nameEn', 'summaryEn']) if (typeof s[k] !== 'string' || !s[k].trim()) err(w, `缺少 ${k}`);
     if (s.summary && s.summary.length > 60) err(w, 'summary 超过 60 字');
     if (!cats.has(s.category)) err(w, `未知分类 ${s.category}`);
     if (!Array.isArray(s.types) || !s.types.length) err(w, 'types 至少一项');

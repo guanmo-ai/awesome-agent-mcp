@@ -64,3 +64,14 @@ test('可用性检查拒绝伪 MCP 响应并移除 Key，占位符不发送到�
     assert.match(await inspect('npm', 'https://registry.npmjs.org/example', {}), /^失败/);
   } finally { globalThis.fetch = original; }
 });
+
+test('展示条目必须提供英文名称和简介，rejected 条目允许不填', () => {
+  const d = base();
+  const s = d.services.find((s) => s.status !== 'rejected');
+  delete s.nameEn;
+  s.summaryEn = ' ';
+  assert.match(validate(d).join('\n'), /缺少 nameEn/);
+  assert.match(validate(d).join('\n'), /缺少 summaryEn/);
+  s.status = 'rejected'; s.rejectedReason = 'test';
+  assert.deepEqual(validate(d), []);
+});
