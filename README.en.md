@@ -13,7 +13,7 @@
   <a href="https://x.com/guanmo_ai">Follow @guanmo_ai</a>
 </p>
 
-<p align="center"><sub>104 services · 7 categories · 104 verified · Updated 2026-11-05</sub></p>
+<p align="center"><sub>104 services · 7 categories · 87 with install config · Updated 2026-11-05</sub></p>
 
 > **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)
 

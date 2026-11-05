@@ -271,7 +271,7 @@ function buildOrbit() {
   const showLabel = (it, auto) => {
     clearTimeout(labelTimer);
     label.innerHTML = `<b>${esc(it.s.name)}</b><span> · ${esc(verb(it.s))}</span>${auto ? '<i>连接示意</i>' : ''}`;
-    const position = orbitLabelPosition({ x: it.x, y: it.y, size, width: W, labelWidth: label.offsetWidth, labelHeight: label.offsetHeight });
+    const position = orbitLabelPosition({ x: it.x, y: it.y, size, width: W, labelWidth: label.offsetWidth, labelHeight: label.offsetHeight, nodes: items.filter(node => node !== it).map(node => ({ x: node.x, y: node.y, size })) });
     label.style.setProperty('--label-x', `${position.x}px`);
     label.style.setProperty('--label-y', `${position.y}px`);
     label.classList.add('show');

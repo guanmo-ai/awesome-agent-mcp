@@ -17,7 +17,7 @@ if (errors.length) {
 
 const groups = grouped(data);
 const live = groups.flatMap((g) => g.services);
-const verified = live.filter((s) => s.status === 'verified').length;
+const installed = live.filter((s) => s.install).length;
 const issueUrl = (tpl) => `https://github.com/${config.repo}/issues/new?template=${tpl}`;
 const skillPath = `skills/${config.skill}/SKILL.md`;
 const md = (s) => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
@@ -57,7 +57,7 @@ function readme(english = false) {
     `  <a href="https://x.com/${config.maintainer.x}">${t('关注', 'Follow')} @${config.maintainer.x}</a>`,
     '</p>',
     '',
-    `<p align="center"><sub>${live.length} ${t('个服务', 'services')} · ${groups.length} ${t('个分类', 'categories')} · ${verified} ${t('个已核验', 'verified')} · ${t('更新于', 'Updated')} ${data.updatedAt}</sub></p>`,
+    `<p align="center"><sub>${live.length} ${t('个服务', 'services')} · ${groups.length} ${t('个分类', 'categories')} · ${t(`附安装配置 ${installed}`, `${installed} with install config`)} · ${t('更新于', 'Updated')} ${data.updatedAt}</sub></p>`,
     '',
     t('> **独立社区索引，仅供参考。** 收录不构成背书，“已核验”不等于已实测或安全保证。使用前请自行核实官方信息。[使用说明与免责声明](#disclaimer)', '> **Independent community index, for reference only.** Inclusion is not endorsement; verified does not mean tested or guaranteed safe. Check official information before use. [Usage and disclaimer](#disclaimer)'),
     '',
