@@ -1810,32 +1810,33 @@
       "install": {
         "mcp": {
           "transport": "http",
-          "url": "https://mcp.tianyancha.com/mcp",
-          "headers": {
-            "Authorization": "Bearer <你的天眼查Token>"
-          }
+          "url": "https://mcp.tianyancha.com/mcp"
         },
         "cli": "npm install -g tyc-cli",
         "skill": "https://github.com/tyc-tech/mcp-skills"
       },
       "evidence": {
-        "url": "https://github.com/tyc-tech/tyc-cli",
+        "url": "https://www.tianyancha.com/ai/guide.md",
         "checkedAt": "2026-11-05",
-        "note": "天眼查 GitHub 组织主页链接官网；CLI 文档明确官方 MCP 端点及鉴权。",
-        "quote": "npm install -g tyc-cli",
+        "note": "官方指南优先推荐 OAuth，兼容旧客户端时 Authorization 传已有 API Key；CLI 的 OpenAPI Token 来源另见官方 README。",
+        "quote": "https://mcp.tianyancha.com/mcp",
         "agentReadable": true
       },
       "nameEn": "Tianyancha",
       "summaryEn": "Look up company registration and corporate relationships.",
       "setup": {
-        "requirements": "需 Node.js 18+；可使用官方 OAuth 登录或已有天眼查 API Token，接口额度和费用以授权账户为准。",
+        "requirements": "优先按官方指南使用支持 OAuth 的 MCP 客户端或 tyc CLI 浏览器授权；CLI 需 Node.js 18+。旧客户端可按官方指南使用已有 API Key。额度和费用按账号确认。",
         "steps": [
           {
-            "text": "按官方 npm 命令安装 tyc-cli，运行 tyc login 完成浏览器授权；已有 API Token 可按 tyc init 路径配置。",
-            "url": "https://github.com/tyc-tech/tyc-cli"
+            "text": "官方优先推荐 CLI + Skill：安装 tyc-cli，运行 tyc login --no-open --no-block，按命令返回的地址和验证码完成设备授权，再执行 tyc login --resume。凭据由 CLI 在本地管理。",
+            "url": "https://www.tianyancha.com/ai/guide.md"
           },
           {
-            "text": "需要 MCP 时按官方地址添加客户端并保留认证头；凭据只在本地保存。",
+            "text": "仅需远程 MCP 时，支持 OAuth 的客户端按下方地址连接并完成授权，无需手写 Bearer。旧客户端若已有 API Key，按官方兼容示例将 Key 原样放入 Authorization；官方指南未说明新用户取得该 Key 的具体路径，不要将 OAuth 临时令牌与 API Key 等同。",
+            "url": "https://www.tianyancha.com/ai/guide.md"
+          },
+          {
+            "text": "CLI 的另一条兼容路径可用已有天眼查 OpenAPI Token 执行 tyc init；官方 README 称可联系商务或自行注册取得。不要把密钥写进聊天或 shell 历史。",
             "url": "https://github.com/tyc-tech/tyc-cli"
           }
         ],

@@ -209,9 +209,10 @@
 - [知乎](https://developer.zhihu.com/docs?key=zhihu_cli): 搜索知乎与全网、读取热榜和个人内容，检索与上传知识库文件。 类型 MCP · Skill · CLI；权限 可执行操作；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://developer.zhihu.com/api/mcp/v1；Skill https://developer-cdn.zhihu.com/zhihu-cli/releases/stable/skill/zhihu-cli-skill.zip；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/zhihu/)
 - [企查查](https://agent.qcc.com/guide): 企业工商与风险信息查询。 类型 MCP · CLI；权限 只读查询；门槛 需授权账号、需 API Key；已核验；MCP Streamable HTTP https://agent.qcc.com/mcp/company/stream；CLI `npm install -g qcc-agent-cli`；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/qcc/)
 - [天眼查](https://github.com/tyc-tech/tyc-cli): 企业工商与关系信息查询。 类型 MCP · Skill · CLI；权限 只读查询；门槛 需授权账号；已核验；MCP Streamable HTTP https://mcp.tianyancha.com/mcp；CLI `npm install -g tyc-cli`；Skill https://github.com/tyc-tech/mcp-skills；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/tianyancha/)
-  - 接入前准备：需 Node.js 18+；可使用官方 OAuth 登录或已有天眼查 API Token，接口额度和费用以授权账户为准。
-  - 步骤 1：按官方 npm 命令安装 tyc-cli，运行 tyc login 完成浏览器授权；已有 API Token 可按 tyc init 路径配置。 [官方入口](https://github.com/tyc-tech/tyc-cli)
-  - 步骤 2：需要 MCP 时按官方地址添加客户端并保留认证头；凭据只在本地保存。 [官方入口](https://github.com/tyc-tech/tyc-cli)
+  - 接入前准备：优先按官方指南使用支持 OAuth 的 MCP 客户端或 tyc CLI 浏览器授权；CLI 需 Node.js 18+。旧客户端可按官方指南使用已有 API Key。额度和费用按账号确认。
+  - 步骤 1：官方优先推荐 CLI + Skill：安装 tyc-cli，运行 tyc login --no-open --no-block，按命令返回的地址和验证码完成设备授权，再执行 tyc login --resume。凭据由 CLI 在本地管理。 [官方入口](https://www.tianyancha.com/ai/guide.md)
+  - 步骤 2：仅需远程 MCP 时，支持 OAuth 的客户端按下方地址连接并完成授权，无需手写 Bearer。旧客户端若已有 API Key，按官方兼容示例将 Key 原样放入 Authorization；官方指南未说明新用户取得该 Key 的具体路径，不要将 OAuth 临时令牌与 API Key 等同。 [官方入口](https://www.tianyancha.com/ai/guide.md)
+  - 步骤 3：CLI 的另一条兼容路径可用已有天眼查 OpenAPI Token 执行 tyc init；官方 README 称可联系商务或自行注册取得。不要把密钥写进聊天或 shell 历史。 [官方入口](https://github.com/tyc-tech/tyc-cli)
   - 如何确认成功：用一个公开企业名称做只读查询，核对企业名称及返回来源。（指引核对于 2026-11-05，不代表已实测）
 - [抖音开放平台](https://developer.open-douyin.com/docs/resource/zh-CN/dop/ability/mcp-service/mcp-service-desc): 接入抖音官方视频与图文搜索、跳转链接和经营任务等能力。 类型 MCP；权限 可执行操作；门槛 需授权账号、需申请开通；已核验；MCP SSE https://open.douyin.com/sse?token=<你的抖音Token>；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/douyin-open/)
 - [巨量引擎](https://open.oceanengine.com/mcp?app_id=1841425772187712): 查询授权的巨量广告账户、投放指标与报表数据。 类型 MCP；权限 只读查询；门槛 需授权账号、需 API Key；已核验；[独立页](https://guanmo-ai.github.io/awesome-agent-mcp/s/oceanengine/)
